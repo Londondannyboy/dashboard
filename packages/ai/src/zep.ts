@@ -303,17 +303,17 @@ export async function searchGraph(
 }
 
 export async function searchRelocationContent(query: string, limit = 5): Promise<GraphSearchResult[]> {
-  const graphId = process.env.ZEP_RELOCATION_GRAPH_ID || ''
+  const graphId = process.env.ZEP_GRAPH_ID_RELOCATION || ''
   return searchGraph(graphId, query, limit)
 }
 
 export async function searchPlacementContent(query: string, limit = 5): Promise<GraphSearchResult[]> {
-  const graphId = process.env.ZEP_PLACEMENT_GRAPH_ID || ''
+  const graphId = process.env.ZEP_GRAPH_ID_PLACEMENT || ''
   return searchGraph(graphId, query, limit)
 }
 
 export async function getUserGraph(userId: string): Promise<Record<string, unknown> | null> {
-  const graphId = process.env.ZEP_USERS_GRAPH_ID || ''
+  const graphId = process.env.ZEP_GRAPH_ID_USERS || ''
   if (!isZepConfigured() || !graphId) return null
 
   try {
