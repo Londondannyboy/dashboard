@@ -1,4 +1,14 @@
-export default function Home() {
+import { stackServerApp } from '@/stack'
+import { redirect } from 'next/navigation'
+
+export default async function Home() {
+  const user = await stackServerApp.getUser()
+
+  // If user is authenticated, redirect to dashboard
+  if (user) {
+    redirect('/dashboard')
+  }
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
       <div className="max-w-4xl mx-auto text-center">
