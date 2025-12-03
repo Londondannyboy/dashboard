@@ -1,0 +1,35 @@
+{
+  "name": "@quest/media",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./replicate": {
+      "types": "./dist/replicate.d.ts",
+      "import": "./dist/replicate.js"
+    },
+    "./cloudinary": {
+      "types": "./dist/cloudinary.d.ts",
+      "import": "./dist/cloudinary.js"
+    },
+    "./mux": {
+      "types": "./dist/mux.d.ts",
+      "import": "./dist/mux.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "replicate": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
