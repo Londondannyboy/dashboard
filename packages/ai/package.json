@@ -27,6 +27,7 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
+    "@getzep/zep-cloud": "^3.13.0",
     "ai": "^4.0.0",
     "zod": "^3.23.0"
   },
