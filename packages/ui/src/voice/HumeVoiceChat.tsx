@@ -44,22 +44,15 @@ function VoiceChatInner({
     mute,
     unmute,
     messages,
-    error,
   } = useVoice()
 
   const [displayMessages, setDisplayMessages] = useState<Message[]>([])
 
   useEffect(() => {
-    if (error) {
-      onError?.(new Error(error.message || 'Voice chat error'))
-    }
-  }, [error, onError])
-
-  useEffect(() => {
     // Transform Hume messages to our format
     const transformed: Message[] = messages
-      .filter((msg) => msg.type === 'user_message' || msg.type === 'assistant_message')
-      .map((msg) => ({
+      .filter((msg: { type: string }) => msg.type === 'user_message' || msg.type === 'assistant_message')
+      .map((msg: { type: string; message?: { content?: string } }) => ({
         role: msg.type === 'user_message' ? 'user' as const : 'assistant' as const,
         content: msg.message?.content || '',
       }))
@@ -74,7 +67,7 @@ function VoiceChatInner({
 
   const handleConnect = useCallback(async () => {
     try {
-      await connect()
+      await connect({})
     } catch (e) {
       const err = e instanceof Error ? e : new Error(String(e))
       onError?.(err)
@@ -97,13 +90,6 @@ function VoiceChatInner({
           {isConnected ? 'Connected' : isConnecting ? 'Connecting...' : 'Disconnected'}
         </span>
       </div>
-
-      {/* Error display */}
-      {error && (
-        <div className="text-red-500 text-sm p-2 bg-red-50 rounded">
-          {error.message}
-        </div>
-      )}
 
       {/* Controls */}
       <div className="flex gap-2">
@@ -210,7 +196,7 @@ export function HumeVoiceChat({
 
   return (
     <VoiceProvider
-      auth={{ type: 'accessToken', value: token }}
+      accessToken={token}
       configId={config || undefined}
     >
       <VoiceChatInner
