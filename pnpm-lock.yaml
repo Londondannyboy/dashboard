@@ -127,6 +127,9 @@ importers:
 
   packages/ui:
     dependencies:
+      '@humeai/voice-react':
+        specifier: ^0.2.7
+        version: 0.2.10(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react:
         specifier: ^18.0.0 || ^19.0.0
         version: 19.2.0
@@ -488,6 +491,12 @@ packages:
     resolution: {integrity: sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==}
     peerDependencies:
       react-hook-form: ^7.0.0
+
+  '@humeai/voice-react@0.2.10':
+    resolution: {integrity: sha512-wpohYFRVukV9DU3tHLE9Uza4Ex1Q/VZU4T2e00ycwLhhcAms9PYUYMa84TC+cyanHEBWpDeWgt5V4OPbqXAhSg==}
+    peerDependencies:
+      react: '>=18.2.0'
+      react-dom: '>=18.2.0'
 
   '@img/colour@1.0.0':
     resolution: {integrity: sha512-A5P/LfWGFSl6nsckYtjw9da+19jB8hkJ6ACTGcDfEJ0aE+l2n2El7dsVM7UVHZQ9s2lmYMWlrS21YLy2IR1LUw==}
@@ -2109,6 +2118,10 @@ packages:
   hmac-drbg@1.0.1:
     resolution: {integrity: sha512-Tti3gMqLdZfhOQY1Mzf/AanLiqh1WTiJgEj26ZuYQ9fbkLomzGchCws4FyrSd4VkpBfiNhaE1On+lOz894jvXg==}
 
+  hume@0.15.6:
+    resolution: {integrity: sha512-dO2F+z/6OzW8MyHJlAySuCKsqTJk1krViSEcdlGTd5M/TwFvvoN8QdvTv90HFL2GYUXgUXCquKgRpO0GjVrHFA==}
+    engines: {node: '>=18.0.0'}
+
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
 
@@ -2789,6 +2802,10 @@ packages:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
 
+  type-fest@4.41.0:
+    resolution: {integrity: sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA==}
+    engines: {node: '>=16'}
+
   typescript@5.9.3:
     resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
     engines: {node: '>=14.17'}
@@ -2860,6 +2877,18 @@ packages:
   wrap-ansi@8.1.0:
     resolution: {integrity: sha512-si7QWI6zUMq56bESFvagtmzMdGOtoxfR+Sez11Mobfc7tm+VkUckk9bW2UeffTGVUbOksxmSw0AA2gs8g71NCQ==}
     engines: {node: '>=12'}
+
+  ws@8.18.3:
+    resolution: {integrity: sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
 
   xtend@4.0.2:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
@@ -3401,6 +3430,18 @@ snapshots:
   '@hookform/resolvers@3.10.0(react-hook-form@7.67.0(react@19.2.0))':
     dependencies:
       react-hook-form: 7.67.0(react@19.2.0)
+
+  '@humeai/voice-react@0.2.10(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      date-fns: 3.6.0
+      hume: 0.15.6
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+      type-fest: 4.41.0
+      zod: 3.25.76
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   '@img/colour@1.0.0':
     optional: true
@@ -5169,6 +5210,15 @@ snapshots:
       minimalistic-assert: 1.0.1
       minimalistic-crypto-utils: 1.0.1
 
+  hume@0.15.6:
+    dependencies:
+      uuid: 9.0.1
+      ws: 8.18.3
+      zod: 3.25.76
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
   ieee754@1.2.1:
     optional: true
 
@@ -5811,6 +5861,8 @@ snapshots:
 
   type-fest@2.19.0: {}
 
+  type-fest@4.41.0: {}
+
   typescript@5.9.3: {}
 
   undici-types@6.21.0: {}
@@ -5871,6 +5923,8 @@ snapshots:
       ansi-styles: 6.2.3
       string-width: 5.1.2
       strip-ansi: 7.1.2
+
+  ws@8.18.3: {}
 
   xtend@4.0.2: {}
 

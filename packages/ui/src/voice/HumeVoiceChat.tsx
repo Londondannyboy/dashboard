@@ -1,18 +1,11 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
+import { VoiceProvider, useVoice } from '@humeai/voice-react'
 
 export interface EmotionScore {
   name: string
   score: number
-}
-
-export interface VoiceChatCallbacks {
-  onMessage?: (message: string, role: 'user' | 'assistant') => void
-  onEmotions?: (emotions: EmotionScore[]) => void
-  onError?: (error: Error) => void
-  onConnect?: () => void
-  onDisconnect?: () => void
 }
 
 interface Message {
@@ -24,87 +17,67 @@ interface HumeVoiceChatProps {
   accessToken?: string
   configId?: string
   onMessage?: (message: string, role: 'user' | 'assistant') => void
-  onEmotions?: (emotions: EmotionScore[]) => void
   onError?: (error: Error) => void
   className?: string
 }
 
-/**
- * Hume Voice Chat component - Placeholder
- *
- * Voice chat requires the Hume EVI SDK to be properly integrated.
- * The current implementation shows the UI structure.
- */
-export function HumeVoiceChat({
+function VoiceChatControls({
   accessToken,
   configId,
-  onMessage,
-  onEmotions,
   onError,
-  className = '',
-}: HumeVoiceChatProps) {
-  const [isConnected, setIsConnected] = useState(false)
-  const [isConnecting, setIsConnecting] = useState(false)
-  const [isMuted, setIsMuted] = useState(false)
-  const [messages, setMessages] = useState<Message[]>([])
-  const [error, setError] = useState<string | null>(null)
-  const [token, setToken] = useState<string | null>(accessToken || null)
-  const [config, setConfig] = useState<string | null>(configId || null)
+}: {
+  accessToken: string
+  configId?: string
+  onError?: (error: Error) => void
+}) {
+  const { status, connect, disconnect, isMuted, mute, unmute, messages } = useVoice()
+  const [displayMessages, setDisplayMessages] = useState<Message[]>([])
+  const messagesRef = useRef<HTMLDivElement>(null)
+
+  const isConnected = status.value === 'connected'
+  const isConnecting = status.value === 'connecting'
 
   useEffect(() => {
-    if (!accessToken) {
-      fetch('/api/hume/token')
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.error) {
-            setError(data.error)
-          } else {
-            setToken(data.accessToken)
-            setConfig(data.configId || null)
-          }
-        })
-        .catch((e) => setError(e.message))
+    // Transform Hume messages to our format
+    const transformed: Message[] = []
+    for (const msg of messages) {
+      if (msg.type === 'user_message' || msg.type === 'assistant_message') {
+        const content = (msg as { message?: { content?: string } }).message?.content
+        if (content) {
+          transformed.push({
+            role: msg.type === 'user_message' ? 'user' : 'assistant',
+            content,
+          })
+        }
+      }
     }
-  }, [accessToken])
+    setDisplayMessages(transformed)
+
+    // Auto-scroll to bottom
+    if (messagesRef.current) {
+      setTimeout(() => {
+        messagesRef.current?.scrollTo({
+          top: messagesRef.current.scrollHeight,
+          behavior: 'smooth',
+        })
+      }, 100)
+    }
+  }, [messages])
 
   const handleConnect = useCallback(async () => {
-    if (!token) {
-      setError('No access token available')
-      return
-    }
-
-    setIsConnecting(true)
-    setError(null)
-
     try {
-      // Voice chat connection would happen here
-      // For now, show that credentials are configured
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      setIsConnected(true)
-      setMessages([{
-        role: 'assistant',
-        content: `Voice chat ready. Config: ${config || 'default'}. Token available: ${!!token}`
-      }])
+      await connect({
+        auth: { type: 'accessToken', value: accessToken },
+        configId: configId || undefined,
+      })
     } catch (e) {
       const err = e instanceof Error ? e : new Error(String(e))
-      setError(err.message)
       onError?.(err)
-    } finally {
-      setIsConnecting(false)
     }
-  }, [token, config, onError])
-
-  const handleDisconnect = useCallback(() => {
-    setIsConnected(false)
-    setMessages([])
-  }, [])
-
-  const toggleMute = useCallback(() => {
-    setIsMuted((prev) => !prev)
-  }, [])
+  }, [connect, accessToken, configId, onError])
 
   return (
-    <div className={`flex flex-col gap-4 ${className}`}>
+    <div className="flex flex-col gap-4">
       {/* Connection status */}
       <div className="flex items-center gap-2">
         <div
@@ -116,13 +89,6 @@ export function HumeVoiceChat({
           {isConnected ? 'Connected' : isConnecting ? 'Connecting...' : 'Disconnected'}
         </span>
       </div>
-
-      {/* Error display */}
-      {error && (
-        <div className="text-red-500 text-sm p-2 bg-red-50 rounded">
-          {error}
-        </div>
-      )}
 
       {/* Controls */}
       <div className="flex gap-2">
@@ -137,13 +103,13 @@ export function HumeVoiceChat({
         ) : (
           <>
             <button
-              onClick={handleDisconnect}
+              onClick={disconnect}
               className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
             >
               End Chat
             </button>
             <button
-              onClick={toggleMute}
+              onClick={() => (isMuted ? unmute() : mute())}
               className={`px-4 py-2 rounded ${
                 isMuted
                   ? 'bg-yellow-600 text-white hover:bg-yellow-700'
@@ -157,14 +123,12 @@ export function HumeVoiceChat({
       </div>
 
       {/* Messages display */}
-      <div className="flex flex-col gap-2 max-h-96 overflow-y-auto">
-        {messages.map((msg, i) => (
+      <div ref={messagesRef} className="flex flex-col gap-2 max-h-96 overflow-y-auto">
+        {displayMessages.map((msg, i) => (
           <div
             key={i}
             className={`p-3 rounded ${
-              msg.role === 'user'
-                ? 'bg-blue-100 ml-8'
-                : 'bg-gray-100 mr-8'
+              msg.role === 'user' ? 'bg-blue-100 ml-8' : 'bg-gray-100 mr-8'
             }`}
           >
             <div className="text-xs text-gray-500 mb-1">
@@ -174,11 +138,78 @@ export function HumeVoiceChat({
           </div>
         ))}
       </div>
+    </div>
+  )
+}
 
-      {/* Info */}
-      <div className="text-xs text-gray-400 mt-2">
-        Voice integration pending full Hume EVI SDK setup
+export function HumeVoiceChat({
+  accessToken,
+  configId,
+  onMessage,
+  onError,
+  className = '',
+}: HumeVoiceChatProps) {
+  const [token, setToken] = useState<string | null>(accessToken || null)
+  const [config, setConfig] = useState<string | null>(configId || null)
+  const [loading, setLoading] = useState(!accessToken)
+  const [fetchError, setFetchError] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (!accessToken) {
+      fetch('/api/hume/token')
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.error) {
+            setFetchError(data.error)
+          } else {
+            setToken(data.accessToken)
+            setConfig(data.configId || null)
+          }
+        })
+        .catch((e) => setFetchError(e.message))
+        .finally(() => setLoading(false))
+    }
+  }, [accessToken])
+
+  if (loading) {
+    return (
+      <div className={`flex items-center justify-center p-4 ${className}`}>
+        <span className="text-gray-500">Loading voice chat...</span>
       </div>
+    )
+  }
+
+  if (fetchError || !token) {
+    return (
+      <div className={`p-4 ${className}`}>
+        <div className="text-red-500 text-sm p-2 bg-red-50 rounded">
+          {fetchError || 'Voice chat credentials not configured.'}
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className={className}>
+      <VoiceProvider
+        onMessage={(msg) => {
+          if (msg.type === 'user_message' || msg.type === 'assistant_message') {
+            const content = (msg as { message?: { content?: string } }).message?.content
+            if (content) {
+              onMessage?.(content, msg.type === 'user_message' ? 'user' : 'assistant')
+            }
+          }
+        }}
+        onError={(err) => {
+          onError?.(new Error(err.message || 'Voice chat error'))
+        }}
+      >
+        <VoiceChatControls
+          accessToken={token}
+          configId={config || undefined}
+          onError={onError}
+        />
+      </VoiceProvider>
     </div>
   )
 }
@@ -204,9 +235,16 @@ export function useHumeAccessToken(apiEndpoint = '/api/hume/token') {
         setLoading(false)
       }
     }
-
     fetchToken()
   }, [apiEndpoint])
 
   return { accessToken, loading, error }
+}
+
+export interface VoiceChatCallbacks {
+  onMessage?: (message: string, role: 'user' | 'assistant') => void
+  onEmotions?: (emotions: EmotionScore[]) => void
+  onError?: (error: Error) => void
+  onConnect?: () => void
+  onDisconnect?: () => void
 }
