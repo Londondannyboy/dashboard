@@ -23,7 +23,6 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
-    "@humeai/voice-react": "^0.2.0",
     "react-force-graph-3d": "^1.25.0",
     "three": "^0.170.0"
   },
