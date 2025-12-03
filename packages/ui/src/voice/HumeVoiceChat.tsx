@@ -13,10 +13,21 @@ interface Message {
   content: string
 }
 
+// Dynamic variables to inject into the system prompt
+export interface HumeVariables {
+  name?: string
+  current_country?: string
+  destinations?: string
+  budget?: string
+  timeline?: string
+  [key: string]: string | number | boolean | undefined
+}
+
 interface HumeVoiceChatProps {
   accessToken?: string
   configId?: string
   userId?: string
+  variables?: HumeVariables
   onMessage?: (message: string, role: 'user' | 'assistant') => void
   onError?: (error: Error) => void
   className?: string
@@ -26,11 +37,13 @@ function VoiceChatControls({
   accessToken,
   configId,
   userId,
+  variables,
   onError,
 }: {
   accessToken: string
   configId?: string
   userId?: string
+  variables?: HumeVariables
   onError?: (error: Error) => void
 }) {
   const { status, connect, disconnect, isMuted, mute, unmute, messages } = useVoice()
@@ -69,22 +82,29 @@ function VoiceChatControls({
 
   const handleConnect = useCallback(async () => {
     try {
+      // Build session settings with customSessionId and dynamic variables
+      const sessionSettings = (userId || variables)
+        ? {
+            type: 'session_settings' as const,
+            ...(userId && { customSessionId: userId }),
+            ...(variables && {
+              variables: Object.fromEntries(
+                Object.entries(variables).filter(([, v]) => v !== undefined)
+              ) as Record<string, string | number | boolean>,
+            }),
+          }
+        : undefined
+
       await connect({
         auth: { type: 'accessToken', value: accessToken },
         configId: configId || undefined,
-        // Pass user ID as customSessionId to maintain identity across sessions
-        sessionSettings: userId
-          ? {
-              type: 'session_settings' as const,
-              customSessionId: userId,
-            }
-          : undefined,
+        sessionSettings,
       })
     } catch (e) {
       const err = e instanceof Error ? e : new Error(String(e))
       onError?.(err)
     }
-  }, [connect, accessToken, configId, userId, onError])
+  }, [connect, accessToken, configId, userId, variables, onError])
 
   return (
     <div className="flex flex-col gap-4">
@@ -156,6 +176,7 @@ export function HumeVoiceChat({
   accessToken,
   configId,
   userId,
+  variables,
   onMessage,
   onError,
   className = '',
@@ -221,6 +242,7 @@ export function HumeVoiceChat({
           accessToken={token}
           configId={config || undefined}
           userId={user || undefined}
+          variables={variables}
           onError={onError}
         />
       </VoiceProvider>

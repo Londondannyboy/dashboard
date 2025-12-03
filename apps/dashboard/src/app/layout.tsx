@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import { StackProvider, StackTheme } from '@stackframe/stack'
-import { stackServerApp } from '@/stack'
+import { StackWrapper } from './StackWrapper'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -16,11 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <StackProvider app={stackServerApp}>
-          <StackTheme>
-            {children}
-          </StackTheme>
-        </StackProvider>
+        <StackWrapper>
+          {children}
+        </StackWrapper>
       </body>
     </html>
   )

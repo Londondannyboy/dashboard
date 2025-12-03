@@ -1,8 +1,8 @@
-import { stackServerApp } from '@/stack'
+import { stackServerApp, isStackConfigured } from '@/stack'
 import { redirect } from 'next/navigation'
 
 export default async function Home() {
-  const user = await stackServerApp.getUser()
+  const user = isStackConfigured && stackServerApp ? await stackServerApp.getUser() : null
 
   // If user is authenticated, redirect to dashboard
   if (user) {

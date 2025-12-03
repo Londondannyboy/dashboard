@@ -1,4 +1,4 @@
-import { stackServerApp } from '@/stack'
+import { stackServerApp, isStackConfigured } from '@/stack'
 import { redirect } from 'next/navigation'
 
 export default async function DashboardLayout({
@@ -6,7 +6,7 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
-  const user = await stackServerApp.getUser()
+  const user = isStackConfigured && stackServerApp ? await stackServerApp.getUser() : null
 
   if (!user) {
     redirect('/handler/sign-in')
