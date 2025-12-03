@@ -1,25 +1,60 @@
-'use client'
+import { getStackServerApp } from '@/stack'
+import { getUserByNeonAuthId } from '@quest/db'
+import { buildHumeVariables } from '@quest/ai'
+import { VoiceChatClient } from './VoiceChatClient'
 
-import { HumeVoiceChat } from '@quest/ui'
+export default async function VoicePage() {
+  // Get Stack Auth user (server-side)
+  const stackApp = await getStackServerApp()
+  const stackUser = stackApp ? await stackApp.getUser() : null
 
-export default function VoicePage() {
+  // Fetch user profile from Neon using their Stack Auth ID
+  let userProfile = null
+  let humeVariables = {}
+
+  if (stackUser?.id) {
+    userProfile = await getUserByNeonAuthId(stackUser.id)
+
+    if (userProfile) {
+      humeVariables = buildHumeVariables({
+        first_name: userProfile.first_name,
+        current_country: userProfile.current_country,
+        destination_countries: userProfile.destination_countries,
+        budget_monthly: userProfile.budget_monthly,
+        timeline: userProfile.timeline,
+      })
+    }
+  }
+
   return (
     <div className="max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold mb-4">Voice Chat</h2>
+
+      {userProfile?.first_name && (
+        <p className="text-lg text-gray-700 dark:text-gray-300 mb-2">
+          Welcome back, {userProfile.first_name}!
+        </p>
+      )}
+
       <p className="text-gray-600 dark:text-gray-400 mb-8">
         Talk to Quest about your relocation plans. Quest will remember what you share
         and help you with personalized recommendations.
       </p>
 
+      {/* Debug: Show what variables are being passed */}
+      {process.env.NODE_ENV === 'development' && (
+        <details className="mb-4 text-xs text-gray-500">
+          <summary>Debug: Hume Variables</summary>
+          <pre className="bg-gray-100 dark:bg-gray-900 p-2 rounded mt-2 overflow-auto">
+            {JSON.stringify({ stackUserId: stackUser?.id, humeVariables }, null, 2)}
+          </pre>
+        </details>
+      )}
+
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-        <HumeVoiceChat
-          onMessage={(message, role) => {
-            console.log(`${role}: ${message}`)
-          }}
-          onError={(error) => {
-            console.error('Voice chat error:', error)
-          }}
-          className="w-full"
+        <VoiceChatClient
+          variables={humeVariables}
+          userId={stackUser?.id}
         />
       </div>
 

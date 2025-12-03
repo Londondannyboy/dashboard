@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic'
 import { ReactNode, Suspense } from 'react'
 
-// Check at build time if Stack is configured
+// Check at runtime if Stack is configured
 const isStackConfigured = Boolean(
   process.env.NEXT_PUBLIC_STACK_PROJECT_ID &&
     process.env.NEXT_PUBLIC_STACK_PROJECT_ID !== 'placeholder' &&
@@ -13,17 +13,15 @@ const isStackConfigured = Boolean(
     )
 )
 
-// Dynamically import the Stack-enabled content only when configured
-const StackContent = isStackConfigured
-  ? dynamic(() => import('./StackContent'), {
-      ssr: true,
-      loading: () => (
-        <div className="min-h-screen flex items-center justify-center">
-          <span className="text-gray-500">Loading...</span>
-        </div>
-      ),
-    })
-  : null
+// Dynamically import with ssr: false to avoid Turbopack proxy issues
+const StackContent = dynamic(() => import('./StackContent'), {
+  ssr: false,
+  loading: () => (
+    <div className="min-h-screen flex items-center justify-center">
+      <span className="text-gray-500">Loading...</span>
+    </div>
+  ),
+})
 
 function NotConfigured() {
   return (
@@ -38,7 +36,7 @@ function NotConfigured() {
 }
 
 export function StackWrapper({ children }: { children: ReactNode }) {
-  if (!isStackConfigured || !StackContent) {
+  if (!isStackConfigured) {
     return <NotConfigured />
   }
 

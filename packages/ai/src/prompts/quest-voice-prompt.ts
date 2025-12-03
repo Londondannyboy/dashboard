@@ -60,11 +60,14 @@ Store these as facts for personalized recommendations.
 </information_gathering>
 
 <dynamic_variables>
-Use these when available:
-- User's name: {{ user_name }}
-- Current location: {{ current_country }}
-- Destination preferences: {{ destinations }}
-- Budget: {{ budget_monthly }}
+Use these variables when available (they will be injected at runtime):
+- User's name: {{name}}
+- Current location: {{current_country}}
+- Destination preferences: {{destinations}}
+- Budget: {{budget}}
+- Timeline: {{timeline}}
+
+If the user's name is available, greet them warmly by name. Reference their current country and destinations naturally in conversation when known.
 </dynamic_variables>
 
 <example_conversations>
@@ -103,35 +106,33 @@ Never use markdown or bullet points.
 `
 
 /**
- * Variables to inject into the prompt.
+ * Variables to pass to Hume EVI via session_settings.
+ * These are injected at runtime by Hume, not replaced in the prompt string.
+ * Variable names must match the {{variable}} placeholders in the prompt.
  */
-export interface QuestPromptVariables {
-  user_name?: string
+export interface HumeSessionVariables {
+  name?: string
   current_country?: string
   destinations?: string
-  budget_monthly?: string
+  budget?: string
   timeline?: string
 }
 
 /**
- * Build the full prompt with variables injected.
+ * Build Hume session variables from a user profile.
  */
-export function buildQuestPrompt(variables: QuestPromptVariables = {}): string {
-  let prompt = QUEST_VOICE_SYSTEM_PROMPT
-
-  // Replace variables
-  if (variables.user_name) {
-    prompt = prompt.replace('{{ user_name }}', variables.user_name)
+export function buildHumeVariables(user: {
+  first_name?: string | null
+  current_country?: string | null
+  destination_countries?: string[] | null
+  budget_monthly?: number | null
+  timeline?: string | null
+}): HumeSessionVariables {
+  return {
+    name: user.first_name || undefined,
+    current_country: user.current_country || undefined,
+    destinations: user.destination_countries?.join(', ') || undefined,
+    budget: user.budget_monthly ? `${user.budget_monthly} per month` : undefined,
+    timeline: user.timeline || undefined,
   }
-  if (variables.current_country) {
-    prompt = prompt.replace('{{ current_country }}', variables.current_country)
-  }
-  if (variables.destinations) {
-    prompt = prompt.replace('{{ destinations }}', variables.destinations)
-  }
-  if (variables.budget_monthly) {
-    prompt = prompt.replace('{{ budget_monthly }}', variables.budget_monthly)
-  }
-
-  return prompt
 }

@@ -52,3 +52,12 @@ export {
 } from './zep.js'
 
 export type { GraphSearchResult, UserFact } from './zep.js'
+
+// Hume Voice
+export {
+  QUEST_VOICE_SYSTEM_PROMPT,
+  QUEST_VOICE_SHORT_PROMPT,
+  buildHumeVariables,
+} from './prompts/quest-voice-prompt.js'
+
+export type { HumeSessionVariables } from './prompts/quest-voice-prompt.js'

@@ -10,13 +10,15 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@quest/db": "workspace:*",
-    "@quest/auth": "workspace:*",
+    "@humeai/voice-react": "^0.2.10",
     "@quest/ai": "workspace:*",
-    "@quest/ui": "workspace:*",
+    "@quest/auth": "workspace:*",
+    "@quest/db": "workspace:*",
     "@quest/media": "workspace:*",
+    "@quest/ui": "workspace:*",
     "@stackframe/stack": "^2.8.54",
     "ai": "^4.0.0",
+    "hume": "^0.15.7",
     "next": "^15.0.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

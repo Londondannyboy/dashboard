@@ -1,7 +1,8 @@
-import { stackServerApp, isStackConfigured } from '@/stack'
+import { getStackServerApp } from '@/stack'
 
 export default async function DashboardPage() {
-  const user = isStackConfigured && stackServerApp ? await stackServerApp.getUser() : null
+  const stackApp = await getStackServerApp()
+  const user = stackApp ? await stackApp.getUser() : null
 
   return (
     <div className="space-y-8">

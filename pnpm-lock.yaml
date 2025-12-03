@@ -20,6 +20,9 @@ importers:
 
   apps/dashboard:
     dependencies:
+      '@humeai/voice-react':
+        specifier: ^0.2.10
+        version: 0.2.10(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@quest/ai':
         specifier: workspace:*
         version: link:../../packages/ai
@@ -41,6 +44,9 @@ importers:
       ai:
         specifier: ^4.0.0
         version: 4.3.19(react@19.2.0)(zod@3.25.76)
+      hume:
+        specifier: ^0.15.7
+        version: 0.15.7
       next:
         specifier: ^15.0.5
         version: 15.5.6(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -2127,6 +2133,10 @@ packages:
 
   hume@0.15.6:
     resolution: {integrity: sha512-dO2F+z/6OzW8MyHJlAySuCKsqTJk1krViSEcdlGTd5M/TwFvvoN8QdvTv90HFL2GYUXgUXCquKgRpO0GjVrHFA==}
+    engines: {node: '>=18.0.0'}
+
+  hume@0.15.7:
+    resolution: {integrity: sha512-cEQKhkChz8AJGVfvXQ5DPpd8L30TCNYBjy2onpg74siTnx0KrzIjHt2my10oz2/rVeH4u0vvXKJbiIuKGfwkKw==}
     engines: {node: '>=18.0.0'}
 
   ieee754@1.2.1:
@@ -5223,6 +5233,15 @@ snapshots:
       minimalistic-crypto-utils: 1.0.1
 
   hume@0.15.6:
+    dependencies:
+      uuid: 9.0.1
+      ws: 8.18.3
+      zod: 3.25.76
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
+  hume@0.15.7:
     dependencies:
       uuid: 9.0.1
       ws: 8.18.3

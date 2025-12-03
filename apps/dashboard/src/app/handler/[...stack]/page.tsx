@@ -1,8 +1,10 @@
 import { StackHandler } from '@stackframe/stack'
-import { stackServerApp, isStackConfigured } from '@/stack'
+import { getStackServerApp } from '@/stack'
 
-export default function Handler(props: { params: Promise<{ stack: string[] }> }) {
-  if (!isStackConfigured || !stackServerApp) {
+export default async function Handler(props: { params: Promise<{ stack: string[] }> }) {
+  const stackApp = await getStackServerApp()
+
+  if (!stackApp) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="text-center p-8">
@@ -12,5 +14,5 @@ export default function Handler(props: { params: Promise<{ stack: string[] }> })
       </div>
     )
   }
-  return <StackHandler fullPage app={stackServerApp} />
+  return <StackHandler fullPage app={stackApp} />
 }
