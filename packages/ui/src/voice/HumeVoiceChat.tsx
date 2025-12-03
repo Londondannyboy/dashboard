@@ -210,7 +210,7 @@ export function HumeVoiceChat({
 
   return (
     <VoiceProvider
-      auth={{ type: 'apiKey', value: token }}
+      auth={{ type: 'accessToken', value: token }}
       configId={config || undefined}
     >
       <VoiceChatInner

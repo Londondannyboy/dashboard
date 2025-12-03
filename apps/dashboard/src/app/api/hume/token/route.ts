@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 
 /**
  * API route to get a Hume access token.
- * This keeps the API secret on the server side.
+ * Exchanges API key + secret for a short-lived access token.
  */
 export async function GET() {
   const apiKey = process.env.HUME_API_KEY
@@ -16,11 +16,32 @@ export async function GET() {
   }
 
   try {
-    // Hume uses an API key directly for WebSocket connections
-    // For EVI, the client uses the API key directly
-    // Return the API key (or generate a short-lived token)
+    // Exchange API key + secret for an access token
+    const response = await fetch('https://api.hume.ai/oauth2-cc/token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        grant_type: 'client_credentials',
+        api_key: apiKey,
+        secret_key: secretKey,
+      }),
+    })
+
+    if (!response.ok) {
+      const errorText = await response.text()
+      console.error('Hume token error:', errorText)
+      return NextResponse.json(
+        { error: 'Failed to get Hume access token' },
+        { status: 500 }
+      )
+    }
+
+    const data = await response.json()
+
     return NextResponse.json({
-      accessToken: apiKey,
+      accessToken: data.access_token,
       configId: process.env.HUME_CONFIG_ID,
     })
   } catch (error) {
