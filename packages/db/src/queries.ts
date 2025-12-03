@@ -7,10 +7,11 @@ import type {
   CreateFactInput,
   PendingConfirmation,
   CreateConfirmationInput,
-  Transcript,
+  TranscriptEntry,
   CreateTranscriptInput,
-  OnboardingData,
-  CreateOnboardingInput,
+  VoiceSession,
+  CreateVoiceSessionInput,
+  UpdateVoiceSessionInput,
 } from './types.js'
 
 // ============= Users =============
@@ -23,10 +24,10 @@ export async function getUserById(id: string): Promise<User | null> {
   return rows[0] as User | undefined ?? null
 }
 
-export async function getUserByStackAuthId(stackAuthId: string): Promise<User | null> {
+export async function getUserByNeonAuthId(neonAuthId: string): Promise<User | null> {
   const sql = getDb()
   const rows = await sql`
-    SELECT * FROM users WHERE stack_auth_id = ${stackAuthId} LIMIT 1
+    SELECT * FROM users WHERE neon_auth_id = ${neonAuthId} LIMIT 1
   `
   return rows[0] as User | undefined ?? null
 }
@@ -42,8 +43,8 @@ export async function getUserByEmail(email: string): Promise<User | null> {
 export async function createUser(data: CreateUserInput): Promise<User> {
   const sql = getDb()
   const rows = await sql`
-    INSERT INTO users (email, name, first_name, last_name, stack_auth_id)
-    VALUES (${data.email}, ${data.name ?? null}, ${data.first_name ?? null}, ${data.last_name ?? null}, ${data.stack_auth_id})
+    INSERT INTO users (neon_auth_id, email, first_name, last_name)
+    VALUES (${data.neon_auth_id}, ${data.email}, ${data.first_name ?? null}, ${data.last_name ?? null})
     RETURNING *
   `
   return rows[0] as User
@@ -54,9 +55,14 @@ export async function updateUser(id: string, data: UpdateUserInput): Promise<Use
   const rows = await sql`
     UPDATE users
     SET
-      name = COALESCE(${data.name ?? null}, name),
       first_name = COALESCE(${data.first_name ?? null}, first_name),
       last_name = COALESCE(${data.last_name ?? null}, last_name),
+      current_country = COALESCE(${data.current_country ?? null}, current_country),
+      destination_countries = COALESCE(${data.destination_countries ?? null}, destination_countries),
+      nationality = COALESCE(${data.nationality ?? null}, nationality),
+      budget_monthly = COALESCE(${data.budget_monthly ?? null}, budget_monthly),
+      timeline = COALESCE(${data.timeline ?? null}, timeline),
+      relocation_motivation = COALESCE(${data.relocation_motivation ?? null}, relocation_motivation),
       updated_at = NOW()
     WHERE id = ${id}
     RETURNING *
@@ -65,262 +71,266 @@ export async function updateUser(id: string, data: UpdateUserInput): Promise<Use
 }
 
 export async function getOrCreateUser(data: CreateUserInput): Promise<User> {
-  const existing = await getUserByStackAuthId(data.stack_auth_id)
+  const existing = await getUserByNeonAuthId(data.neon_auth_id)
   if (existing) return existing
   return createUser(data)
 }
 
-// ============= User Facts =============
+// ============= User Facts (JSONB) =============
+
+function generateId(): string {
+  return crypto.randomUUID()
+}
 
 export async function getUserFacts(userId: string): Promise<UserFact[]> {
-  const sql = getDb()
-  const rows = await sql`
-    SELECT * FROM user_facts
-    WHERE user_id = ${userId}
-    ORDER BY created_at DESC
-  `
-  return rows as UserFact[]
+  const user = await getUserById(userId)
+  return user?.facts ?? []
 }
 
-export async function getFactsByType(userId: string, type: string): Promise<UserFact[]> {
+export async function addFact(userId: string, data: CreateFactInput): Promise<UserFact> {
   const sql = getDb()
-  const rows = await sql`
-    SELECT * FROM user_facts
-    WHERE user_id = ${userId} AND type = ${type}
-    ORDER BY created_at DESC
+  const newFact: UserFact = {
+    id: generateId(),
+    type: data.type,
+    value: data.value,
+    confidence: data.confidence ?? 1.0,
+    confirmed: data.confirmed ?? false,
+    source: data.source,
+    created_at: new Date().toISOString(),
+  }
+
+  await sql`
+    UPDATE users
+    SET facts = facts || ${JSON.stringify(newFact)}::jsonb,
+        updated_at = NOW()
+    WHERE id = ${userId}
   `
-  return rows as UserFact[]
+  return newFact
 }
 
-export async function createFact(data: CreateFactInput): Promise<UserFact> {
+export async function updateFact(userId: string, factId: string, value: string, confirmed?: boolean): Promise<UserFact | null> {
   const sql = getDb()
-  const rows = await sql`
-    INSERT INTO user_facts (user_id, type, value, confidence, confirmed, source)
-    VALUES (
-      ${data.user_id},
-      ${data.type},
-      ${data.value},
-      ${data.confidence ?? 1.0},
-      ${data.confirmed ?? false},
-      ${data.source}
-    )
-    RETURNING *
+  const user = await getUserById(userId)
+  if (!user) return null
+
+  const facts = user.facts.map(f => {
+    if (f.id === factId) {
+      return { ...f, value, confirmed: confirmed ?? f.confirmed }
+    }
+    return f
+  })
+
+  await sql`
+    UPDATE users
+    SET facts = ${JSON.stringify(facts)}::jsonb,
+        updated_at = NOW()
+    WHERE id = ${userId}
   `
-  return rows[0] as UserFact
+
+  return facts.find(f => f.id === factId) ?? null
 }
 
-export async function updateFact(id: string, value: string, confirmed?: boolean): Promise<UserFact | null> {
+export async function removeFact(userId: string, factId: string): Promise<boolean> {
   const sql = getDb()
-  const rows = await sql`
-    UPDATE user_facts
-    SET
-      value = ${value},
-      confirmed = COALESCE(${confirmed ?? null}, confirmed),
-      updated_at = NOW()
-    WHERE id = ${id}
-    RETURNING *
+  const user = await getUserById(userId)
+  if (!user) return false
+
+  const facts = user.facts.filter(f => f.id !== factId)
+
+  await sql`
+    UPDATE users
+    SET facts = ${JSON.stringify(facts)}::jsonb,
+        updated_at = NOW()
+    WHERE id = ${userId}
   `
-  return rows[0] as UserFact | undefined ?? null
+  return true
 }
 
-export async function deleteFact(id: string): Promise<boolean> {
-  const sql = getDb()
-  const result = await sql`
-    DELETE FROM user_facts WHERE id = ${id} RETURNING id
-  `
-  return result.length > 0
+export async function confirmFact(userId: string, factId: string): Promise<UserFact | null> {
+  return updateFact(userId, factId, '', true)
 }
 
-export async function confirmFact(id: string): Promise<UserFact | null> {
-  const sql = getDb()
-  const rows = await sql`
-    UPDATE user_facts
-    SET confirmed = true, updated_at = NOW()
-    WHERE id = ${id}
-    RETURNING *
-  `
-  return rows[0] as UserFact | undefined ?? null
-}
-
-// ============= Pending Confirmations =============
+// ============= Pending Confirmations (JSONB) =============
 
 export async function getPendingConfirmations(userId: string): Promise<PendingConfirmation[]> {
-  const sql = getDb()
-  const rows = await sql`
-    SELECT * FROM pending_confirmations
-    WHERE user_id = ${userId} AND status = 'pending'
-    ORDER BY created_at DESC
-  `
-  return rows as PendingConfirmation[]
+  const user = await getUserById(userId)
+  return user?.pending_confirmations.filter(c => c.status === 'pending') ?? []
 }
 
-export async function createConfirmation(data: CreateConfirmationInput): Promise<PendingConfirmation> {
+export async function addConfirmation(userId: string, data: CreateConfirmationInput): Promise<PendingConfirmation> {
   const sql = getDb()
-  const rows = await sql`
-    INSERT INTO pending_confirmations (user_id, fact_type, old_value, new_value, confidence, context, status)
-    VALUES (
-      ${data.user_id},
-      ${data.fact_type},
-      ${data.old_value ?? null},
-      ${data.new_value},
-      ${data.confidence},
-      ${data.context},
-      'pending'
-    )
-    RETURNING *
-  `
-  return rows[0] as PendingConfirmation
-}
-
-export async function approveConfirmation(id: string): Promise<PendingConfirmation | null> {
-  const sql = getDb()
-  const rows = await sql`
-    UPDATE pending_confirmations
-    SET status = 'approved', resolved_at = NOW()
-    WHERE id = ${id}
-    RETURNING *
-  `
-  return rows[0] as PendingConfirmation | undefined ?? null
-}
-
-export async function rejectConfirmation(id: string): Promise<PendingConfirmation | null> {
-  const sql = getDb()
-  const rows = await sql`
-    UPDATE pending_confirmations
-    SET status = 'rejected', resolved_at = NOW()
-    WHERE id = ${id}
-    RETURNING *
-  `
-  return rows[0] as PendingConfirmation | undefined ?? null
-}
-
-// ============= Transcripts =============
-
-export async function getTranscripts(userId: string, sessionId?: string): Promise<Transcript[]> {
-  const sql = getDb()
-  if (sessionId) {
-    const rows = await sql`
-      SELECT * FROM transcripts
-      WHERE user_id = ${userId} AND session_id = ${sessionId}
-      ORDER BY created_at ASC
-    `
-    return rows as Transcript[]
+  const newConfirmation: PendingConfirmation = {
+    id: generateId(),
+    fact_type: data.fact_type,
+    old_value: data.old_value ?? null,
+    new_value: data.new_value,
+    confidence: data.confidence,
+    context: data.context,
+    status: 'pending',
+    created_at: new Date().toISOString(),
+    resolved_at: null,
   }
-  const rows = await sql`
-    SELECT * FROM transcripts
-    WHERE user_id = ${userId}
-    ORDER BY created_at DESC
-    LIMIT 100
+
+  await sql`
+    UPDATE users
+    SET pending_confirmations = pending_confirmations || ${JSON.stringify(newConfirmation)}::jsonb,
+        updated_at = NOW()
+    WHERE id = ${userId}
   `
-  return rows as Transcript[]
+  return newConfirmation
 }
 
-export async function createTranscript(data: CreateTranscriptInput): Promise<Transcript> {
+export async function resolveConfirmation(
+  userId: string,
+  confirmationId: string,
+  status: 'approved' | 'rejected'
+): Promise<PendingConfirmation | null> {
   const sql = getDb()
-  const rows = await sql`
-    INSERT INTO transcripts (user_id, session_id, role, content, emotion_scores)
-    VALUES (
-      ${data.user_id},
-      ${data.session_id},
-      ${data.role},
-      ${data.content},
-      ${data.emotion_scores ? JSON.stringify(data.emotion_scores) : null}
-    )
-    RETURNING *
+  const user = await getUserById(userId)
+  if (!user) return null
+
+  const confirmations = user.pending_confirmations.map(c => {
+    if (c.id === confirmationId) {
+      return { ...c, status, resolved_at: new Date().toISOString() }
+    }
+    return c
+  })
+
+  await sql`
+    UPDATE users
+    SET pending_confirmations = ${JSON.stringify(confirmations)}::jsonb,
+        updated_at = NOW()
+    WHERE id = ${userId}
   `
-  return rows[0] as Transcript
+
+  return confirmations.find(c => c.id === confirmationId) ?? null
+}
+
+export async function approveConfirmation(userId: string, confirmationId: string): Promise<PendingConfirmation | null> {
+  return resolveConfirmation(userId, confirmationId, 'approved')
+}
+
+export async function rejectConfirmation(userId: string, confirmationId: string): Promise<PendingConfirmation | null> {
+  return resolveConfirmation(userId, confirmationId, 'rejected')
+}
+
+// ============= Transcripts (JSONB) =============
+
+export async function getTranscripts(userId: string, sessionId?: string): Promise<TranscriptEntry[]> {
+  const user = await getUserById(userId)
+  const transcripts = user?.transcripts ?? []
+
+  if (sessionId) {
+    return transcripts.filter(t => t.session_id === sessionId)
+  }
+  return transcripts
+}
+
+export async function addTranscript(userId: string, data: CreateTranscriptInput): Promise<TranscriptEntry> {
+  const sql = getDb()
+  const newTranscript: TranscriptEntry = {
+    id: generateId(),
+    session_id: data.session_id,
+    role: data.role,
+    content: data.content,
+    emotion_scores: data.emotion_scores,
+    created_at: new Date().toISOString(),
+  }
+
+  await sql`
+    UPDATE users
+    SET transcripts = transcripts || ${JSON.stringify(newTranscript)}::jsonb,
+        updated_at = NOW()
+    WHERE id = ${userId}
+  `
+  return newTranscript
 }
 
 export async function getRecentSessions(userId: string, limit = 10): Promise<string[]> {
-  const sql = getDb()
-  const rows = await sql`
-    SELECT DISTINCT session_id
-    FROM transcripts
-    WHERE user_id = ${userId}
-    ORDER BY MAX(created_at) DESC
-    LIMIT ${limit}
-  `
-  return rows.map((r: Record<string, unknown>) => r.session_id as string)
+  const transcripts = await getTranscripts(userId)
+  const sessionIds = [...new Set(transcripts.map(t => t.session_id))]
+  return sessionIds.slice(0, limit)
 }
 
-// ============= Onboarding =============
+// ============= Voice Sessions =============
 
-export async function getOnboarding(userId: string): Promise<OnboardingData | null> {
+export async function getVoiceSession(sessionId: string): Promise<VoiceSession | null> {
   const sql = getDb()
   const rows = await sql`
-    SELECT * FROM onboarding_data WHERE user_id = ${userId} LIMIT 1
+    SELECT * FROM voice_sessions WHERE session_id = ${sessionId} LIMIT 1
   `
-  return rows[0] as OnboardingData | undefined ?? null
+  return rows[0] as VoiceSession | undefined ?? null
 }
 
-export async function createOnboarding(data: CreateOnboardingInput): Promise<OnboardingData> {
+export async function getVoiceSessionsByUser(stackUserId: string): Promise<VoiceSession[]> {
   const sql = getDb()
   const rows = await sql`
-    INSERT INTO onboarding_data (
-      user_id,
-      current_location,
-      destination_countries,
-      job_status,
-      has_partner,
-      has_children,
-      children_ages,
-      timeline,
-      budget_min,
-      budget_max,
-      budget_currency,
-      completed
-    )
-    VALUES (
-      ${data.user_id},
-      ${data.current_location ?? null},
-      ${data.destination_countries ?? []},
-      ${data.job_status ?? null},
-      ${data.has_partner ?? false},
-      ${data.has_children ?? false},
-      ${data.children_ages ?? []},
-      ${data.timeline ?? null},
-      ${data.budget_min ?? null},
-      ${data.budget_max ?? null},
-      ${data.budget_currency ?? 'USD'},
-      false
-    )
+    SELECT * FROM voice_sessions
+    WHERE stack_user_id = ${stackUserId}
+    ORDER BY created_at DESC
+  `
+  return rows as VoiceSession[]
+}
+
+export async function createVoiceSession(data: CreateVoiceSessionInput): Promise<VoiceSession> {
+  const sql = getDb()
+  const rows = await sql`
+    INSERT INTO voice_sessions (session_id, user_profile_id, stack_user_id)
+    VALUES (${data.session_id}, ${data.user_profile_id ?? null}, ${data.stack_user_id ?? null})
     RETURNING *
   `
-  return rows[0] as OnboardingData
+  return rows[0] as VoiceSession
 }
 
-export async function updateOnboarding(
-  userId: string,
-  data: Partial<CreateOnboardingInput>
-): Promise<OnboardingData | null> {
+export async function updateVoiceSession(sessionId: string, data: UpdateVoiceSessionInput): Promise<VoiceSession | null> {
   const sql = getDb()
   const rows = await sql`
-    UPDATE onboarding_data
+    UPDATE voice_sessions
     SET
-      current_location = COALESCE(${data.current_location ?? null}, current_location),
-      destination_countries = COALESCE(${data.destination_countries ?? null}, destination_countries),
-      job_status = COALESCE(${data.job_status ?? null}, job_status),
-      has_partner = COALESCE(${data.has_partner ?? null}, has_partner),
-      has_children = COALESCE(${data.has_children ?? null}, has_children),
-      children_ages = COALESCE(${data.children_ages ?? null}, children_ages),
-      timeline = COALESCE(${data.timeline ?? null}, timeline),
-      budget_min = COALESCE(${data.budget_min ?? null}, budget_min),
-      budget_max = COALESCE(${data.budget_max ?? null}, budget_max),
-      budget_currency = COALESCE(${data.budget_currency ?? null}, budget_currency),
+      status = COALESCE(${data.status ?? null}, status),
+      messages = COALESCE(${data.messages ? JSON.stringify(data.messages) : null}::jsonb, messages),
+      quick_extraction = COALESCE(${data.quick_extraction ? JSON.stringify(data.quick_extraction) : null}::jsonb, quick_extraction),
+      llm_refined_facts = COALESCE(${data.llm_refined_facts ? JSON.stringify(data.llm_refined_facts) : null}::jsonb, llm_refined_facts),
+      message_count = COALESCE(${data.message_count ?? null}, message_count),
+      duration_seconds = COALESCE(${data.duration_seconds ?? null}, duration_seconds),
+      ended_at = COALESCE(${data.ended_at ?? null}, ended_at),
       updated_at = NOW()
-    WHERE user_id = ${userId}
+    WHERE session_id = ${sessionId}
     RETURNING *
   `
-  return rows[0] as OnboardingData | undefined ?? null
+  return rows[0] as VoiceSession | undefined ?? null
 }
 
-export async function completeOnboarding(userId: string): Promise<OnboardingData | null> {
+export async function addMessageToSession(sessionId: string, message: { role: 'user' | 'assistant'; content: string; emotions?: Record<string, number> }): Promise<VoiceSession | null> {
   const sql = getDb()
+  const messageWithTimestamp = {
+    ...message,
+    timestamp: new Date().toISOString(),
+  }
+
   const rows = await sql`
-    UPDATE onboarding_data
-    SET completed = true, updated_at = NOW()
-    WHERE user_id = ${userId}
+    UPDATE voice_sessions
+    SET
+      messages = messages || ${JSON.stringify(messageWithTimestamp)}::jsonb,
+      message_count = message_count + 1,
+      updated_at = NOW()
+    WHERE session_id = ${sessionId}
     RETURNING *
   `
-  return rows[0] as OnboardingData | undefined ?? null
+  return rows[0] as VoiceSession | undefined ?? null
+}
+
+export async function endVoiceSession(sessionId: string, durationSeconds?: number): Promise<VoiceSession | null> {
+  const sql = getDb()
+  const rows = await sql`
+    UPDATE voice_sessions
+    SET
+      status = 'ended',
+      ended_at = NOW(),
+      duration_seconds = ${durationSeconds ?? null},
+      updated_at = NOW()
+    WHERE session_id = ${sessionId}
+    RETURNING *
+  `
+  return rows[0] as VoiceSession | undefined ?? null
 }

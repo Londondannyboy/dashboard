@@ -3,7 +3,7 @@ import { stackServerApp } from '@/stack'
 
 /**
  * API route to get a Hume access token.
- * Exchanges API key + secret for a short-lived access token.
+ * Uses Basic auth with API key as username and Secret key as password.
  * Also returns user ID for session tracking.
  */
 export async function GET() {
@@ -11,6 +11,7 @@ export async function GET() {
   const secretKey = process.env.HUME_SECRET_KEY
 
   if (!apiKey || !secretKey) {
+    console.error('Hume credentials missing:', { hasApiKey: !!apiKey, hasSecretKey: !!secretKey })
     return NextResponse.json(
       { error: 'Hume credentials not configured' },
       { status: 500 }
@@ -21,22 +22,23 @@ export async function GET() {
   const user = await stackServerApp.getUser()
 
   try {
-    // Exchange API key + secret for an access token
+    // Use Basic auth with API key as username and Secret key as password
+    const credentials = Buffer.from(`${apiKey}:${secretKey}`).toString('base64')
+
     const response = await fetch('https://api.hume.ai/oauth2-cc/token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': `Basic ${credentials}`,
       },
       body: new URLSearchParams({
         grant_type: 'client_credentials',
-        api_key: apiKey,
-        secret_key: secretKey,
       }),
     })
 
     if (!response.ok) {
       const errorText = await response.text()
-      console.error('Hume token error:', errorText)
+      console.error('Hume token error:', response.status, errorText)
       return NextResponse.json(
         { error: 'Failed to get Hume access token' },
         { status: 500 }

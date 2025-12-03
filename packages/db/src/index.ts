@@ -11,51 +11,55 @@ export type {
   CreateFactInput,
   PendingConfirmation,
   CreateConfirmationInput,
-  Transcript,
+  TranscriptEntry,
   CreateTranscriptInput,
-  OnboardingData,
-  CreateOnboardingInput,
+  VoiceSession,
+  VoiceMessage,
+  CreateVoiceSessionInput,
+  UpdateVoiceSessionInput,
 } from './types.js'
 
 // Queries - Users
 export {
   getUserById,
-  getUserByStackAuthId,
+  getUserByNeonAuthId,
   getUserByEmail,
   createUser,
   updateUser,
   getOrCreateUser,
 } from './queries.js'
 
-// Queries - Facts
+// Queries - Facts (JSONB operations on users.facts)
 export {
   getUserFacts,
-  getFactsByType,
-  createFact,
+  addFact,
   updateFact,
-  deleteFact,
+  removeFact,
   confirmFact,
 } from './queries.js'
 
-// Queries - Confirmations
+// Queries - Confirmations (JSONB operations on users.pending_confirmations)
 export {
   getPendingConfirmations,
-  createConfirmation,
+  addConfirmation,
+  resolveConfirmation,
   approveConfirmation,
   rejectConfirmation,
 } from './queries.js'
 
-// Queries - Transcripts
+// Queries - Transcripts (JSONB operations on users.transcripts)
 export {
   getTranscripts,
-  createTranscript,
+  addTranscript,
   getRecentSessions,
 } from './queries.js'
 
-// Queries - Onboarding
+// Queries - Voice Sessions
 export {
-  getOnboarding,
-  createOnboarding,
-  updateOnboarding,
-  completeOnboarding,
+  getVoiceSession,
+  getVoiceSessionsByUser,
+  createVoiceSession,
+  updateVoiceSession,
+  addMessageToSession,
+  endVoiceSession,
 } from './queries.js'
