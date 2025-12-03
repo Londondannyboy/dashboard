@@ -37,7 +37,6 @@ load_dotenv()
 logfire_token = os.getenv("LOGFIRE_TOKEN")
 if logfire_token:
     logfire.configure(token=logfire_token)
-    logfire.instrument_fastapi()
 
 
 @asynccontextmanager
@@ -56,6 +55,10 @@ app = FastAPI(
     version="0.1.0",
     lifespan=lifespan,
 )
+
+# Instrument FastAPI with Logfire
+if logfire_token:
+    logfire.instrument_fastapi(app)
 
 # CORS middleware
 app.add_middleware(

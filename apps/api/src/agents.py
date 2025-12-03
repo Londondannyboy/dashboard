@@ -37,7 +37,6 @@ Important: Extract and remember key facts about the user such as:
 - Timeline for moving
 
 Always be encouraging and supportive of their relocation journey.""",
-    result_type=str,
 )
 
 
@@ -63,7 +62,6 @@ Extract key facts about the user such as:
 - Remote work preferences
 
 Always be supportive and provide actionable advice.""",
-    result_type=str,
 )
 
 
@@ -88,7 +86,6 @@ Be conservative with confidence scores:
 
 Changes to existing user preferences (like changing destination from Portugal to Spain)
 should always require confirmation.""",
-    result_type=FactExtractionResult,
 )
 
 
@@ -105,7 +102,6 @@ Focus on:
 - Current location
 
 Return structured data following the UserConditions schema.""",
-    result_type=UserConditions,
 )
 
 
