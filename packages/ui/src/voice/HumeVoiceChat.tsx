@@ -16,6 +16,7 @@ interface Message {
 interface HumeVoiceChatProps {
   accessToken?: string
   configId?: string
+  userId?: string
   onMessage?: (message: string, role: 'user' | 'assistant') => void
   onError?: (error: Error) => void
   className?: string
@@ -24,10 +25,12 @@ interface HumeVoiceChatProps {
 function VoiceChatControls({
   accessToken,
   configId,
+  userId,
   onError,
 }: {
   accessToken: string
   configId?: string
+  userId?: string
   onError?: (error: Error) => void
 }) {
   const { status, connect, disconnect, isMuted, mute, unmute, messages } = useVoice()
@@ -69,12 +72,19 @@ function VoiceChatControls({
       await connect({
         auth: { type: 'accessToken', value: accessToken },
         configId: configId || undefined,
+        // Pass user ID as customSessionId to maintain identity across sessions
+        sessionSettings: userId
+          ? {
+              type: 'session_settings' as const,
+              customSessionId: userId,
+            }
+          : undefined,
       })
     } catch (e) {
       const err = e instanceof Error ? e : new Error(String(e))
       onError?.(err)
     }
-  }, [connect, accessToken, configId, onError])
+  }, [connect, accessToken, configId, userId, onError])
 
   return (
     <div className="flex flex-col gap-4">
@@ -145,12 +155,14 @@ function VoiceChatControls({
 export function HumeVoiceChat({
   accessToken,
   configId,
+  userId,
   onMessage,
   onError,
   className = '',
 }: HumeVoiceChatProps) {
   const [token, setToken] = useState<string | null>(accessToken || null)
   const [config, setConfig] = useState<string | null>(configId || null)
+  const [user, setUser] = useState<string | null>(userId || null)
   const [loading, setLoading] = useState(!accessToken)
   const [fetchError, setFetchError] = useState<string | null>(null)
 
@@ -164,6 +176,7 @@ export function HumeVoiceChat({
           } else {
             setToken(data.accessToken)
             setConfig(data.configId || null)
+            setUser(data.userId || null)
           }
         })
         .catch((e) => setFetchError(e.message))
@@ -207,6 +220,7 @@ export function HumeVoiceChat({
         <VoiceChatControls
           accessToken={token}
           configId={config || undefined}
+          userId={user || undefined}
           onError={onError}
         />
       </VoiceProvider>

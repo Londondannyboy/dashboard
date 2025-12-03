@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server'
+import { stackServerApp } from '@/stack'
 
 /**
  * API route to get a Hume access token.
  * Exchanges API key + secret for a short-lived access token.
+ * Also returns user ID for session tracking.
  */
 export async function GET() {
   const apiKey = process.env.HUME_API_KEY
@@ -14,6 +16,9 @@ export async function GET() {
       { status: 500 }
     )
   }
+
+  // Get current user from Stack Auth
+  const user = await stackServerApp.getUser()
 
   try {
     // Exchange API key + secret for an access token
@@ -43,6 +48,7 @@ export async function GET() {
     return NextResponse.json({
       accessToken: data.access_token,
       configId: process.env.HUME_CONFIG_ID,
+      userId: user?.id || null,
     })
   } catch (error) {
     console.error('Error getting Hume token:', error)

@@ -21,6 +21,9 @@ export default async function DashboardLayout({
             <a href="/dashboard" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
               Dashboard
             </a>
+            <a href="/dashboard/chat" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+              Text Chat
+            </a>
             <a href="/dashboard/voice" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
               Voice Chat
             </a>
