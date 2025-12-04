@@ -16,32 +16,18 @@ const isStackConfigured = Boolean(
 // Dynamically import with ssr: false to avoid Turbopack proxy issues
 const StackContent = dynamic(() => import('./StackContent'), {
   ssr: false,
-  loading: () => (
-    <div className="min-h-screen flex items-center justify-center">
-      <span className="text-gray-500">Loading...</span>
-    </div>
-  ),
+  // Don't block rendering - show children immediately while Stack loads
+  loading: () => null,
 })
 
-function NotConfigured() {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center p-8">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">Quest Dashboard</h1>
-        <p className="text-gray-600">Stack Auth is not configured.</p>
-        <p className="text-gray-500 text-sm mt-2">Please set up your environment variables.</p>
-      </div>
-    </div>
-  )
-}
-
 export function StackWrapper({ children }: { children: ReactNode }) {
+  // If Stack is not configured, just render children directly
   if (!isStackConfigured) {
-    return <NotConfigured />
+    return <>{children}</>
   }
 
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><span>Loading...</span></div>}>
+    <Suspense fallback={null}>
       <StackContent>{children}</StackContent>
     </Suspense>
   )

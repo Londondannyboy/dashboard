@@ -10,14 +10,16 @@ export default function StackContent({ children }: { children: ReactNode }) {
     StackTheme: React.ComponentType<{ children: ReactNode }>
     app: any
   } | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Dynamic import on client side only
-    import('@stackframe/stack').then(({ StackProvider, StackTheme, StackServerApp }) => {
-      const app = new StackServerApp({ tokenStore: 'nextjs-cookie' })
+    // Dynamic import on client side only - use StackClientApp for client components
+    import('@stackframe/stack').then(({ StackProvider, StackTheme, StackClientApp }) => {
+      const app = new StackClientApp({ tokenStore: 'nextjs-cookie' })
       setStackComponents({ StackProvider, StackTheme, app })
     }).catch(err => {
       console.error('Failed to load Stack Auth:', err)
+      setError(err.message)
     })
   }, [])
 
