@@ -2,13 +2,20 @@ import { NextRequest, NextResponse } from 'next/server'
 import { neon } from '@neondatabase/serverless'
 import { broadcastResolution } from '@/lib/sse-clients'
 
-const sql = neon(process.env.DATABASE_URL!)
+// Force dynamic rendering - this route needs runtime env vars
+export const dynamic = 'force-dynamic'
+
+// Lazy connection to avoid build-time errors
+function getDb() {
+  return neon(process.env.DATABASE_URL!)
+}
 
 // POST - Resolve a confirmation (accept or reject)
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const sql = getDb()
   try {
     const userId = request.headers.get('X-User-Id')
     if (!userId) {
@@ -78,6 +85,7 @@ async function saveUserFact(
   factType: string,
   value: string
 ): Promise<void> {
+  const sql = getDb()
   try {
     // Check if fact exists
     const existing = await sql`

@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { neon } from '@neondatabase/serverless'
 
-const sql = neon(process.env.DATABASE_URL!)
+// Force dynamic rendering - this route needs runtime env vars
+export const dynamic = 'force-dynamic'
+
+// Lazy connection to avoid build-time errors
+function getDb() {
+  return neon(process.env.DATABASE_URL!)
+}
 
 interface Article {
   id: number
@@ -17,6 +23,7 @@ interface Article {
 
 // GET - Recommended articles based on user's destinations
 export async function GET(request: NextRequest) {
+  const sql = getDb()
   try {
     const userId = request.headers.get('X-User-Id')
 

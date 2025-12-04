@@ -11,9 +11,16 @@ import {
 } from '@quest/ai'
 import { neon } from '@neondatabase/serverless'
 
-const sql = neon(process.env.DATABASE_URL!)
+// Force dynamic rendering - this route needs runtime env vars
+export const dynamic = 'force-dynamic'
+
+// Lazy connection to avoid build-time errors
+function getDb() {
+  return neon(process.env.DATABASE_URL!)
+}
 
 export async function POST(req: NextRequest) {
+  const sql = getDb()
   try {
     const { toolName, parameters, userId, sessionId } = await req.json()
 
