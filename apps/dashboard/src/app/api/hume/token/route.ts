@@ -50,7 +50,7 @@ export async function GET() {
 
     return NextResponse.json({
       accessToken: data.access_token,
-      configId: process.env.HUME_CONFIG_ID,
+      configId: process.env.NEXT_PUBLIC_HUME_CONFIG_ID,
       userId: user?.id || null,
     })
   } catch (error) {
