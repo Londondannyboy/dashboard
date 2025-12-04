@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { StackProvider, StackTheme, StackClientApp } from '@stackframe/stack'
 
 // Check at runtime if Stack is configured
@@ -13,32 +13,42 @@ const isStackConfigured = Boolean(
     )
 )
 
-// Create Stack app instance lazily
-// Type assertion needed due to complex SDK generic inference
-let stackApp: StackClientApp<true, string> | null = null
-function getStackApp(): StackClientApp<true, string> | null {
-  if (!stackApp && isStackConfigured) {
-    stackApp = new StackClientApp({ tokenStore: 'nextjs-cookie' }) as StackClientApp<true, string>
-  }
-  return stackApp
-}
+// Singleton for Stack app instance (only created on client)
+let stackAppInstance: StackClientApp<true, string> | null = null
 
 export function StackWrapper({ children }: { children: ReactNode }) {
+  const [stackApp, setStackApp] = useState<StackClientApp<true, string> | null>(null)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+
+    // Only initialize Stack on the client after mount
+    if (isStackConfigured && !stackAppInstance) {
+      try {
+        stackAppInstance = new StackClientApp({ tokenStore: 'nextjs-cookie' }) as StackClientApp<true, string>
+        setStackApp(stackAppInstance)
+      } catch (e) {
+        console.error('[StackWrapper] Failed to initialize StackClientApp:', e)
+      }
+    } else if (stackAppInstance) {
+      setStackApp(stackAppInstance)
+    }
+  }, [])
+
   // If Stack is not configured, just render children directly
   if (!isStackConfigured) {
     return <>{children}</>
   }
 
-  // Always render children immediately for proper hydration
-  // Stack context will be available after mount
-  const app = getStackApp()
-
-  if (!app) {
+  // Before mount or if Stack failed to init, render children without Stack context
+  // This ensures server and initial client render match
+  if (!mounted || !stackApp) {
     return <>{children}</>
   }
 
   return (
-    <StackProvider app={app}>
+    <StackProvider app={stackApp}>
       <StackTheme>
         {children}
       </StackTheme>
