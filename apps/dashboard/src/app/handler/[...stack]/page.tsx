@@ -1,7 +1,13 @@
 import { StackHandler } from '@stackframe/stack'
 import { getStackServerApp } from '@/stack'
 
-export default async function Handler(props: { params: Promise<{ stack: string[] }> }) {
+// Next.js 15 App Router page props
+type PageProps = {
+  params: Promise<{ stack: string[] }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+export default async function Handler(props: PageProps) {
   const stackApp = await getStackServerApp()
 
   if (!stackApp) {
@@ -15,6 +21,16 @@ export default async function Handler(props: { params: Promise<{ stack: string[]
     )
   }
 
+  // Await the params for Next.js 15
+  const params = await props.params
+  const searchParams = await props.searchParams
+
   // StackHandler requires routeProps to handle the auth routes properly
-  return <StackHandler fullPage app={stackApp} routeProps={props} />
+  return (
+    <StackHandler
+      fullPage
+      app={stackApp}
+      routeProps={{ params, searchParams }}
+    />
+  )
 }
