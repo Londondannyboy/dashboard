@@ -1,7 +1,7 @@
 'use client'
 
-import dynamic from 'next/dynamic'
-import { ReactNode, Suspense } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
+import { StackProvider, StackTheme, StackClientApp } from '@stackframe/stack'
 
 // Check at runtime if Stack is configured
 const isStackConfigured = Boolean(
@@ -13,22 +13,47 @@ const isStackConfigured = Boolean(
     )
 )
 
-// Dynamically import with ssr: false to avoid Turbopack proxy issues
-const StackContent = dynamic(() => import('./StackContent'), {
-  ssr: false,
-  // Don't block rendering - show children immediately while Stack loads
-  loading: () => null,
-})
+// Singleton for Stack app instance
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let stackAppInstance: any = null
 
 export function StackWrapper({ children }: { children: ReactNode }) {
-  // If Stack is not configured, just render children directly
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [stackApp, setStackApp] = useState<any>(null)
+
+  useEffect(() => {
+    // Only initialize Stack on the client
+    if (isStackConfigured && !stackAppInstance) {
+      try {
+        stackAppInstance = new StackClientApp({ tokenStore: 'nextjs-cookie' })
+        setStackApp(stackAppInstance)
+      } catch (e) {
+        console.error('[StackWrapper] Failed to initialize StackClientApp:', e)
+      }
+    } else if (stackAppInstance) {
+      setStackApp(stackAppInstance)
+    }
+  }, [])
+
+  // If Stack is not configured, render children directly
   if (!isStackConfigured) {
     return <>{children}</>
   }
 
+  // CRITICAL: Always render children for SSR
+  // Wrap in StackProvider only when available on client
+  if (!stackApp) {
+    // Server render and initial client render: children without Stack context
+    // Components using useUser() will get null/undefined
+    return <>{children}</>
+  }
+
+  // Client after Stack loads: children with Stack context
   return (
-    <Suspense fallback={null}>
-      <StackContent>{children}</StackContent>
-    </Suspense>
+    <StackProvider app={stackApp}>
+      <StackTheme>
+        {children}
+      </StackTheme>
+    </StackProvider>
   )
 }
