@@ -136,6 +136,8 @@ export interface HumeSessionVariables {
 
 /**
  * Build Hume session variables from a user profile.
+ * Hume requires ALL variables in the prompt to have values,
+ * so we provide sensible fallbacks for missing data.
  */
 export function buildHumeVariables(user: {
   first_name?: string | null
@@ -145,10 +147,11 @@ export function buildHumeVariables(user: {
   timeline?: string | null
 }): HumeSessionVariables {
   return {
-    first_name: user.first_name || undefined,
-    current_country: user.current_country || undefined,
-    destination_countries: user.destination_countries?.join(', ') || undefined,
-    budget: user.budget_monthly ? `${user.budget_monthly} per month` : undefined,
-    timeline: user.timeline || undefined,
+    // Hume requires all variables to have values - provide fallbacks
+    first_name: user.first_name || 'there',
+    current_country: user.current_country || 'your current location',
+    destination_countries: user.destination_countries?.join(', ') || 'various destinations',
+    budget: user.budget_monthly ? `${user.budget_monthly} per month` : 'not yet specified',
+    timeline: user.timeline || 'flexible',
   }
 }
