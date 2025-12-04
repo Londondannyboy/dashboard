@@ -1,7 +1,7 @@
 'use client'
 
-import dynamic from 'next/dynamic'
-import { ReactNode, Suspense } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
+import { StackProvider, StackTheme, StackClientApp } from '@stackframe/stack'
 
 // Check at runtime if Stack is configured
 const isStackConfigured = Boolean(
@@ -13,22 +13,40 @@ const isStackConfigured = Boolean(
     )
 )
 
-// Dynamically import with ssr: false to avoid Turbopack proxy issues
-const StackContent = dynamic(() => import('./StackContent'), {
-  ssr: false,
-  // Don't block rendering - show children immediately while Stack loads
-  loading: () => null,
-})
+// Create Stack app instance lazily
+let stackApp: StackClientApp | null = null
+function getStackApp() {
+  if (!stackApp && isStackConfigured) {
+    stackApp = new StackClientApp({ tokenStore: 'nextjs-cookie' })
+  }
+  return stackApp
+}
 
 export function StackWrapper({ children }: { children: ReactNode }) {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   // If Stack is not configured, just render children directly
   if (!isStackConfigured) {
     return <>{children}</>
   }
 
+  // Always render children immediately for proper hydration
+  // Stack context will be available after mount
+  const app = getStackApp()
+
+  if (!app) {
+    return <>{children}</>
+  }
+
   return (
-    <Suspense fallback={null}>
-      <StackContent>{children}</StackContent>
-    </Suspense>
+    <StackProvider app={app}>
+      <StackTheme>
+        {children}
+      </StackTheme>
+    </StackProvider>
   )
 }
