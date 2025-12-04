@@ -127,9 +127,9 @@ Never use markdown or bullet points.
  * Variable names must match the {{variable}} placeholders in the prompt.
  */
 export interface HumeSessionVariables {
-  name?: string
+  first_name?: string
   current_country?: string
-  destinations?: string
+  destination_countries?: string
   budget?: string
   timeline?: string
 }
@@ -145,9 +145,9 @@ export function buildHumeVariables(user: {
   timeline?: string | null
 }): HumeSessionVariables {
   return {
-    name: user.first_name || undefined,
+    first_name: user.first_name || undefined,
     current_country: user.current_country || undefined,
-    destinations: user.destination_countries?.join(', ') || undefined,
+    destination_countries: user.destination_countries?.join(', ') || undefined,
     budget: user.budget_monthly ? `${user.budget_monthly} per month` : undefined,
     timeline: user.timeline || undefined,
   }

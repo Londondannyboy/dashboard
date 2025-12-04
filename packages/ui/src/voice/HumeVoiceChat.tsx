@@ -15,9 +15,9 @@ interface Message {
 
 // Dynamic variables to inject into the system prompt
 export interface HumeVariables {
-  name?: string
+  first_name?: string
   current_country?: string
-  destinations?: string
+  destination_countries?: string
   budget?: string
   timeline?: string
   [key: string]: string | number | boolean | undefined
