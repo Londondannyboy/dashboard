@@ -14,10 +14,12 @@ const isStackConfigured = Boolean(
 )
 
 // Singleton for Stack app instance (only created on client)
-let stackAppInstance: StackClientApp<true, string> | null = null
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let stackAppInstance: any = null
 
 export function StackWrapper({ children }: { children: ReactNode }) {
-  const [stackApp, setStackApp] = useState<StackClientApp<true, string> | null>(null)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [stackApp, setStackApp] = useState<any>(null)
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -26,7 +28,7 @@ export function StackWrapper({ children }: { children: ReactNode }) {
     // Only initialize Stack on the client after mount
     if (isStackConfigured && !stackAppInstance) {
       try {
-        stackAppInstance = new StackClientApp({ tokenStore: 'nextjs-cookie' }) as StackClientApp<true, string>
+        stackAppInstance = new StackClientApp({ tokenStore: 'nextjs-cookie' })
         setStackApp(stackAppInstance)
       } catch (e) {
         console.error('[StackWrapper] Failed to initialize StackClientApp:', e)

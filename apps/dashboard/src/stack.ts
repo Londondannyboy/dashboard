@@ -1,5 +1,3 @@
-import type { StackServerApp } from '@stackframe/stack'
-
 // Check if Stack Auth is properly configured
 export const isStackConfigured = Boolean(
   process.env.NEXT_PUBLIC_STACK_PROJECT_ID &&
@@ -11,11 +9,12 @@ export const isStackConfigured = Boolean(
 )
 
 // Lazy loader for Stack Server App - avoids Turbopack proxy issues
-// Type assertion needed due to complex SDK generic inference
-let _stackServerApp: StackServerApp<true, string> | null = null
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let _stackServerApp: any = null
 let _initialized = false
 
-export async function getStackServerApp(): Promise<StackServerApp<true, string> | null> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function getStackServerApp(): Promise<any> {
   if (!isStackConfigured) {
     console.log('[Stack] Not configured - missing or invalid NEXT_PUBLIC_STACK_PROJECT_ID')
     return null
@@ -24,7 +23,7 @@ export async function getStackServerApp(): Promise<StackServerApp<true, string> 
 
   try {
     const { StackServerApp } = await import('@stackframe/stack')
-    _stackServerApp = new StackServerApp({ tokenStore: 'nextjs-cookie' }) as StackServerApp<true, string>
+    _stackServerApp = new StackServerApp({ tokenStore: 'nextjs-cookie' })
     _initialized = true
     return _stackServerApp
   } catch (e) {
