@@ -334,3 +334,63 @@ export async function endVoiceSession(sessionId: string, durationSeconds?: numbe
   `
   return rows[0] as VoiceSession | undefined ?? null
 }
+
+// ============= Conversation Facts (for Hume tools) =============
+
+export interface ConversationFact {
+  id: number
+  stack_user_id: string
+  fact: string
+  category: string
+  source_session_id: string | null
+  created_at: Date
+}
+
+/**
+ * Get facts learned about a user from voice conversations
+ * Uses Stack Auth user ID (neon_auth_id)
+ */
+export async function getUserFactsByStackId(
+  stackUserId: string,
+  category?: string
+): Promise<ConversationFact[]> {
+  const sql = getDb()
+
+  if (category && category !== 'all') {
+    const rows = await sql`
+      SELECT * FROM conversation_facts
+      WHERE stack_user_id = ${stackUserId}
+        AND category = ${category}
+      ORDER BY created_at DESC
+      LIMIT 20
+    `
+    return rows as ConversationFact[]
+  }
+
+  const rows = await sql`
+    SELECT * FROM conversation_facts
+    WHERE stack_user_id = ${stackUserId}
+    ORDER BY created_at DESC
+    LIMIT 20
+  `
+  return rows as ConversationFact[]
+}
+
+/**
+ * Save a fact learned about a user during voice conversation
+ * Uses Stack Auth user ID (neon_auth_id)
+ */
+export async function saveUserFact(
+  stackUserId: string,
+  fact: string,
+  category: string,
+  sourceSessionId?: string
+): Promise<ConversationFact> {
+  const sql = getDb()
+  const rows = await sql`
+    INSERT INTO conversation_facts (stack_user_id, fact, category, source_session_id)
+    VALUES (${stackUserId}, ${fact}, ${category}, ${sourceSessionId ?? null})
+    RETURNING *
+  `
+  return rows[0] as ConversationFact
+}

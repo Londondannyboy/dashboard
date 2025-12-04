@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback, useRef } from 'react'
-import { VoiceProvider, useVoice } from '@humeai/voice-react'
+import { VoiceProvider, useVoice, type ToolCallHandler } from '@humeai/voice-react'
 
 export interface EmotionScore {
   name: string
@@ -30,6 +30,8 @@ interface HumeVoiceChatProps {
   variables?: HumeVariables
   onMessage?: (message: string, role: 'user' | 'assistant') => void
   onError?: (error: Error) => void
+  onToolCall?: (toolName: string, result: unknown) => void
+  toolsApiEndpoint?: string
   className?: string
 }
 
@@ -179,6 +181,8 @@ export function HumeVoiceChat({
   variables,
   onMessage,
   onError,
+  onToolCall,
+  toolsApiEndpoint = '/api/hume/tools',
   className = '',
 }: HumeVoiceChatProps) {
   const [token, setToken] = useState<string | null>(accessToken || null)
@@ -204,6 +208,51 @@ export function HumeVoiceChat({
         .finally(() => setLoading(false))
     }
   }, [accessToken])
+
+  // Create tool call handler that queries our API
+  // ToolCallHandler receives (toolCall, send) where send has success() and error()
+  const handleToolCall: ToolCallHandler = useCallback(async (toolCall, send) => {
+    const currentUserId = user || userId
+    console.log(`[Hume Tool Call] ${toolCall.name}`, {
+      parameters: toolCall.parameters,
+      userId: currentUserId,
+    })
+
+    try {
+      const response = await fetch(toolsApiEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          toolName: toolCall.name,
+          parameters: JSON.parse(toolCall.parameters),
+          userId: currentUserId,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error(`Tool API returned ${response.status}`)
+      }
+
+      const result = await response.json()
+      console.log(`[Hume Tool Response] ${toolCall.name}`, result)
+
+      // Notify parent component about tool call
+      onToolCall?.(toolCall.name, result)
+
+      // Return success response to Hume
+      return send.success(JSON.stringify(result))
+    } catch (error) {
+      console.error(`[Hume Tool Error] ${toolCall.name}`, error)
+
+      // Return error response to Hume with fallback content
+      return send.error({
+        error: error instanceof Error ? error.message : 'Tool execution failed',
+        code: 'TOOL_ERROR',
+        level: 'warn',
+        content: 'I had trouble looking that up. Let me try another way.',
+      })
+    }
+  }, [user, userId, toolsApiEndpoint, onToolCall])
 
   if (loading) {
     return (
@@ -237,6 +286,7 @@ export function HumeVoiceChat({
         onError={(err) => {
           onError?.(new Error(err.message || 'Voice chat error'))
         }}
+        onToolCall={handleToolCall}
       >
         <VoiceChatControls
           accessToken={token}

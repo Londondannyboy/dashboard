@@ -63,3 +63,11 @@ export {
   addMessageToSession,
   endVoiceSession,
 } from './queries.js'
+
+// Queries - Conversation Facts (for Hume tools - uses user_facts table)
+export {
+  getUserFactsByStackId,
+  saveUserFact,
+} from './queries.js'
+
+export type { ConversationFact } from './queries.js'
