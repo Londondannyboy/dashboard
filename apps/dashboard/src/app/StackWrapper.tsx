@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode } from 'react'
 import { StackProvider, StackTheme, StackClientApp } from '@stackframe/stack'
 
 // Check at runtime if Stack is configured
@@ -14,21 +14,16 @@ const isStackConfigured = Boolean(
 )
 
 // Create Stack app instance lazily
-let stackApp: StackClientApp | null = null
-function getStackApp() {
+// Type assertion needed due to complex SDK generic inference
+let stackApp: StackClientApp<true, string> | null = null
+function getStackApp(): StackClientApp<true, string> | null {
   if (!stackApp && isStackConfigured) {
-    stackApp = new StackClientApp({ tokenStore: 'nextjs-cookie' })
+    stackApp = new StackClientApp({ tokenStore: 'nextjs-cookie' }) as StackClientApp<true, string>
   }
   return stackApp
 }
 
 export function StackWrapper({ children }: { children: ReactNode }) {
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
   // If Stack is not configured, just render children directly
   if (!isStackConfigured) {
     return <>{children}</>
