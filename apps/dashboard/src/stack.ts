@@ -1,3 +1,5 @@
+import type { StackServerApp } from '@stackframe/stack'
+
 // Check if Stack Auth is properly configured
 export const isStackConfigured = Boolean(
   process.env.NEXT_PUBLIC_STACK_PROJECT_ID &&
@@ -9,16 +11,11 @@ export const isStackConfigured = Boolean(
 )
 
 // Lazy loader for Stack Server App - avoids Turbopack proxy issues
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let _stackServerApp: any = null
+let _stackServerApp: StackServerApp | null = null
 let _initialized = false
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function getStackServerApp(): Promise<any> {
-  if (!isStackConfigured) {
-    console.log('[Stack] Not configured - missing or invalid NEXT_PUBLIC_STACK_PROJECT_ID')
-    return null
-  }
+export async function getStackServerApp(): Promise<StackServerApp | null> {
+  if (!isStackConfigured) return null
   if (_initialized) return _stackServerApp
 
   try {
@@ -27,7 +24,7 @@ export async function getStackServerApp(): Promise<any> {
     _initialized = true
     return _stackServerApp
   } catch (e) {
-    console.error('[Stack] Failed to initialize Stack Auth:', e)
+    console.error('Failed to initialize Stack Auth:', e)
     return null
   }
 }

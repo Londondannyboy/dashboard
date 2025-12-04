@@ -1,7 +1,7 @@
 'use client'
 
-import { ReactNode, useEffect, useState } from 'react'
-import { StackProvider, StackTheme, StackClientApp } from '@stackframe/stack'
+import dynamic from 'next/dynamic'
+import { ReactNode, Suspense } from 'react'
 
 // Check at runtime if Stack is configured
 const isStackConfigured = Boolean(
@@ -13,47 +13,22 @@ const isStackConfigured = Boolean(
     )
 )
 
-// Singleton for Stack app instance (only created on client)
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let stackAppInstance: any = null
+// Dynamically import with ssr: false to avoid Turbopack proxy issues
+const StackContent = dynamic(() => import('./StackContent'), {
+  ssr: false,
+  // Don't block rendering - show children immediately while Stack loads
+  loading: () => null,
+})
 
 export function StackWrapper({ children }: { children: ReactNode }) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [stackApp, setStackApp] = useState<any>(null)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-
-    // Only initialize Stack on the client after mount
-    if (isStackConfigured && !stackAppInstance) {
-      try {
-        stackAppInstance = new StackClientApp({ tokenStore: 'nextjs-cookie' })
-        setStackApp(stackAppInstance)
-      } catch (e) {
-        console.error('[StackWrapper] Failed to initialize StackClientApp:', e)
-      }
-    } else if (stackAppInstance) {
-      setStackApp(stackAppInstance)
-    }
-  }, [])
-
   // If Stack is not configured, just render children directly
   if (!isStackConfigured) {
     return <>{children}</>
   }
 
-  // Before mount or if Stack failed to init, render children without Stack context
-  // This ensures server and initial client render match
-  if (!mounted || !stackApp) {
-    return <>{children}</>
-  }
-
   return (
-    <StackProvider app={stackApp}>
-      <StackTheme>
-        {children}
-      </StackTheme>
-    </StackProvider>
+    <Suspense fallback={null}>
+      <StackContent>{children}</StackContent>
+    </Suspense>
   )
 }
