@@ -84,18 +84,28 @@ function VoiceChatControls({
 
   const handleConnect = useCallback(async () => {
     try {
+      // Debug: Log what variables we received
+      console.log('🎙️ VoiceChatControls received variables:', JSON.stringify(variables, null, 2))
+      console.log('🎙️ VoiceChatControls received userId:', userId)
+
       // Build session settings with customSessionId and dynamic variables
-      const sessionSettings = (userId || variables)
+      const filteredVariables = variables
+        ? Object.fromEntries(
+            Object.entries(variables).filter(([, v]) => v !== undefined)
+          ) as Record<string, string | number | boolean>
+        : undefined
+
+      const sessionSettings = (userId || filteredVariables)
         ? {
             type: 'session_settings' as const,
             ...(userId && { customSessionId: userId }),
-            ...(variables && {
-              variables: Object.fromEntries(
-                Object.entries(variables).filter(([, v]) => v !== undefined)
-              ) as Record<string, string | number | boolean>,
+            ...(filteredVariables && Object.keys(filteredVariables).length > 0 && {
+              variables: filteredVariables,
             }),
           }
         : undefined
+
+      console.log('🎙️ Connecting with session settings:', JSON.stringify(sessionSettings, null, 2))
 
       await connect({
         auth: { type: 'accessToken', value: accessToken },
