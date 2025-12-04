@@ -5,3 +5,18 @@ export type { EmotionScore, VoiceChatCallbacks, HumeVariables } from './voice/in
 // Graph components
 export { KnowledgeGraph3D, useGraphData } from './graphs/index.js'
 export type { GraphNode, GraphLink, GraphData } from './graphs/index.js'
+
+// Dashboard components
+export { ProfileSection, RepoSection, ArticlesSection } from './dashboard/index.js'
+export type { ProfileSectionProps, RepoSectionProps, ArticlesSectionProps } from './dashboard/index.js'
+
+// Layout components
+export { GlobalHeader, GlobalFooter } from './layout/index.js'
+export type { GlobalHeaderProps, GlobalFooterProps } from './layout/index.js'
+
+// Feedback components (HITL)
+export { ConfirmationSidebar } from './feedback/index.js'
+export type { ConfirmationSidebarProps, PendingConfirmation } from './feedback/index.js'
+
+// Hooks
+export { useSSE } from './hooks/index.js'

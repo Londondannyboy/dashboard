@@ -42,6 +42,7 @@ export {
 
 // ZEP
 export {
+  isZepConfigured,
   searchGraph,
   searchRelocationContent,
   searchPlacementContent,
@@ -49,9 +50,37 @@ export {
   syncUserFacts,
   addMemoryToGraph,
   getArticleRecommendations,
+  getOrCreateSession,
+  addMessages,
+  getSessionMemory,
+  searchMemory,
+  storeConversationTurn,
+  getConversationContext,
 } from './zep.js'
 
-export type { GraphSearchResult, UserFact } from './zep.js'
+export type { GraphSearchResult, UserFact, AddMessageInput } from './zep.js'
+
+// Super Memory
+export {
+  isSuperMemoryConfigured,
+  createMemory,
+  getMemory,
+  getUserMemories,
+  updateMemory,
+  deleteMemory,
+  searchMemories,
+  saveUserFact as saveMemoryFact,
+  getUserFacts as getMemoryFacts,
+  saveUserPreference,
+  saveConversationSummary,
+} from './supermemory.js'
+
+export type {
+  Memory,
+  CreateMemoryInput,
+  UpdateMemoryInput,
+  SearchMemoryInput,
+} from './supermemory.js'
 
 // Hume Voice
 export {
