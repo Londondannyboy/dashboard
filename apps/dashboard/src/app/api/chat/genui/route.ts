@@ -6,11 +6,20 @@ import {
   setThreadContext,
 } from './messageStore'
 
-// Initialize OpenAI client pointing to C1 API
-const openai = new OpenAI({
-  apiKey: process.env.THESYS_API_KEY,
-  baseURL: 'https://api.thesys.dev/v1/embed',
-})
+// Force dynamic rendering - this route needs runtime env vars
+export const dynamic = 'force-dynamic'
+
+// Lazy client initialization to avoid build-time errors
+let openaiClient: OpenAI | null = null
+function getOpenAI(): OpenAI {
+  if (!openaiClient) {
+    openaiClient = new OpenAI({
+      apiKey: process.env.THESYS_API_KEY,
+      baseURL: 'https://api.thesys.dev/v1/embed',
+    })
+  }
+  return openaiClient
+}
 
 // Tool definitions for relocation assistant
 const tools: OpenAI.Chat.Completions.ChatCompletionTool[] = [
@@ -284,6 +293,7 @@ export async function POST(request: NextRequest) {
     const messages = getMessagesForOpenAI(effectiveThreadId)
 
     // Call C1 API
+    const openai = getOpenAI()
     const stream = await openai.chat.completions.create({
       model: 'c1-nightly',
       messages,
