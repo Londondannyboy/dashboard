@@ -11,20 +11,24 @@ export const isStackConfigured = Boolean(
 )
 
 // Lazy loader for Stack Server App - avoids Turbopack proxy issues
-let _stackServerApp: StackServerApp | null = null
+// Type assertion needed due to complex SDK generic inference
+let _stackServerApp: StackServerApp<true, string> | null = null
 let _initialized = false
 
-export async function getStackServerApp(): Promise<StackServerApp | null> {
-  if (!isStackConfigured) return null
+export async function getStackServerApp(): Promise<StackServerApp<true, string> | null> {
+  if (!isStackConfigured) {
+    console.log('[Stack] Not configured - missing or invalid NEXT_PUBLIC_STACK_PROJECT_ID')
+    return null
+  }
   if (_initialized) return _stackServerApp
 
   try {
     const { StackServerApp } = await import('@stackframe/stack')
-    _stackServerApp = new StackServerApp({ tokenStore: 'nextjs-cookie' })
+    _stackServerApp = new StackServerApp({ tokenStore: 'nextjs-cookie' }) as StackServerApp<true, string>
     _initialized = true
     return _stackServerApp
   } catch (e) {
-    console.error('Failed to initialize Stack Auth:', e)
+    console.error('[Stack] Failed to initialize Stack Auth:', e)
     return null
   }
 }
