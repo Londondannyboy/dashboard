@@ -14,5 +14,7 @@ export default async function Handler(props: { params: Promise<{ stack: string[]
       </div>
     )
   }
-  return <StackHandler fullPage app={stackApp} />
+
+  // StackHandler requires routeProps to handle the auth routes properly
+  return <StackHandler fullPage app={stackApp} routeProps={props} />
 }
