@@ -84,35 +84,41 @@ function VoiceChatControls({
 
   const handleConnect = useCallback(async () => {
     try {
-      // Debug: Log what variables we received
-      console.log('🎙️ VoiceChatControls received variables:', JSON.stringify(variables, null, 2))
-      console.log('🎙️ VoiceChatControls received userId:', userId)
-
-      // Build session settings with customSessionId and dynamic variables
+      // Build session settings - filter out undefined values from variables
       const filteredVariables = variables
         ? Object.fromEntries(
             Object.entries(variables).filter(([, v]) => v !== undefined)
           ) as Record<string, string | number | boolean>
         : undefined
 
-      const sessionSettings = (userId || filteredVariables)
-        ? {
-            type: 'session_settings' as const,
-            ...(userId && { customSessionId: userId }),
-            ...(filteredVariables && Object.keys(filteredVariables).length > 0 && {
-              variables: filteredVariables,
-            }),
-          }
-        : undefined
+      // Debug logging
+      console.log('🎙️ Hume Connect - userId:', userId)
+      console.log('🎙️ Hume Connect - variables prop:', JSON.stringify(variables, null, 2))
+      console.log('🎙️ Hume Connect - filtered variables:', JSON.stringify(filteredVariables, null, 2))
 
-      console.log('🎙️ Connecting with session settings:', JSON.stringify(sessionSettings, null, 2))
+      // Build sessionSettings object - type IS required by Hume SDK
+      const hasSettings = userId || (filteredVariables && Object.keys(filteredVariables).length > 0)
 
+      const sessionSettings = hasSettings ? {
+        type: 'session_settings' as const,
+        ...(userId && { customSessionId: userId }),
+        ...(filteredVariables && Object.keys(filteredVariables).length > 0 && {
+          variables: filteredVariables,
+        }),
+      } : undefined
+
+      console.log('🎙️ Hume Connect - sessionSettings:', JSON.stringify(sessionSettings, null, 2))
+
+      // Connect with options
       await connect({
         auth: { type: 'accessToken', value: accessToken },
         configId: configId || undefined,
         sessionSettings,
       })
+
+      console.log('🎙️ Hume Connected successfully!')
     } catch (e) {
+      console.error('🎙️ Hume Connect error:', e)
       const err = e instanceof Error ? e : new Error(String(e))
       onError?.(err)
     }
@@ -201,11 +207,22 @@ export function HumeVoiceChat({
   const [loading, setLoading] = useState(!accessToken)
   const [fetchError, setFetchError] = useState<string | null>(null)
 
+  // Debug: Log what props we received
+  useEffect(() => {
+    console.log('🎙️ HumeVoiceChat mounted with props:', {
+      hasAccessToken: !!accessToken,
+      configId,
+      userId,
+      variables: JSON.stringify(variables),
+    })
+  }, [accessToken, configId, userId, variables])
+
   useEffect(() => {
     if (!accessToken) {
       fetch('/api/hume/token')
         .then((res) => res.json())
         .then((data) => {
+          console.log('🎙️ Token API response:', data)
           if (data.error) {
             setFetchError(data.error)
           } else {
@@ -223,7 +240,6 @@ export function HumeVoiceChat({
   }, [accessToken, userId])
 
   // Create tool call handler that queries our API
-  // ToolCallHandler receives (toolCall, send) where send has success() and error()
   const handleToolCall: ToolCallHandler = useCallback(async (toolCall, send) => {
     const currentUserId = user || userId
     console.log(`[Hume Tool Call] ${toolCall.name}`, {
@@ -297,6 +313,7 @@ export function HumeVoiceChat({
           }
         }}
         onError={(err) => {
+          console.error('🎙️ VoiceProvider error:', err)
           onError?.(new Error(err.message || 'Voice chat error'))
         }}
         onToolCall={handleToolCall}
@@ -304,7 +321,7 @@ export function HumeVoiceChat({
         <VoiceChatControls
           accessToken={token}
           configId={config || undefined}
-          userId={user || undefined}
+          userId={user || userId || undefined}
           variables={variables}
           onError={onError}
         />
