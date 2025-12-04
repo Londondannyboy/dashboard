@@ -8,12 +8,18 @@ export default async function VoicePage() {
   const stackApp = await getStackServerApp()
   const stackUser = stackApp ? await stackApp.getUser() : null
 
+  // Debug logging (server-side - check Vercel function logs)
+  console.log('🟢 VoicePage server render:')
+  console.log('🟢   stackApp exists:', !!stackApp)
+  console.log('🟢   stackUser:', stackUser ? { id: stackUser.id, email: stackUser.primaryEmail } : null)
+
   // Fetch user profile from Neon using their Stack Auth ID
   let userProfile = null
   let humeVariables = {}
 
   if (stackUser?.id) {
     userProfile = await getUserByNeonAuthId(stackUser.id)
+    console.log('🟢   userProfile from Neon:', userProfile ? { first_name: userProfile.first_name, current_country: userProfile.current_country } : null)
 
     if (userProfile) {
       humeVariables = buildHumeVariables({
@@ -23,7 +29,10 @@ export default async function VoicePage() {
         budget_monthly: userProfile.budget_monthly,
         timeline: userProfile.timeline,
       })
+      console.log('🟢   humeVariables built:', humeVariables)
     }
+  } else {
+    console.log('🟢   No stackUser.id - cannot fetch profile')
   }
 
   return (
