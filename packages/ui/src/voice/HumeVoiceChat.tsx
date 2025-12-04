@@ -201,13 +201,16 @@ export function HumeVoiceChat({
           } else {
             setToken(data.accessToken)
             setConfig(data.configId || null)
-            setUser(data.userId || null)
+            // Only update userId from API if not already provided as prop
+            if (!userId) {
+              setUser(data.userId || null)
+            }
           }
         })
         .catch((e) => setFetchError(e.message))
         .finally(() => setLoading(false))
     }
-  }, [accessToken])
+  }, [accessToken, userId])
 
   // Create tool call handler that queries our API
   // ToolCallHandler receives (toolCall, send) where send has success() and error()
