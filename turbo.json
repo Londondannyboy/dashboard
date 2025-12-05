@@ -2,9 +2,13 @@
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
   "globalEnv": [
+    "DATABASE_URL",
     "STACK_SECRET_SERVER_KEY",
     "NEXT_PUBLIC_STACK_PROJECT_ID",
-    "NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY"
+    "NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY",
+    "NEXT_PUBLIC_HUME_CONFIG_ID",
+    "HUME_API_KEY",
+    "HUME_SECRET_KEY"
   ],
   "tasks": {
     "build": {
