@@ -20,11 +20,6 @@ export function GlobalHeader() {
             <Link href="/chat" className="text-gray-400 hover:text-white transition text-sm">
               Chat
             </Link>
-            {user && (
-              <Link href="/dashboard" className="text-gray-400 hover:text-white transition text-sm">
-                Dashboard
-              </Link>
-            )}
             <Link href="/articles" className="text-gray-400 hover:text-white transition text-sm">
               Articles
             </Link>
