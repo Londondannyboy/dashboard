@@ -40,7 +40,6 @@
   },
   "dependencies": {
     "@humeai/voice-react": "^0.2.7",
-    "@stackframe/stack": "^2.7.21",
     "react-force-graph-3d": "^1.25.0",
     "three": "^0.170.0"
   },
@@ -50,6 +49,7 @@
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
+    "@stackframe/stack": "^2.7.0",
     "next": "^14.0.0 || ^15.0.0",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
