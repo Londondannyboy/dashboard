@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { neon } from '@neondatabase/serverless'
 
-const sql = neon(process.env.DATABASE_URL!)
+// Lazy initialization - don't call neon() at module load time
+const getDb = () => neon(process.env.DATABASE_URL!)
 const GATEWAY_URL = process.env.GATEWAY_URL || 'https://quest-gateway-production.up.railway.app'
 
 // Extract country names from query
@@ -34,6 +35,7 @@ function getArticleImage(article: any): string | null {
 
 // Fetch articles from Neon
 async function fetchArticles(countries: string[], limit = 8) {
+  const sql = getDb()
   try {
     if (countries.length === 0) {
       const result = await sql`
@@ -72,6 +74,7 @@ async function fetchArticles(countries: string[], limit = 8) {
 
 // Fetch countries from Neon with MUX images
 async function fetchCountries(countries: string[]) {
+  const sql = getDb()
   try {
     if (countries.length === 0) return []
 
@@ -96,6 +99,7 @@ async function fetchCountries(countries: string[]) {
 
 // Get country image from MUX
 async function getCountryImage(countryCode: string): Promise<string | null> {
+  const sql = getDb()
   try {
     const articleResult = await sql`
       SELECT video_playback_id
