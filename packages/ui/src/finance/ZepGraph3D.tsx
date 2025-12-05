@@ -235,27 +235,44 @@ export function ZepGraph3D({
   }, [companyId, companyName, apiEndpoint, onNodeClick])
 
   useEffect(() => {
-    // Lazy load with IntersectionObserver
+    // Safety check for SSR
+    if (typeof window === 'undefined') return
     if (!containerRef.current) return
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            initGraph()
-            observer.unobserve(entry.target)
-          }
-        })
-      },
-      { rootMargin: '100px' }
-    )
+    let observer: IntersectionObserver | null = null
 
-    observer.observe(containerRef.current)
+    try {
+      // Lazy load with IntersectionObserver
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              initGraph()
+              observer?.disconnect()
+            }
+          })
+        },
+        { rootMargin: '100px' }
+      )
+
+      observer.observe(containerRef.current)
+    } catch (err) {
+      console.error('ZepGraph3D observer error:', err)
+      // Try to init without observer
+      initGraph()
+    }
 
     return () => {
-      observer.disconnect()
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
+      try {
+        observer?.disconnect()
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current)
+        }
+        if (graphRef.current) {
+          graphRef.current = null
+        }
+      } catch (err) {
+        // Ignore cleanup errors
       }
     }
   }, [initGraph])

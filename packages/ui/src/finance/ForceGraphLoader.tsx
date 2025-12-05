@@ -13,32 +13,56 @@ interface ForceGraphLoaderProps {
   onLoad?: () => void
 }
 
+const SCRIPT_ID = 'force-graph-3d-script'
+
 export function ForceGraphLoader({ onLoad }: ForceGraphLoaderProps) {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
-    // Check if already loaded
-    if (typeof window !== 'undefined' && (window as any).ForceGraph3D) {
-      setLoaded(true)
-      onLoad?.()
+    // Safety check for SSR
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
       return
     }
 
-    // Load 3d-force-graph script
-    const script = document.createElement('script')
-    script.src = 'https://unpkg.com/3d-force-graph@1.79.0/dist/3d-force-graph.min.js'
-    script.async = true
-    script.onload = () => {
-      setLoaded(true)
-      onLoad?.()
-    }
-    script.onerror = () => {
-      console.error('Failed to load 3d-force-graph library')
-    }
-    document.head.appendChild(script)
+    try {
+      // Check if already loaded
+      if ((window as any).ForceGraph3D) {
+        setLoaded(true)
+        onLoad?.()
+        return
+      }
 
-    return () => {
-      // Cleanup not needed - script stays loaded
+      // Check if script already exists
+      if (document.getElementById(SCRIPT_ID)) {
+        // Script exists but not loaded yet - wait for it
+        const checkLoaded = setInterval(() => {
+          if ((window as any).ForceGraph3D) {
+            clearInterval(checkLoaded)
+            setLoaded(true)
+            onLoad?.()
+          }
+        }, 100)
+
+        // Timeout after 10 seconds
+        setTimeout(() => clearInterval(checkLoaded), 10000)
+        return
+      }
+
+      // Load 3d-force-graph script
+      const script = document.createElement('script')
+      script.id = SCRIPT_ID
+      script.src = 'https://unpkg.com/3d-force-graph@1.73.3/dist/3d-force-graph.min.js'
+      script.async = true
+      script.onload = () => {
+        setLoaded(true)
+        onLoad?.()
+      }
+      script.onerror = () => {
+        console.error('Failed to load 3d-force-graph library')
+      }
+      document.head.appendChild(script)
+    } catch (err) {
+      console.error('ForceGraphLoader error:', err)
     }
   }, [onLoad])
 

@@ -2,10 +2,8 @@
 
 import { GlobalHeader, GlobalFooter } from '@quest/ui/layout'
 import { ZepGraph3D, DealTimeline3D, ForceGraphLoader } from '@quest/ui/finance'
-import { useState } from 'react'
 
 export default function EcosystemPage() {
-  const [selectedCompany, setSelectedCompany] = useState<string | null>(null)
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0a0f] text-white">

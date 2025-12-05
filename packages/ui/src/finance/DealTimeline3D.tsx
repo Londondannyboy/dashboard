@@ -319,26 +319,43 @@ export function DealTimeline3D({
   }, [maxDeals, apiEndpoint, propDeals, onDealClick])
 
   useEffect(() => {
+    // Safety check for SSR
+    if (typeof window === 'undefined') return
     if (!containerRef.current) return
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            initTimeline()
-            observer.disconnect()
-          }
-        })
-      },
-      { rootMargin: '200px' }
-    )
+    let observer: IntersectionObserver | null = null
 
-    observer.observe(containerRef.current)
+    try {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              initTimeline()
+              observer?.disconnect()
+            }
+          })
+        },
+        { rootMargin: '200px' }
+      )
+
+      observer.observe(containerRef.current)
+    } catch (err) {
+      console.error('DealTimeline3D observer error:', err)
+      // Try to init without observer
+      initTimeline()
+    }
 
     return () => {
-      observer.disconnect()
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
+      try {
+        observer?.disconnect()
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current)
+        }
+        if (graphRef.current) {
+          graphRef.current = null
+        }
+      } catch (err) {
+        // Ignore cleanup errors
       }
     }
   }, [initTimeline])
