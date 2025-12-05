@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Script from 'next/script'
 
 /**
  * ForceGraphLoader - Loads the 3d-force-graph library
@@ -18,25 +17,32 @@ export function ForceGraphLoader({ onLoad }: ForceGraphLoaderProps) {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
-    if (loaded && onLoad) {
-      onLoad()
+    // Check if already loaded
+    if (typeof window !== 'undefined' && (window as any).ForceGraph3D) {
+      setLoaded(true)
+      onLoad?.()
+      return
     }
-  }, [loaded, onLoad])
 
-  return (
-    <>
-      <Script
-        src="https://unpkg.com/3d-force-graph@1.79.0"
-        strategy="lazyOnload"
-        onLoad={() => setLoaded(true)}
-      />
-      {/* Optional: vis-network for 2D network graphs */}
-      <Script
-        src="https://unpkg.com/vis-network@9.1.9/standalone/umd/vis-network.min.js"
-        strategy="lazyOnload"
-      />
-    </>
-  )
+    // Load 3d-force-graph script
+    const script = document.createElement('script')
+    script.src = 'https://unpkg.com/3d-force-graph@1.79.0/dist/3d-force-graph.min.js'
+    script.async = true
+    script.onload = () => {
+      setLoaded(true)
+      onLoad?.()
+    }
+    script.onerror = () => {
+      console.error('Failed to load 3d-force-graph library')
+    }
+    document.head.appendChild(script)
+
+    return () => {
+      // Cleanup not needed - script stays loaded
+    }
+  }, [onLoad])
+
+  return null
 }
 
 /**
