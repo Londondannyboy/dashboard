@@ -31,6 +31,10 @@
     "./feedback": {
       "types": "./dist/feedback/index.d.ts",
       "import": "./dist/feedback/index.js"
+    },
+    "./finance": {
+      "types": "./dist/finance/index.d.ts",
+      "import": "./dist/finance/index.js"
     }
   },
   "scripts": {
