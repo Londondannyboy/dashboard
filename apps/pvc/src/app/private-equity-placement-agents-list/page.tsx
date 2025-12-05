@@ -1,21 +1,44 @@
-'use client'
-
 import { GlobalHeader, GlobalFooter } from '@quest/ui/layout'
+import { sql } from '@/lib/db'
 import Link from 'next/link'
 
-// Placeholder data - will be replaced with database queries
-const placeholderAgents = [
-  { id: 1, name: 'Ares Management', slug: 'ares-management', headquarters: 'Los Angeles, CA', description: 'Global alternative investment manager', specializations: ['Private Equity', 'Credit', 'Real Estate'] },
-  { id: 2, name: 'Park Hill Group', slug: 'park-hill-group', headquarters: 'New York, NY', description: 'Private capital advisory firm', specializations: ['Private Equity', 'Real Assets', 'Credit'] },
-  { id: 3, name: 'Evercore', slug: 'evercore', headquarters: 'New York, NY', description: 'Independent investment banking advisory firm', specializations: ['M&A', 'Private Capital', 'Restructuring'] },
-  { id: 4, name: 'Lazard', slug: 'lazard', headquarters: 'New York, NY', description: 'Financial advisory and asset management firm', specializations: ['M&A', 'Capital Raising', 'Restructuring'] },
-  { id: 5, name: 'Campbell Lutyens', slug: 'campbell-lutyens', headquarters: 'London, UK', description: 'Global private capital advisory firm', specializations: ['Private Equity', 'Infrastructure', 'Real Estate'] },
-  { id: 6, name: 'Eaton Partners', slug: 'eaton-partners', headquarters: 'Rowayton, CT', description: 'Global placement agent', specializations: ['Private Equity', 'Real Assets', 'Credit'] },
-  { id: 7, name: 'Mercury Capital', slug: 'mercury-capital', headquarters: 'New York, NY', description: 'Private equity placement agent', specializations: ['Private Equity', 'Venture Capital', 'Growth Equity'] },
-  { id: 8, name: 'Probitas Partners', slug: 'probitas-partners', headquarters: 'San Francisco, CA', description: 'Independent placement agent', specializations: ['Private Equity', 'Real Assets', 'Credit'] },
-]
+interface Company {
+  id: number
+  name: string
+  slug: string
+  description: string | null
+  logo_url: string | null
+  headquarters: string | null
+  specializations: string[] | null
+  global_rank: number | null
+  featured_asset_url: string | null
+}
 
-export default function DirectoryPage() {
+async function getCompanies(): Promise<Company[]> {
+  try {
+    const companies = await sql`
+      SELECT
+        id, name, slug, description, logo_url, headquarters,
+        specializations, global_rank, featured_asset_url
+      FROM companies
+      WHERE status = 'published'
+        AND company_type = 'placement_agent'
+      ORDER BY
+        CASE WHEN global_rank IS NOT NULL THEN 0 ELSE 1 END,
+        global_rank ASC NULLS LAST,
+        name ASC
+      LIMIT 100
+    `
+    return companies as Company[]
+  } catch (error) {
+    console.error('Error fetching companies:', error)
+    return []
+  }
+}
+
+export default async function DirectoryPage() {
+  const companies = await getCompanies()
+
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0a0f] text-white">
       <GlobalHeader
@@ -37,7 +60,7 @@ export default function DirectoryPage() {
           <div className="max-w-7xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-black mb-4">VC & PE Firms Directory</h1>
             <p className="text-xl text-gray-400 max-w-3xl">
-              Comprehensive directory of top venture capital and private equity firms worldwide.
+              Comprehensive directory of {companies.length}+ top venture capital and private equity firms worldwide.
               Browse by specialization, region, or fund size.
             </p>
           </div>
@@ -67,47 +90,71 @@ export default function DirectoryPage() {
         {/* Directory Grid */}
         <section className="py-12 px-6">
           <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {placeholderAgents.map((agent) => (
-                <Link
-                  key={agent.id}
-                  href={`/private-equity-placement-agents-list/${agent.slug}`}
-                  className="bg-white/[0.03] border border-white/10 rounded-xl overflow-hidden hover:border-indigo-500/50 transition group"
-                >
-                  <div className="h-24 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 flex items-center justify-center">
-                    <span className="text-4xl font-black text-indigo-400/30">
-                      {agent.name.charAt(0)}
-                    </span>
-                  </div>
-                  <div className="p-5">
-                    <h3 className="text-lg font-bold mb-1 group-hover:text-indigo-400 transition">
-                      {agent.name}
-                    </h3>
-                    <p className="text-sm text-gray-500 mb-3">{agent.headquarters}</p>
-                    <p className="text-sm text-gray-400 mb-4 line-clamp-2">
-                      {agent.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {agent.specializations.slice(0, 3).map((spec) => (
-                        <span
-                          key={spec}
-                          className="px-2 py-1 bg-indigo-500/10 text-indigo-300 rounded text-xs font-medium"
-                        >
-                          {spec}
+            {companies.length === 0 ? (
+              <div className="text-center py-20">
+                <p className="text-gray-400">Loading companies...</p>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {companies.map((company) => (
+                  <Link
+                    key={company.id}
+                    href={`/private-equity-placement-agents-list/${company.slug}`}
+                    className="bg-white/[0.03] border border-white/10 rounded-xl overflow-hidden hover:border-indigo-500/50 transition group"
+                  >
+                    <div className="h-24 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 flex items-center justify-center relative">
+                      {company.logo_url ? (
+                        <img
+                          src={company.logo_url}
+                          alt={company.name}
+                          className="h-12 w-auto object-contain"
+                        />
+                      ) : company.featured_asset_url ? (
+                        <img
+                          src={company.featured_asset_url}
+                          alt={company.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <span className="text-4xl font-black text-indigo-400/30">
+                          {company.name.charAt(0)}
                         </span>
-                      ))}
+                      )}
+                      {company.global_rank && (
+                        <span className="absolute top-2 right-2 bg-indigo-500 text-white text-xs px-2 py-0.5 rounded font-bold">
+                          #{company.global_rank}
+                        </span>
+                      )}
                     </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-
-            {/* Load More */}
-            <div className="text-center mt-12">
-              <button className="px-8 py-3 bg-white/5 border border-white/10 rounded-lg text-gray-300 font-medium hover:bg-white/10 transition">
-                Load More Firms
-              </button>
-            </div>
+                    <div className="p-5">
+                      <h3 className="text-lg font-bold mb-1 group-hover:text-indigo-400 transition">
+                        {company.name}
+                      </h3>
+                      {company.headquarters && (
+                        <p className="text-sm text-gray-500 mb-3">{company.headquarters}</p>
+                      )}
+                      {company.description && (
+                        <p className="text-sm text-gray-400 mb-4 line-clamp-2">
+                          {company.description}
+                        </p>
+                      )}
+                      {company.specializations && company.specializations.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {company.specializations.slice(0, 3).map((spec) => (
+                            <span
+                              key={spec}
+                              className="px-2 py-1 bg-indigo-500/10 text-indigo-300 rounded text-xs font-medium"
+                            >
+                              {spec}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       </main>

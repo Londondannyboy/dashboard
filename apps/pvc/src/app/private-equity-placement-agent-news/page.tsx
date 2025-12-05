@@ -1,19 +1,64 @@
-'use client'
-
 import { GlobalHeader, GlobalFooter } from '@quest/ui/layout'
+import { sql } from '@/lib/db'
 import Link from 'next/link'
 
-// Placeholder data - will be replaced with database queries
-const placeholderArticles = [
-  { id: 1, title: 'PAG Closes $8.3B China Mall Deal', slug: 'pag-china-mall-deal', excerpt: 'Hong Kong-based PAG completes largest retail acquisition in Asia Pacific...', category: 'Deals', date: 'Dec 4, 2025' },
-  { id: 2, title: 'UK Healthcare Sector Sees $500M PE Investment', slug: 'uk-healthcare-pe-investment', excerpt: 'Multiple private equity firms compete for NHS-adjacent healthcare assets...', category: 'Markets', date: 'Dec 3, 2025' },
-  { id: 3, title: 'Ares Management Launches €2B Plenitude Fund', slug: 'ares-plenitude-fund', excerpt: 'Ares expands European presence with new energy transition focused vehicle...', category: 'Fund Launches', date: 'Dec 2, 2025' },
-  { id: 4, title: 'PE Rising Stars 2025: 40 Under 40', slug: 'pe-rising-stars-2025', excerpt: 'Annual ranking highlights the next generation of private equity leaders...', category: 'People', date: 'Dec 1, 2025' },
-  { id: 5, title: 'Real Madrid Raises $500M from PE Investors', slug: 'real-madrid-pe-investment', excerpt: 'Spanish football giant sells minority stake to consortium of investors...', category: 'Sports', date: 'Nov 30, 2025' },
-  { id: 6, title: 'Legal Sector PE Deals Hit Record High', slug: 'legal-pe-record', excerpt: 'Private equity investment in law firms reaches unprecedented levels...', category: 'Analysis', date: 'Nov 29, 2025' },
-]
+interface Article {
+  id: number
+  title: string
+  excerpt: string | null
+  slug: string
+  published_at: string | null
+  created_at: string
+  article_angle: string | null
+  featured_asset_url: string | null
+  video_playback_id: string | null
+}
 
-export default function NewsPage() {
+async function getArticles(): Promise<Article[]> {
+  try {
+    const articles = await sql`
+      SELECT
+        id, title, excerpt, slug, published_at, created_at,
+        article_angle, featured_asset_url, video_playback_id
+      FROM articles
+      WHERE app = 'pvc'
+        AND status = 'published'
+      ORDER BY COALESCE(published_at, created_at) DESC
+      LIMIT 30
+    `
+    return articles as Article[]
+  } catch (error) {
+    console.error('Error fetching articles:', error)
+    return []
+  }
+}
+
+function formatDate(date: string | null): string {
+  if (!date) return ''
+  return new Date(date).toLocaleDateString('en-US', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric'
+  })
+}
+
+function formatCategory(angle: string | null): string {
+  if (!angle) return 'News'
+  return angle.split('-').map(word =>
+    word.charAt(0).toUpperCase() + word.slice(1)
+  ).join(' ')
+}
+
+function getThumbnail(article: Article): string | null {
+  if (article.video_playback_id) {
+    return `https://image.mux.com/${article.video_playback_id}/thumbnail.webp?time=1&width=400`
+  }
+  return article.featured_asset_url || null
+}
+
+export default async function NewsPage() {
+  const articles = await getArticles()
+
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0a0f] text-white">
       <GlobalHeader
@@ -65,40 +110,54 @@ export default function NewsPage() {
         {/* Articles Grid */}
         <section className="py-12 px-6">
           <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {placeholderArticles.map((article) => (
-                <Link
-                  key={article.id}
-                  href={`/${article.slug}`}
-                  className="group"
-                >
-                  <div className="h-48 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 rounded-xl mb-4 flex items-center justify-center">
-                    <svg className="w-12 h-12 text-indigo-400/30" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5-7l-3 3.72L9 13l-3 4h12l-4-5z"/>
-                    </svg>
-                  </div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="px-2 py-1 bg-indigo-500/20 text-indigo-300 rounded text-xs font-medium">
-                      {article.category}
-                    </span>
-                    <span className="text-sm text-gray-500">{article.date}</span>
-                  </div>
-                  <h3 className="text-lg font-bold mb-2 group-hover:text-indigo-400 transition line-clamp-2">
-                    {article.title}
-                  </h3>
-                  <p className="text-sm text-gray-400 line-clamp-2">
-                    {article.excerpt}
-                  </p>
-                </Link>
-              ))}
-            </div>
-
-            {/* Load More */}
-            <div className="text-center mt-12">
-              <button className="px-8 py-3 bg-white/5 border border-white/10 rounded-lg text-gray-300 font-medium hover:bg-white/10 transition">
-                Load More Articles
-              </button>
-            </div>
+            {articles.length === 0 ? (
+              <div className="text-center py-20">
+                <p className="text-gray-400">Loading articles...</p>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {articles.map((article) => {
+                  const thumbnail = getThumbnail(article)
+                  return (
+                    <Link
+                      key={article.id}
+                      href={`/${article.slug}`}
+                      className="group"
+                    >
+                      <div className="h-48 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 rounded-xl mb-4 flex items-center justify-center overflow-hidden">
+                        {thumbnail ? (
+                          <img
+                            src={thumbnail}
+                            alt={article.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                          />
+                        ) : (
+                          <svg className="w-12 h-12 text-indigo-400/30" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5-7l-3 3.72L9 13l-3 4h12l-4-5z"/>
+                          </svg>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="px-2 py-1 bg-indigo-500/20 text-indigo-300 rounded text-xs font-medium">
+                          {formatCategory(article.article_angle)}
+                        </span>
+                        <span className="text-sm text-gray-500">
+                          {formatDate(article.published_at || article.created_at)}
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-bold mb-2 group-hover:text-indigo-400 transition line-clamp-2">
+                        {article.title}
+                      </h3>
+                      {article.excerpt && (
+                        <p className="text-sm text-gray-400 line-clamp-2">
+                          {article.excerpt}
+                        </p>
+                      )}
+                    </Link>
+                  )
+                })}
+              </div>
+            )}
           </div>
         </section>
       </main>
