@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0f;
+  --foreground: #ffffff;
+}
+
+body {
+  background: #0a0a0f;
+  color: var(--foreground);
+  min-height: 100vh;
+}
+
+/* Dark sections */
+.dark-section {
+  background: rgba(255,255,255,0.02);
+  color: #fff;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.dark-section a {
+  color: #34d399;
+}
+
+.dark-section a:hover {
+  color: #6ee7b7;
+}
+
+.gradient-section {
+  background: #0a0a0f;
+  color: #fff;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Card styles */
+.card-dark {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+}
+
+.card-dark:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* Category badge */
+.category-badge {
+  display: inline-block;
+  background: rgba(52, 211, 153, 0.15);
+  color: #34d399;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* News item hover effects */
+.news-item:hover .news-title {
+  color: #34d399;
+}
+
+/* Spin animation for loading */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
