@@ -21,7 +21,7 @@ async function getArticles(): Promise<Article[]> {
         id, title, excerpt, slug, published_at, created_at,
         article_angle, featured_asset_url, video_playback_id
       FROM articles
-      WHERE app = 'pvc'
+      WHERE app = 'placement'
         AND status = 'published'
       ORDER BY COALESCE(published_at, created_at) DESC
       LIMIT 30

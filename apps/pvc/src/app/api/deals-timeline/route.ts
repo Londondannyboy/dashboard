@@ -20,7 +20,7 @@ export async function GET() {
         payload,
         meta_description
       FROM articles
-      WHERE app = 'pvc'
+      WHERE app = 'placement'
         AND status = 'published'
       ORDER BY COALESCE(published_at, created_at) DESC
       LIMIT 50

@@ -24,7 +24,7 @@ async function getArticle(slug: string): Promise<Article | null> {
       SELECT *
       FROM articles
       WHERE slug = ${slug}
-        AND app = 'pvc'
+        AND app = 'placement'
         AND status = 'published'
       LIMIT 1
     `

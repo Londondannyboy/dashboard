@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
           id, title, excerpt, slug, published_at, created_at,
           article_angle, featured_asset_url, video_playback_id
         FROM articles
-        WHERE app = 'pvc'
+        WHERE app = 'placement'
           AND status = 'published'
           AND is_featured = true
         ORDER BY COALESCE(published_at, created_at) DESC
@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
           id, title, excerpt, slug, published_at, created_at,
           article_angle, featured_asset_url, video_playback_id
         FROM articles
-        WHERE app = 'pvc'
+        WHERE app = 'placement'
           AND status = 'published'
           AND article_angle = ${category}
         ORDER BY COALESCE(published_at, created_at) DESC
@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
           id, title, excerpt, slug, published_at, created_at,
           article_angle, featured_asset_url, video_playback_id
         FROM articles
-        WHERE app = 'pvc'
+        WHERE app = 'placement'
           AND status = 'published'
         ORDER BY COALESCE(published_at, created_at) DESC
         LIMIT ${limit}
@@ -60,7 +60,7 @@ export async function GET(request: NextRequest) {
     const countResult = await sql`
       SELECT COUNT(*) as total
       FROM articles
-      WHERE app = 'pvc'
+      WHERE app = 'placement'
         AND status = 'published'
     `
     const total = countResult[0]?.total || 0
