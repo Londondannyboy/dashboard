@@ -1,10 +1,21 @@
 import { MetadataRoute } from 'next'
 import { neon } from '@neondatabase/serverless'
 
+export const dynamic = 'force-dynamic'
+
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://relocation.quest'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const sql = neon(process.env.DATABASE_URL!)
+  if (!process.env.DATABASE_URL) {
+    // Return static pages only during build
+    return [
+      { url: BASE_URL, lastModified: new Date(), changeFrequency: 'daily', priority: 1.0 },
+      { url: `${BASE_URL}/chat`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+      { url: `${BASE_URL}/voice`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+    ]
+  }
+
+  const sql = neon(process.env.DATABASE_URL)
 
   // Fetch all published articles
   const articles = await sql`
