@@ -1,4 +1,7 @@
+'use client'
+
 import { GlobalHeader, GlobalFooter } from '@quest/ui/layout'
+import { ZepGraph3D, DealTimeline3D } from '@quest/ui/finance'
 import Link from 'next/link'
 
 export default function EcosystemPage() {
@@ -26,13 +29,14 @@ export default function EcosystemPage() {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
-                Network Explorer
+                Interactive Network
+                <span className="bg-gradient-to-r from-amber-500 to-red-500 text-[8px] px-1.5 py-0.5 rounded text-white font-bold">BETA</span>
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-black mb-4">PE & VC Ecosystem</h1>
             <p className="text-xl text-gray-400 max-w-3xl">
               Explore the interconnected network of private equity and venture capital firms,
-              their deals, and relationships.
+              their deals, and relationships in an interactive 3D visualization.
             </p>
 
             {/* Stats */}
@@ -53,48 +57,36 @@ export default function EcosystemPage() {
           </div>
         </section>
 
-        {/* Network Visualization Placeholder */}
+        {/* Main 3D Network Graph */}
         <section className="py-12 px-6">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-2xl font-bold mb-6">Company Network</h2>
-            <div className="h-[500px] bg-gradient-to-br from-indigo-900/20 via-purple-900/10 to-slate-900/20 rounded-2xl border border-white/10 flex items-center justify-center relative overflow-hidden">
-              {/* Decorative network nodes */}
-              <div className="absolute inset-0 opacity-30">
-                <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-indigo-500 rounded-full animate-pulse" />
-                <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-purple-500 rounded-full animate-pulse delay-100" />
-                <div className="absolute bottom-1/4 left-1/3 w-5 h-5 bg-emerald-500 rounded-full animate-pulse delay-200" />
-                <div className="absolute top-1/2 right-1/4 w-3 h-3 bg-amber-500 rounded-full animate-pulse delay-300" />
-                <div className="absolute bottom-1/3 right-1/2 w-4 h-4 bg-blue-500 rounded-full animate-pulse delay-150" />
-                {/* Connection lines */}
-                <svg className="absolute inset-0 w-full h-full">
-                  <line x1="25%" y1="25%" x2="66%" y2="33%" stroke="rgba(99,102,241,0.3)" strokeWidth="1" />
-                  <line x1="33%" y1="75%" x2="66%" y2="33%" stroke="rgba(99,102,241,0.3)" strokeWidth="1" />
-                  <line x1="75%" y1="50%" x2="50%" y2="66%" stroke="rgba(99,102,241,0.3)" strokeWidth="1" />
-                </svg>
-              </div>
+            <ZepGraph3D
+              companyId="all"
+              companyName="PVC Network"
+              height="600px"
+              apiEndpoint="/api/zep-graph"
+              onNodeClick={(node) => {
+                if (node.url) {
+                  window.location.href = node.url
+                }
+              }}
+            />
+          </div>
+        </section>
 
-              <div className="text-center z-10">
-                <div className="w-20 h-20 bg-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-10 h-10 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9c0-1.657-4.03-3-9-3s-9 1.343-9 3m18 0a9 9 0 01-9 9m-9-9a9 9 0 019-9" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold mb-2">Interactive Network Coming Soon</h3>
-                <p className="text-gray-400 mb-6 max-w-md">
-                  We're building an interactive 3D visualization of the PE/VC ecosystem.
-                  Explore our directory in the meantime.
-                </p>
-                <Link
-                  href="/private-equity-placement-agents-list"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-500 hover:bg-indigo-600 rounded-lg font-medium transition"
-                >
-                  Browse Directory
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </Link>
-              </div>
-            </div>
+        {/* Deal Timeline Section */}
+        <section className="py-12 px-6 bg-white/[0.02] border-t border-white/10">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-2xl font-bold mb-6">Deal Timeline</h2>
+            <p className="text-gray-400 mb-8">
+              Track recent funding rounds, acquisitions, and market events.
+            </p>
+            <DealTimeline3D
+              height="450px"
+              maxDeals={20}
+              apiEndpoint="/api/deals-timeline"
+            />
           </div>
         </section>
 
