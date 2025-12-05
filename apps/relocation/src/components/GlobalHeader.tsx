@@ -23,6 +23,11 @@ export function GlobalHeader() {
             <Link href="/articles" className="text-gray-400 hover:text-white transition text-sm">
               Articles
             </Link>
+            {user && (
+              <Link href="/dashboard" className="text-gray-400 hover:text-white transition text-sm">
+                Dashboard
+              </Link>
+            )}
           </nav>
         </div>
         <div className="flex items-center gap-4">
