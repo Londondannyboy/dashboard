@@ -3,8 +3,6 @@
 import { useUser } from '@stackframe/stack'
 import { useState, useRef, useEffect } from 'react'
 import { GlobalHeader } from '@/components/GlobalHeader'
-import { RepoSection } from '@/components/dashboard/RepoSection'
-import { HITLConfirmations } from '@/components/HITLConfirmations'
 
 interface Message {
   id: string
@@ -83,9 +81,6 @@ export default function ChatPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900 flex flex-col">
       <GlobalHeader />
-
-      {/* HITL Confirmations overlay */}
-      <HITLConfirmations userId={user?.id || null} />
 
       <main className="flex-1 flex gap-6 max-w-7xl mx-auto w-full p-4">
         {/* Chat Section - Left */}
@@ -169,12 +164,6 @@ export default function ChatPage() {
           )}
         </div>
 
-        {/* Repo Section - Right Sidebar */}
-        {user && (
-          <div className="w-80 flex-shrink-0 hidden lg:block">
-            <RepoSection userId={user.id} />
-          </div>
-        )}
       </main>
 
       <footer className="border-t border-white/10 bg-black/20 py-4 text-center text-gray-500 text-sm">

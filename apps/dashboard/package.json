@@ -19,6 +19,7 @@
     "@quest/media": "workspace:*",
     "@quest/ui": "workspace:*",
     "@stackframe/stack": "^2.8.54",
+    "@temporalio/client": "^1.13.2",
     "@thesysai/genui-sdk": "^0.7.4",
     "ai": "^4.0.0",
     "hume": "^0.15.7",

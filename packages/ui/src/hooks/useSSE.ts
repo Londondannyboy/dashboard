@@ -28,6 +28,16 @@ export function useSSE({
   const eventSourceRef = useRef<EventSource | null>(null)
   const retryCountRef = useRef(0)
   const retryTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  // Use refs for callback and events to avoid recreating connect on each render
+  const onEventRef = useRef(onEvent)
+  const eventsRef = useRef(events)
+
+  // Keep refs up to date
+  useEffect(() => {
+    onEventRef.current = onEvent
+    eventsRef.current = events
+  }, [onEvent, events])
+
   const [state, setState] = useState<SSEState>({
     connected: false,
     reconnecting: false,
@@ -91,18 +101,18 @@ export function useSSE({
       // Connection is alive
     })
 
-    // Add custom event listeners
-    events.forEach(eventType => {
+    // Add custom event listeners using ref
+    eventsRef.current.forEach(eventType => {
       eventSource.addEventListener(eventType, (e: MessageEvent) => {
         try {
           const data = JSON.parse(e.data)
-          onEvent?.(eventType, data)
+          onEventRef.current?.(eventType, data)
         } catch (err) {
           console.warn(`[SSE] Failed to parse ${eventType} event:`, err)
         }
       })
     })
-  }, [userId, gatewayUrl, events, onEvent, maxRetries, retryDelay])
+  }, [userId, gatewayUrl, maxRetries, retryDelay])
 
   const disconnect = useCallback(() => {
     if (retryTimeoutRef.current) {
@@ -113,7 +123,6 @@ export function useSSE({
       eventSourceRef.current.close()
       eventSourceRef.current = null
     }
-    setState({ connected: false, reconnecting: false, retryCount: 0 })
   }, [])
 
   useEffect(() => {

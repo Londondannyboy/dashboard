@@ -6,3 +6,6 @@ export type { RepoSectionProps } from './RepoSection.js'
 
 export { ArticlesSection } from './ArticlesSection.js'
 export type { ArticlesSectionProps } from './ArticlesSection.js'
+
+export { WorkflowsSection } from './WorkflowsSection.js'
+export type { WorkflowsSectionProps } from './WorkflowsSection.js'

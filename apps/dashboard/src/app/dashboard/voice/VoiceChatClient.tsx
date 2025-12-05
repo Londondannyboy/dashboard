@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { HumeVoiceChat, type HumeVariables } from '@quest/ui'
+import { HumeVoiceChat, type HumeVariables } from '@quest/ui/voice'
 
 interface VoiceChatClientProps {
   variables?: HumeVariables

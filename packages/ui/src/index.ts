@@ -7,8 +7,8 @@ export { KnowledgeGraph3D, useGraphData } from './graphs/index.js'
 export type { GraphNode, GraphLink, GraphData } from './graphs/index.js'
 
 // Dashboard components
-export { ProfileSection, RepoSection, ArticlesSection } from './dashboard/index.js'
-export type { ProfileSectionProps, RepoSectionProps, ArticlesSectionProps } from './dashboard/index.js'
+export { ProfileSection, RepoSection, ArticlesSection, WorkflowsSection } from './dashboard/index.js'
+export type { ProfileSectionProps, RepoSectionProps, ArticlesSectionProps, WorkflowsSectionProps } from './dashboard/index.js'
 
 // Layout components
 export { GlobalHeader, GlobalFooter } from './layout/index.js'
