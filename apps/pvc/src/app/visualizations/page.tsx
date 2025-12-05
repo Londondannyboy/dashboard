@@ -96,22 +96,25 @@ export default function VisualizationsPage() {
               </div>
 
               {/* Momentum Signals */}
-              <div className="bg-white/[0.02] border border-white/10 rounded-2xl overflow-hidden">
+              <Link
+                href="/momentum"
+                className="bg-white/[0.02] border border-white/10 rounded-2xl overflow-hidden hover:border-amber-500/50 transition group"
+              >
                 <div className="p-6 border-b border-white/10">
-                  <h3 className="text-xl font-bold mb-2">Momentum Signals</h3>
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-amber-400 transition">Momentum Signals</h3>
                   <p className="text-gray-400 text-sm">
                     Real-time market activity and trending sectors
                   </p>
                 </div>
                 <div className="h-[250px] bg-gradient-to-br from-amber-900/20 to-orange-900/20 flex items-center justify-center">
                   <div className="text-center">
-                    <svg className="w-16 h-16 text-amber-400/50 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-16 h-16 text-amber-400/50 mx-auto mb-4 group-hover:text-amber-400 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                     </svg>
-                    <span className="text-amber-300/50 font-medium">In Development</span>
+                    <span className="text-amber-300 font-medium">View Momentum →</span>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </section>
