@@ -135,31 +135,27 @@ export default function DashboardPage() {
           <p className="text-xs text-gray-400 mt-1">Talk naturally</p>
         </Link>
 
-        <a
-          href="https://relocation.quest/guides"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href="/articles"
           className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-500/30 rounded-xl p-5 hover:border-amber-500/50 transition group"
         >
           <span className="text-3xl">📚</span>
           <h3 className="font-semibold mt-2 group-hover:text-amber-400 transition">
-            Guides
-          </h3>
-          <p className="text-xs text-gray-400 mt-1">Country guides</p>
-        </a>
-
-        <a
-          href="https://relocation.quest/articles"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-xl p-5 hover:border-green-500/50 transition group"
-        >
-          <span className="text-3xl">📰</span>
-          <h3 className="font-semibold mt-2 group-hover:text-green-400 transition">
             Articles
           </h3>
-          <p className="text-xs text-gray-400 mt-1">Latest content</p>
-        </a>
+          <p className="text-xs text-gray-400 mt-1">Guides & stories</p>
+        </Link>
+
+        <Link
+          href="/"
+          className="bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-xl p-5 hover:border-green-500/50 transition group"
+        >
+          <span className="text-3xl">🏠</span>
+          <h3 className="font-semibold mt-2 group-hover:text-green-400 transition">
+            Home
+          </h3>
+          <p className="text-xs text-gray-400 mt-1">Back to main site</p>
+        </Link>
       </div>
 
       {/* Quick Start Topics */}

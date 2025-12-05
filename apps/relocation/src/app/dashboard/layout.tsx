@@ -30,6 +30,12 @@ function DashboardHeader() {
 
         <nav className="flex items-center gap-4">
           <Link
+            href="/"
+            className="text-sm text-gray-300 hover:text-white transition"
+          >
+            Home
+          </Link>
+          <Link
             href="/dashboard/chat"
             className="text-sm text-gray-300 hover:text-white transition"
           >
@@ -41,14 +47,12 @@ function DashboardHeader() {
           >
             Voice
           </Link>
-          <a
-            href="https://relocation.quest/guides"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/articles"
             className="text-sm text-gray-300 hover:text-white transition"
           >
-            Guides
-          </a>
+            Articles
+          </Link>
           {user && <UserButton />}
         </nav>
       </div>
