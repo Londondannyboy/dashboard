@@ -1,10 +1,10 @@
 'use client'
 
 import { Suspense } from 'react'
-import { useUser, UserButton } from '@stackframe/stack'
-import Link from 'next/link'
+import { useUser } from '@stackframe/stack'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { GlobalHeader, GlobalFooter } from '@quest/ui/layout'
 
 function LoadingSpinner() {
   return (
@@ -14,59 +14,6 @@ function LoadingSpinner() {
         <p className="text-gray-400 text-sm">Loading dashboard...</p>
       </div>
     </div>
-  )
-}
-
-function DashboardHeader() {
-  const user = useUser()
-
-  return (
-    <header className="border-b border-white/10 bg-black/40 backdrop-blur-sm sticky top-0 z-20">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        <Link href="/dashboard" className="flex items-center gap-2">
-          <span className="text-xl">🌍</span>
-          <span className="font-semibold text-white">Relocation Quest</span>
-        </Link>
-
-        <nav className="flex items-center gap-4">
-          <Link
-            href="/"
-            className="text-sm text-gray-300 hover:text-white transition"
-          >
-            Home
-          </Link>
-          <Link
-            href="/dashboard/chat"
-            className="text-sm text-gray-300 hover:text-white transition"
-          >
-            Chat
-          </Link>
-          <Link
-            href="/dashboard/voice"
-            className="text-sm text-gray-300 hover:text-white transition"
-          >
-            Voice
-          </Link>
-          <Link
-            href="/articles"
-            className="text-sm text-gray-300 hover:text-white transition"
-          >
-            Articles
-          </Link>
-          {user && <UserButton />}
-        </nav>
-      </div>
-    </header>
-  )
-}
-
-function DashboardFooter() {
-  return (
-    <footer className="border-t border-white/10 py-6 mt-auto">
-      <div className="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500">
-        <p>Relocation Quest - Your AI-powered relocation assistant</p>
-      </div>
-    </footer>
   )
 }
 
@@ -106,9 +53,25 @@ function AuthenticatedLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-950 text-white">
-      <DashboardHeader />
-      <main className="flex-1">{children}</main>
-      <DashboardFooter />
+      <GlobalHeader
+        brandName="Relocation"
+        brandAccent="Quest"
+        brandGradient="from-purple-400 to-pink-500"
+        signInGradient="from-purple-500 to-pink-500"
+        navItems={[
+          { href: '/articles', label: 'Articles' },
+          { href: '/chat', label: 'Chat' },
+          { href: '/voice', label: 'Voice' },
+          { href: '/dashboard', label: 'Dashboard', highlight: true },
+        ]}
+      />
+      <main className="flex-1 pt-16">{children}</main>
+      <GlobalFooter
+        brandName="Relocation"
+        brandAccent="Quest"
+        brandGradient="from-purple-400 to-pink-500"
+        compact
+      />
     </div>
   )
 }

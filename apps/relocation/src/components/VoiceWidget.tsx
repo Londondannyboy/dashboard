@@ -24,9 +24,10 @@ interface HumeVariables {
 
 interface VoiceWidgetProps {
   userId: string | null
+  onSessionStart?: () => void
 }
 
-export function VoiceWidget({ userId }: VoiceWidgetProps) {
+export function VoiceWidget({ userId, onSessionStart }: VoiceWidgetProps) {
   const [accessToken, setAccessToken] = useState<string | null>(null)
   const [configId, setConfigId] = useState<string | null>(null)
   const [variables, setVariables] = useState<HumeVariables>({})
@@ -115,6 +116,7 @@ export function VoiceWidget({ userId }: VoiceWidgetProps) {
       configId={configId}
       userId={userId}
       variables={variables}
+      onConnect={onSessionStart}
     />
   )
 }

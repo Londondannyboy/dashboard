@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useUser, UserButton } from '@stackframe/stack'
+import { useUser } from '@stackframe/stack'
 import MuxPlayer from '@mux/mux-player-react'
+import { GlobalHeader, GlobalFooter } from '@quest/ui/layout'
 
 interface Article {
   id: number
@@ -177,37 +178,18 @@ export default function HomePage() {
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/5 backdrop-blur-sm border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="text-xl font-bold">
-              <span className="text-white">Relocation</span>
-              <span className="text-amber-500">Quest</span>
-            </Link>
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="/" className="text-amber-500 font-semibold">Articles</Link>
-              <Link href="/chat" className="text-gray-400 hover:text-white transition-colors">Chat</Link>
-              <Link href="/voice" className="text-gray-400 hover:text-white transition-colors">Voice</Link>
-              {user && (
-                <Link href="/dashboard" className="text-gray-400 hover:text-white transition-colors">Dashboard</Link>
-              )}
-            </div>
-            <div className="flex items-center gap-4">
-              {user ? (
-                <UserButton />
-              ) : (
-                <Link
-                  href="/handler/sign-in"
-                  className="px-4 py-2 rounded-full text-white text-sm font-semibold"
-                  style={{ background: 'linear-gradient(135deg, #667eea, #764ba2)' }}
-                >
-                  Sign In
-                </Link>
-              )}
-            </div>
-          </div>
-        </div>
-      </nav>
+      <GlobalHeader
+        brandName="Relocation"
+        brandAccent="Quest"
+        brandGradient="from-amber-400 to-orange-500"
+        signInGradient="from-indigo-500 to-purple-600"
+        navItems={[
+          { href: '/articles', label: 'Articles', highlight: true },
+          { href: '/chat', label: 'Chat' },
+          { href: '/voice', label: 'Voice' },
+          { href: '/dashboard', label: 'Dashboard', requiresAuth: true },
+        ]}
+      />
 
       {/* Hero */}
       <header className="relative min-h-[80vh] flex items-center pt-20">
@@ -406,26 +388,12 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-white/10 py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-wrap justify-between items-center">
-            <p className="text-xl font-bold">
-              <span className="text-white">Relocation</span>
-              <span className="text-amber-500">Quest</span>
-            </p>
-            <div className="flex gap-8">
-              <Link href="/chat" className="text-gray-500 hover:text-white transition-colors">Chat</Link>
-              <Link href="/voice" className="text-gray-500 hover:text-white transition-colors">Voice</Link>
-              {user && (
-                <Link href="/dashboard" className="text-gray-500 hover:text-white transition-colors">Dashboard</Link>
-              )}
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-white/10 text-center text-gray-600 text-sm">
-            AI-powered relocation guidance and expert content
-          </div>
-        </div>
-      </footer>
+      <GlobalFooter
+        brandName="Relocation"
+        brandAccent="Quest"
+        brandGradient="from-amber-400 to-orange-500"
+        compact
+      />
     </main>
   )
 }

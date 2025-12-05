@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getUser } from '@/lib/api-clients/neon'
+import { checkRateLimit, getClientId, RATE_LIMITS } from '@/lib/rate-limit'
 
 /**
  * POST /api/voice/access-token
@@ -7,11 +8,39 @@ import { getUser } from '@/lib/api-clients/neon'
  * Generates a Hume AI access token for voice conversations.
  * Uses Basic auth with API key as username and Secret key as password.
  * Also returns user profile data to inject as session variables.
+ *
+ * REQUIRES AUTHENTICATION - voice is expensive (per-minute billing)
  */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
     const { user_id } = body
+
+    // Allow trial users (trial-xxx) or authenticated users
+    const isTrial = user_id?.startsWith('trial-')
+
+    if (!user_id) {
+      return NextResponse.json(
+        { error: 'Authentication required for voice chat' },
+        { status: 401 }
+      )
+    }
+
+    // Rate limiting - stricter for trial users
+    const rateLimit = isTrial
+      ? { maxRequests: 2, windowMs: 86400000 }  // 2 per day for trial
+      : RATE_LIMITS.expensive  // 10 per minute for authenticated
+    const rateLimitResult = checkRateLimit(`voice:${user_id}`, rateLimit)
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        {
+          error: 'Rate limit exceeded',
+          message: 'Too many voice sessions. Please wait before starting a new one.',
+          retryAfter: Math.ceil((rateLimitResult.resetAt - Date.now()) / 1000),
+        },
+        { status: 429 }
+      )
+    }
 
     const apiKey = process.env.HUME_API_KEY
     const secretKey = process.env.HUME_SECRET_KEY

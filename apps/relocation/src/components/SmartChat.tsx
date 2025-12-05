@@ -51,7 +51,7 @@ function CountryCard({ data }: { data: any }) {
           className="mt-3 bg-white text-gray-900 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-100 transition w-fit"
           onClick={() =>
             window.open(
-              `https://relocation.quest/guides/${data.slug || data.name.toLowerCase()}`,
+              `/articles?country=${data.slug || data.name.toLowerCase()}`,
               '_blank'
             )
           }
@@ -146,7 +146,11 @@ interface Message {
   sources?: Array<{ title: string; url: string; id: string }>
 }
 
-export default function SmartChat() {
+interface SmartChatProps {
+  onMessageSent?: () => void
+}
+
+export default function SmartChat({ onMessageSent }: SmartChatProps) {
   const user = useUser()
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
@@ -169,6 +173,9 @@ export default function SmartChat() {
     setInput('')
     setMessages((prev) => [...prev, { role: 'user', content: userMessage }])
     setIsLoading(true)
+
+    // Notify parent that a message was sent (for trial tracking)
+    onMessageSent?.()
 
     try {
       const response = await fetch('/api/chat/smart', {

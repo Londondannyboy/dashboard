@@ -16,6 +16,7 @@ interface HumeVoiceUIProps {
   configId: string
   userId: string | null
   variables?: HumeVariables
+  onConnect?: () => void
 }
 
 interface Message {
@@ -28,11 +29,13 @@ function VoiceChatControls({
   configId,
   userId,
   variables,
+  onConnect,
 }: {
   accessToken: string
   configId?: string
   userId?: string | null
   variables?: HumeVariables
+  onConnect?: () => void
 }) {
   const { status, connect, disconnect, isMuted, mute, unmute, messages } = useVoice()
   const [displayMessages, setDisplayMessages] = useState<Message[]>([])
@@ -101,10 +104,11 @@ function VoiceChatControls({
       })
 
       console.log('🎙️ Connected successfully!')
+      onConnect?.()
     } catch (e) {
       console.error('🎙️ Connect error:', e)
     }
-  }, [connect, accessToken, configId, userId, variables])
+  }, [connect, accessToken, configId, userId, variables, onConnect])
 
   return (
     <div className="flex flex-col items-center gap-6">
@@ -193,6 +197,7 @@ export default function HumeVoiceUI(props: HumeVoiceUIProps) {
         configId={props.configId}
         userId={props.userId}
         variables={props.variables}
+        onConnect={props.onConnect}
       />
     </VoiceProvider>
   )

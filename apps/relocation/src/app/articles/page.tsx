@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useUser, UserButton } from '@stackframe/stack'
+import { useUser } from '@stackframe/stack'
 import MuxPlayer from '@mux/mux-player-react'
+import { GlobalHeader, GlobalFooter } from '@quest/ui/layout'
 
 interface Article {
   id: number
@@ -177,34 +178,18 @@ export default function ArticlesPage() {
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/5 backdrop-blur-sm border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="text-xl font-bold">
-              <span className="text-white">Quest</span>
-            </Link>
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="/" className="text-gray-400 hover:text-white transition-colors">Home</Link>
-              <Link href="/voice" className="text-gray-400 hover:text-white transition-colors">Voice</Link>
-              <Link href="/dashboard" className="text-gray-400 hover:text-white transition-colors">Dashboard</Link>
-              <span className="text-amber-500 font-semibold">Articles</span>
-            </div>
-            <div className="flex items-center gap-4">
-              {user ? (
-                <UserButton />
-              ) : (
-                <Link
-                  href="/handler/sign-in"
-                  className="px-4 py-2 rounded-full text-white text-sm font-semibold"
-                  style={{ background: 'linear-gradient(135deg, #667eea, #764ba2)' }}
-                >
-                  Sign In
-                </Link>
-              )}
-            </div>
-          </div>
-        </div>
-      </nav>
+      <GlobalHeader
+        brandName="Relocation"
+        brandAccent="Quest"
+        brandGradient="from-amber-400 to-orange-500"
+        signInGradient="from-indigo-500 to-purple-600"
+        navItems={[
+          { href: '/articles', label: 'Articles', highlight: true },
+          { href: '/chat', label: 'Chat' },
+          { href: '/voice', label: 'Voice' },
+          { href: '/dashboard', label: 'Dashboard', requiresAuth: true },
+        ]}
+      />
 
       {/* Hero */}
       <header className="relative min-h-[80vh] flex items-center pt-20">
@@ -384,38 +369,23 @@ export default function ArticlesPage() {
           <p className="text-xl text-gray-400 mb-10">
             Explore our comprehensive country guides for everything you need.
           </p>
-          <a
-            href="https://relocation.quest/guides"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="#guide"
             className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-500 to-orange-600 px-8 py-4 rounded-full font-bold text-lg hover:opacity-90 transition-opacity"
             style={{ boxShadow: '0 0 60px -15px rgba(245, 158, 11, 0.3)' }}
           >
             Browse Country Guides <span className="text-2xl">→</span>
-          </a>
+          </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-white/10 py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-wrap justify-between items-center">
-            <p className="text-xl font-bold">
-              Quest <span className="text-amber-500">Articles</span>
-            </p>
-            <div className="flex gap-8">
-              <Link href="/voice" className="text-gray-500 hover:text-white transition-colors">Voice</Link>
-              <Link href="/dashboard" className="text-gray-500 hover:text-white transition-colors">Dashboard</Link>
-              <a href="https://relocation.quest" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-white transition-colors">
-                Relocation Quest
-              </a>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-white/10 text-center text-gray-600 text-sm">
-            Content from relocation.quest
-          </div>
-        </div>
-      </footer>
+      <GlobalFooter
+        brandName="Relocation"
+        brandAccent="Quest"
+        brandGradient="from-amber-400 to-orange-500"
+        compact
+      />
     </main>
   )
 }

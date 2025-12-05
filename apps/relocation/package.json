@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@quest/ui": "workspace:*",
     "@ai-sdk/google": "^2.0.44",
     "@ai-sdk/openai": "^2.0.76",
     "@ai-sdk/react": "^2.0.106",

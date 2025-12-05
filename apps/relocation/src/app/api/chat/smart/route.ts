@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { neon } from '@neondatabase/serverless'
+import { checkRateLimit, getClientId, RATE_LIMITS } from '@/lib/rate-limit'
 
 // Lazy initialization - don't call neon() at module load time
 const getDb = () => neon(process.env.DATABASE_URL!)
@@ -122,9 +123,34 @@ async function getCountryImage(countryCode: string): Promise<string | null> {
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting - stricter for unauthenticated users
+    const stackUserId = request.headers.get('x-stack-user-id')
+    const clientId = stackUserId || getClientId(request)
+    const rateLimit = stackUserId ? RATE_LIMITS.standard : RATE_LIMITS.expensive
+
+    const rateLimitResult = checkRateLimit(`chat:${clientId}`, rateLimit)
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        {
+          error: 'Rate limit exceeded',
+          message: stackUserId
+            ? 'You\'re sending messages too quickly. Please slow down.'
+            : 'Rate limit exceeded. Please sign in for higher limits.',
+          retryAfter: Math.ceil((rateLimitResult.resetAt - Date.now()) / 1000),
+        },
+        {
+          status: 429,
+          headers: {
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': String(rateLimitResult.resetAt),
+            'Retry-After': String(Math.ceil((rateLimitResult.resetAt - Date.now()) / 1000)),
+          },
+        }
+      )
+    }
+
     const body = await request.json()
     const { messages } = body
-    const stackUserId = request.headers.get('x-stack-user-id')
 
     if (!messages || !Array.isArray(messages)) {
       return NextResponse.json({ error: 'Messages array required' }, { status: 400 })
