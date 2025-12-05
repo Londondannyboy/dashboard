@@ -1,13 +1,21 @@
 import { stackServerApp } from '@/stack/server'
 import { redirect } from 'next/navigation'
-import { GlobalHeader, GlobalFooter } from '@quest/ui'
+import { GlobalHeader, GlobalFooter } from '@quest/ui/layout'
 
 export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const user = await stackServerApp.getUser()
+  let user = null
+
+  try {
+    user = await stackServerApp.getUser()
+    console.log('Dashboard layout - user:', user ? { id: user.id, email: user.primaryEmail } : null)
+  } catch (error) {
+    console.error('Dashboard layout - getUser error:', error)
+    throw error
+  }
 
   if (!user) {
     redirect('/handler/sign-in')
