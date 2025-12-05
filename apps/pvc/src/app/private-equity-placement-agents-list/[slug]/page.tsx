@@ -92,7 +92,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
           { href: '/private-equity-placement-agent-news', label: 'News' },
           { href: '/private-equity-placement-agents-list', label: 'Directory', highlight: true },
           { href: '/ecosystem', label: 'Network' },
-          { href: '/visualizations', label: 'Visualizations' },
+          { href: '/momentum', label: 'Momentum' },
         ]}
       />
 

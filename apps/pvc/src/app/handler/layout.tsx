@@ -18,7 +18,7 @@ export default function HandlerLayout({
           { href: '/private-equity-placement-agent-news', label: 'News' },
           { href: '/private-equity-placement-agents-list', label: 'Directory' },
           { href: '/ecosystem', label: 'Network' },
-          { href: '/visualizations', label: 'Visualizations' },
+          { href: '/momentum', label: 'Momentum' },
         ]}
       />
       <main className="flex-1 pt-16">{children}</main>

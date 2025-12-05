@@ -146,7 +146,7 @@ export default async function RegionalPage({ params }: { params: Promise<{ regio
           { href: '/private-equity-placement-agent-news', label: 'News' },
           { href: '/private-equity-placement-agents-list', label: 'Directory', highlight: true },
           { href: '/ecosystem', label: 'Network' },
-          { href: '/voice', label: 'Voice AI' },
+          { href: '/momentum', label: 'Momentum' },
         ]}
       />
 

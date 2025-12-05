@@ -37,7 +37,7 @@ export default function VoicePage() {
           { href: '/private-equity-placement-agent-news', label: 'News' },
           { href: '/private-equity-placement-agents-list', label: 'Directory' },
           { href: '/ecosystem', label: 'Network' },
-          { href: '/voice', label: 'Voice AI', highlight: true },
+          { href: '/momentum', label: 'Momentum' },
         ]}
       />
 

@@ -70,7 +70,7 @@ export default async function NewsPage() {
           { href: '/private-equity-placement-agent-news', label: 'News', highlight: true },
           { href: '/private-equity-placement-agents-list', label: 'Directory' },
           { href: '/ecosystem', label: 'Network' },
-          { href: '/visualizations', label: 'Visualizations' },
+          { href: '/momentum', label: 'Momentum' },
         ]}
       />
 

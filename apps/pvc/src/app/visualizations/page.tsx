@@ -16,7 +16,7 @@ export default function VisualizationsPage() {
           { href: '/private-equity-placement-agent-news', label: 'News' },
           { href: '/private-equity-placement-agents-list', label: 'Directory' },
           { href: '/ecosystem', label: 'Network' },
-          { href: '/visualizations', label: 'Visualizations', highlight: true },
+          { href: '/momentum', label: 'Momentum' },
         ]}
       />
 

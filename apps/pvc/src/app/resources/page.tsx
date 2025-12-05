@@ -71,7 +71,7 @@ export default function ResourcesPage() {
           { href: '/private-equity-placement-agent-news', label: 'News' },
           { href: '/private-equity-placement-agents-list', label: 'Directory' },
           { href: '/ecosystem', label: 'Network' },
-          { href: '/resources', label: 'Resources', highlight: true },
+          { href: '/momentum', label: 'Momentum' },
         ]}
       />
 
