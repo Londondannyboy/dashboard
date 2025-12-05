@@ -1,15 +1,9 @@
-'use client'
-
 import { GlobalHeader, GlobalFooter } from '@quest/ui/layout'
-import { ZepGraph3D, DealTimeline3D, ForceGraphLoader } from '@quest/ui/finance'
+import Link from 'next/link'
 
 export default function EcosystemPage() {
-
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0a0f] text-white">
-      {/* Load the 3D graph library */}
-      <ForceGraphLoader />
-
       <GlobalHeader
         brandName="PVC"
         brandAccent="Quest"
@@ -19,7 +13,7 @@ export default function EcosystemPage() {
           { href: '/private-equity-placement-agent-news', label: 'News' },
           { href: '/private-equity-placement-agents-list', label: 'Directory' },
           { href: '/ecosystem', label: 'Network', highlight: true },
-          { href: '/visualizations', label: 'Visualizations' },
+          { href: '/resources', label: 'Resources' },
         ]}
       />
 
@@ -32,14 +26,13 @@ export default function EcosystemPage() {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
-                Interactive Network
-                <span className="bg-gradient-to-r from-amber-500 to-red-500 text-[8px] px-1.5 py-0.5 rounded text-white font-bold">BETA</span>
+                Network Explorer
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-black mb-4">PE & VC Ecosystem</h1>
             <p className="text-xl text-gray-400 max-w-3xl">
               Explore the interconnected network of private equity and venture capital firms,
-              their deals, and relationships in an interactive 3D visualization.
+              their deals, and relationships.
             </p>
 
             {/* Stats */}
@@ -60,37 +53,48 @@ export default function EcosystemPage() {
           </div>
         </section>
 
-        {/* Main 3D Network Graph */}
+        {/* Network Visualization Placeholder */}
         <section className="py-12 px-6">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-2xl font-bold mb-6">Company Network</h2>
-            <ZepGraph3D
-              companyId="all"
-              companyName="PVC Network"
-              height="600px"
-              apiEndpoint="/api/zep-graph"
-              onNodeClick={(node) => {
-                console.log('Clicked:', node)
-                if (node.url) {
-                  window.location.href = node.url
-                }
-              }}
-            />
-          </div>
-        </section>
+            <div className="h-[500px] bg-gradient-to-br from-indigo-900/20 via-purple-900/10 to-slate-900/20 rounded-2xl border border-white/10 flex items-center justify-center relative overflow-hidden">
+              {/* Decorative network nodes */}
+              <div className="absolute inset-0 opacity-30">
+                <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-indigo-500 rounded-full animate-pulse" />
+                <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-purple-500 rounded-full animate-pulse delay-100" />
+                <div className="absolute bottom-1/4 left-1/3 w-5 h-5 bg-emerald-500 rounded-full animate-pulse delay-200" />
+                <div className="absolute top-1/2 right-1/4 w-3 h-3 bg-amber-500 rounded-full animate-pulse delay-300" />
+                <div className="absolute bottom-1/3 right-1/2 w-4 h-4 bg-blue-500 rounded-full animate-pulse delay-150" />
+                {/* Connection lines */}
+                <svg className="absolute inset-0 w-full h-full">
+                  <line x1="25%" y1="25%" x2="66%" y2="33%" stroke="rgba(99,102,241,0.3)" strokeWidth="1" />
+                  <line x1="33%" y1="75%" x2="66%" y2="33%" stroke="rgba(99,102,241,0.3)" strokeWidth="1" />
+                  <line x1="75%" y1="50%" x2="50%" y2="66%" stroke="rgba(99,102,241,0.3)" strokeWidth="1" />
+                </svg>
+              </div>
 
-        {/* Deal Timeline Section */}
-        <section className="py-12 px-6 bg-white/[0.02] border-t border-white/10">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl font-bold mb-6">Deal Timeline</h2>
-            <p className="text-gray-400 mb-8">
-              Track recent funding rounds, acquisitions, and market events in 3D space.
-            </p>
-            <DealTimeline3D
-              height="500px"
-              maxDeals={25}
-              apiEndpoint="/api/deals-timeline"
-            />
+              <div className="text-center z-10">
+                <div className="w-20 h-20 bg-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-10 h-10 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9c0-1.657-4.03-3-9-3s-9 1.343-9 3m18 0a9 9 0 01-9 9m-9-9a9 9 0 019-9" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-2">Interactive Network Coming Soon</h3>
+                <p className="text-gray-400 mb-6 max-w-md">
+                  We're building an interactive 3D visualization of the PE/VC ecosystem.
+                  Explore our directory in the meantime.
+                </p>
+                <Link
+                  href="/private-equity-placement-agents-list"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-500 hover:bg-indigo-600 rounded-lg font-medium transition"
+                >
+                  Browse Directory
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -132,6 +136,31 @@ export default function EcosystemPage() {
                   Explore PE/VC activity across regions and sectors with geographic context.
                 </p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Regional Links */}
+        <section className="py-12 px-6 bg-white/[0.02] border-t border-white/10">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-2xl font-bold mb-6">Explore by Region</h2>
+            <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {[
+                { slug: 'us', name: 'United States', flag: '🇺🇸' },
+                { slug: 'uk', name: 'United Kingdom', flag: '🇬🇧' },
+                { slug: 'europe', name: 'Europe', flag: '🇪🇺' },
+                { slug: 'asia-pacific', name: 'Asia Pacific', flag: '🌏' },
+                { slug: 'singapore', name: 'Singapore', flag: '🇸🇬' },
+              ].map((region) => (
+                <Link
+                  key={region.slug}
+                  href={`/top-private-equity-placement-agents/${region.slug}`}
+                  className="flex items-center gap-3 p-4 bg-white/[0.03] border border-white/10 rounded-xl hover:bg-white/[0.06] hover:border-indigo-500/30 transition"
+                >
+                  <span className="text-2xl">{region.flag}</span>
+                  <span className="font-medium">{region.name}</span>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
