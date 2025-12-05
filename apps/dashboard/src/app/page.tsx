@@ -1,9 +1,8 @@
-import { getStackServerApp } from '@/stack'
+import { stackServerApp } from '@/stack/server'
 import { redirect } from 'next/navigation'
 
 export default async function Home() {
-  const stackApp = await getStackServerApp()
-  const user = stackApp ? await stackApp.getUser() : null
+  const user = await stackServerApp.getUser()
 
   // If user is authenticated, redirect to dashboard
   if (user) {
@@ -37,4 +36,3 @@ export default async function Home() {
     </main>
   )
 }
-// Build trigger 1764781663

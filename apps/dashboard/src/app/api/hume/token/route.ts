@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getStackServerApp } from '@/stack'
+import { stackServerApp } from '@/stack/server'
 
 /**
  * API route to get a Hume access token.
@@ -18,9 +18,8 @@ export async function GET() {
     )
   }
 
-  // Get current user from Stack Auth (if configured)
-  const stackApp = await getStackServerApp()
-  const user = stackApp ? await stackApp.getUser() : null
+  // Get current user from Stack Auth
+  const user = await stackServerApp.getUser()
 
   try {
     // Use Basic auth with API key as username and Secret key as password
