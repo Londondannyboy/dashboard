@@ -96,6 +96,9 @@ importers:
 
   apps/pvc:
     dependencies:
+      '@humeai/voice-react':
+        specifier: ^0.2.10
+        version: 0.2.10(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@neondatabase/serverless':
         specifier: ^1.0.2
         version: 1.0.2
