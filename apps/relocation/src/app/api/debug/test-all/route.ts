@@ -1,14 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { neon } from '@neondatabase/serverless'
 
-const sql = neon(process.env.DATABASE_URL!)
-
 /**
  * GET /api/debug/test-all?user_id=xxx
  *
  * Comprehensive test of all functionality
  */
 export async function GET(request: NextRequest) {
+  const sql = neon(process.env.DATABASE_URL!)
   const userId = request.nextUrl.searchParams.get('user_id')
 
   if (!userId) {

@@ -1,10 +1,11 @@
 import { MetadataRoute } from 'next'
 import { neon } from '@neondatabase/serverless'
 
-const sql = neon(process.env.DATABASE_URL!)
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://relocation.quest'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const sql = neon(process.env.DATABASE_URL!)
+
   // Fetch all published articles
   const articles = await sql`
     SELECT slug, published_at, updated_at
