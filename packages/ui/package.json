@@ -35,6 +35,14 @@
     "./finance": {
       "types": "./dist/finance/index.d.ts",
       "import": "./dist/finance/index.js"
+    },
+    "./homepage": {
+      "types": "./dist/homepage/index.d.ts",
+      "import": "./dist/homepage/index.js"
+    },
+    "./utils": {
+      "types": "./dist/utils/index.d.ts",
+      "import": "./dist/utils/index.js"
     }
   },
   "scripts": {
@@ -44,6 +52,7 @@
   },
   "dependencies": {
     "@humeai/voice-react": "^0.2.7",
+    "marked": "^17.0.0",
     "react-force-graph-3d": "^1.25.0",
     "three": "^0.170.0"
   },

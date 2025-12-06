@@ -20,3 +20,11 @@ export type { ConfirmationSidebarProps, PendingConfirmation } from './feedback/i
 
 // Hooks
 export { useSSE } from './hooks/index.js'
+
+// Homepage components
+export { HomepageLayout } from './homepage/index.js'
+export type { HomepageLayoutProps, HomepageConfig, HomepageData, HomepageSection, Article, Company } from './homepage/index.js'
+
+// Utils
+export { formatCategory, formatDate, getThumbnail, getCompanyImage } from './utils/index.js'
+export type { ArticleForThumbnail, CompanyForImage } from './utils/index.js'
