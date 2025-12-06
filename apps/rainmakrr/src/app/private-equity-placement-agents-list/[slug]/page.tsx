@@ -84,7 +84,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
       <ForceGraphLoader />
 
       <GlobalHeader
-        brandName="Rainmaker"
+        brandName="Rainmakrr"
         brandAccent="Quest"
         brandGradient="from-blue-400 to-indigo-500"
         signInGradient="from-blue-500 to-indigo-500"
@@ -328,7 +328,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
       </main>
 
       <GlobalFooter
-        brandName="Rainmaker"
+        brandName="Rainmakrr"
         brandAccent="Quest"
         brandGradient="from-blue-400 to-indigo-500"
         brandDescription="The insider guide to placement agents"

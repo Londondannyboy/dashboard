@@ -4,7 +4,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0a0f] text-white">
       <GlobalHeader
-        brandName="Rainmaker"
+        brandName="Rainmakrr"
         brandAccent="Quest"
         brandGradient="from-blue-400 to-indigo-500"
         signInGradient="from-blue-500 to-indigo-500"
@@ -86,7 +86,7 @@ export default function ContactPage() {
       </main>
 
       <GlobalFooter
-        brandName="Rainmaker"
+        brandName="Rainmakrr"
         brandAccent="Quest"
         brandGradient="from-blue-400 to-indigo-500"
         brandDescription="The insider guide to placement agents"

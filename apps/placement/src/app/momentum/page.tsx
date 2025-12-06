@@ -71,13 +71,13 @@ export default function MomentumPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0a0f] text-white">
       <GlobalHeader
-        brandName="Rainmakrr"
+        brandName="Placement"
         brandAccent="Quest"
-        brandGradient="from-blue-400 to-indigo-500"
-        signInGradient="from-blue-500 to-indigo-500"
+        brandGradient="from-emerald-400 to-teal-500"
+        signInGradient="from-emerald-500 to-teal-500"
         navItems={[
-          { href: '/private-equity-placement-agent-news', label: 'News' },
-          { href: '/private-equity-placement-agents-list', label: 'Directory' },
+          { href: '/news', label: 'News' },
+          { href: '/directory', label: 'Directory' },
           { href: '/ecosystem', label: 'Network' },
           { href: '/momentum', label: 'Momentum', highlight: true },
         ]}
@@ -143,7 +143,7 @@ export default function MomentumPage() {
                 <h2 className="text-xl font-bold mb-4">Agent Network</h2>
                 <ZepGraph3D
                   companyId="all"
-                  companyName="Rainmakrr Network"
+                  companyName="Placement Network"
                   height="400px"
                   apiEndpoint="/api/zep-graph"
                 />
@@ -281,7 +281,7 @@ export default function MomentumPage() {
                   )}
                 </div>
                 <Link
-                  href="/private-equity-placement-agent-news"
+                  href="/news"
                   className="block text-center text-sm text-blue-400 hover:text-blue-300 mt-4"
                 >
                   View all news
@@ -318,14 +318,14 @@ export default function MomentumPage() {
       </main>
 
       <GlobalFooter
-        brandName="Rainmakrr"
+        brandName="Placement"
         brandAccent="Quest"
-        brandGradient="from-blue-400 to-indigo-500"
+        brandGradient="from-emerald-400 to-teal-500"
         brandDescription="The insider guide to placement agents"
         productLinks={[
-          { label: 'Agents', href: '/private-equity-placement-agents-list' },
+          { label: 'Agents', href: '/directory' },
           { label: 'Network', href: '/ecosystem' },
-          { label: 'News', href: '/private-equity-placement-agent-news' },
+          { label: 'News', href: '/news' },
         ]}
         companyLinks={[
           { label: 'About', href: '/about' },

@@ -8,7 +8,7 @@ export default function EcosystemPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0a0f] text-white">
       <GlobalHeader
-        brandName="Rainmaker"
+        brandName="Rainmakrr"
         brandAccent="Quest"
         brandGradient="from-blue-400 to-indigo-500"
         signInGradient="from-blue-500 to-indigo-500"
@@ -63,7 +63,7 @@ export default function EcosystemPage() {
             <h2 className="text-2xl font-bold mb-6">Agent Network</h2>
             <ZepGraph3D
               companyId="all"
-              companyName="Rainmaker Network"
+              companyName="Rainmakrr Network"
               height="600px"
               apiEndpoint="/api/zep-graph"
               onNodeClick={(node) => {
@@ -159,7 +159,7 @@ export default function EcosystemPage() {
       </main>
 
       <GlobalFooter
-        brandName="Rainmaker"
+        brandName="Rainmakrr"
         brandAccent="Quest"
         brandGradient="from-blue-400 to-indigo-500"
         brandDescription="The insider guide to placement agents"
