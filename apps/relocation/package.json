@@ -10,7 +10,6 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@quest/ui": "workspace:*",
     "@ai-sdk/google": "^2.0.44",
     "@ai-sdk/openai": "^2.0.76",
     "@ai-sdk/react": "^2.0.106",
@@ -20,9 +19,10 @@
     "@humeai/voice-react": "^0.2.0",
     "@mux/mux-player-react": "^3.9.1",
     "@neondatabase/serverless": "^1.0.2",
+    "@quest/ui": "workspace:*",
     "@stackframe/stack": "^2.8.54",
     "ai": "^3.4.0",
-    "next": "^15.0.0",
+    "next": "^16.0.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "zustand": "^4.5.5"

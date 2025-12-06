@@ -46,7 +46,7 @@ importers:
         version: link:../../packages/ui
       '@stackframe/stack':
         specifier: ^2.8.54
-        version: 2.8.54(@aws-sdk/credential-provider-web-identity@3.943.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(buffer@6.0.3)(next@15.5.6(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@3.4.18(tsx@4.21.0))
+        version: 2.8.54(@aws-sdk/credential-provider-web-identity@3.943.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(buffer@6.0.3)(next@16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@3.4.18(tsx@4.21.0))
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
@@ -60,8 +60,8 @@ importers:
         specifier: ^0.15.7
         version: 0.15.7
       next:
-        specifier: ^15.0.5
-        version: 15.5.6(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       openai:
         specifier: ^4.0.0
         version: 4.104.0(ws@8.18.3)(zod@3.25.76)
@@ -104,13 +104,13 @@ importers:
         version: link:../../packages/ui
       '@stackframe/stack':
         specifier: ^2.8.54
-        version: 2.8.54(@aws-sdk/credential-provider-web-identity@3.943.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(buffer@6.0.3)(next@15.5.6(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@3.4.18(tsx@4.21.0))
+        version: 2.8.54(@aws-sdk/credential-provider-web-identity@3.943.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(buffer@6.0.3)(next@16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@3.4.18(tsx@4.21.0))
       marked:
         specifier: ^17.0.0
         version: 17.0.1
       next:
-        specifier: ^15.0.0
-        version: 15.5.6(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react:
         specifier: ^19.0.0
         version: 19.2.0
@@ -162,13 +162,13 @@ importers:
         version: link:../../packages/ui
       '@stackframe/stack':
         specifier: ^2.8.54
-        version: 2.8.54(@aws-sdk/credential-provider-web-identity@3.943.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(buffer@6.0.3)(next@15.5.6(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@3.4.18(tsx@4.21.0))
+        version: 2.8.54(@aws-sdk/credential-provider-web-identity@3.943.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(buffer@6.0.3)(next@16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@3.4.18(tsx@4.21.0))
       marked:
         specifier: ^17.0.0
         version: 17.0.1
       next:
-        specifier: ^15.0.0
-        version: 15.5.6(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react:
         specifier: ^19.0.0
         version: 19.2.0
@@ -217,13 +217,13 @@ importers:
         version: link:../../packages/ui
       '@stackframe/stack':
         specifier: ^2.8.54
-        version: 2.8.54(@aws-sdk/credential-provider-web-identity@3.943.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(buffer@6.0.3)(next@15.5.6(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@3.4.18(tsx@4.21.0))
+        version: 2.8.54(@aws-sdk/credential-provider-web-identity@3.943.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(buffer@6.0.3)(next@16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@3.4.18(tsx@4.21.0))
       marked:
         specifier: ^17.0.0
         version: 17.0.1
       next:
-        specifier: ^15.0.0
-        version: 15.5.6(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react:
         specifier: ^19.0.0
         version: 19.2.0
@@ -296,13 +296,13 @@ importers:
         version: link:../../packages/ui
       '@stackframe/stack':
         specifier: ^2.8.54
-        version: 2.8.54(@aws-sdk/credential-provider-web-identity@3.943.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(buffer@6.0.3)(next@15.5.6(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@3.4.18(tsx@4.21.0))
+        version: 2.8.54(@aws-sdk/credential-provider-web-identity@3.943.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(buffer@6.0.3)(next@16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@3.4.18(tsx@4.21.0))
       ai:
         specifier: ^3.4.0
         version: 3.4.33(openai@4.104.0(ws@8.18.3)(zod@3.25.76))(react@19.2.0)(sswr@2.2.0(svelte@5.45.5))(svelte@5.45.5)(vue@3.5.25(typescript@5.9.3))(zod@3.25.76)
       next:
-        specifier: ^15.0.0
-        version: 15.5.6(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react:
         specifier: ^19.0.0
         version: 19.2.0
@@ -349,6 +349,9 @@ importers:
       ai:
         specifier: ^4.0.0
         version: 4.3.19(react@19.2.0)(zod@3.25.76)
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       zod:
         specifier: ^3.23.0
         version: 3.25.76
@@ -361,10 +364,10 @@ importers:
     dependencies:
       '@stackframe/stack':
         specifier: ^2.8.54
-        version: 2.8.54(@aws-sdk/credential-provider-web-identity@3.943.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(buffer@6.0.3)(next@15.5.6(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@3.4.18(tsx@4.21.0))
+        version: 2.8.54(@aws-sdk/credential-provider-web-identity@3.943.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(buffer@6.0.3)(next@16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@3.4.18(tsx@4.21.0))
       next:
         specifier: ^14.0.0 || ^15.0.0
-        version: 15.5.6(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react:
         specifier: ^18.0.0 || ^19.0.0
         version: 19.2.0
@@ -381,6 +384,9 @@ importers:
       '@neondatabase/serverless':
         specifier: ^1.0.0
         version: 1.0.2
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
     devDependencies:
       typescript:
         specifier: ^5.9.3
@@ -388,6 +394,9 @@ importers:
 
   packages/media:
     dependencies:
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       replicate:
         specifier: ^1.0.0
         version: 1.4.0
@@ -406,7 +415,7 @@ importers:
         version: 2.8.54(@aws-sdk/credential-provider-web-identity@3.943.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(buffer@6.0.3)(next@15.5.6(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@3.4.18(tsx@4.21.0))
       next:
         specifier: ^14.0.0 || ^15.0.0
-        version: 15.5.6(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react:
         specifier: ^18.0.0 || ^19.0.0
         version: 19.2.0
@@ -1179,11 +1188,20 @@ packages:
   '@next/env@15.5.6':
     resolution: {integrity: sha512-3qBGRW+sCGzgbpc5TS1a0p7eNxnOarGVQhZxfvTdnV0gFI61lX7QNtQ4V1TSREctXzYn5NetbUsLvyqwLFJM6Q==}
 
+  '@next/env@16.0.7':
+    resolution: {integrity: sha512-gpaNgUh5nftFKRkRQGnVi5dpcYSKGcZZkQffZ172OrG/XkrnS7UBTQ648YY+8ME92cC4IojpI2LqTC8sTDhAaw==}
+
   '@next/eslint-plugin-next@15.5.7':
     resolution: {integrity: sha512-DtRU2N7BkGr8r+pExfuWHwMEPX5SD57FeA6pxdgCHODo+b/UgIgjE+rgWKtJAbEbGhVZ2jtHn4g3wNhWFoNBQQ==}
 
   '@next/swc-darwin-arm64@15.5.6':
     resolution: {integrity: sha512-ES3nRz7N+L5Umz4KoGfZ4XX6gwHplwPhioVRc25+QNsDa7RtUF/z8wJcbuQ2Tffm5RZwuN2A063eapoJ1u4nPg==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@next/swc-darwin-arm64@16.0.7':
+    resolution: {integrity: sha512-LlDtCYOEj/rfSnEn/Idi+j1QKHxY9BJFmxx7108A6D8K0SB+bNgfYQATPk/4LqOl4C0Wo3LACg2ie6s7xqMpJg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
@@ -1194,8 +1212,20 @@ packages:
     cpu: [x64]
     os: [darwin]
 
+  '@next/swc-darwin-x64@16.0.7':
+    resolution: {integrity: sha512-rtZ7BhnVvO1ICf3QzfW9H3aPz7GhBrnSIMZyr4Qy6boXF0b5E3QLs+cvJmg3PsTCG2M1PBoC+DANUi4wCOKXpA==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [darwin]
+
   '@next/swc-linux-arm64-gnu@15.5.6':
     resolution: {integrity: sha512-qvz4SVKQ0P3/Im9zcS2RmfFL/UCQnsJKJwQSkissbngnB/12c6bZTCB0gHTexz1s6d/mD0+egPKXAIRFVS7hQg==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@next/swc-linux-arm64-gnu@16.0.7':
+    resolution: {integrity: sha512-mloD5WcPIeIeeZqAIP5c2kdaTa6StwP4/2EGy1mUw8HiexSHGK/jcM7lFuS3u3i2zn+xH9+wXJs6njO7VrAqww==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -1206,8 +1236,20 @@ packages:
     cpu: [arm64]
     os: [linux]
 
+  '@next/swc-linux-arm64-musl@16.0.7':
+    resolution: {integrity: sha512-+ksWNrZrthisXuo9gd1XnjHRowCbMtl/YgMpbRvFeDEqEBd523YHPWpBuDjomod88U8Xliw5DHhekBC3EOOd9g==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+
   '@next/swc-linux-x64-gnu@15.5.6':
     resolution: {integrity: sha512-3QnHGFWlnvAgyxFxt2Ny8PTpXtQD7kVEeaFat5oPAHHI192WKYB+VIKZijtHLGdBBvc16tiAkPTDmQNOQ0dyrA==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+
+  '@next/swc-linux-x64-gnu@16.0.7':
+    resolution: {integrity: sha512-4WtJU5cRDxpEE44Ana2Xro1284hnyVpBb62lIpU5k85D8xXxatT+rXxBgPkc7C1XwkZMWpK5rXLXTh9PFipWsA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -1218,14 +1260,32 @@ packages:
     cpu: [x64]
     os: [linux]
 
+  '@next/swc-linux-x64-musl@16.0.7':
+    resolution: {integrity: sha512-HYlhqIP6kBPXalW2dbMTSuB4+8fe+j9juyxwfMwCe9kQPPeiyFn7NMjNfoFOfJ2eXkeQsoUGXg+O2SE3m4Qg2w==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+
   '@next/swc-win32-arm64-msvc@15.5.6':
     resolution: {integrity: sha512-ONOMrqWxdzXDJNh2n60H6gGyKed42Ieu6UTVPZteXpuKbLZTH4G4eBMsr5qWgOBA+s7F+uB4OJbZnrkEDnZ5Fg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
+  '@next/swc-win32-arm64-msvc@16.0.7':
+    resolution: {integrity: sha512-EviG+43iOoBRZg9deGauXExjRphhuYmIOJ12b9sAPy0eQ6iwcPxfED2asb/s2/yiLYOdm37kPaiZu8uXSYPs0Q==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [win32]
+
   '@next/swc-win32-x64-msvc@15.5.6':
     resolution: {integrity: sha512-pxK4VIjFRx1MY92UycLOOw7dTdvccWsNETQ0kDHkBlcFH1GrTLUjSiHU1ohrznnux6TqRHgv5oflhfIWZwVROQ==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [win32]
+
+  '@next/swc-win32-x64-msvc@16.0.7':
+    resolution: {integrity: sha512-gniPjy55zp5Eg0896qSrf3yB1dw4F/3s8VK1ephdsZZ129j2n6e1WqCbE2YgcKhW9hPB9TVZENugquWJD5x0ug==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -4245,6 +4305,27 @@ packages:
       sass:
         optional: true
 
+  next@16.0.7:
+    resolution: {integrity: sha512-3mBRJyPxT4LOxAJI6IsXeFtKfiJUbjCLgvXO02fV8Wy/lIhPvP94Fe7dGhUgHXcQy4sSuYwQNcOLhIfOm0rL0A==}
+    engines: {node: '>=20.9.0'}
+    hasBin: true
+    peerDependencies:
+      '@opentelemetry/api': ^1.1.0
+      '@playwright/test': ^1.51.1
+      babel-plugin-react-compiler: '*'
+      react: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
+      react-dom: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
+      sass: ^1.3.0
+    peerDependenciesMeta:
+      '@opentelemetry/api':
+        optional: true
+      '@playwright/test':
+        optional: true
+      babel-plugin-react-compiler:
+        optional: true
+      sass:
+        optional: true
+
   nexus-rpc@0.0.1:
     resolution: {integrity: sha512-hAWn8Hh2eewpB5McXR5EW81R3pR/ziuGhKCF3wFyUVCklanPqrIgMNr7jKCbzXeNVad0nUDfWpFRqh2u+zxQtw==}
     engines: {node: '>= 18.0.0'}
@@ -6407,6 +6488,8 @@ snapshots:
 
   '@next/env@15.5.6': {}
 
+  '@next/env@16.0.7': {}
+
   '@next/eslint-plugin-next@15.5.7':
     dependencies:
       fast-glob: 3.3.1
@@ -6414,25 +6497,49 @@ snapshots:
   '@next/swc-darwin-arm64@15.5.6':
     optional: true
 
+  '@next/swc-darwin-arm64@16.0.7':
+    optional: true
+
   '@next/swc-darwin-x64@15.5.6':
+    optional: true
+
+  '@next/swc-darwin-x64@16.0.7':
     optional: true
 
   '@next/swc-linux-arm64-gnu@15.5.6':
     optional: true
 
+  '@next/swc-linux-arm64-gnu@16.0.7':
+    optional: true
+
   '@next/swc-linux-arm64-musl@15.5.6':
+    optional: true
+
+  '@next/swc-linux-arm64-musl@16.0.7':
     optional: true
 
   '@next/swc-linux-x64-gnu@15.5.6':
     optional: true
 
+  '@next/swc-linux-x64-gnu@16.0.7':
+    optional: true
+
   '@next/swc-linux-x64-musl@15.5.6':
+    optional: true
+
+  '@next/swc-linux-x64-musl@16.0.7':
     optional: true
 
   '@next/swc-win32-arm64-msvc@15.5.6':
     optional: true
 
+  '@next/swc-win32-arm64-msvc@16.0.7':
+    optional: true
+
   '@next/swc-win32-x64-msvc@15.5.6':
+    optional: true
+
+  '@next/swc-win32-x64-msvc@16.0.7':
     optional: true
 
   '@nodelib/fs.scandir@2.1.5':
@@ -7490,6 +7597,15 @@ snapshots:
       '@types/react': 19.2.7
       '@types/react-dom': 19.2.3(@types/react@19.2.7)
 
+  '@stackframe/stack-sc@2.8.54(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      next: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+    optionalDependencies:
+      '@types/react': 19.2.7
+      '@types/react-dom': 19.2.3(@types/react@19.2.7)
+
   '@stackframe/stack-shared@2.8.54(@aws-sdk/credential-provider-web-identity@3.943.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(buffer@6.0.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(yup@1.7.1)':
     dependencies:
       '@aws-sdk/client-kms': 3.943.0
@@ -7588,6 +7704,41 @@ snapshots:
       js-cookie: 3.0.5
       lucide-react: 0.378.0(react@19.2.0)
       next: 15.5.6(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      oauth4webapi: 2.17.0
+      qrcode: 1.5.4
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+      react-easy-crop: 5.5.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react-hook-form: 7.67.0(react@19.2.0)
+      rimraf: 5.0.10
+      tailwindcss-animate: 1.0.7(tailwindcss@3.4.18(tsx@4.21.0))
+      tsx: 4.21.0
+      yup: 1.7.1
+    optionalDependencies:
+      '@types/react': 19.2.7
+      '@types/react-dom': 19.2.3(@types/react@19.2.7)
+    transitivePeerDependencies:
+      - '@aws-sdk/credential-provider-web-identity'
+      - aws-crt
+      - buffer
+      - tailwindcss
+
+  '@stackframe/stack@2.8.54(@aws-sdk/credential-provider-web-identity@3.943.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(buffer@6.0.3)(next@16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@3.4.18(tsx@4.21.0))':
+    dependencies:
+      '@hookform/resolvers': 3.10.0(react-hook-form@7.67.0(react@19.2.0))
+      '@oslojs/otp': 1.1.0
+      '@simplewebauthn/browser': 11.0.0
+      '@stackframe/stack-sc': 2.8.54(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(next@16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@stackframe/stack-shared': 2.8.54(@aws-sdk/credential-provider-web-identity@3.943.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(buffer@6.0.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(yup@1.7.1)
+      '@stackframe/stack-ui': 2.8.54(@aws-sdk/credential-provider-web-identity@3.943.0)(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(buffer@6.0.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(yup@1.7.1)
+      '@tanstack/react-table': 8.21.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      browser-image-compression: 2.0.2
+      color: 4.2.3
+      cookie: 0.6.0
+      jose: 5.10.0
+      js-cookie: 3.0.5
+      lucide-react: 0.378.0(react@19.2.0)
+      next: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       oauth4webapi: 2.17.0
       qrcode: 1.5.4
       react: 19.2.0
@@ -10125,6 +10276,30 @@ snapshots:
       '@next/swc-linux-x64-musl': 15.5.6
       '@next/swc-win32-arm64-msvc': 15.5.6
       '@next/swc-win32-x64-msvc': 15.5.6
+      '@opentelemetry/api': 1.9.0
+      sharp: 0.34.5
+    transitivePeerDependencies:
+      - '@babel/core'
+      - babel-plugin-macros
+
+  next@16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+    dependencies:
+      '@next/env': 16.0.7
+      '@swc/helpers': 0.5.15
+      caniuse-lite: 1.0.30001759
+      postcss: 8.4.31
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+      styled-jsx: 5.1.6(react@19.2.0)
+    optionalDependencies:
+      '@next/swc-darwin-arm64': 16.0.7
+      '@next/swc-darwin-x64': 16.0.7
+      '@next/swc-linux-arm64-gnu': 16.0.7
+      '@next/swc-linux-arm64-musl': 16.0.7
+      '@next/swc-linux-x64-gnu': 16.0.7
+      '@next/swc-linux-x64-musl': 16.0.7
+      '@next/swc-win32-arm64-msvc': 16.0.7
+      '@next/swc-win32-x64-msvc': 16.0.7
       '@opentelemetry/api': 1.9.0
       sharp: 0.34.5
     transitivePeerDependencies:
