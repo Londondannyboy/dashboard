@@ -28,3 +28,16 @@ export type { HomepageLayoutProps, HomepageConfig, HomepageData, HomepageSection
 // Utils
 export { formatCategory, formatDate, getThumbnail, getCompanyImage } from './utils/index.js'
 export type { ArticleForThumbnail, CompanyForImage } from './utils/index.js'
+
+// Sitemap utilities
+export {
+  generateStaticSitemap,
+  generateDynamicSitemap,
+  combineSitemaps,
+  COMMON_STATIC_ROUTES,
+  PVC_STATIC_ROUTES,
+  PLACEMENT_STATIC_ROUTES,
+  RAINMAKRR_STATIC_ROUTES,
+  STAMP_DUTY_STATIC_ROUTES,
+} from './sitemap/index.js'
+export type { SitemapEntry, SitemapConfig } from './sitemap/index.js'
