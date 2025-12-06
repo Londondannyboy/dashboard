@@ -4,7 +4,7 @@ import { StampDutyCalculator } from '../components/StampDutyCalculator'
 export const metadata: Metadata = {
   title: 'Stamp Duty Calculator UK 2025 | Free SDLT Calculator',
   description: 'Stamp Duty Calculator - Calculate your UK Stamp Duty Land Tax instantly. Free stamp duty calculator for first-time buyers, additional properties & non-UK residents. Updated 2025 rates.',
-  keywords: 'stamp duty calculator, SDLT calculator, UK stamp duty, stamp duty rates, first-time buyer stamp duty, property tax calculator',
+  keywords: 'stamp duty calculator, calculate stamp duty, stamp duty estimator, stamp duty checker, property stamp duty calculator, house stamp duty calculator, land stamp duty calculator, stamp duty charges, stamp duty costs, how much stamp duty, SDLT calculator, stamp duty tax calculator, online stamp duty calculator',
   openGraph: {
     title: 'Stamp Duty Calculator UK 2025 | Free SDLT Calculator',
     description: 'Stamp Duty Calculator - Calculate your UK Stamp Duty Land Tax instantly. Free calculator with 2025 rates.',
@@ -58,10 +58,10 @@ export default function HomePage() {
             <span className="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent"> UK 2025</span>
           </h1>
           <p className="text-lg text-slate-400 mb-2">
-            Use our free <strong>stamp duty calculator</strong> to calculate your Stamp Duty Land Tax (SDLT) for residential properties in England and Northern Ireland.
+            Use our free online <strong>stamp duty calculator</strong> to calculate stamp duty on your property purchase. Our stamp duty estimator shows you exactly how much stamp duty you'll pay.
           </p>
           <p className="text-sm text-slate-500">
-            Updated stamp duty rates for December 2025 including first-time buyer relief and surcharges.
+            Instantly work out stamp duty charges for houses, flats and land in England and Northern Ireland. Updated December 2025 rates.
           </p>
         </div>
       </section>
@@ -188,7 +188,79 @@ export default function HomePage() {
                 </svg>
               </summary>
               <div className="px-6 pb-4 text-sm text-slate-400">
-                Our stamp duty calculator uses the official HMRC rates to calculate your Stamp Duty Land Tax (SDLT). Simply enter your property price, select your buyer type, and the stamp duty calculator instantly shows you the tax due. SDLT applies to property purchases in England and Northern Ireland. Scotland uses LBTT and Wales uses LTT.
+                Our stamp duty calculator uses the official HMRC rates to calculate your Stamp Duty Land Tax (SDLT). Simply enter your property price, select your buyer type, and the stamp duty calculator instantly shows you the tax due. This online stamp duty calculator works as a stamp duty checker and stamp duty estimator to give you accurate results.
+              </div>
+            </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                How to calculate stamp duty on a property?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                To calculate stamp duty, enter your property price into our calculator above. Stamp duty is calculated in bands - you pay 0% on the first £125,000, then 2% on £125,001-£250,000, 5% on £250,001-£925,000, 10% on £925,001-£1.5m, and 12% above £1.5m. Our property stamp duty calculator does this calculation for you instantly.
+              </div>
+            </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                How much stamp duty will I pay?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                How much stamp duty you pay depends on the property price and your buyer type. For example, on a £350,000 property, a standard buyer pays £7,500, while a first-time buyer pays just £2,500. Use our stamp duty calculator above to see exactly how much stamp duty you'll pay on your specific property.
+              </div>
+            </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                How to work out stamp duty costs?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                To work out stamp duty costs, you need to apply the SDLT rates to each band of your property price. Our stamp duty cost calculator does this automatically. For a quick stamp duty calculation, enter your house price above and select whether you're a first-time buyer, standard buyer, or buying an additional property.
+              </div>
+            </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                What is estimated stamp duty?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                Estimated stamp duty is the approximate amount of Stamp Duty Land Tax you'll need to pay when buying a property. Our stamp duty estimator gives you an accurate estimate based on current 2025 HMRC rates. The estimated stamp duty helps you budget for your property purchase alongside other costs like solicitor fees and surveys.
+              </div>
+            </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                How much is stamp duty normally?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                Stamp duty normally ranges from 0% to 12% depending on the property price. For an average UK house price of around £290,000, a standard buyer would pay approximately £4,000 in stamp duty, while a first-time buyer would pay £0 (as first-time buyers pay no stamp duty up to £300,000). Stamp duty charges increase significantly for properties over £925,000.
+              </div>
+            </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                What are stamp duty charges for additional properties?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                Stamp duty charges for additional properties include a 5% surcharge on top of standard rates. This means if you're buying a second home or buy-to-let property, you'll pay stamp duty starting at 5% from £0 (not £125,000). On a £300,000 property, additional property stamp duty would be £17,500 compared to £5,000 for a standard purchase.
               </div>
             </details>
 
@@ -200,7 +272,7 @@ export default function HomePage() {
                 </svg>
               </summary>
               <div className="px-6 pb-4 text-sm text-slate-400">
-                You must pay SDLT within 14 days of completing your property purchase. Your solicitor or conveyancer usually handles this as part of the transaction process.
+                You must pay stamp duty within 14 days of completing your property purchase. Your solicitor or conveyancer usually handles the stamp duty payment and SDLT return as part of the transaction process. Late payment can result in penalties and interest charges.
               </div>
             </details>
 
@@ -224,21 +296,116 @@ export default function HomePage() {
                 </svg>
               </summary>
               <div className="px-6 pb-4 text-sm text-slate-400">
-                You qualify for first-time buyer relief if you've never owned an interest in a residential property in the UK or abroad, and the property price is £500,000 or less. If buying with someone else, both buyers must be first-time buyers.
+                You qualify for first-time buyer relief if you've never owned an interest in a residential property in the UK or abroad, and the property price is £500,000 or less. If buying with someone else, both buyers must be first-time buyers to use the first-time buyer stamp duty rates.
               </div>
             </details>
 
             <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
               <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
-                Does this calculator cover Scotland and Wales?
+                Does this stamp duty calculator cover Scotland and Wales?
                 <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </summary>
               <div className="px-6 pb-4 text-sm text-slate-400">
-                No, this calculator is specifically for Stamp Duty Land Tax (SDLT) which applies to England and Northern Ireland. Scotland uses Land and Buildings Transaction Tax (LBTT) and Wales uses Land Transaction Tax (LTT), both with different rates and thresholds.
+                No, this stamp duty calculator is specifically for Stamp Duty Land Tax (SDLT) which applies to England and Northern Ireland. Scotland uses Land and Buildings Transaction Tax (LBTT) and Wales uses Land Transaction Tax (LTT), both with different rates and thresholds. We're working on adding a stamp duty calculator for Wales and Scotland soon.
               </div>
             </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                Is there stamp duty on land purchases?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                Yes, stamp duty applies to land purchases as well as houses. Our land stamp duty calculator uses the same residential rates if you're buying land for a home. For non-residential or mixed-use land, different rates apply. Use our calculator to estimate land stamp duty for residential purchases.
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      {/* Property Types Section */}
+      <section className="py-16 px-4 bg-slate-800/30">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-white text-center mb-4">
+            Calculate Stamp Duty for Any Property Type
+          </h2>
+          <p className="text-slate-400 text-center mb-12 max-w-2xl mx-auto">
+            Our stamp duty calculator works for all residential property types in England and Northern Ireland
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50">
+              <h3 className="text-white font-semibold mb-2">House Stamp Duty Calculator</h3>
+              <p className="text-sm text-slate-400">
+                Calculate stamp duty on houses - detached, semi-detached, terraced. Enter your house price above to see how much stamp duty you'll pay.
+              </p>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50">
+              <h3 className="text-white font-semibold mb-2">Property Stamp Duty Calculator</h3>
+              <p className="text-sm text-slate-400">
+                Our property stamp duty calculator covers all residential properties. Check stamp duty costs on flats, apartments, and maisonettes.
+              </p>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50">
+              <h3 className="text-white font-semibold mb-2">Land Stamp Duty Calculator</h3>
+              <p className="text-sm text-slate-400">
+                Buying land? Our land stamp duty calculator helps estimate SDLT on residential land purchases for building your home.
+              </p>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50">
+              <h3 className="text-white font-semibold mb-2">Stamp Duty Tax Calculator</h3>
+              <p className="text-sm text-slate-400">
+                Get an accurate stamp duty tax calculation. Our SDLT calculator uses official 2025 tax rates from HMRC.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How to Use Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-white text-center mb-12">
+            How to Use Our Online Stamp Duty Calculator
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-12 h-12 rounded-full bg-indigo-500/20 flex items-center justify-center mx-auto mb-4">
+                <span className="text-xl font-bold text-indigo-400">1</span>
+              </div>
+              <h3 className="text-white font-semibold mb-2">Enter Property Price</h3>
+              <p className="text-sm text-slate-400">
+                Type your property price or use the quick presets. The stamp duty calculation updates instantly.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-12 h-12 rounded-full bg-indigo-500/20 flex items-center justify-center mx-auto mb-4">
+                <span className="text-xl font-bold text-indigo-400">2</span>
+              </div>
+              <h3 className="text-white font-semibold mb-2">Select Buyer Type</h3>
+              <p className="text-sm text-slate-400">
+                Choose first-time buyer, standard, additional property, or non-UK resident to calculate stamp duty accurately.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-12 h-12 rounded-full bg-indigo-500/20 flex items-center justify-center mx-auto mb-4">
+                <span className="text-xl font-bold text-indigo-400">3</span>
+              </div>
+              <h3 className="text-white font-semibold mb-2">View Stamp Duty Cost</h3>
+              <p className="text-sm text-slate-400">
+                See your stamp duty charges breakdown, effective rate, and compare costs across buyer types.
+              </p>
+            </div>
           </div>
         </div>
       </section>
