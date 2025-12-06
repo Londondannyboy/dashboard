@@ -98,3 +98,12 @@ export const RAINMAKRR_STATIC_ROUTES = [
 export const STAMP_DUTY_STATIC_ROUTES = [
   { path: '', changeFrequency: 'monthly' as const, priority: 1.0 },
 ]
+
+// GTM Quest specific static routes
+export const GTM_STATIC_ROUTES = [
+  ...COMMON_STATIC_ROUTES,
+  { path: '/news', changeFrequency: 'daily' as const, priority: 0.9 },
+  { path: '/directory', changeFrequency: 'weekly' as const, priority: 0.9 },
+  { path: '/ecosystem', changeFrequency: 'weekly' as const, priority: 0.7 },
+  { path: '/momentum', changeFrequency: 'daily' as const, priority: 0.8 },
+]

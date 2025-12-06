@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0f;
+  --foreground: #ffffff;
+}
+
+body {
+  background: #0a0a0f;
+  color: var(--foreground);
+  min-height: 100vh;
+}
+
+/* Dark sections */
+.dark-section {
+  background: rgba(255,255,255,0.02);
+  color: #fff;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.dark-section a {
+  color: #f97316;
+}
+
+.dark-section a:hover {
+  color: #fb923c;
+}
+
+.gradient-section {
+  background: #0a0a0f;
+  color: #fff;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Card styles */
+.card-dark {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+}
+
+.card-dark:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* Category badge */
+.category-badge {
+  display: inline-block;
+  background: rgba(249, 115, 22, 0.15);
+  color: #f97316;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* News item hover effects */
+.news-item:hover .news-title {
+  color: #f97316;
+}
+
+/* Spin animation for loading */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* GTM Planner specific styles */
+.planner-input {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.planner-input:focus {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(249, 115, 22, 0.5);
+  outline: none;
+}
+
+.planner-result {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(251, 146, 60, 0.05) 100%);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+  border-radius: 12px;
+}

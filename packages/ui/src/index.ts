@@ -39,5 +39,6 @@ export {
   PLACEMENT_STATIC_ROUTES,
   RAINMAKRR_STATIC_ROUTES,
   STAMP_DUTY_STATIC_ROUTES,
+  GTM_STATIC_ROUTES,
 } from './sitemap/index.js'
 export type { SitemapEntry, SitemapConfig } from './sitemap/index.js'
