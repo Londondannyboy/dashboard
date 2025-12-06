@@ -1,5 +1,5 @@
 {
   "framework": "nextjs",
-  "installCommand": "pnpm install",
-  "buildCommand": "pnpm turbo build --filter=@quest/rainmaker"
+  "installCommand": "cd ../.. && pnpm install",
+  "buildCommand": "cd ../.. && pnpm turbo build --filter=@quest/rainmaker..."
 }
