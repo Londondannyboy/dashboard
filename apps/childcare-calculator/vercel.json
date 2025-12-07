@@ -1,3 +1,5 @@
 {
+  "buildCommand": "cd ../.. && pnpm turbo build --filter=@quest/childcare-calculator",
+  "installCommand": "cd ../.. && pnpm install",
   "framework": "nextjs"
 }
