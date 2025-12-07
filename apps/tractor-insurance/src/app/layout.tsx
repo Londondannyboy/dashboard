@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: '%s | Agricultural Tractor Insurance UK',
   },
   description: 'Get instant agricultural tractor insurance quotes from leading UK farm insurers. Specialist cover for tractors, farm vehicles and agricultural machinery. Compare agricultural tractor insurance prices and save today.',
-  keywords: 'agricultural tractor insurance, tractor insurance, tractor insurance uk, agricultural insurance, farm vehicle insurance, tractor cover, agricultural vehicle insurance, farm machinery insurance, tractor insurance quotes, cheap tractor insurance, compare tractor insurance, smallholder insurance, agricultural contractor insurance',
+  keywords: 'tractor insurance, agricultural tractor insurance, tractor insurance uk, tractor insurance quote, tractor insurance quotes, best tractor insurance, tractor insurance comparison, compare tractor insurance, cheap tractor insurance, vintage tractor insurance, classic tractor insurance uk, antique tractor insurance, farm machinery insurance, agricultural machinery insurance, agricultural vehicle insurance, tractor insurance for road use, uk tractor insurance, farm tractor insurance, single tractor insurance, insurance tractor, do tractors need insurance, how much is tractor insurance',
   authors: [{ name: 'Agricultural Tractor Insurance UK' }],
   metadataBase: new URL('https://tractorinsurance.quest'),
   openGraph: {

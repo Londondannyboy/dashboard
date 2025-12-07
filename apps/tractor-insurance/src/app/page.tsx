@@ -2,9 +2,9 @@ import { Metadata } from 'next'
 import { TractorQuoteForm } from '../components/TractorQuoteForm'
 
 export const metadata: Metadata = {
-  title: 'Agricultural Tractor Insurance UK 2025 | Compare Farm Vehicle Quotes',
-  description: 'Compare agricultural tractor insurance quotes from specialist UK farm insurers. Get cover for tractors, farm vehicles and machinery. Comprehensive, third party fire & theft, and third party only options. Free agricultural tractor insurance quotes - save today.',
-  keywords: 'agricultural tractor insurance, tractor insurance, tractor insurance uk, agricultural insurance, farm vehicle insurance, tractor cover, compare tractor insurance, cheap tractor insurance, agricultural vehicle insurance, farm machinery insurance, tractor insurance quotes, smallholder insurance, agricultural contractor insurance, combine harvester insurance',
+  title: 'Agricultural Tractor Insurance UK 2025 | Compare Quotes & Save',
+  description: 'Compare tractor insurance quotes from UK specialist insurers. Get cheap agricultural tractor insurance, vintage tractor insurance & farm machinery insurance. Best tractor insurance comparison - free quotes, comprehensive cover for road use & farm.',
+  keywords: 'tractor insurance, agricultural tractor insurance, tractor insurance uk, tractor insurance quote, tractor insurance quotes, best tractor insurance, tractor insurance comparison, compare tractor insurance, cheap tractor insurance, vintage tractor insurance, classic tractor insurance uk, antique tractor insurance, farm machinery insurance, agricultural machinery insurance, agricultural vehicle insurance, tractor insurance for road use, uk tractor insurance, farm tractor insurance, single tractor insurance, insurance tractor',
   openGraph: {
     title: 'Agricultural Tractor Insurance UK 2025 | Compare Farm Vehicle Quotes',
     description: 'Compare agricultural tractor insurance quotes from specialist UK farm insurers. Free quotes - save on your agricultural tractor insurance today.',
@@ -59,10 +59,10 @@ export default function HomePage() {
             <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent"> UK 2025</span>
           </h1>
           <p className="text-lg text-slate-400 mb-2">
-            Compare <strong>agricultural tractor insurance</strong> quotes from specialist UK farm insurers. Get comprehensive cover for tractors, farm vehicles and agricultural machinery.
+            Compare <strong>tractor insurance quotes</strong> from specialist UK farm insurers. Find the <strong>best tractor insurance</strong> for your needs - comprehensive cover for tractors, farm vehicles and agricultural machinery.
           </p>
           <p className="text-sm text-slate-500">
-            Protect your farming investment with tailored <strong>agricultural tractor insurance</strong>. Quotes from leading UK agricultural insurers.
+            Get a <strong>tractor insurance quote</strong> in minutes. <strong>Cheap tractor insurance</strong> options available for farm use, road use, and <strong>vintage tractor insurance</strong>.
           </p>
         </div>
       </section>
@@ -289,11 +289,125 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Compare Tractor Insurance Section */}
+      <section className="py-16 px-4 bg-slate-800/30">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-white text-center mb-4">
+            Compare Tractor Insurance & Find the Best Deal
+          </h2>
+          <p className="text-slate-400 text-center mb-12 max-w-3xl mx-auto">
+            Use our <strong>tractor insurance comparison</strong> tool to find the <strong>best tractor insurance</strong> for your needs. We compare quotes from specialist UK agricultural insurers to help you find <strong>cheap tractor insurance</strong> without compromising on cover.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 text-center">
+              <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Get Your Quote</h3>
+              <p className="text-sm text-slate-400">
+                Enter your tractor details to receive a <strong>tractor insurance quote</strong> from multiple UK insurers
+              </p>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 text-center">
+              <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Compare Prices</h3>
+              <p className="text-sm text-slate-400">
+                Our <strong>tractor insurance comparison</strong> shows you the best deals side-by-side
+              </p>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 text-center">
+              <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Save Money</h3>
+              <p className="text-sm text-slate-400">
+                Find <strong>cheap tractor insurance</strong> that still provides the cover you need
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-2xl p-6 border border-green-500/20">
+            <p className="text-center text-slate-300">
+              Whether you need <strong>farm tractor insurance</strong>, <strong>tractor insurance for road use</strong>, or <strong>single tractor insurance</strong> for a smallholding, we help you find the right policy at the right price.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Vintage & Classic Tractor Insurance Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-white text-center mb-4">
+            Vintage & Classic Tractor Insurance UK
+          </h2>
+          <p className="text-slate-400 text-center mb-12 max-w-3xl mx-auto">
+            Specialist <strong>vintage tractor insurance</strong> and <strong>classic tractor insurance UK</strong> for collectors, enthusiasts, and working restorations. We also cover <strong>antique tractor insurance</strong> for rare and heritage machines.
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
+              <h3 className="text-lg font-semibold text-white mb-4">What's Covered?</h3>
+              <ul className="space-y-3 text-sm">
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-slate-300"><strong>Agreed value cover</strong> - insure your classic for its true worth, not just market value</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-slate-300"><strong>Road runs and rallies</strong> - coverage for shows, ploughing matches, and road runs</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-slate-300"><strong>Restoration cover</strong> - protection during rebuild and restoration work</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-slate-300"><strong>Spare parts cover</strong> - protect your collection of vintage parts</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
+              <h3 className="text-lg font-semibold text-white mb-4">Popular Classic Tractor Makes</h3>
+              <div className="flex flex-wrap gap-2">
+                {['Ferguson', 'Fordson', 'David Brown', 'Massey Ferguson', 'International Harvester', 'Nuffield', 'Field Marshall', 'John Deere', 'Case', 'Allis-Chalmers', 'Zetor', 'Leyland'].map((make) => (
+                  <span key={make} className="px-3 py-1.5 bg-slate-700/50 text-slate-300 rounded-lg text-sm">
+                    {make}
+                  </span>
+                ))}
+              </div>
+              <p className="text-sm text-slate-400 mt-4">
+                Whether you own a 1950s Ferguson TE20 or a 1970s David Brown, our specialist insurers understand <strong>antique tractor insurance</strong> and can provide appropriate cover.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Cost Guide Section */}
       <section className="py-16 px-4 bg-slate-800/30">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-4">
-            How Much Does Agricultural Tractor Insurance Cost?
+            How Much Does Tractor Insurance Cost UK?
           </h2>
           <p className="text-slate-400 text-center mb-12 max-w-3xl mx-auto">
             Agricultural tractor insurance costs vary depending on the vehicle, its use, and your circumstances. Here's a guide to typical <strong>agricultural tractor insurance</strong> premiums in the UK.
@@ -553,6 +667,78 @@ export default function HomePage() {
                 If you're an agricultural contractor, your policy should cover you for work on other people's land. Make sure your policy includes "agricultural contracting" use. Third party liability will cover damage to the client's property, while comprehensive cover protects your own tractor. Always check your policy wording to ensure you're covered for the work you do.
               </div>
             </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                Do tractors need insurance?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                Yes, tractors need insurance if they're used on public roads - it's a legal requirement under UK law. Even tractors only used on private land should have insurance to protect against theft, fire, and accidental damage. Do tractors need insurance for off-road use? While not legally required, it's strongly recommended to protect your valuable agricultural investment.
+              </div>
+            </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                How much is tractor insurance UK?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                How much is tractor insurance? UK tractor insurance typically costs between £150-£1,000+ per year depending on your tractor's value, age, and how you use it. Smallholders may pay £150-£300, while farms with high-value modern tractors can pay £500-£1,000+. Agricultural contractors usually face higher premiums due to increased risk. Get a tractor insurance quote to find out your exact cost.
+              </div>
+            </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                What is tractor insurance for road use?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                Tractor insurance for road use provides the legal minimum third party cover required when driving your tractor on public roads. This is mandatory under the Road Traffic Act 1988. Even short trips between fields on public roads require insurance. Most policies include road use as standard, but check your policy if you regularly travel on public highways. You may need to declare road miles over 100 per year.
+              </div>
+            </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                What is farm machinery insurance?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                Farm machinery insurance (also called agricultural machinery insurance) covers your agricultural equipment including tractors, combine harvesters, telehandlers, and implements. It protects against theft, accidental damage, fire, and third party liability. Many farmers combine tractor insurance with broader farm machinery insurance to cover all their agricultural vehicles and equipment under one policy.
+              </div>
+            </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                Can I get single tractor insurance?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                Yes, single tractor insurance is available for smallholders, hobby farmers, or those with just one tractor. This is often the most cost-effective option if you don't need to cover multiple agricultural vehicles. Single tractor policies offer the same comprehensive, third party fire & theft, or third party only options as fleet policies. Perfect for lifestyle farmers or those using a tractor for occasional groundskeeping.
+              </div>
+            </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                What is agricultural vehicle insurance?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                Agricultural vehicle insurance covers vehicles used for farming and agricultural purposes. This includes tractors, combine harvesters, telehandlers, ATVs, and other farm vehicles. It differs from standard vehicle insurance as it's designed for agricultural use patterns - often covering both road use and off-road farm work. Agricultural vehicle insurance policies understand the unique risks farmers face.
+              </div>
+            </details>
           </div>
         </div>
       </section>
@@ -561,10 +747,10 @@ export default function HomePage() {
       <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-4">
-            Agricultural Vehicles We Insure
+            Farm Machinery Insurance & Agricultural Vehicles
           </h2>
           <p className="text-slate-400 text-center mb-12 max-w-2xl mx-auto">
-            Our panel of specialist agricultural insurers covers all types of farm vehicles and machinery
+            Our panel of specialist <strong>agricultural machinery insurance</strong> providers covers all types of <strong>farm machinery</strong> and <strong>agricultural vehicles</strong>
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
