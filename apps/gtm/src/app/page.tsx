@@ -388,6 +388,60 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* GTM Guides Section */}
+        <section className="py-16 px-6 bg-white/[0.02] border-b border-white/10">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-black mb-4">GTM Strategy Guides</h2>
+              <p className="text-gray-400 max-w-2xl mx-auto">
+                Comprehensive guides and resources to help you build winning go-to-market strategies.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Link href="/gtm-strategy" className="bg-white/[0.03] border border-white/10 rounded-xl p-5 hover:border-orange-500/50 transition group">
+                <h3 className="font-bold mb-2 group-hover:text-orange-400 transition">GTM Strategy Guide</h3>
+                <p className="text-gray-400 text-sm">Complete guide to building a go-to-market strategy</p>
+              </Link>
+
+              <Link href="/go-to-market-strategy-template" className="bg-white/[0.03] border border-white/10 rounded-xl p-5 hover:border-orange-500/50 transition group">
+                <h3 className="font-bold mb-2 group-hover:text-orange-400 transition">GTM Strategy Template</h3>
+                <p className="text-gray-400 text-sm">Free templates and frameworks for GTM planning</p>
+              </Link>
+
+              <Link href="/go-to-market-strategy-example" className="bg-white/[0.03] border border-white/10 rounded-xl p-5 hover:border-orange-500/50 transition group">
+                <h3 className="font-bold mb-2 group-hover:text-orange-400 transition">GTM Strategy Examples</h3>
+                <p className="text-gray-400 text-sm">Real-world go-to-market case studies</p>
+              </Link>
+
+              <Link href="/best-gtm-agency" className="bg-white/[0.03] border border-white/10 rounded-xl p-5 hover:border-orange-500/50 transition group">
+                <h3 className="font-bold mb-2 group-hover:text-orange-400 transition">Best GTM Agency</h3>
+                <p className="text-gray-400 text-sm">How to find and choose the right GTM partner</p>
+              </Link>
+
+              <Link href="/saas-gtm-plan" className="bg-white/[0.03] border border-white/10 rounded-xl p-5 hover:border-orange-500/50 transition group">
+                <h3 className="font-bold mb-2 group-hover:text-orange-400 transition">SaaS GTM Plan</h3>
+                <p className="text-gray-400 text-sm">Go-to-market playbook for SaaS companies</p>
+              </Link>
+
+              <Link href="/b2b-go-to-market-strategy" className="bg-white/[0.03] border border-white/10 rounded-xl p-5 hover:border-orange-500/50 transition group">
+                <h3 className="font-bold mb-2 group-hover:text-orange-400 transition">B2B GTM Strategy</h3>
+                <p className="text-gray-400 text-sm">Enterprise and B2B go-to-market guide</p>
+              </Link>
+
+              <Link href="/gtm-agency-sydney" className="bg-white/[0.03] border border-white/10 rounded-xl p-5 hover:border-orange-500/50 transition group">
+                <h3 className="font-bold mb-2 group-hover:text-orange-400 transition">GTM Agency Sydney</h3>
+                <p className="text-gray-400 text-sm">Find GTM agencies in Sydney, Australia</p>
+              </Link>
+
+              <Link href="/gtm-agency-melbourne" className="bg-white/[0.03] border border-white/10 rounded-xl p-5 hover:border-orange-500/50 transition group">
+                <h3 className="font-bold mb-2 group-hover:text-orange-400 transition">GTM Agency Melbourne</h3>
+                <p className="text-gray-400 text-sm">Find GTM agencies in Melbourne, Australia</p>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="py-20 px-6">
           <div className="max-w-4xl mx-auto text-center">
