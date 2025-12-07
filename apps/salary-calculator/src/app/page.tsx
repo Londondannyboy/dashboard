@@ -413,10 +413,66 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* More Calculators Section */}
+      <section className="py-16 px-4 bg-slate-800/30">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-white text-center mb-4">
+            More UK Salary Calculators
+          </h2>
+          <p className="text-slate-400 text-center mb-12 max-w-2xl mx-auto">
+            Use our range of free UK salary and pay calculators to work out your earnings
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a href="/annual-salary-calculator" className="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-emerald-500/50 transition-all group">
+              <h3 className="text-white font-semibold mb-2 group-hover:text-emerald-400">Annual Salary Calculator</h3>
+              <p className="text-sm text-slate-400">
+                Calculate your yearly salary and annual take home pay. Convert monthly, weekly or hourly rates to annual salary.
+              </p>
+            </a>
+
+            <a href="/wage-calculator" className="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-emerald-500/50 transition-all group">
+              <h3 className="text-white font-semibold mb-2 group-hover:text-emerald-400">Wage Calculator UK</h3>
+              <p className="text-sm text-slate-400">
+                Work out your wages after tax. Our UK wages calculator shows your take home pay from any wage amount.
+              </p>
+            </a>
+
+            <a href="/pay-calculator" className="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-emerald-500/50 transition-all group">
+              <h3 className="text-white font-semibold mb-2 group-hover:text-emerald-400">Pay Calculator UK</h3>
+              <p className="text-sm text-slate-400">
+                Calculate your pay after all deductions. See what you'll actually receive on your paycheck.
+              </p>
+            </a>
+
+            <a href="/average-salary-uk" className="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-emerald-500/50 transition-all group">
+              <h3 className="text-white font-semibold mb-2 group-hover:text-emerald-400">Average Salary UK</h3>
+              <p className="text-sm text-slate-400">
+                Compare your salary to the UK average. See median salaries by age, region and where you rank.
+              </p>
+            </a>
+
+            <a href="/daily-salary-calculator" className="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-emerald-500/50 transition-all group">
+              <h3 className="text-white font-semibold mb-2 group-hover:text-emerald-400">Daily Salary Calculator</h3>
+              <p className="text-sm text-slate-400">
+                Calculate your daily rate from annual salary or convert day rate to yearly earnings.
+              </p>
+            </a>
+
+            <a href="/salary-converter" className="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-emerald-500/50 transition-all group">
+              <h3 className="text-white font-semibold mb-2 group-hover:text-emerald-400">Salary Converter</h3>
+              <p className="text-sm text-slate-400">
+                Convert between hourly, daily, weekly, monthly and yearly salary rates instantly.
+              </p>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="border-t border-slate-700/50 py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
               <h4 className="text-white font-semibold mb-3">Salary Calculator UK</h4>
               <p className="text-sm text-slate-400">
@@ -424,11 +480,20 @@ export default function HomePage() {
               </p>
             </div>
             <div>
-              <h4 className="text-white font-semibold mb-3">Quick Links</h4>
+              <h4 className="text-white font-semibold mb-3">Salary Calculators</h4>
               <ul className="text-sm text-slate-400 space-y-2">
-                <li><a href="#calculator" className="hover:text-emerald-400">Salary Calculator</a></li>
-                <li><a href="#rates" className="hover:text-emerald-400">UK Tax Rates 2025/26</a></li>
-                <li><a href="#faq" className="hover:text-emerald-400">FAQ</a></li>
+                <li><a href="/" className="hover:text-emerald-400">UK Salary Calculator</a></li>
+                <li><a href="/annual-salary-calculator" className="hover:text-emerald-400">Annual Salary Calculator</a></li>
+                <li><a href="/wage-calculator" className="hover:text-emerald-400">Wage Calculator UK</a></li>
+                <li><a href="/pay-calculator" className="hover:text-emerald-400">Pay Calculator UK</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-white font-semibold mb-3">More Tools</h4>
+              <ul className="text-sm text-slate-400 space-y-2">
+                <li><a href="/average-salary-uk" className="hover:text-emerald-400">Average Salary UK</a></li>
+                <li><a href="/daily-salary-calculator" className="hover:text-emerald-400">Daily Salary Calculator</a></li>
+                <li><a href="/salary-converter" className="hover:text-emerald-400">Salary Converter</a></li>
               </ul>
             </div>
             <div>
