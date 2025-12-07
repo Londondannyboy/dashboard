@@ -39,6 +39,12 @@ export const metadata: Metadata = {
   verification: {
     google: 'verification-code', // Add your Google Search Console verification code
   },
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/icon.svg',
+  },
 }
 
 // JSON-LD structured data for the calculator

@@ -8,6 +8,12 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Quest App',
   description: 'AI-powered relocation assistant with voice and text chat',
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/icon.svg',
+  },
 }
 
 export default function RootLayout({

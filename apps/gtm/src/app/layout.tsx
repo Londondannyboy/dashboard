@@ -6,20 +6,27 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'GTM Quest - Go-To-Market Agency & Strategy',
-  description: 'Your expert GTM agency partner. AI-powered go-to-market planning, software reviews, campaign examples, and provider directory. Build winning GTM strategies.',
-  keywords: 'GTM agency, go-to-market strategy, GTM planner, sales strategy, market launch, product launch, GTM consultant',
+  title: 'GTM Agency | Go-To-Market Strategy & Planning | GTM Quest',
+  description: 'Leading GTM agency for go-to-market strategy. AI-powered GTM planning, expert consultants, and proven frameworks. Launch your product with the top GTM agency partner.',
+  keywords: 'GTM agency, go-to-market agency, GTM strategy, go-to-market strategy, GTM consultant, product launch agency, sales strategy agency',
   openGraph: {
-    title: 'GTM Quest - Go-To-Market Agency & Strategy',
-    description: 'Your expert GTM agency partner. AI-powered go-to-market planning and strategy.',
+    title: 'GTM Agency | Go-To-Market Strategy & Planning',
+    description: 'Leading GTM agency for go-to-market strategy. AI-powered planning and expert consultants.',
     url: 'https://gtm.quest',
     siteName: 'GTM Quest',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'GTM Quest - Go-To-Market Agency',
-    description: 'AI-powered go-to-market planning and strategy.',
+    title: 'GTM Agency | Go-To-Market Strategy',
+    description: 'Leading GTM agency for go-to-market strategy.',
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/apple-touch-icon.png',
   },
 }
 

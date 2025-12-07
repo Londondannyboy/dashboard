@@ -8,6 +8,12 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'PVC - Venture Capital Intelligence',
   description: 'The insider guide to venture capital. VC firm rankings, startup funding rounds, Series A-D intelligence, and market insights for founders and investors.',
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/icon.svg',
+  },
 }
 
 export default function RootLayout({

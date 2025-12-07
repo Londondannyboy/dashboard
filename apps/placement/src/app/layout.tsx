@@ -8,6 +8,12 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Placement - Fund Placement Intelligence',
   description: 'The insider guide to fund placements. Track placement agent mandates, LP relationships, fundraising activity, and market intelligence.',
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/icon.svg',
+  },
 }
 
 export default function RootLayout({
