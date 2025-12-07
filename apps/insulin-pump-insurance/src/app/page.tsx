@@ -5,7 +5,7 @@ import { InsulinPumpQuoteForm } from '../components/InsulinPumpQuoteForm'
 export const metadata: Metadata = {
   title: 'Insulin Pump Insurance UK 2025 | Compare Diabetes Device Cover',
   description: 'Compare insulin pump insurance quotes from UK specialist insurers. Get comprehensive cover for your insulin pump, CGM, and diabetes technology. Protect against loss, theft, and accidental damage from just £6.95/month.',
-  keywords: 'insulin pump insurance, insulin pump insurance uk, diabetes pump insurance, cgm insurance, continuous glucose monitor insurance, omnipod insurance, medtronic pump insurance, tandem tslim insurance, dexcom insurance, freestyle libre insurance, diabetes technology insurance, pump cover uk, insulin pump cover, nhs insulin pump insurance',
+  keywords: 'insulin pump insurance, insulin pump insurance uk, diabetes pump insurance, cgm insurance, continuous glucose monitor insurance, omnipod insurance, medtronic pump insurance, medtronic insulin pump insurance coverage, tandem tslim insurance, tandem insulin pump insurance coverage, t slim insulin pump insurance coverage, dexcom insurance, freestyle libre insurance, diabetes technology insurance, pump cover uk, insulin pump cover, nhs insulin pump insurance, pump insurance, insurance for insulin pump, are insulin pumps covered by insurance, insulin pump insurance coverage, insurance 4 insulin pumps, insulin pump insurance diabetes uk',
   openGraph: {
     title: 'Insulin Pump Insurance UK 2025 | Diabetes Device Cover',
     description: 'Compare insulin pump insurance quotes from UK specialist insurers. Protect your diabetes technology.',
@@ -532,6 +532,18 @@ export default function HomePage() {
           </h2>
 
           <div className="space-y-4">
+            <details className="bg-slate-800/50 rounded-xl border border-cyan-500/30 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                Are insulin pumps covered by insurance?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                Yes, <strong>insulin pumps are covered by insurance</strong> through several options in the UK. You can get specialist <strong>pump insurance</strong> from providers like <strong>Insurance 4 Insulin Pumps</strong> (from £6.95/month), add your pump to home contents insurance, or in some cases rely on NHS/ICB replacement. Specialist insurers offer faster claims and better coverage. <a href="/are-insulin-pumps-covered-by-insurance" className="text-cyan-400 hover:underline">Read our complete guide →</a>
+              </div>
+            </details>
+
             <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
               <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
                 How much does insulin pump insurance cost in the UK?
@@ -673,6 +685,7 @@ export default function HomePage() {
                 <li><a href="#coverage" className="hover:text-cyan-400">Coverage</a></li>
                 <li><a href="#devices" className="hover:text-cyan-400">Devices</a></li>
                 <li><a href="#faq" className="hover:text-cyan-400">FAQ</a></li>
+                <li><a href="/are-insulin-pumps-covered-by-insurance" className="hover:text-cyan-400">Insurance Guide</a></li>
               </ul>
             </div>
             <div>
