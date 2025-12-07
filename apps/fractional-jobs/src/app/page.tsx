@@ -184,13 +184,15 @@ export default function HomePage() {
                   <Link href="/jobs?role=cmo" className="block px-4 py-3 text-gray-700 hover:bg-violet-50 hover:text-violet-900">Fractional CMO</Link>
                   <Link href="/jobs?role=cto" className="block px-4 py-3 text-gray-700 hover:bg-violet-50 hover:text-violet-900">Fractional CTO</Link>
                   <Link href="/jobs?role=coo" className="block px-4 py-3 text-gray-700 hover:bg-violet-50 hover:text-violet-900">Fractional COO</Link>
+                  <Link href="/hr" className="block px-4 py-3 text-gray-700 hover:bg-violet-50 hover:text-violet-900">Fractional HR</Link>
                 </div>
               </div>
 
               <Link href="/jobs" className="text-gray-700 hover:text-violet-900 font-medium">All Jobs</Link>
+              <Link href="/remote" className="text-gray-700 hover:text-violet-900 font-medium">Remote</Link>
               <Link href="/london" className="text-gray-700 hover:text-violet-900 font-medium">London</Link>
+              <Link href="/guide" className="text-gray-700 hover:text-violet-900 font-medium">Guide</Link>
               <Link href="/agencies" className="text-gray-700 hover:text-violet-900 font-medium">Agencies</Link>
-              <Link href="/articles" className="text-gray-700 hover:text-violet-900 font-medium">Articles</Link>
             </div>
 
             <div className="flex items-center gap-3">
@@ -287,8 +289,57 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Fractional Roles */}
+        {/* What Are Fractional Jobs Section */}
         <section className="py-20 px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+                What Are Fractional Jobs?
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Fractional jobs are part-time executive roles where experienced professionals work with
+                companies for a fraction of the week. Instead of one full-time position, you work 1-3
+                days per week with multiple companies.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="bg-white rounded-xl p-8 border border-gray-200 text-center card-hover">
+                <div className="w-16 h-16 bg-violet-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">⏰</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Part-Time Leadership</h3>
+                <p className="text-gray-600">Work 1-3 days per week per client. Maintain flexibility while delivering strategic impact.</p>
+              </div>
+              <div className="bg-white rounded-xl p-8 border border-gray-200 text-center card-hover">
+                <div className="w-16 h-16 bg-violet-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">🏢</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Multiple Clients</h3>
+                <p className="text-gray-600">Build a portfolio career working with 2-4 companies simultaneously. Diversify income and experience.</p>
+              </div>
+              <div className="bg-white rounded-xl p-8 border border-gray-200 text-center card-hover">
+                <div className="w-16 h-16 bg-violet-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">💼</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Executive Expertise</h3>
+                <p className="text-gray-600">Companies get senior CFO, CMO, CTO expertise without the cost of a full-time executive hire.</p>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <Link href="/guide" className="inline-flex items-center gap-2 text-violet-700 hover:text-violet-900 font-semibold">
+                Learn how to find fractional jobs
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Fractional Roles */}
+        <section className="py-20 px-4 bg-gray-50">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
