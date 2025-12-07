@@ -20,6 +20,36 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+
+  // Redirects for old URL patterns that rank in Google
+  async redirects() {
+    return [
+      // /relocation/guide/* -> /articles/*
+      {
+        source: '/relocation/guide/:slug*',
+        destination: '/articles/:slug*',
+        permanent: true,
+      },
+      // /posts/* -> /articles/* (with trailing slash handling)
+      {
+        source: '/posts/:slug*',
+        destination: '/articles/:slug*',
+        permanent: true,
+      },
+      // Root-level visa pages -> /articles/*
+      {
+        source: '/cyprus-requirements-visa',
+        destination: '/articles/cyprus-requirements-visa',
+        permanent: true,
+      },
+      // Generic pattern for other root-level pages that should be articles
+      {
+        source: '/:slug((?!articles|chat|voice|dashboard|handler|api|_next).*-visa.*)',
+        destination: '/articles/:slug',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig
