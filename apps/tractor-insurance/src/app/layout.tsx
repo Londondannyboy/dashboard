@@ -6,24 +6,24 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
-    default: 'Tractor Insurance UK 2025 | Agricultural Vehicle Insurance Quotes',
-    template: '%s | Tractor Insurance UK',
+    default: 'Agricultural Tractor Insurance UK 2025 | Farm Vehicle Insurance Quotes',
+    template: '%s | Agricultural Tractor Insurance UK',
   },
-  description: 'Get instant tractor insurance quotes from leading UK agricultural insurers. Specialist cover for tractors, farm vehicles and agricultural machinery. Compare prices and save on your tractor insurance today.',
-  keywords: 'tractor insurance, tractor insurance uk, agricultural insurance, farm vehicle insurance, tractor cover, agricultural vehicle insurance, farm machinery insurance, tractor insurance quotes, cheap tractor insurance, compare tractor insurance, smallholder insurance, agricultural contractor insurance',
-  authors: [{ name: 'Tractor Insurance UK' }],
+  description: 'Get instant agricultural tractor insurance quotes from leading UK farm insurers. Specialist cover for tractors, farm vehicles and agricultural machinery. Compare agricultural tractor insurance prices and save today.',
+  keywords: 'agricultural tractor insurance, tractor insurance, tractor insurance uk, agricultural insurance, farm vehicle insurance, tractor cover, agricultural vehicle insurance, farm machinery insurance, tractor insurance quotes, cheap tractor insurance, compare tractor insurance, smallholder insurance, agricultural contractor insurance',
+  authors: [{ name: 'Agricultural Tractor Insurance UK' }],
   metadataBase: new URL('https://tractorinsurance.quest'),
   openGraph: {
-    title: 'Tractor Insurance UK 2025 | Agricultural Vehicle Insurance Quotes',
-    description: 'Get instant tractor insurance quotes from leading UK agricultural insurers. Compare prices and save today.',
+    title: 'Agricultural Tractor Insurance UK 2025 | Farm Vehicle Insurance Quotes',
+    description: 'Get instant agricultural tractor insurance quotes from leading UK farm insurers. Compare prices and save today.',
     type: 'website',
     locale: 'en_GB',
-    siteName: 'Tractor Insurance UK',
+    siteName: 'Agricultural Tractor Insurance UK',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Tractor Insurance UK 2025',
-    description: 'Get instant tractor insurance quotes. Compare UK agricultural insurers.',
+    title: 'Agricultural Tractor Insurance UK 2025',
+    description: 'Get instant agricultural tractor insurance quotes. Compare UK farm insurers.',
   },
   robots: {
     index: true,
@@ -48,8 +48,8 @@ export const metadata: Metadata = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
-  name: 'Tractor Insurance UK',
-  description: 'Free UK tractor insurance quote comparison service for agricultural vehicles and farm machinery',
+  name: 'Agricultural Tractor Insurance UK',
+  description: 'Free UK agricultural tractor insurance quote comparison service for farm vehicles and machinery',
   url: 'https://tractorinsurance.quest',
   applicationCategory: 'FinanceApplication',
   operatingSystem: 'Any',
@@ -57,10 +57,10 @@ const jsonLd = {
     '@type': 'Offer',
     price: '0',
     priceCurrency: 'GBP',
-    description: 'Free quote comparison service',
+    description: 'Free agricultural tractor insurance quote comparison service',
   },
   featureList: [
-    'Compare tractor insurance quotes',
+    'Compare agricultural tractor insurance quotes',
     'Agricultural vehicle coverage',
     'Farm machinery insurance',
     'Smallholder and contractor cover',
@@ -76,11 +76,11 @@ const jsonLd = {
 const localBusinessJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'InsuranceAgency',
-  name: 'Tractor Insurance UK',
-  description: 'Specialist agricultural vehicle insurance comparison service',
+  name: 'Agricultural Tractor Insurance UK',
+  description: 'Specialist agricultural tractor insurance comparison service for UK farmers',
   url: 'https://tractorinsurance.quest',
   areaServed: 'United Kingdom',
-  serviceType: ['Tractor Insurance', 'Agricultural Insurance', 'Farm Vehicle Insurance'],
+  serviceType: ['Agricultural Tractor Insurance', 'Tractor Insurance', 'Agricultural Insurance', 'Farm Vehicle Insurance'],
 }
 
 export default function RootLayout({

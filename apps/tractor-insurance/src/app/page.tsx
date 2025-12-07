@@ -2,19 +2,19 @@ import { Metadata } from 'next'
 import { TractorQuoteForm } from '../components/TractorQuoteForm'
 
 export const metadata: Metadata = {
-  title: 'Tractor Insurance UK 2025 | Compare Agricultural Vehicle Quotes',
-  description: 'Compare tractor insurance quotes from specialist UK agricultural insurers. Get cover for tractors, farm vehicles and machinery. Comprehensive, third party fire & theft, and third party only options. Free quotes - save on your tractor insurance today.',
-  keywords: 'tractor insurance, tractor insurance uk, agricultural insurance, farm vehicle insurance, tractor cover, compare tractor insurance, cheap tractor insurance, agricultural vehicle insurance, farm machinery insurance, tractor insurance quotes, smallholder insurance, agricultural contractor insurance, combine harvester insurance',
+  title: 'Agricultural Tractor Insurance UK 2025 | Compare Farm Vehicle Quotes',
+  description: 'Compare agricultural tractor insurance quotes from specialist UK farm insurers. Get cover for tractors, farm vehicles and machinery. Comprehensive, third party fire & theft, and third party only options. Free agricultural tractor insurance quotes - save today.',
+  keywords: 'agricultural tractor insurance, tractor insurance, tractor insurance uk, agricultural insurance, farm vehicle insurance, tractor cover, compare tractor insurance, cheap tractor insurance, agricultural vehicle insurance, farm machinery insurance, tractor insurance quotes, smallholder insurance, agricultural contractor insurance, combine harvester insurance',
   openGraph: {
-    title: 'Tractor Insurance UK 2025 | Compare Agricultural Vehicle Quotes',
-    description: 'Compare tractor insurance quotes from specialist UK agricultural insurers. Free quotes - save on your tractor insurance today.',
+    title: 'Agricultural Tractor Insurance UK 2025 | Compare Farm Vehicle Quotes',
+    description: 'Compare agricultural tractor insurance quotes from specialist UK farm insurers. Free quotes - save on your agricultural tractor insurance today.',
     type: 'website',
     url: 'https://tractorinsurance.quest',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Tractor Insurance UK 2025',
-    description: 'Compare tractor insurance quotes from UK agricultural insurers.',
+    title: 'Agricultural Tractor Insurance UK 2025',
+    description: 'Compare agricultural tractor insurance quotes from UK farm insurers.',
   },
   alternates: {
     canonical: 'https://tractorinsurance.quest',
@@ -29,7 +29,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <a href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center" role="img" aria-label="Tractor Insurance UK logo">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center" role="img" aria-label="Agricultural Tractor Insurance UK logo">
                 <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                 </svg>
@@ -55,14 +55,14 @@ export default function HomePage() {
       <section className="py-12 sm:py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4">
-            Tractor Insurance
+            Agricultural Tractor Insurance
             <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent"> UK 2025</span>
           </h1>
           <p className="text-lg text-slate-400 mb-2">
-            Compare <strong>tractor insurance</strong> quotes from specialist UK agricultural insurers. Get comprehensive cover for tractors, farm vehicles and agricultural machinery.
+            Compare <strong>agricultural tractor insurance</strong> quotes from specialist UK farm insurers. Get comprehensive cover for tractors, farm vehicles and agricultural machinery.
           </p>
           <p className="text-sm text-slate-500">
-            Protect your agricultural investment with tailored tractor insurance. Quotes from leading UK farm insurers.
+            Protect your farming investment with tailored <strong>agricultural tractor insurance</strong>. Quotes from leading UK agricultural insurers.
           </p>
         </div>
       </section>
@@ -72,14 +72,14 @@ export default function HomePage() {
         <TractorQuoteForm />
       </section>
 
-      {/* Why Tractor Insurance Section */}
+      {/* Why Agricultural Tractor Insurance Section */}
       <section className="py-16 px-4 bg-slate-800/30">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-4">
-            Why Do You Need Tractor Insurance?
+            Why Do You Need Agricultural Tractor Insurance?
           </h2>
           <p className="text-slate-400 text-center mb-12 max-w-3xl mx-auto">
-            Tractor insurance is essential for protecting your agricultural investment. Whether you're a smallholder, farmer, or agricultural contractor, the right tractor insurance policy provides peace of mind and financial protection.
+            <strong>Agricultural tractor insurance</strong> is essential for protecting your farming investment. Whether you're a smallholder, farmer, or agricultural contractor, the right agricultural tractor insurance policy provides peace of mind and financial protection.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -162,7 +162,7 @@ export default function HomePage() {
       <section id="cover-types" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-12">
-            Types of Tractor Insurance Cover
+            Types of Agricultural Tractor Insurance Cover
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -293,10 +293,10 @@ export default function HomePage() {
       <section className="py-16 px-4 bg-slate-800/30">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-4">
-            How Much Does Tractor Insurance Cost?
+            How Much Does Agricultural Tractor Insurance Cost?
           </h2>
           <p className="text-slate-400 text-center mb-12 max-w-3xl mx-auto">
-            Tractor insurance costs vary depending on the vehicle, its use, and your circumstances. Here's a guide to typical tractor insurance premiums in the UK.
+            Agricultural tractor insurance costs vary depending on the vehicle, its use, and your circumstances. Here's a guide to typical <strong>agricultural tractor insurance</strong> premiums in the UK.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -335,7 +335,7 @@ export default function HomePage() {
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-12">
-            What Affects Your Tractor Insurance Premium?
+            What Affects Your Agricultural Tractor Insurance Premium?
           </h2>
 
           <div className="space-y-4">
@@ -430,7 +430,7 @@ export default function HomePage() {
       <section id="faq" className="py-16 px-4 bg-slate-800/30">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-12">
-            Tractor Insurance FAQ
+            Agricultural Tractor Insurance FAQ
           </h2>
 
           <div className="space-y-4">
@@ -611,10 +611,10 @@ export default function HomePage() {
       <section className="py-16 px-4 bg-gradient-to-br from-green-500/20 to-emerald-500/20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl font-bold text-white mb-4">
-            Ready to Get a Tractor Insurance Quote?
+            Ready to Get an Agricultural Tractor Insurance Quote?
           </h2>
           <p className="text-slate-300 mb-8">
-            Compare quotes from specialist UK agricultural insurers. It only takes a few minutes.
+            Compare <strong>agricultural tractor insurance</strong> quotes from specialist UK farm insurers. It only takes a few minutes.
           </p>
           <a
             href="#calculator"
@@ -630,7 +630,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
-              <h4 className="text-white font-semibold mb-3">Tractor Insurance UK</h4>
+              <h4 className="text-white font-semibold mb-3">Agricultural Tractor Insurance UK</h4>
               <p className="text-sm text-slate-400">
                 Compare tractor and agricultural vehicle insurance quotes from specialist UK insurers.
               </p>
@@ -662,7 +662,7 @@ export default function HomePage() {
           </div>
           <div className="pt-8 border-t border-slate-700/50 text-center">
             <p className="text-xs text-slate-500">
-              © {new Date().getFullYear()} Tractor Insurance UK. Compare agricultural vehicle insurance quotes from specialist UK insurers.
+              © {new Date().getFullYear()} Agricultural Tractor Insurance UK. Compare agricultural tractor insurance quotes from specialist UK farm insurers.
             </p>
           </div>
         </div>
