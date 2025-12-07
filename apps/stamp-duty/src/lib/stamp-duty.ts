@@ -461,3 +461,93 @@ export function getCommercialRateInfo(): {
     ],
   }
 }
+
+// ============================================
+// JERSEY - Land Transaction Tax
+// Jersey is a Crown Dependency with its own rates
+// ============================================
+const JERSEY_BANDS: StampDutyBand[] = [
+  { threshold: 50000, rate: 0, label: 'Up to £50,000' },
+  { threshold: 150000, rate: 0.02, label: '£50,001 to £150,000' },
+  { threshold: 250000, rate: 0.03, label: '£150,001 to £250,000' },
+  { threshold: 400000, rate: 0.04, label: '£250,001 to £400,000' },
+  { threshold: 500000, rate: 0.05, label: '£400,001 to £500,000' },
+  { threshold: 700000, rate: 0.06, label: '£500,001 to £700,000' },
+  { threshold: 1000000, rate: 0.07, label: '£700,001 to £1 million' },
+  { threshold: 1500000, rate: 0.08, label: '£1m to £1.5 million' },
+  { threshold: 2000000, rate: 0.09, label: '£1.5m to £2 million' },
+  { threshold: Infinity, rate: 0.10, label: 'Above £2 million' },
+]
+
+// Jersey first-time buyer has £0-£500k at 0%
+const JERSEY_FIRST_TIME_BUYER_BANDS: StampDutyBand[] = [
+  { threshold: 500000, rate: 0, label: 'Up to £500,000' },
+  { threshold: 700000, rate: 0.06, label: '£500,001 to £700,000' },
+  { threshold: 1000000, rate: 0.07, label: '£700,001 to £1 million' },
+  { threshold: 1500000, rate: 0.08, label: '£1m to £1.5 million' },
+  { threshold: 2000000, rate: 0.09, label: '£1.5m to £2 million' },
+  { threshold: Infinity, rate: 0.10, label: 'Above £2 million' },
+]
+
+export interface JerseyResult {
+  totalTax: number
+  effectiveRate: number
+  breakdown: StampDutyResult['breakdown']
+  propertyPrice: number
+  isFirstTimeBuyer: boolean
+}
+
+export function calculateJerseyLTT(
+  propertyPrice: number,
+  isFirstTimeBuyer: boolean = false
+): JerseyResult {
+  const bands = isFirstTimeBuyer ? JERSEY_FIRST_TIME_BUYER_BANDS : JERSEY_BANDS
+  const result = calculateBandedTax(propertyPrice, bands)
+  const effectiveRate = propertyPrice > 0 ? (result.tax / propertyPrice) * 100 : 0
+
+  return {
+    totalTax: result.tax,
+    effectiveRate,
+    breakdown: result.breakdown,
+    propertyPrice,
+    isFirstTimeBuyer,
+  }
+}
+
+export function getJerseyRateInfo(isFirstTimeBuyer: boolean): {
+  title: string
+  description: string
+  bands: { range: string, rate: string }[]
+} {
+  if (isFirstTimeBuyer) {
+    return {
+      title: 'Jersey First-Time Buyer Rates',
+      description: 'No stamp duty up to £500,000 for first-time buyers',
+      bands: [
+        { range: 'Up to £500,000', rate: '0%' },
+        { range: '£500,001 to £700,000', rate: '6%' },
+        { range: '£700,001 to £1 million', rate: '7%' },
+        { range: '£1m to £1.5 million', rate: '8%' },
+        { range: '£1.5m to £2 million', rate: '9%' },
+        { range: 'Above £2 million', rate: '10%' },
+      ],
+    }
+  }
+
+  return {
+    title: 'Jersey Standard Rates',
+    description: 'Land Transaction Tax rates for Jersey',
+    bands: [
+      { range: 'Up to £50,000', rate: '0%' },
+      { range: '£50,001 to £150,000', rate: '2%' },
+      { range: '£150,001 to £250,000', rate: '3%' },
+      { range: '£250,001 to £400,000', rate: '4%' },
+      { range: '£400,001 to £500,000', rate: '5%' },
+      { range: '£500,001 to £700,000', rate: '6%' },
+      { range: '£700,001 to £1 million', rate: '7%' },
+      { range: '£1m to £1.5 million', rate: '8%' },
+      { range: '£1.5m to £2 million', rate: '9%' },
+      { range: 'Above £2 million', rate: '10%' },
+    ],
+  }
+}

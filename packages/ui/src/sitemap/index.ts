@@ -102,6 +102,9 @@ export const STAMP_DUTY_STATIC_ROUTES = [
   { path: '/buy-to-let', changeFrequency: 'weekly' as const, priority: 0.9 },
   { path: '/second-home', changeFrequency: 'weekly' as const, priority: 0.9 },
   { path: '/commercial', changeFrequency: 'weekly' as const, priority: 0.9 },
+  { path: '/refund', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/penalty', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/jersey', changeFrequency: 'weekly' as const, priority: 0.8 },
 ]
 
 // GTM Quest specific static routes
