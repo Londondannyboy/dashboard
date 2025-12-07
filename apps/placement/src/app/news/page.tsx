@@ -80,7 +80,7 @@ export default async function NewsPage() {
                 {articles.map((article) => (
                   <Link
                     key={article.id}
-                    href={`/${article.slug}`}
+                    href={`/news/${article.slug}`}
                     className="group"
                   >
                     <div className="h-48 bg-gradient-to-br from-emerald-600/20 to-teal-600/20 rounded-xl mb-4 flex items-center justify-center overflow-hidden">

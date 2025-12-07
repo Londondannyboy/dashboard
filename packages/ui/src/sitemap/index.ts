@@ -111,6 +111,14 @@ export const GTM_STATIC_ROUTES = [
   { path: '/directory', changeFrequency: 'weekly' as const, priority: 0.9 },
   { path: '/ecosystem', changeFrequency: 'weekly' as const, priority: 0.7 },
   { path: '/momentum', changeFrequency: 'daily' as const, priority: 0.8 },
+  { path: '/gtm-strategy', changeFrequency: 'weekly' as const, priority: 0.9 },
+  { path: '/saas-gtm-plan', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/best-gtm-agency', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/gtm-agency-melbourne', changeFrequency: 'weekly' as const, priority: 0.7 },
+  { path: '/gtm-agency-sydney', changeFrequency: 'weekly' as const, priority: 0.7 },
+  { path: '/go-to-market-strategy-template', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/go-to-market-strategy-example', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/b2b-go-to-market-strategy', changeFrequency: 'weekly' as const, priority: 0.8 },
 ]
 
 // Tractor Insurance specific static routes
