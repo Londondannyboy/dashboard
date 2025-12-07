@@ -4,7 +4,7 @@ import { SalaryCalculator } from '../components/SalaryCalculator'
 export const metadata: Metadata = {
   title: 'Salary Calculator UK 2025 | Free Take Home Pay Calculator',
   description: 'Free UK salary calculator 2025/26. Calculate your take home pay after tax, National Insurance, student loan and pension. Updated with the latest HMRC tax rates for England, Wales, Scotland and NI.',
-  keywords: 'salary calculator, salary calculator uk, uk salary calculator, take home pay calculator, tax calculator uk, income tax calculator, national insurance calculator, net salary calculator, gross to net calculator, after tax calculator, wage calculator, pay calculator uk, earnings calculator, what is my take home pay',
+  keywords: 'salary calculator, salary calculator uk, uk salary calculator, take home pay calculator, tax calculator uk, income tax calculator, national insurance calculator, net salary calculator, gross to net calculator, after tax calculator, wage calculator, pay calculator uk, earnings calculator, what is my take home pay, net salary, gross salary, take home salary, salary after tax',
   openGraph: {
     title: 'Salary Calculator UK 2025 | Free Take Home Pay Calculator',
     description: 'Calculate your UK take home pay instantly. Free salary calculator with 2025/26 tax rates.',
@@ -358,6 +358,42 @@ export default function HomePage() {
                 Our UK salary calculator uses the official 2025/26 HMRC tax rates and thresholds, providing highly accurate estimates for most employees. However, your actual take home pay may vary slightly due to factors like your specific tax code, benefits in kind, salary sacrifice schemes other than pension, or other personal circumstances. For precise figures, consult your payslip or speak to your employer's payroll department.
               </div>
             </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                What is the difference between gross and net salary?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                Gross salary is your total salary before any deductions - this is usually what job adverts quote. Net salary (also called take home pay) is what you actually receive in your bank account after tax, National Insurance, pension contributions and any student loan repayments have been deducted. For example, a £35,000 gross salary would give you approximately £27,590 net salary per year.
+              </div>
+            </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                How do I calculate my monthly salary from annual?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                To calculate monthly salary from annual, simply divide by 12. For example, £36,000 ÷ 12 = £3,000 gross monthly. For monthly take home pay, you need to account for tax and NI deductions - use our <a href="/monthly-salary-calculator" className="text-emerald-400 hover:underline">monthly salary calculator</a> to see your exact net monthly figure. On £36,000, you'd take home approximately £2,392 per month after standard deductions.
+              </div>
+            </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                What is pro rata salary and how is it calculated?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                Pro rata salary is the proportional salary you earn when working part-time hours instead of full-time. Calculate it by: (Full-time salary ÷ Full-time hours) × Your hours. For example, if a job pays £30,000 full-time (37.5 hrs) and you work 25 hours, your pro rata salary is (£30,000 ÷ 37.5) × 25 = £20,000. Use our <a href="/pro-rata-salary-calculator" className="text-emerald-400 hover:underline">pro rata calculator</a> to work out your exact take home pay.
+              </div>
+            </details>
           </div>
         </div>
       </section>
@@ -424,31 +460,52 @@ export default function HomePage() {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a href="/pro-rata-salary-calculator" className="bg-slate-800/50 rounded-xl p-5 border border-emerald-500/30 hover:border-emerald-500/50 transition-all group">
+              <h3 className="text-white font-semibold mb-2 group-hover:text-emerald-400">Pro Rata Salary Calculator</h3>
+              <p className="text-sm text-slate-400">
+                Calculate your pro rata salary for part-time work. See your take home pay based on hours worked.
+              </p>
+            </a>
+
+            <a href="/scotland-salary-calculator" className="bg-slate-800/50 rounded-xl p-5 border border-blue-500/30 hover:border-blue-500/50 transition-all group">
+              <h3 className="text-white font-semibold mb-2 group-hover:text-blue-400">Scotland Salary Calculator</h3>
+              <p className="text-sm text-slate-400">
+                Calculate your Scottish take home pay with all 6 tax bands. Compare to rest of UK.
+              </p>
+            </a>
+
+            <a href="/hourly-salary-calculator" className="bg-slate-800/50 rounded-xl p-5 border border-teal-500/30 hover:border-teal-500/50 transition-all group">
+              <h3 className="text-white font-semibold mb-2 group-hover:text-teal-400">Hourly Salary Calculator</h3>
+              <p className="text-sm text-slate-400">
+                Convert hourly rate to annual salary and see your net take home pay instantly.
+              </p>
+            </a>
+
+            <a href="/nhs-salary-calculator" className="bg-slate-800/50 rounded-xl p-5 border border-cyan-500/30 hover:border-cyan-500/50 transition-all group">
+              <h3 className="text-white font-semibold mb-2 group-hover:text-cyan-400">NHS Salary Calculator</h3>
+              <p className="text-sm text-slate-400">
+                Calculate NHS take home pay with Agenda for Change pay bands and NHS pension tiers.
+              </p>
+            </a>
+
+            <a href="/monthly-salary-calculator" className="bg-slate-800/50 rounded-xl p-5 border border-violet-500/30 hover:border-violet-500/50 transition-all group">
+              <h3 className="text-white font-semibold mb-2 group-hover:text-violet-400">Monthly Salary Calculator</h3>
+              <p className="text-sm text-slate-400">
+                Calculate your monthly take home pay after tax, NI and pension deductions.
+              </p>
+            </a>
+
             <a href="/annual-salary-calculator" className="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-emerald-500/50 transition-all group">
               <h3 className="text-white font-semibold mb-2 group-hover:text-emerald-400">Annual Salary Calculator</h3>
               <p className="text-sm text-slate-400">
-                Calculate your yearly salary and annual take home pay. Convert monthly, weekly or hourly rates to annual salary.
+                Calculate your yearly salary and annual take home pay. Convert monthly, weekly or hourly rates.
               </p>
             </a>
 
             <a href="/wage-calculator" className="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-emerald-500/50 transition-all group">
               <h3 className="text-white font-semibold mb-2 group-hover:text-emerald-400">Wage Calculator UK</h3>
               <p className="text-sm text-slate-400">
-                Work out your wages after tax. Our UK wages calculator shows your take home pay from any wage amount.
-              </p>
-            </a>
-
-            <a href="/pay-calculator" className="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-emerald-500/50 transition-all group">
-              <h3 className="text-white font-semibold mb-2 group-hover:text-emerald-400">Pay Calculator UK</h3>
-              <p className="text-sm text-slate-400">
-                Calculate your pay after all deductions. See what you'll actually receive on your paycheck.
-              </p>
-            </a>
-
-            <a href="/average-salary-uk" className="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-emerald-500/50 transition-all group">
-              <h3 className="text-white font-semibold mb-2 group-hover:text-emerald-400">Average Salary UK</h3>
-              <p className="text-sm text-slate-400">
-                Compare your salary to the UK average. See median salaries by age, region and where you rank.
+                Work out your wages after tax. See your net take home pay from any wage amount.
               </p>
             </a>
 
@@ -476,24 +533,27 @@ export default function HomePage() {
             <div>
               <h4 className="text-white font-semibold mb-3">Salary Calculator UK</h4>
               <p className="text-sm text-slate-400">
-                Free UK salary calculator to work out your take home pay. Calculate tax, National Insurance, student loan and pension deductions instantly.
+                Free UK salary calculator to work out your take home pay and net salary. Calculate tax, National Insurance, student loan and pension deductions instantly.
               </p>
             </div>
             <div>
               <h4 className="text-white font-semibold mb-3">Salary Calculators</h4>
               <ul className="text-sm text-slate-400 space-y-2">
                 <li><a href="/" className="hover:text-emerald-400">UK Salary Calculator</a></li>
+                <li><a href="/monthly-salary-calculator" className="hover:text-emerald-400">Monthly Salary Calculator</a></li>
                 <li><a href="/annual-salary-calculator" className="hover:text-emerald-400">Annual Salary Calculator</a></li>
-                <li><a href="/wage-calculator" className="hover:text-emerald-400">Wage Calculator UK</a></li>
-                <li><a href="/pay-calculator" className="hover:text-emerald-400">Pay Calculator UK</a></li>
+                <li><a href="/hourly-salary-calculator" className="hover:text-emerald-400">Hourly Salary Calculator</a></li>
+                <li><a href="/daily-salary-calculator" className="hover:text-emerald-400">Daily Salary Calculator</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-white font-semibold mb-3">More Tools</h4>
+              <h4 className="text-white font-semibold mb-3">Specialist Calculators</h4>
               <ul className="text-sm text-slate-400 space-y-2">
-                <li><a href="/average-salary-uk" className="hover:text-emerald-400">Average Salary UK</a></li>
-                <li><a href="/daily-salary-calculator" className="hover:text-emerald-400">Daily Salary Calculator</a></li>
+                <li><a href="/pro-rata-salary-calculator" className="hover:text-emerald-400">Pro Rata Calculator</a></li>
+                <li><a href="/scotland-salary-calculator" className="hover:text-emerald-400">Scotland Calculator</a></li>
+                <li><a href="/nhs-salary-calculator" className="hover:text-emerald-400">NHS Salary Calculator</a></li>
                 <li><a href="/salary-converter" className="hover:text-emerald-400">Salary Converter</a></li>
+                <li><a href="/average-salary-uk" className="hover:text-emerald-400">Average Salary UK</a></li>
               </ul>
             </div>
             <div>

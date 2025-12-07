@@ -13,9 +13,13 @@ const BUYER_TYPES: { value: BuyerType; label: string; description: string }[] = 
 
 const PRESET_PRICES = [250000, 350000, 500000, 750000, 1000000, 1500000, 2000000]
 
-export function StampDutyCalculator() {
+interface StampDutyCalculatorProps {
+  defaultBuyerType?: BuyerType
+}
+
+export function StampDutyCalculator({ defaultBuyerType = 'standard' }: StampDutyCalculatorProps) {
   const [price, setPrice] = useState<number>(350000)
-  const [buyerType, setBuyerType] = useState<BuyerType>('standard')
+  const [buyerType, setBuyerType] = useState<BuyerType>(defaultBuyerType)
   const [inputValue, setInputValue] = useState('350,000')
 
   const result = useMemo(() => calculateStampDuty(price, buyerType), [price, buyerType])
