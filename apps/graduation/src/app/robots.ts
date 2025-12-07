@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/handler/'],
     },
-    sitemap: 'https://graduated.quest/sitemap.xml',
+    sitemap: 'https://graduation.quest/sitemap.xml',
   }
 }

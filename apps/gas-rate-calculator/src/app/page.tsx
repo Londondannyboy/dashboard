@@ -46,6 +46,9 @@ export default function HomePage() {
               <a href="#calculator" className="text-slate-300 hover:text-white transition-colors">Calculator</a>
               <a href="#how-it-works" className="text-slate-300 hover:text-white transition-colors">How It Works</a>
               <a href="#faq" className="text-slate-300 hover:text-white transition-colors">FAQ</a>
+              <span className="text-slate-600">|</span>
+              <a href="/gas-bill-calculator" className="text-emerald-400 hover:text-emerald-300 transition-colors">Bill Calculator</a>
+              <a href="/gas-cost-calculator" className="text-cyan-400 hover:text-cyan-300 transition-colors">Cost Calculator</a>
             </div>
           </div>
         </div>
@@ -457,6 +460,54 @@ export default function HomePage() {
                 This calculator uses standard UK gas industry formulas and values (CV of 39.5 MJ/m³, correction factor of 1.02264). Accuracy depends on: (1) Precision of your meter readings, (2) Accuracy of your timing, (3) Ensuring all other gas appliances are off, (4) The actual calorific value of your gas supply (which varies slightly). For commissioning and servicing purposes, this calculator provides sufficiently accurate results for practical use.
               </div>
             </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                How do I use the imperial gas rate calculator with cubic feet?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                To use the imperial gas rate calculator: (1) Switch to Imperial mode using the toggle, (2) Identify your meter's test dial size (commonly ½, 1, 2, or 5 cubic feet), (3) Turn on the appliance and wait for the dial to reach a reference point, (4) Time one complete revolution using the built-in timer, (5) Enter the dial size and time. The calculator converts cubic feet to cubic metres (×0.0283168) then applies the standard formula to calculate kW output. Imperial meters with test dials are common in older UK properties.
+              </div>
+            </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                How do I calculate gas rate manually without a calculator?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                To calculate gas rate manually: (1) Find volume used: End reading - Start reading (in m³), (2) Apply correction factor: Volume × 1.02264, (3) Calculate hourly rate: (Corrected volume ÷ time in seconds) × 3600 = m³/h, (4) Calculate gross kW: (m³/h × 39.5) ÷ 3.6, (5) Calculate net kW: Gross kW ÷ 1.11. For imperial: first convert cubic feet to m³ by multiplying by 0.0283168. These are the same formulas used by this gas rate calculator and are standard across the UK gas industry.
+              </div>
+            </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                What is the LPG gas rate calculation formula?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                LPG (propane/butane) requires different values than natural gas. For propane: CV = 93.2 MJ/m³, for butane: CV = 121.7 MJ/m³ (compared to 39.5 MJ/m³ for natural gas). The formula structure is the same: kW = (m³/h × CV) ÷ 3.6. For LPG appliances, you may also need to account for different correction factors. Most LPG installations use tank or cylinder gauges rather than meters, so weighing the gas used over time is often more practical for calculating consumption rates.
+              </div>
+            </details>
+
+            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
+              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
+                What common mistakes should I avoid when calculating gas rate?
+                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-4 text-sm text-slate-400">
+                Common gas rate calculation mistakes include: (1) Forgetting to turn off other gas appliances - this inflates the reading, (2) Not including decimal places from the meter - reduces accuracy significantly, (3) Using too short a timing period - longer times (2+ minutes) give more accurate results, (4) Confusing gross and net kW - remember net = gross ÷ 1.11, (5) Using the wrong calorific value for LPG vs natural gas, (6) Forgetting the correction factor (1.02264), (7) Comparing gross calculated rate to net data plate rating or vice versa.
+              </div>
+            </details>
           </div>
         </div>
       </section>
@@ -525,6 +576,44 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* More Calculators Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-white text-center mb-4">
+            More Gas Calculators
+          </h2>
+          <p className="text-slate-400 text-center mb-8 max-w-2xl mx-auto">
+            Looking to estimate your gas bills or energy costs? Try our consumer calculators
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <a href="/gas-bill-calculator" className="bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 rounded-2xl p-6 border border-emerald-500/30 hover:border-emerald-400/50 transition-colors group">
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-emerald-400 mb-2 group-hover:text-emerald-300">Gas Bill Calculator</h3>
+              <p className="text-sm text-slate-400">
+                Calculate your gas bill from meter readings. Convert m³ to kWh and get an accurate estimate of your gas costs including standing charges and VAT.
+              </p>
+            </a>
+
+            <a href="/gas-cost-calculator" className="bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 rounded-2xl p-6 border border-cyan-500/30 hover:border-cyan-400/50 transition-colors group">
+              <div className="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-cyan-400 mb-2 group-hover:text-cyan-300">Gas Cost Calculator</h3>
+              <p className="text-sm text-slate-400">
+                Estimate your gas costs based on kWh usage. Perfect for budgeting your energy bills with daily, weekly, monthly and yearly breakdowns.
+              </p>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="border-t border-slate-700/50 py-12 px-4">
         <div className="max-w-6xl mx-auto">
@@ -541,6 +630,8 @@ export default function HomePage() {
                 <li><a href="#calculator" className="hover:text-orange-400">Gas Rate Calculator</a></li>
                 <li><a href="#how-it-works" className="hover:text-orange-400">How It Works</a></li>
                 <li><a href="#faq" className="hover:text-orange-400">FAQ</a></li>
+                <li><a href="/gas-bill-calculator" className="hover:text-emerald-400">Gas Bill Calculator</a></li>
+                <li><a href="/gas-cost-calculator" className="hover:text-cyan-400">Gas Cost Calculator</a></li>
               </ul>
             </div>
             <div>
