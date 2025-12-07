@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import { StampDutyCalculator } from '../components/StampDutyCalculator'
 
 export const metadata: Metadata = {
@@ -42,9 +43,10 @@ export default function HomePage() {
               </div>
             </a>
             <div className="hidden sm:flex items-center gap-4 text-sm">
-              <a href="#calculator" className="text-slate-300 hover:text-white transition-colors">Calculator</a>
-              <a href="#rates" className="text-slate-300 hover:text-white transition-colors">Rates</a>
-              <a href="#faq" className="text-slate-300 hover:text-white transition-colors">FAQ</a>
+              <Link href="/scotland" className="text-slate-300 hover:text-white transition-colors">Scotland</Link>
+              <Link href="/wales" className="text-slate-300 hover:text-white transition-colors">Wales</Link>
+              <Link href="/buy-to-let" className="text-slate-300 hover:text-white transition-colors">Buy to Let</Link>
+              <Link href="/commercial" className="text-slate-300 hover:text-white transition-colors">Commercial</Link>
             </div>
           </div>
         </div>
@@ -308,7 +310,7 @@ export default function HomePage() {
                 </svg>
               </summary>
               <div className="px-6 pb-4 text-sm text-slate-400">
-                No, this stamp duty calculator is specifically for Stamp Duty Land Tax (SDLT) which applies to England and Northern Ireland. Scotland uses Land and Buildings Transaction Tax (LBTT) and Wales uses Land Transaction Tax (LTT), both with different rates and thresholds. We're working on adding a stamp duty calculator for Wales and Scotland soon.
+                Yes! We have dedicated calculators for all UK nations. This page covers England and Northern Ireland (SDLT). For Scotland, use our <a href="/scotland" className="text-blue-400 hover:text-blue-300">Scotland LBTT Calculator</a> which uses Land and Buildings Transaction Tax rates. For Wales, use our <a href="/wales" className="text-red-400 hover:text-red-300">Wales LTT Calculator</a> which uses Land Transaction Tax rates. Each has different thresholds and rates.
               </div>
             </details>
 
@@ -410,10 +412,123 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* UK Regions Section */}
+      <section className="py-16 px-4 bg-slate-800/30">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-white text-center mb-4">
+            Stamp Duty Calculator by Region
+          </h2>
+          <p className="text-slate-400 text-center mb-12 max-w-2xl mx-auto">
+            Scotland and Wales have their own property tax systems with different rates and thresholds
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-indigo-500/30 relative overflow-hidden">
+              <div className="absolute top-0 right-0 bg-indigo-500 text-white text-xs px-3 py-1 rounded-bl-lg font-medium">
+                Current
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">England & N. Ireland</h3>
+              <p className="text-sm text-slate-400 mb-4">
+                Stamp Duty Land Tax (SDLT) with £125,000 nil-rate threshold.
+              </p>
+              <a href="#calculator" className="text-indigo-400 text-sm font-medium hover:text-indigo-300">
+                Use calculator above →
+              </a>
+            </div>
+
+            <Link href="/scotland" className="bg-slate-800/50 rounded-2xl p-6 border border-blue-500/30 hover:border-blue-500/50 transition-colors block">
+              <h3 className="text-lg font-semibold text-white mb-2">Stamp Duty Calculator Scotland</h3>
+              <p className="text-sm text-slate-400 mb-4">
+                Land and Buildings Transaction Tax (LBTT) with £145,000 nil-rate threshold and 6% ADS for additional properties.
+              </p>
+              <span className="text-blue-400 text-sm font-medium">
+                Calculate LBTT →
+              </span>
+            </Link>
+
+            <Link href="/wales" className="bg-slate-800/50 rounded-2xl p-6 border border-red-500/30 hover:border-red-500/50 transition-colors block">
+              <h3 className="text-lg font-semibold text-white mb-2">Stamp Duty Calculator Wales</h3>
+              <p className="text-sm text-slate-400 mb-4">
+                Land Transaction Tax (LTT) with £225,000 nil-rate threshold - the highest in the UK.
+              </p>
+              <span className="text-red-400 text-sm font-medium">
+                Calculate LTT →
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Specialist Calculators Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-white text-center mb-4">
+            Specialist Stamp Duty Calculators
+          </h2>
+          <p className="text-slate-400 text-center mb-12 max-w-2xl mx-auto">
+            Different property types and buyer situations have their own stamp duty rules
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Link href="/buy-to-let" className="bg-slate-800/50 rounded-xl p-5 border border-amber-500/30 hover:border-amber-500/50 transition-colors block">
+              <div className="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center mb-3">
+                <svg className="w-5 h-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
+              <h3 className="text-white font-semibold mb-1">Buy to Let Calculator</h3>
+              <p className="text-sm text-slate-400 mb-2">
+                Calculate stamp duty on rental investment properties including the 5% surcharge.
+              </p>
+              <span className="text-amber-400 text-sm font-medium">Calculate BTL →</span>
+            </Link>
+
+            <Link href="/second-home" className="bg-slate-800/50 rounded-xl p-5 border border-purple-500/30 hover:border-purple-500/50 transition-colors block">
+              <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center mb-3">
+                <svg className="w-5 h-5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+              </div>
+              <h3 className="text-white font-semibold mb-1">Second Home Calculator</h3>
+              <p className="text-sm text-slate-400 mb-2">
+                Work out stamp duty on holiday homes and second properties with the 5% surcharge.
+              </p>
+              <span className="text-purple-400 text-sm font-medium">Calculate Second Home →</span>
+            </Link>
+
+            <Link href="/commercial" className="bg-slate-800/50 rounded-xl p-5 border border-emerald-500/30 hover:border-emerald-500/50 transition-colors block">
+              <div className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center mb-3">
+                <svg className="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 className="text-white font-semibold mb-1">Commercial Calculator</h3>
+              <p className="text-sm text-slate-400 mb-2">
+                Lower rates for offices, shops, warehouses and mixed-use properties. Max 5%.
+              </p>
+              <span className="text-emerald-400 text-sm font-medium">Calculate Commercial →</span>
+            </Link>
+
+            <div className="bg-slate-800/50 rounded-xl p-5 border border-slate-700/50">
+              <div className="w-10 h-10 rounded-lg bg-slate-700/50 flex items-center justify-center mb-3">
+                <svg className="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <h3 className="text-white font-semibold mb-1">First-Time Buyer</h3>
+              <p className="text-sm text-slate-400 mb-2">
+                Pay no stamp duty up to £300,000. Use the main calculator and select "First-Time Buyer".
+              </p>
+              <a href="#calculator" className="text-indigo-400 text-sm font-medium">Use main calculator →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="border-t border-slate-700/50 py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
               <h4 className="text-white font-semibold mb-3">Stamp Duty Calculator</h4>
               <p className="text-sm text-slate-400">
@@ -421,11 +536,19 @@ export default function HomePage() {
               </p>
             </div>
             <div>
-              <h4 className="text-white font-semibold mb-3">Stamp Duty Resources</h4>
+              <h4 className="text-white font-semibold mb-3">By Region</h4>
               <ul className="text-sm text-slate-400 space-y-2">
-                <li><a href="#calculator" className="hover:text-indigo-400">Stamp Duty Calculator</a></li>
-                <li><a href="#rates" className="hover:text-indigo-400">Stamp Duty Rates 2025</a></li>
-                <li><a href="#faq" className="hover:text-indigo-400">Stamp Duty FAQ</a></li>
+                <li><a href="#calculator" className="hover:text-indigo-400">England Calculator</a></li>
+                <li><Link href="/scotland" className="hover:text-blue-400">Scotland LBTT Calculator</Link></li>
+                <li><Link href="/wales" className="hover:text-red-400">Wales LTT Calculator</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-white font-semibold mb-3">By Property Type</h4>
+              <ul className="text-sm text-slate-400 space-y-2">
+                <li><Link href="/buy-to-let" className="hover:text-amber-400">Buy to Let Calculator</Link></li>
+                <li><Link href="/second-home" className="hover:text-purple-400">Second Home Calculator</Link></li>
+                <li><Link href="/commercial" className="hover:text-emerald-400">Commercial Calculator</Link></li>
               </ul>
             </div>
             <div>
@@ -445,7 +568,7 @@ export default function HomePage() {
           </div>
           <div className="pt-8 border-t border-slate-700/50 text-center">
             <p className="text-xs text-slate-500">
-              Stamp Duty Calculator UK - Free SDLT calculator for England and Northern Ireland property purchases
+              Stamp Duty Calculator UK - Free SDLT, LBTT and LTT calculators for property purchases across the UK
             </p>
           </div>
         </div>

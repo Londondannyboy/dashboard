@@ -96,7 +96,12 @@ export const RAINMAKRR_STATIC_ROUTES = [
 
 // Stamp Duty specific static routes
 export const STAMP_DUTY_STATIC_ROUTES = [
-  { path: '', changeFrequency: 'monthly' as const, priority: 1.0 },
+  { path: '', changeFrequency: 'weekly' as const, priority: 1.0 },
+  { path: '/scotland', changeFrequency: 'weekly' as const, priority: 0.9 },
+  { path: '/wales', changeFrequency: 'weekly' as const, priority: 0.9 },
+  { path: '/buy-to-let', changeFrequency: 'weekly' as const, priority: 0.9 },
+  { path: '/second-home', changeFrequency: 'weekly' as const, priority: 0.9 },
+  { path: '/commercial', changeFrequency: 'weekly' as const, priority: 0.9 },
 ]
 
 // GTM Quest specific static routes
@@ -112,6 +117,11 @@ export const GTM_STATIC_ROUTES = [
 export const TRACTOR_INSURANCE_STATIC_ROUTES = [
   { path: '', changeFrequency: 'weekly' as const, priority: 1.0 },
   { path: '/articles', changeFrequency: 'daily' as const, priority: 0.8 },
+  { path: '/vintage-tractor-insurance', changeFrequency: 'weekly' as const, priority: 0.9 },
+  { path: '/tractor-insurance-cost', changeFrequency: 'weekly' as const, priority: 0.9 },
+  { path: '/kubota-tractor-insurance', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/john-deere-tractor-insurance', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/massey-ferguson-tractor-insurance', changeFrequency: 'weekly' as const, priority: 0.8 },
 ]
 
 /**

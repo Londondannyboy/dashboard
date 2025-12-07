@@ -43,7 +43,8 @@ export default function HomePage() {
             </a>
             <nav className="hidden sm:flex items-center gap-6 text-sm">
               <a href="#calculator" className="text-slate-300 hover:text-white transition-colors">Get Quote</a>
-              <a href="#cover-types" className="text-slate-300 hover:text-white transition-colors">Cover Types</a>
+              <a href="/tractor-insurance-cost" className="text-slate-300 hover:text-white transition-colors">Costs</a>
+              <a href="/vintage-tractor-insurance" className="text-slate-300 hover:text-white transition-colors">Vintage</a>
               <a href="#faq" className="text-slate-300 hover:text-white transition-colors">FAQ</a>
               <a href="/articles" className="text-slate-300 hover:text-white transition-colors">Farming News</a>
             </nav>
@@ -793,6 +794,79 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Tractor Brands Section */}
+      <section className="py-16 px-4 bg-slate-800/30">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-white text-center mb-4">
+            Tractor Insurance by Brand
+          </h2>
+          <p className="text-slate-400 text-center mb-12 max-w-3xl mx-auto">
+            Looking for specialist insurance for your tractor? We cover all major brands with tailored policies
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a href="/john-deere-tractor-insurance" className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-green-500/50 transition-colors group">
+              <div className="w-12 h-12 rounded-xl bg-green-600/20 flex items-center justify-center mb-4">
+                <span className="text-2xl">🦌</span>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-green-400">John Deere Insurance</h3>
+              <p className="text-sm text-slate-400 mb-3">
+                Specialist cover for all John Deere models from compact 1 Series to flagship 9R tractors
+              </p>
+              <span className="text-green-400 text-sm font-medium">Get JD Quotes →</span>
+            </a>
+
+            <a href="/massey-ferguson-tractor-insurance" className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-red-500/50 transition-colors group">
+              <div className="w-12 h-12 rounded-xl bg-red-600/20 flex items-center justify-center mb-4">
+                <span className="text-2xl">🔴</span>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-red-400">Massey Ferguson Insurance</h3>
+              <p className="text-sm text-slate-400 mb-3">
+                Cover for MF tractors including classic Grey Fergies, 5S, 7S, and 8S Series models
+              </p>
+              <span className="text-red-400 text-sm font-medium">Get MF Quotes →</span>
+            </a>
+
+            <a href="/kubota-tractor-insurance" className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-orange-500/50 transition-colors group">
+              <div className="w-12 h-12 rounded-xl bg-orange-600/20 flex items-center justify-center mb-4">
+                <span className="text-2xl">🟠</span>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-orange-400">Kubota Insurance</h3>
+              <p className="text-sm text-slate-400 mb-3">
+                Specialist Kubota cover for B-Series compacts to M7-Series agricultural tractors
+              </p>
+              <span className="text-orange-400 text-sm font-medium">Get Kubota Quotes →</span>
+            </a>
+          </div>
+
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <a href="/vintage-tractor-insurance" className="bg-gradient-to-r from-amber-500/10 to-yellow-500/10 rounded-2xl p-6 border border-amber-500/20 hover:border-amber-500/40 transition-colors group">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center">
+                  <span className="text-2xl">🏛️</span>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white group-hover:text-amber-400">Vintage Tractor Insurance</h3>
+                  <p className="text-sm text-slate-400">Specialist cover for classic and antique tractors</p>
+                </div>
+              </div>
+            </a>
+
+            <a href="/tractor-insurance-cost" className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-2xl p-6 border border-blue-500/20 hover:border-blue-500/40 transition-colors group">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                  <span className="text-2xl">💷</span>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white group-hover:text-blue-400">Tractor Insurance Costs</h3>
+                  <p className="text-sm text-slate-400">Complete guide to UK tractor insurance pricing</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 px-4 bg-gradient-to-br from-green-500/20 to-emerald-500/20">
         <div className="max-w-4xl mx-auto text-center">
@@ -832,17 +906,17 @@ export default function HomePage() {
             <div>
               <h4 className="text-white font-semibold mb-3">Insurance Types</h4>
               <ul className="text-sm text-slate-400 space-y-2">
-                <li><a href="#" className="hover:text-green-400">Tractor Insurance</a></li>
-                <li><a href="#" className="hover:text-green-400">Farm Insurance</a></li>
-                <li><a href="#" className="hover:text-green-400">Agricultural Fleet</a></li>
+                <li><a href="/vintage-tractor-insurance" className="hover:text-green-400">Vintage Tractor Insurance</a></li>
+                <li><a href="/tractor-insurance-cost" className="hover:text-green-400">Insurance Costs Guide</a></li>
+                <li><a href="#cover-types" className="hover:text-green-400">Cover Types</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-white font-semibold mb-3">Resources</h4>
+              <h4 className="text-white font-semibold mb-3">Tractor Brands</h4>
               <ul className="text-sm text-slate-400 space-y-2">
-                <li><a href="/articles" className="hover:text-green-400">Farming News</a></li>
-                <li><a href="#" className="hover:text-green-400">Insurance Guides</a></li>
-                <li><a href="#" className="hover:text-green-400">Contact Us</a></li>
+                <li><a href="/john-deere-tractor-insurance" className="hover:text-green-400">John Deere Insurance</a></li>
+                <li><a href="/massey-ferguson-tractor-insurance" className="hover:text-green-400">Massey Ferguson Insurance</a></li>
+                <li><a href="/kubota-tractor-insurance" className="hover:text-green-400">Kubota Insurance</a></li>
               </ul>
             </div>
           </div>
