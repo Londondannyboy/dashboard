@@ -1,8 +1,7 @@
 import { Metadata } from 'next'
-import { GlobalHeader, GlobalFooter } from '@quest/ui/layout'
 import { GTMPlanner } from './components/GTMPlanner'
+import { HeaderWrapper, FooterWrapper } from './components/LayoutWrappers'
 import Link from 'next/link'
-import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'GTM Agency | Go-To-Market Strategy & Planning | GTM Quest',
@@ -17,37 +16,10 @@ export const metadata: Metadata = {
   },
 }
 
-const navItems = [
-  { href: '/news', label: 'News' },
-  { href: '/directory', label: 'Providers' },
-  { href: '/ecosystem', label: 'Network' },
-  { href: '/momentum', label: 'Momentum' },
-]
-
-const productLinks = [
-  { label: 'GTM Planner', href: '/' },
-  { label: 'Providers', href: '/directory' },
-  { label: 'News', href: '/news' },
-  { label: 'Network', href: '/ecosystem' },
-]
-
-const companyLinks = [
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'Privacy', href: '/privacy' },
-  { label: 'Terms', href: '/terms' },
-]
-
 export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0a0f] text-white">
-      <GlobalHeader
-        brandName="GTM"
-        brandAccent="Quest"
-        brandGradient="from-orange-400 to-amber-500"
-        signInGradient="from-orange-500 to-amber-500"
-        navItems={navItems}
-      />
+      <HeaderWrapper />
 
       <main className="flex-1 pt-16">
         {/* Hero Section */}
@@ -438,14 +410,7 @@ export default function HomePage() {
         </section>
       </main>
 
-      <GlobalFooter
-        brandName="GTM"
-        brandAccent="Quest"
-        brandGradient="from-orange-400 to-amber-500"
-        brandDescription="Your expert GTM agency partner for go-to-market success"
-        productLinks={productLinks}
-        companyLinks={companyLinks}
-      />
+      <FooterWrapper />
     </div>
   )
 }

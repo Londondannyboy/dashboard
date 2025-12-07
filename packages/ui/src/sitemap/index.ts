@@ -107,3 +107,25 @@ export const GTM_STATIC_ROUTES = [
   { path: '/ecosystem', changeFrequency: 'weekly' as const, priority: 0.7 },
   { path: '/momentum', changeFrequency: 'daily' as const, priority: 0.8 },
 ]
+
+// Tractor Insurance specific static routes
+export const TRACTOR_INSURANCE_STATIC_ROUTES = [
+  { path: '', changeFrequency: 'weekly' as const, priority: 1.0 },
+  { path: '/articles', changeFrequency: 'daily' as const, priority: 0.8 },
+]
+
+/**
+ * Generate robots.txt configuration
+ */
+export function generateRobots(baseUrl: string): {
+  rules: { userAgent: string; allow: string }
+  sitemap: string
+} {
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/',
+    },
+    sitemap: `${baseUrl}/sitemap.xml`,
+  }
+}

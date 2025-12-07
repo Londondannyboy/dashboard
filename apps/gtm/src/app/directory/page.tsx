@@ -1,4 +1,4 @@
-import { GlobalHeader, GlobalFooter } from '@quest/ui/layout'
+import { HeaderWrapper, FooterWrapper } from '../components/LayoutWrappers'
 import { sql } from '@/lib/db'
 import Link from 'next/link'
 
@@ -40,18 +40,7 @@ export default async function DirectoryPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0a0a0f] text-white">
-      <GlobalHeader
-        brandName="GTM"
-        brandAccent="Quest"
-        brandGradient="from-orange-400 to-amber-500"
-        signInGradient="from-orange-500 to-amber-500"
-        navItems={[
-          { href: '/news', label: 'News' },
-          { href: '/directory', label: 'Providers', highlight: true },
-          { href: '/ecosystem', label: 'Network' },
-          { href: '/momentum', label: 'Momentum' },
-        ]}
-      />
+      <HeaderWrapper />
 
       <main className="flex-1 pt-16">
         <section className="py-12 px-6 border-b border-white/10">
@@ -163,23 +152,7 @@ export default async function DirectoryPage() {
         </section>
       </main>
 
-      <GlobalFooter
-        brandName="GTM"
-        brandAccent="Quest"
-        brandGradient="from-orange-400 to-amber-500"
-        brandDescription="Your expert GTM agency partner"
-        productLinks={[
-          { label: 'GTM Planner', href: '/' },
-          { label: 'Providers', href: '/directory' },
-          { label: 'News', href: '/news' },
-          { label: 'Network', href: '/ecosystem' },
-        ]}
-        companyLinks={[
-          { label: 'About', href: '/about' },
-          { label: 'Contact', href: '/contact' },
-          { label: 'Privacy', href: '/privacy' },
-        ]}
-      />
+      <FooterWrapper />
     </div>
   )
 }
