@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --primary: #6d28d9;
+  --primary-dark: #5b21b6;
+  --primary-light: #8b5cf6;
+  --accent: #f59e0b;
+  --accent-light: #fcd34d;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hero gradient - Professional purple for fractional work */
+.hero-gradient {
+  background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 50%, #5b21b6 100%);
+}
+
+/* Accent gradient */
+.accent-gradient {
+  background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Stats counter animation */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stat-number {
+  animation: countUp 0.6s ease-out forwards;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-violet-700 hover:bg-violet-800 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200;
+}
+
+.btn-secondary {
+  @apply bg-white hover:bg-gray-50 text-violet-700 font-semibold px-6 py-3 rounded-lg border-2 border-violet-700 transition-all duration-200;
+}
+
+.btn-accent {
+  @apply bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200;
+}
+
+/* Job card styles */
+.job-card {
+  @apply bg-white rounded-xl border border-gray-200 p-6 transition-all duration-200 hover:border-violet-300 hover:shadow-lg;
+}
+
+/* Role card */
+.role-card {
+  @apply bg-white rounded-xl border border-gray-200 p-6 text-center transition-all duration-200 hover:border-amber-300 hover:shadow-lg cursor-pointer;
+}
+
+/* Review card */
+.review-card {
+  @apply bg-white rounded-2xl p-8 shadow-lg border border-gray-100;
+}
+
+/* Badge styles */
+.badge-featured {
+  @apply bg-amber-100 text-amber-800 text-xs font-semibold px-2 py-1 rounded;
+}
+
+.badge-remote {
+  @apply bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded;
+}
+
+.badge-london {
+  @apply bg-violet-100 text-violet-800 text-xs font-semibold px-2 py-1 rounded;
+}
+
+.badge-uk {
+  @apply bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded;
+}
+
+/* Step indicator */
+.step-number {
+  @apply w-12 h-12 bg-violet-700 rounded-full flex items-center justify-center text-white font-bold text-lg;
+}
+
+/* Comparison row */
+.comparison-row:nth-child(even) {
+  @apply bg-gray-50;
+}
+
+.comparison-row:hover {
+  @apply bg-violet-50;
+}
