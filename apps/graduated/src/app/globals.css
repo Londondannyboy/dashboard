@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --primary: #1e40af;
+  --primary-dark: #1e3a8a;
+  --accent: #f472b6;
+  --accent-light: #fbcfe8;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hero gradient */
+.hero-gradient {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #1e40af 100%);
+}
+
+/* Accent gradient */
+.accent-gradient {
+  background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Stats counter animation */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stat-number {
+  animation: countUp 0.6s ease-out forwards;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200;
+}
+
+.btn-secondary {
+  @apply bg-white hover:bg-gray-50 text-blue-600 font-semibold px-6 py-3 rounded-lg border-2 border-blue-600 transition-all duration-200;
+}
+
+.btn-accent {
+  @apply bg-pink-500 hover:bg-pink-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200;
+}
+
+/* Job card styles */
+.job-card {
+  @apply bg-white rounded-xl border border-gray-200 p-6 transition-all duration-200 hover:border-blue-300 hover:shadow-lg;
+}
+
+/* Category card */
+.category-card {
+  @apply bg-white rounded-xl border border-gray-200 p-6 text-center transition-all duration-200 hover:border-pink-300 hover:shadow-lg cursor-pointer;
+}
+
+/* Testimonial card */
+.testimonial-card {
+  @apply bg-white rounded-2xl p-8 shadow-lg border border-gray-100;
+}

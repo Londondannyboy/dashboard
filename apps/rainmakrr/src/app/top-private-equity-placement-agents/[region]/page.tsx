@@ -158,12 +158,88 @@ const REGIONS: Record<string, RegionConfig> = {
     subtitle: 'Directory of Leading Singapore PE Fundraising Firms',
     heroDescription: 'Singapore-based placement agents provide access to major Southeast Asian investors including GIC, Temasek, and regional family offices, serving as a hub for Asia-focused fundraising.',
     mainContent: [
-      'Singapore serves as a major hub for private equity activity in Southeast Asia, hosting significant sovereign wealth funds and serving as a base for regional family offices and institutional investors.',
+      'Singapore serves as a major hub for private equity activity in Southeast Asia, hosting significant sovereign wealth funds and serving as a base for regional family offices and institutional investors. The city-state has emerged as the preferred base for placement agents targeting Asian capital, with its favorable regulatory environment and strategic location.',
+      'Top private equity placement agents in Singapore maintain deep relationships with GIC and Temasek, two of the world\'s largest and most active sovereign wealth investors. These government-linked investors have allocated billions to private equity funds globally, making Singapore-based agents essential partners for fund managers seeking Asian capital.',
     ],
     whyChoose: [
-      'Singapore-based specialists offer deep relationships with major regional investors and expertise in Southeast Asian market dynamics.',
+      'Singapore-based specialists offer deep relationships with major regional investors and expertise in Southeast Asian market dynamics. The city\'s status as Asia\'s premier financial hub provides placement agents with unparalleled access to family offices across Indonesia, Malaysia, Thailand, and the Philippines.',
+      'Singapore\'s regulatory framework under the Monetary Authority of Singapore (MAS) ensures high standards of professionalism. Placement agents based here benefit from the city\'s robust legal infrastructure and investor-friendly environment.',
     ],
     filter: { country: 'Singapore' }
+  },
+  'japan': {
+    name: 'Japan',
+    title: 'Top Private Equity Placement Agents Japan',
+    metaDescription: 'Leading private equity placement agents in Japan. Specialists with deep relationships across Japanese pension funds, insurance companies, and institutional investors.',
+    h1: 'Top Private Equity Placement Agents Japan',
+    subtitle: 'Directory of Leading Japanese PE Fundraising Firms',
+    heroDescription: 'Japan represents one of the world\'s largest pools of institutional capital. Top private equity placement agents in Japan connect fund managers with major pension funds like GPIF, insurance companies, and corporate investors.',
+    mainContent: [
+      'Japan hosts the world\'s largest pension fund (GPIF) with over $1.5 trillion in assets, along with numerous insurance companies and corporate pension plans collectively managing trillions in assets. Top private equity placement agents in Japan provide critical access to these sophisticated institutional investors who have steadily increased allocations to alternative investments.',
+      'Japanese institutional investors have unique preferences and requirements, including detailed due diligence processes, preference for established managers, and specific reporting standards. Placement agents with deep Japan expertise navigate these requirements while building long-term relationships with key decision-makers.',
+    ],
+    whyChoose: [
+      'Japanese placement agents offer essential expertise in navigating the unique cultural and regulatory landscape of Japan\'s institutional investor market. Understanding of Japanese business customs, language capabilities, and established relationships are critical for successful fundraising.',
+      'Top agents maintain relationships with major Japanese insurers (Nippon Life, Dai-ichi Life, Meiji Yasuda), corporate pensions, and regional banks that have become active LP investors. Their local presence and cultural fluency enable effective communication with Japanese investment committees.',
+    ],
+    filter: { country: 'Japan' }
+  },
+  'france': {
+    name: 'France',
+    title: 'Top Private Equity Placement Agents France',
+    metaDescription: 'Premier private equity placement agents in France. Specialists serving French institutional investors, insurance companies, and family offices across Europe.',
+    h1: 'Top Private Equity Placement Agents France',
+    subtitle: 'Directory of Leading French PE Fundraising Firms',
+    heroDescription: 'France represents one of Europe\'s largest private equity markets. Top placement agents in France connect fund managers with major institutional investors including insurance groups, pension funds, and prominent family offices.',
+    mainContent: [
+      'France is home to some of Europe\'s largest institutional investors, including major insurance groups (AXA, BNP Paribas Cardif, CNP Assurances) and the FRR sovereign wealth fund. Top private equity placement agents in France maintain deep relationships with these sophisticated investors who allocate billions to alternative investments annually.',
+      'The French institutional investor landscape is characterized by sophisticated due diligence processes and a preference for managers with established track records. Paris-based placement agents understand local regulatory requirements under AMF supervision and provide essential guidance on structuring funds for French investors.',
+    ],
+    whyChoose: [
+      'French placement agents offer crucial expertise in navigating France\'s unique regulatory environment and investor preferences. Their relationships with major French insurers and family offices provide access to significant pools of institutional capital.',
+      'Top agents understand the importance of French language capabilities and cultural nuances in building relationships with French investment committees. Their local presence enables effective engagement with key decision-makers across the French institutional investor community.',
+    ],
+    filter: { country: 'France' }
+  },
+  'germany': {
+    name: 'Germany',
+    title: 'Top Private Equity Placement Agents Germany',
+    metaDescription: 'Leading private equity placement agents in Germany. Experts with relationships across German pension funds, insurance companies, and institutional investors.',
+    h1: 'Top Private Equity Placement Agents Germany',
+    subtitle: 'Directory of Leading German PE Fundraising Firms',
+    heroDescription: 'Germany represents Europe\'s largest economy with substantial institutional capital. Top private equity placement agents in Germany connect fund managers with pension funds, insurance companies, and family offices across the DACH region.',
+    mainContent: [
+      'Germany hosts significant institutional capital across pension funds (Versorgungswerke), insurance companies (Allianz, Munich Re), and corporate treasury departments. Top private equity placement agents in Germany provide essential access to these conservative but substantial investors who have steadily increased private equity allocations.',
+      'German institutional investors are known for rigorous due diligence, preference for established managers, and specific regulatory requirements under BaFin supervision. Placement agents with deep German expertise navigate these requirements while building trusted relationships with key institutional decision-makers.',
+    ],
+    whyChoose: [
+      'German placement agents offer essential expertise in the unique regulatory and cultural landscape of German institutional investing. Understanding of German business practices, language capabilities, and established relationships with key investors are critical for successful fundraising.',
+      'Top agents maintain relationships across German Versorgungswerke (professional pension funds), insurance companies, and the growing number of German family offices actively investing in private equity. Their local presence enables effective engagement with German investment committees.',
+    ],
+    filter: { country: 'Germany' }
+  },
+  'london': {
+    name: 'London',
+    title: 'Top Private Equity Placement Agents London',
+    metaDescription: 'Best private equity placement agents in London. Premier City-based fundraising specialists with global LP relationships and cross-border expertise.',
+    h1: 'Top Private Equity Placement Agents London',
+    subtitle: 'Directory of Leading London PE Fundraising Firms',
+    heroDescription: 'London is the undisputed European capital of private equity fundraising. The best private equity placement agents in London lead global capital raising, connecting fund managers with institutional investors across Europe, the Middle East, and beyond.',
+    mainContent: [
+      'London serves as the premier hub for private equity placement agents in Europe and the second-largest PE market globally. The city\'s unique position provides access to UK pension schemes, European institutional investors, Middle Eastern sovereign wealth funds, and Asian family offices. Top private equity placement agents based in London manage cross-border fundraising campaigns that span multiple continents.',
+      'The concentration of financial expertise in the City and Mayfair has created a deep talent pool of placement professionals with extensive LP relationships. These London-based specialists understand complex cross-border fund structures, FCA regulatory requirements, and the diverse preferences of international institutional investors.',
+      'Best private equity placement agents in London typically maintain relationships with 500-1000+ institutional investors globally. Their deal flow includes everything from emerging manager first-time funds to multi-billion pound flagship vehicles for established GPs.',
+    ],
+    whyChoose: [
+      'London-based placement agents offer unmatched cross-border expertise and access to diverse pools of institutional capital. Their central time zone location enables effective communication with investors from New York to Singapore, while their FCA-regulated status provides institutional credibility.',
+      'The best private equity placement agents in London maintain deep relationships with major UK pension schemes (USS, LGPS funds), European insurers, Middle Eastern sovereign funds (ADIA, Mubadala, PIF), and increasingly active Asian family offices.',
+      'These firms provide comprehensive fundraising services including investor targeting, due diligence coordination, legal structuring advice, and closing support. Their market intelligence on investor preferences and competitive dynamics proves invaluable during challenging fundraising environments.',
+    ],
+    cityHighlight: {
+      name: 'The City & Mayfair',
+      description: 'London\'s financial districts host the highest concentration of private equity placement agents outside New York. Mayfair in particular has become synonymous with alternative investment fundraising, with numerous boutique and global placement agents maintaining offices in the W1 postcode.',
+    },
+    filter: { country: 'United Kingdom' }
   },
 }
 

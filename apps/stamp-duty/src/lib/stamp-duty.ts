@@ -1,7 +1,11 @@
 // UK Stamp Duty Land Tax (SDLT) Rates - December 2025
 // Source: https://www.gov.uk/stamp-duty-land-tax/residential-property-rates
+// Scotland LBTT: https://www.revenue.scot/land-buildings-transaction-tax
+// Wales LTT: https://www.gov.wales/land-transaction-tax-rates
 
 export type BuyerType = 'standard' | 'first-time' | 'additional' | 'non-uk-resident'
+export type PropertyType = 'residential' | 'commercial' | 'mixed'
+export type TaxRegion = 'england' | 'scotland' | 'wales'
 
 export interface StampDutyBand {
   threshold: number
@@ -47,6 +51,60 @@ const ADDITIONAL_PROPERTY_SURCHARGE = 0.05
 
 // Non-UK resident surcharge (2% on top of other rates)
 const NON_UK_RESIDENT_SURCHARGE = 0.02
+
+// ============================================
+// SCOTLAND - Land and Buildings Transaction Tax (LBTT)
+// ============================================
+const SCOTLAND_STANDARD_BANDS: StampDutyBand[] = [
+  { threshold: 145000, rate: 0, label: 'Up to £145,000' },
+  { threshold: 250000, rate: 0.02, label: '£145,001 to £250,000' },
+  { threshold: 325000, rate: 0.05, label: '£250,001 to £325,000' },
+  { threshold: 750000, rate: 0.10, label: '£325,001 to £750,000' },
+  { threshold: Infinity, rate: 0.12, label: 'Above £750,000' },
+]
+
+const SCOTLAND_FIRST_TIME_BUYER_BANDS: StampDutyBand[] = [
+  { threshold: 175000, rate: 0, label: 'Up to £175,000' },
+  { threshold: 250000, rate: 0.02, label: '£175,001 to £250,000' },
+  { threshold: 325000, rate: 0.05, label: '£250,001 to £325,000' },
+  { threshold: 750000, rate: 0.10, label: '£325,001 to £750,000' },
+  { threshold: Infinity, rate: 0.12, label: 'Above £750,000' },
+]
+
+const SCOTLAND_FIRST_TIME_BUYER_MAX = 175000 // Relief on first £175k
+
+// Scotland Additional Dwelling Supplement (ADS) - 6%
+const SCOTLAND_ADS_RATE = 0.06
+
+// ============================================
+// WALES - Land Transaction Tax (LTT)
+// ============================================
+const WALES_STANDARD_BANDS: StampDutyBand[] = [
+  { threshold: 225000, rate: 0, label: 'Up to £225,000' },
+  { threshold: 400000, rate: 0.06, label: '£225,001 to £400,000' },
+  { threshold: 750000, rate: 0.075, label: '£400,001 to £750,000' },
+  { threshold: 1500000, rate: 0.10, label: '£750,001 to £1.5 million' },
+  { threshold: Infinity, rate: 0.12, label: 'Above £1.5 million' },
+]
+
+// Wales higher rates (additional properties) - different bands
+const WALES_HIGHER_BANDS: StampDutyBand[] = [
+  { threshold: 180000, rate: 0.04, label: 'Up to £180,000' },
+  { threshold: 250000, rate: 0.075, label: '£180,001 to £250,000' },
+  { threshold: 400000, rate: 0.09, label: '£250,001 to £400,000' },
+  { threshold: 750000, rate: 0.115, label: '£400,001 to £750,000' },
+  { threshold: 1500000, rate: 0.14, label: '£750,001 to £1.5 million' },
+  { threshold: Infinity, rate: 0.16, label: 'Above £1.5 million' },
+]
+
+// ============================================
+// COMMERCIAL PROPERTY (SDLT)
+// ============================================
+const COMMERCIAL_BANDS: StampDutyBand[] = [
+  { threshold: 150000, rate: 0, label: 'Up to £150,000' },
+  { threshold: 250000, rate: 0.02, label: '£150,001 to £250,000' },
+  { threshold: Infinity, rate: 0.05, label: 'Above £250,000' },
+]
 
 function calculateBandedTax(price: number, bands: StampDutyBand[]): { tax: number, breakdown: StampDutyResult['breakdown'] } {
   let remainingPrice = price
@@ -195,5 +253,211 @@ export function getRateInfo(buyerType: BuyerType): {
           { range: 'Above £1.5 million', rate: '12%' },
         ],
       }
+  }
+}
+
+// ============================================
+// SCOTLAND LBTT Calculator
+// ============================================
+export interface ScotlandResult {
+  totalTax: number
+  effectiveRate: number
+  breakdown: StampDutyResult['breakdown']
+  propertyPrice: number
+  buyerType: BuyerType
+  adsAmount: number
+}
+
+export function calculateScotlandLBTT(
+  propertyPrice: number,
+  buyerType: BuyerType
+): ScotlandResult {
+  let baseTax = 0
+  let breakdown: StampDutyResult['breakdown'] = []
+  let adsAmount = 0
+
+  // Determine which bands to use
+  if (buyerType === 'first-time') {
+    const result = calculateBandedTax(propertyPrice, SCOTLAND_FIRST_TIME_BUYER_BANDS)
+    baseTax = result.tax
+    breakdown = result.breakdown
+  } else {
+    const result = calculateBandedTax(propertyPrice, SCOTLAND_STANDARD_BANDS)
+    baseTax = result.tax
+    breakdown = result.breakdown
+  }
+
+  // Add Additional Dwelling Supplement (6%) for additional properties
+  if (buyerType === 'additional') {
+    adsAmount = propertyPrice * SCOTLAND_ADS_RATE
+  }
+
+  const totalTax = baseTax + adsAmount
+  const effectiveRate = propertyPrice > 0 ? (totalTax / propertyPrice) * 100 : 0
+
+  return {
+    totalTax,
+    effectiveRate,
+    breakdown,
+    propertyPrice,
+    buyerType,
+    adsAmount,
+  }
+}
+
+export function getScotlandRateInfo(buyerType: BuyerType): {
+  title: string
+  description: string
+  bands: { range: string, rate: string }[]
+} {
+  switch (buyerType) {
+    case 'first-time':
+      return {
+        title: 'First-Time Buyer LBTT Rates',
+        description: 'Relief increases nil-rate threshold to £175,000',
+        bands: [
+          { range: 'Up to £175,000', rate: '0%' },
+          { range: '£175,001 to £250,000', rate: '2%' },
+          { range: '£250,001 to £325,000', rate: '5%' },
+          { range: '£325,001 to £750,000', rate: '10%' },
+          { range: 'Above £750,000', rate: '12%' },
+        ],
+      }
+    case 'additional':
+      return {
+        title: 'Additional Property LBTT Rates',
+        description: '6% Additional Dwelling Supplement (ADS) applies',
+        bands: [
+          { range: 'Up to £145,000', rate: '6% (ADS only)' },
+          { range: '£145,001 to £250,000', rate: '8% (2% + 6%)' },
+          { range: '£250,001 to £325,000', rate: '11% (5% + 6%)' },
+          { range: '£325,001 to £750,000', rate: '16% (10% + 6%)' },
+          { range: 'Above £750,000', rate: '18% (12% + 6%)' },
+        ],
+      }
+    default:
+      return {
+        title: 'Standard LBTT Rates',
+        description: 'Scotland Land and Buildings Transaction Tax',
+        bands: [
+          { range: 'Up to £145,000', rate: '0%' },
+          { range: '£145,001 to £250,000', rate: '2%' },
+          { range: '£250,001 to £325,000', rate: '5%' },
+          { range: '£325,001 to £750,000', rate: '10%' },
+          { range: 'Above £750,000', rate: '12%' },
+        ],
+      }
+  }
+}
+
+// ============================================
+// WALES LTT Calculator
+// ============================================
+export interface WalesResult {
+  totalTax: number
+  effectiveRate: number
+  breakdown: StampDutyResult['breakdown']
+  propertyPrice: number
+  buyerType: BuyerType
+}
+
+export function calculateWalesLTT(
+  propertyPrice: number,
+  buyerType: BuyerType
+): WalesResult {
+  let baseTax = 0
+  let breakdown: StampDutyResult['breakdown'] = []
+
+  // Wales uses different bands for additional properties
+  if (buyerType === 'additional') {
+    const result = calculateBandedTax(propertyPrice, WALES_HIGHER_BANDS)
+    baseTax = result.tax
+    breakdown = result.breakdown
+  } else {
+    const result = calculateBandedTax(propertyPrice, WALES_STANDARD_BANDS)
+    baseTax = result.tax
+    breakdown = result.breakdown
+  }
+
+  const effectiveRate = propertyPrice > 0 ? (baseTax / propertyPrice) * 100 : 0
+
+  return {
+    totalTax: baseTax,
+    effectiveRate,
+    breakdown,
+    propertyPrice,
+    buyerType,
+  }
+}
+
+export function getWalesRateInfo(buyerType: BuyerType): {
+  title: string
+  description: string
+  bands: { range: string, rate: string }[]
+} {
+  switch (buyerType) {
+    case 'additional':
+      return {
+        title: 'Higher Rate LTT',
+        description: 'For additional residential properties',
+        bands: [
+          { range: 'Up to £180,000', rate: '4%' },
+          { range: '£180,001 to £250,000', rate: '7.5%' },
+          { range: '£250,001 to £400,000', rate: '9%' },
+          { range: '£400,001 to £750,000', rate: '11.5%' },
+          { range: '£750,001 to £1.5m', rate: '14%' },
+          { range: 'Above £1.5 million', rate: '16%' },
+        ],
+      }
+    default:
+      return {
+        title: 'Standard LTT Rates',
+        description: 'Wales Land Transaction Tax',
+        bands: [
+          { range: 'Up to £225,000', rate: '0%' },
+          { range: '£225,001 to £400,000', rate: '6%' },
+          { range: '£400,001 to £750,000', rate: '7.5%' },
+          { range: '£750,001 to £1.5m', rate: '10%' },
+          { range: 'Above £1.5 million', rate: '12%' },
+        ],
+      }
+  }
+}
+
+// ============================================
+// COMMERCIAL PROPERTY Calculator
+// ============================================
+export interface CommercialResult {
+  totalTax: number
+  effectiveRate: number
+  breakdown: StampDutyResult['breakdown']
+  propertyPrice: number
+}
+
+export function calculateCommercialSDLT(propertyPrice: number): CommercialResult {
+  const result = calculateBandedTax(propertyPrice, COMMERCIAL_BANDS)
+  const effectiveRate = propertyPrice > 0 ? (result.tax / propertyPrice) * 100 : 0
+
+  return {
+    totalTax: result.tax,
+    effectiveRate,
+    breakdown: result.breakdown,
+    propertyPrice,
+  }
+}
+
+export function getCommercialRateInfo(): {
+  title: string
+  description: string
+  bands: { range: string, rate: string }[]
+} {
+  return {
+    title: 'Commercial SDLT Rates',
+    description: 'For non-residential and mixed-use properties',
+    bands: [
+      { range: 'Up to £150,000', rate: '0%' },
+      { range: '£150,001 to £250,000', rate: '2%' },
+      { range: 'Above £250,000', rate: '5%' },
+    ],
   }
 }
