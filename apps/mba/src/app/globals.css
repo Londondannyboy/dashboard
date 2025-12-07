@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --primary: #0f4c81;
+  --primary-dark: #0a3558;
+  --accent: #c9a227;
+  --accent-light: #f5e9c4;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hero gradient - Professional business school look */
+.hero-gradient {
+  background: linear-gradient(135deg, #0f4c81 0%, #1a5c94 50%, #0a3558 100%);
+}
+
+/* Gold accent gradient */
+.accent-gradient {
+  background: linear-gradient(135deg, #c9a227 0%, #d4af37 100%);
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Stats counter animation */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stat-number {
+  animation: countUp 0.6s ease-out forwards;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-blue-900 hover:bg-blue-800 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200;
+}
+
+.btn-secondary {
+  @apply bg-white hover:bg-gray-50 text-blue-900 font-semibold px-6 py-3 rounded-lg border-2 border-blue-900 transition-all duration-200;
+}
+
+.btn-accent {
+  @apply bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200;
+}
+
+/* Program card styles */
+.program-card {
+  @apply bg-white rounded-xl border border-gray-200 p-6 transition-all duration-200 hover:border-blue-300 hover:shadow-lg;
+}
+
+/* Category card */
+.category-card {
+  @apply bg-white rounded-xl border border-gray-200 p-6 text-center transition-all duration-200 hover:border-amber-300 hover:shadow-lg cursor-pointer;
+}
+
+/* Review card */
+.review-card {
+  @apply bg-white rounded-2xl p-8 shadow-lg border border-gray-100;
+}
+
+/* Rating stars */
+.star-filled {
+  @apply text-amber-400;
+}
+
+.star-empty {
+  @apply text-gray-300;
+}
+
+/* Comparison table */
+.comparison-row:nth-child(even) {
+  @apply bg-gray-50;
+}
+
+.comparison-row:hover {
+  @apply bg-blue-50;
+}
+
+/* Badge styles */
+.badge-featured {
+  @apply bg-amber-100 text-amber-800 text-xs font-semibold px-2 py-1 rounded;
+}
+
+.badge-online {
+  @apply bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded;
+}
+
+.badge-ranking {
+  @apply bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded;
+}
