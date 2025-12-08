@@ -23,11 +23,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Fetch all published articles
   const articles = await sql`
+    SELECT slug, published_at, updated_at, guide_type
+    FROM articles
+    WHERE status = 'published'
+    AND app = 'relocation'
+    AND (guide_type IS NULL OR guide_type != 'country')
+    ORDER BY published_at DESC
+  ` as Array<{
+    slug: string
+    published_at: string | null
+    updated_at: string | null
+    guide_type: string | null
+  }>
+
+  // Fetch all country guides
+  const guides = await sql`
     SELECT slug, published_at, updated_at
     FROM articles
     WHERE status = 'published'
     AND app = 'relocation'
-    ORDER BY published_at DESC
+    AND guide_type = 'country'
+    ORDER BY keyword_difficulty ASC
   ` as Array<{
     slug: string
     published_at: string | null
@@ -78,6 +94,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.9,
     },
+    {
+      url: `${BASE_URL}/guides`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
   ]
 
   // Dynamic article pages
@@ -92,5 +114,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
-  return [...staticPages, ...articlePages]
+  // Country guide pages (higher priority for SEO)
+  const guidePages: MetadataRoute.Sitemap = guides.map((guide) => ({
+    url: `${BASE_URL}/guides/${guide.slug}`,
+    lastModified: guide.updated_at
+      ? new Date(guide.updated_at)
+      : guide.published_at
+      ? new Date(guide.published_at)
+      : new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.85,
+  }))
+
+  return [...staticPages, ...guidePages, ...articlePages]
 }
