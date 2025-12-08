@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a855f7"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="20" fill="url(#bg)"/>
+  <!-- Person in lotus pose -->
+  <!-- Head -->
+  <circle cx="50" cy="28" r="10" fill="white"/>
+  <!-- Body -->
+  <ellipse cx="50" cy="50" rx="15" ry="12" fill="white"/>
+  <!-- Arms raised -->
+  <path d="M35 45 Q25 30 30 20" stroke="white" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M65 45 Q75 30 70 20" stroke="white" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <!-- Legs crossed -->
+  <ellipse cx="50" cy="68" rx="20" ry="8" fill="white"/>
+  <!-- Peaceful expression -->
+  <line x1="45" y1="26" x2="48" y2="26" stroke="#a855f7" stroke-width="2" stroke-linecap="round"/>
+  <line x1="52" y1="26" x2="55" y2="26" stroke="#a855f7" stroke-width="2" stroke-linecap="round"/>
+  <path d="M46 32 Q50 35 54 32" stroke="#a855f7" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>

@@ -8,12 +8,54 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Rainmakrr - Private Equity Placement Agent Intelligence',
   description: 'The insider guide to placement agents. Top PE & VC placement agent rankings, fund placement news, deal flow intelligence, and market insights.',
+  keywords: 'placement agents, private equity placement, PE placement agent, VC placement agent, fund placement, deal flow, LP relationships',
+  metadataBase: new URL('https://rainmakrr.com'),
+  openGraph: {
+    title: 'Rainmakrr - Private Equity Placement Agent Intelligence',
+    description: 'Top PE & VC placement agent rankings, fund placement news, and deal flow intelligence.',
+    type: 'website',
+    locale: 'en_GB',
+    siteName: 'Rainmakrr',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Rainmakrr - Private Equity Placement Agent Intelligence',
+    description: 'Top PE & VC placement agent rankings and fund placement news.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   icons: {
     icon: [
       { url: '/icon.svg', type: 'image/svg+xml' },
     ],
     apple: '/icon.svg',
   },
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Rainmakrr',
+  description: 'Top PE & VC placement agent rankings, fund placement news, and deal flow intelligence.',
+  url: 'https://rainmakrr.com',
+}
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Rainmakrr',
+  description: 'Private equity and venture capital placement agent intelligence platform',
+  url: 'https://rainmakrr.com',
+  areaServed: 'Global',
 }
 
 export default function RootLayout({
@@ -23,6 +65,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+      </head>
       <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>

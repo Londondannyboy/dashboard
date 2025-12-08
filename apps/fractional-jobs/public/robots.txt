@@ -1,0 +1,6 @@
+# Fractional Quest Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://fractional.quest/sitemap.xml
