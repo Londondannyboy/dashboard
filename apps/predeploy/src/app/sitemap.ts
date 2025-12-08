@@ -1,10 +1,28 @@
 import { MetadataRoute } from 'next'
 import { neon } from '@neondatabase/serverless'
+import { headers } from 'next/headers'
 
 export const dynamic = 'force-dynamic'
 
+async function getBaseUrl(): Promise<string> {
+  // Try to get from request headers first
+  try {
+    const headersList = await headers()
+    const host = headersList.get('host')
+    const protocol = headersList.get('x-forwarded-proto') || 'https'
+    if (host) {
+      return `${protocol}://${host}`
+    }
+  } catch {
+    // Ignore errors during build
+  }
+
+  // Fallback to environment variables or default
+  return process.env.NEXT_PUBLIC_BASE_URL || 'https://predeploy.quest'
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://predeploy.quest'
+  const baseUrl = await getBaseUrl()
 
   // Return static pages only if DATABASE_URL is not available (during build)
   if (!process.env.DATABASE_URL) {
