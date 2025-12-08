@@ -19,11 +19,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Drone Insurance UK',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Drone Insurance UK 2025 | UAV & Quadcopter Insurance Quotes',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Drone Insurance UK 2025',
     description: 'Compare drone insurance quotes from UK specialist insurers.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

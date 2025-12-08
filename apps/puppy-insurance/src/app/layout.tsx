@@ -19,11 +19,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Puppy Insurance UK',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Puppy Insurance UK 2025 | Compare Pet Insurance Quotes',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Puppy Insurance UK 2025',
     description: 'Compare puppy insurance quotes. Find the best pet insurance for your new puppy.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

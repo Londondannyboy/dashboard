@@ -19,11 +19,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Craft Fair Insurance UK',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Craft Fair Insurance UK 2025 | Market Stall & Trader Cover',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Craft Fair Insurance UK 2025',
     description: 'Market stall and craft fair insurance quotes for UK traders.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

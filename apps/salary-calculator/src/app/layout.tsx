@@ -19,11 +19,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Salary Calculator UK',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Salary Calculator UK 2025 | Free Take Home Pay Calculator',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Salary Calculator UK 2025',
     description: 'Calculate your UK take home pay with our free salary calculator. Updated 2025/26 tax rates.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

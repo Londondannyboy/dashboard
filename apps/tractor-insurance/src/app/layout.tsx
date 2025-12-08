@@ -20,11 +20,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Agricultural Tractor Insurance UK',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Agricultural Tractor Insurance UK 2025 | Farm Vehicle Insurance Quotes',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Agricultural Tractor Insurance UK 2025',
     description: 'Get instant agricultural tractor insurance quotes. Compare UK farm insurers.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

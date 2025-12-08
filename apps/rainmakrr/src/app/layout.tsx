@@ -16,11 +16,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Rainmakrr',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Rainmakrr - Private Equity Placement Agent Intelligence',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Rainmakrr - Private Equity Placement Agent Intelligence',
     description: 'Top PE & VC placement agent rankings and fund placement news.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

@@ -16,11 +16,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Placement Quest',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Placement Quest - Fund Placement Intelligence',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Placement Quest - Fund Placement Intelligence',
     description: 'The insider guide to fund placements. Track placement agent mandates and LP relationships.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

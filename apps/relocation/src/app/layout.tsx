@@ -18,11 +18,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Relocation Quest',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Relocation Quest - AI-Powered International Relocation Guide',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Relocation Quest - AI-Powered International Relocation Guide',
     description: 'AI-powered relocation assistant helping you move abroad.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

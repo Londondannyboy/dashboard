@@ -15,11 +15,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'MBA Quest',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Best Online MBA Programs 2025 | MBA Quest',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Best Online MBA Programs 2025 | MBA Quest',
     description: 'Compare the best online MBA programs worldwide. Expert reviews, rankings, and comprehensive guides.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

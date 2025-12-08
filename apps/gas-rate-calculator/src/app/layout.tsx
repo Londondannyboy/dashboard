@@ -19,11 +19,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Gas Rate Calculator UK',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Gas Rate Calculator UK | Free Gas Appliance Heat Input Calculator',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Gas Rate Calculator UK',
     description: 'Calculate gas appliance heat input with our free gas rate calculator. Metric and imperial support.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

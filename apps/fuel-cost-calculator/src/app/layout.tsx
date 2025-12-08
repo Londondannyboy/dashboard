@@ -19,11 +19,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Fuel Cost Calculator UK',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Fuel Cost Calculator UK | Free Petrol & Diesel Cost Calculator',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Fuel Cost Calculator UK',
     description: 'Calculate fuel costs with our free UK fuel cost calculator. Petrol & diesel support.',
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,

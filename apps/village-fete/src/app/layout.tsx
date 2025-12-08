@@ -19,11 +19,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Village Fete Insurance UK',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Village Fete Insurance UK 2025 | Community Event Public Liability',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Village Fete Insurance UK 2025',
     description: 'Community and village fete insurance quotes for UK events.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

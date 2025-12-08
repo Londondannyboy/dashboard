@@ -15,11 +15,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Rainmakrr Agency',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Startup Jobs UK | Rainmakrr Agency',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Startup Jobs UK | Rainmakrr Agency',
     description: 'Find startup jobs and recruitment agencies in the UK.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

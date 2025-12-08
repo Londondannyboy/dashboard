@@ -19,11 +19,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Childcare Calculator UK',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Childcare Calculator UK 2025 | Free Childcare Cost Calculator',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Childcare Calculator UK 2025',
     description: 'Calculate UK childcare costs with our free calculator. Compare nurseries, childminders and nannies.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

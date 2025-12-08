@@ -15,11 +15,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'PreDeploy',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Forward Deployed Engineer Recruitment Agency UK',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Forward Deployed Engineer Recruitment Agency UK',
     description: 'Forward deployed engineer recruitment agency for the UK. Find FDE roles in London.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

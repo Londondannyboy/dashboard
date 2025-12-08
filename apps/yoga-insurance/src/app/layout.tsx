@@ -19,11 +19,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Yoga Teacher Insurance UK',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Yoga Teacher Insurance UK 2025 | Compare Instructor Insurance',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Yoga Teacher Insurance UK 2025',
     description: 'Compare yoga teacher insurance quotes from UK specialist insurers.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

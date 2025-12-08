@@ -15,11 +15,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Graduated Quest',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Graduate Recruitment Agencies London | Graduated Quest',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Graduate Recruitment Agencies London | Graduated Quest',
     description: 'Leading graduate recruitment agency in London connecting talented university graduates with top UK employers.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

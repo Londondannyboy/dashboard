@@ -19,11 +19,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Insulin Pump Insurance UK',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Insulin Pump Insurance UK 2025 | Compare Diabetes Device Cover',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Insulin Pump Insurance UK 2025',
     description: 'Compare insulin pump insurance quotes. Protect your diabetes technology.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

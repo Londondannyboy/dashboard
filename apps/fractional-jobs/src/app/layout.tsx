@@ -15,11 +15,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Fractional Quest',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Fractional Jobs UK | Find Fractional Executive Roles',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Fractional Jobs UK | Find Fractional Executive Roles',
     description: 'Discover fractional jobs in the UK. Browse fractional CFO, CMO, CTO and executive roles in London.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

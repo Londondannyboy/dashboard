@@ -15,11 +15,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Chief of Staff Recruitment',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Chief of Staff Recruitment Agency UK',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Chief of Staff Recruitment Agency UK',
     description: 'Chief of staff recruitment agency for the UK. Find executive roles in London.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

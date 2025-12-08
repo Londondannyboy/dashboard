@@ -16,11 +16,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'PVC Quest',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'PVC Quest - Venture Capital Intelligence',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'PVC Quest - Venture Capital Intelligence',
     description: 'The insider guide to venture capital. VC firm rankings and startup funding intelligence.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

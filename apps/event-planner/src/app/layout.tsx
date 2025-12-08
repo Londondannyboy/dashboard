@@ -19,11 +19,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Event Planner Insurance UK',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Event Planner Insurance UK 2025 | Public Liability for Event Organisers',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Event Planner Insurance UK 2025',
     description: 'Event insurance quotes for professional event planners and organisers.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

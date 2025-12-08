@@ -19,11 +19,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Film Production Insurance UK',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Film Production Insurance UK 2025 | Short Film & TV Production Cover',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Film Production Insurance UK 2025',
     description: 'Film production insurance quotes for independent creators & production companies.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

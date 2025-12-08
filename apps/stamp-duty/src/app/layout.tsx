@@ -19,11 +19,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Stamp Duty Calculator UK',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Stamp Duty Calculator UK 2025 | Free SDLT Calculator',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Stamp Duty Calculator UK 2025',
     description: 'Calculate your UK Stamp Duty instantly with our free stamp duty calculator.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

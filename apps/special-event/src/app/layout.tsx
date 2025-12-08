@@ -19,11 +19,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Special Event Insurance UK',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Special Event Insurance UK 2025 | One-Off Event Cover',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Special Event Insurance UK 2025',
     description: 'One-off event insurance quotes for UK organisers.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

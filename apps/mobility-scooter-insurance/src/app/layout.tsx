@@ -19,11 +19,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Mobility Scooter Insurance UK',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Mobility Scooter Insurance UK 2025 | Compare Quotes & Save',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Mobility Scooter Insurance UK 2025',
     description: 'Compare mobility scooter insurance quotes from UK specialist insurers.',
+    image: '/og-image.png',
   },
   robots: {
     index: true,

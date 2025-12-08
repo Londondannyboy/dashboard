@@ -13,11 +13,22 @@ export const metadata: Metadata = {
     description: 'Leading Forward Deployment Engineer recruitment agency connecting technical talent with top tech companies.',
     type: 'website',
     locale: 'en_GB',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Forward Deployment Engineer Jobs | FDE Recruitment Agency | Pre-Dash Deploy',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Forward Deployment Engineer Jobs | FDE Recruitment Agency | Pre-Dash Deploy',
     description: 'Leading Forward Deployment Engineer recruitment agency connecting technical talent with top tech companies.',
+    image: '/og-image.png',
   },
   icons: {
     icon: [
