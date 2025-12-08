@@ -5,19 +5,19 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Chief of Staff Recruitment Agencies UK | Find Executive Assistant Jobs',
-  description: 'Discover leading chief of staff recruitment agencies in the UK. Browse executive assistant jobs, connect with top recruiters, and find your next C-suite support role in London and across the UK.',
-  keywords: 'chief of staff recruitment, chief of staff recruitment agencies, executive assistant recruitment, chief of staff jobs UK, executive assistant jobs London, C-suite support, EA recruitment agencies',
+  title: 'Chief of Staff Recruitment Agency UK',
+  description: 'Chief of staff recruitment agency for the UK. Find the best recruiters for executive roles in London. Browse agencies, salary guides, and career advice.',
+  keywords: 'chief of staff recruitment agency, chief of staff recruitment agencies, executive assistant recruitment, chief of staff jobs UK, executive assistant jobs London',
   openGraph: {
-    title: 'Chief of Staff Recruitment Agencies UK',
-    description: 'Discover leading chief of staff recruitment agencies in the UK. Find executive assistant jobs and connect with top recruiters.',
+    title: 'Chief of Staff Recruitment Agency UK',
+    description: 'Chief of staff recruitment agency for the UK. Find the best recruiters for executive roles in London.',
     type: 'website',
     locale: 'en_GB',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Chief of Staff Recruitment Agencies UK',
-    description: 'Discover leading chief of staff recruitment agencies in the UK. Find executive assistant jobs.',
+    title: 'Chief of Staff Recruitment Agency UK',
+    description: 'Chief of staff recruitment agency for the UK. Find executive roles in London.',
   },
   icons: {
     icon: [

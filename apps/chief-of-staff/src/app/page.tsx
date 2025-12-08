@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { neon } from '@neondatabase/serverless'
 
 export const metadata: Metadata = {
-  title: 'Chief of Staff Recruitment Agencies UK 2025 | Executive Assistant Jobs London',
-  description: 'Find the best chief of staff recruitment agencies in the UK. Browse executive assistant jobs in London, connect with leading recruiters, and discover C-suite support opportunities.',
-  keywords: 'chief of staff recruitment agencies, chief of staff recruitment, executive assistant recruitment, EA jobs London, chief of staff jobs UK, C-suite support recruitment',
+  title: 'Chief of Staff Recruitment Agency UK 2025',
+  description: 'Chief of staff recruitment agency directory for the UK. Find the best chief of staff recruitment agency for executive roles in London and across Britain.',
+  keywords: 'chief of staff recruitment agency, chief of staff recruitment agencies, executive assistant recruitment, EA jobs London, chief of staff jobs UK',
 }
 
 const services = [
@@ -171,11 +171,10 @@ export default async function HomePage() {
                 {companies.length}+ Top Recruitment Agencies Listed
               </div>
               <h1 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
-                {sections.hero?.title || 'Chief of Staff Recruitment'}<br />
-                <span className="bg-gradient-to-r from-sky-300 to-sky-400 bg-clip-text text-transparent">Agencies UK</span>
+                Chief of Staff Recruitment Agency
               </h1>
               <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-10">
-                {sections.hero?.subtitle || 'Discover leading chief of staff recruitment agencies. Connect with specialist recruiters for Executive Assistant and C-suite support roles in London and across the UK.'}
+                {sections.hero?.subtitle || 'Find the best chief of staff recruitment agency in the UK. Connect with specialist recruiters for Executive Assistant and C-suite support roles in London.'}
               </p>
             </div>
 
@@ -278,11 +277,11 @@ export default async function HomePage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-                Recruitment Services
+                Chief of Staff Recruitment Agency Services
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Leading chief of staff recruitment agencies offer comprehensive services to match
-                exceptional candidates with outstanding organisations.
+                A leading chief of staff recruitment agency offers comprehensive services to match
+                exceptional candidates with outstanding organisations across the UK.
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -489,35 +488,35 @@ export default async function HomePage() {
         <section className="py-20 px-4 bg-gray-50">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-black text-gray-900 mb-6">
-              Chief of Staff Recruitment Agencies UK: Your Complete Guide
+              Chief of Staff Recruitment Agency Guide
             </h2>
             <div className="prose prose-lg max-w-none text-gray-600">
               <p className="mb-4">
-                <strong>Chief of Staff recruitment agencies</strong> specialise in placing candidates in one of the most
+                A <strong>chief of staff recruitment agency</strong> specialises in placing candidates in one of the most
                 strategic roles in modern business. As the right-hand to CEOs and senior executives, a Chief of Staff
                 requires a unique blend of strategic thinking, operational excellence, and interpersonal skills.
               </p>
               <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">
-                Why Use a Specialist Recruitment Agency?
+                Why Use a Chief of Staff Recruitment Agency?
               </h3>
               <p className="mb-4">
-                <strong>Chief of Staff roles</strong> are highly specialised, and generic recruitment agencies often lack
-                the network and expertise to source the best candidates. Specialist agencies understand the nuances of the
+                <strong>Chief of Staff roles</strong> are highly specialised, and generic recruiters often lack
+                the network and expertise to source the best candidates. A specialist <strong>chief of staff recruitment agency</strong> understands the nuances of the
                 role, from supporting PE portfolio company CEOs to working with founder-led tech startups.
               </p>
               <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">
-                Chief of Staff Recruitment in London
+                Chief of Staff Recruitment Agency London
               </h3>
               <p className="mb-4">
                 <strong>London</strong> remains the UK&apos;s primary market for Chief of Staff recruitment, with strong
-                demand from private equity, venture capital-backed companies, and large corporates. Many <strong>chief of
-                staff recruitment agencies</strong> are headquartered in London but place candidates across the UK.
+                demand from private equity, venture capital-backed companies, and large corporates. Every leading <strong>chief of
+                staff recruitment agency</strong> in the UK has a London presence to serve this market.
               </p>
               <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">
                 Executive Assistant Recruitment
               </h3>
               <p className="mb-4">
-                Many <strong>chief of staff recruitment agencies</strong> also specialise in <strong>Executive Assistant
+                Many <strong>chief of staff recruitment agency</strong> firms also specialise in <strong>Executive Assistant
                 recruitment</strong>. These roles often serve as a pathway to Chief of Staff positions, making specialist
                 EA recruiters valuable partners for career progression.
               </p>
@@ -532,7 +531,7 @@ export default async function HomePage() {
               Ready to Find Your Agency?
             </h2>
             <p className="text-xl text-blue-100 mb-10">
-              Browse our directory of leading chief of staff recruitment agencies and find the perfect partner for your search.
+              Browse our directory and find the best chief of staff recruitment agency for your executive search needs.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/agencies" className="bg-white text-blue-900 hover:bg-gray-100 font-bold px-8 py-4 rounded-lg transition">
