@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     default: 'Relocation Quest - AI-Powered International Relocation Guide',
     template: '%s | Relocation Quest',
   },
-  description: 'AI-powered relocation assistant helping you move abroad. Get personalized visa guides, cost of living comparisons, and expert advice for international relocation.',
+  description: 'Find trusted UK relocation services. Compare removal companies, international movers & storage. Get instant quotes for your move.',
   keywords: 'relocation, move abroad, international relocation, visa guide, expat, emigration, digital nomad, cost of living',
   metadataBase: new URL('https://relocation.quest'),
   openGraph: {
