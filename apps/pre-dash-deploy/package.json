@@ -1,18 +1,16 @@
 {
-  "name": "@quest/chief-of-staff",
+  "name": "@quest/pre-dash-deploy",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack --port 3020",
+    "dev": "next dev --turbopack --port 3011",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@quest/ui": "workspace:*",
-    "@neondatabase/serverless": "^0.10.4",
-    "next": "^15.1.2",
+    "next": "^16.0.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
