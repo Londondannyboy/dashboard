@@ -6,22 +6,23 @@ import { StaticHeader } from '@/components/StaticHeader'
 import { StaticFooter } from '@/components/StaticFooter'
 
 export const metadata: Metadata = {
-  title: 'Country Relocation Guides | Move Abroad with Confidence | Relocation Quest',
-  description: 'Comprehensive guides for moving abroad. Visa requirements, cost of living, healthcare, and expert tips for relocating to Costa Rica, Thailand, Mexico, UK, Germany, Spain, Portugal and more.',
+  title: 'Relocation Guides | Moving Abroad, Digital Nomad Visas & Expat Life',
+  description: 'Comprehensive guides for moving abroad. Country guides, digital nomad visas, cost of living, healthcare, and expert tips for relocating to Europe, Asia, and the Americas.',
   keywords: [
     'moving abroad guide',
     'relocate to another country',
     'expat guides',
+    'digital nomad visa',
     'cost of living abroad',
     'best countries to move to',
-    'digital nomad destinations',
+    'move to europe',
   ],
   alternates: {
     canonical: 'https://relocation.quest/guides',
   },
   openGraph: {
-    title: 'Country Relocation Guides - Move Abroad with Confidence',
-    description: 'Comprehensive guides for moving to Costa Rica, Thailand, Mexico, UK, Germany, Spain, Portugal and more.',
+    title: 'Relocation Guides - Moving Abroad & Digital Nomad Visas',
+    description: 'Comprehensive guides for moving to Costa Rica, Thailand, Mexico, UK, Germany, Spain, Portugal, and more.',
     type: 'website',
     url: 'https://relocation.quest/guides',
   },
@@ -35,39 +36,138 @@ interface Guide {
   hero_asset_url: string | null
   country: string | null
   country_code: string | null
-  target_keyword: string | null
-  keyword_volume: number | null
-  keyword_difficulty: number | null
+  guide_type: string | null
 }
 
 const COUNTRY_FLAGS: Record<string, string> = {
   'CR': '🇨🇷', 'TH': '🇹🇭', 'MX': '🇲🇽', 'GB': '🇬🇧',
-  'DE': '🇩🇪', 'ES': '🇪🇸', 'PT': '🇵🇹',
+  'DE': '🇩🇪', 'ES': '🇪🇸', 'PT': '🇵🇹', 'CY': '🇨🇾',
+  'FR': '🇫🇷', 'GR': '🇬🇷', 'MT': '🇲🇹', 'NL': '🇳🇱',
+  'SI': '🇸🇮', 'CH': '🇨🇭', 'IT': '🇮🇹', 'HR': '🇭🇷',
+  'LV': '🇱🇻', 'NO': '🇳🇴',
 }
 
-async function getGuides(): Promise<Guide[]> {
-  if (!process.env.DATABASE_URL) return []
+// Extract country code from slug for comprehensive guides
+function getCountryCodeFromSlug(slug: string): string | null {
+  const countryMap: Record<string, string> = {
+    'cyprus': 'CY', 'france': 'FR', 'greece': 'GR', 'malta': 'MT',
+    'netherlands': 'NL', 'slovenia': 'SI', 'switzerland': 'CH',
+    'italy': 'IT', 'croatia': 'HR', 'latvia': 'LV', 'norway': 'NO',
+  }
+  for (const [name, code] of Object.entries(countryMap)) {
+    if (slug.includes(name)) return code
+  }
+  return null
+}
+
+async function getGuidesByType(): Promise<{
+  countryGuides: Guide[]
+  comprehensiveGuides: Guide[]
+  nomadGuides: Guide[]
+  visaGuides: Guide[]
+}> {
+  if (!process.env.DATABASE_URL) {
+    return { countryGuides: [], comprehensiveGuides: [], nomadGuides: [], visaGuides: [] }
+  }
 
   try {
     const sql = neon(process.env.DATABASE_URL)
-    const results = await sql`
-      SELECT id, slug, title, excerpt, hero_asset_url, country, country_code,
-             target_keyword, keyword_volume, keyword_difficulty
-      FROM articles
-      WHERE guide_type = 'country'
-      AND status = 'published'
-      AND app = 'relocation'
-      ORDER BY keyword_difficulty ASC
-    `
-    return results as Guide[]
+
+    const [countryGuides, comprehensiveGuides, nomadGuides, visaGuides] = await Promise.all([
+      sql`
+        SELECT id, slug, title, excerpt, hero_asset_url, country, country_code, guide_type
+        FROM articles
+        WHERE guide_type = 'country'
+        AND status = 'published'
+        AND app = 'relocation'
+        ORDER BY title ASC
+      `,
+      sql`
+        SELECT id, slug, title, excerpt, hero_asset_url, country, country_code, guide_type
+        FROM articles
+        WHERE guide_type = 'country_comprehensive'
+        AND status = 'published'
+        AND app = 'relocation'
+        ORDER BY title ASC
+      `,
+      sql`
+        SELECT id, slug, title, excerpt, hero_asset_url, country, country_code, guide_type
+        FROM articles
+        WHERE guide_type = 'country_nomad'
+        AND status = 'published'
+        AND app = 'relocation'
+        ORDER BY title ASC
+      `,
+      sql`
+        SELECT id, slug, title, excerpt, hero_asset_url, country, country_code, guide_type
+        FROM articles
+        WHERE guide_type = 'topic_visa'
+        AND status = 'published'
+        AND app = 'relocation'
+        ORDER BY title ASC
+        LIMIT 8
+      `,
+    ])
+
+    return {
+      countryGuides: countryGuides as Guide[],
+      comprehensiveGuides: comprehensiveGuides as Guide[],
+      nomadGuides: nomadGuides as Guide[],
+      visaGuides: visaGuides as Guide[],
+    }
   } catch (error) {
     console.error('Failed to fetch guides:', error)
-    return []
+    return { countryGuides: [], comprehensiveGuides: [], nomadGuides: [], visaGuides: [] }
   }
 }
 
+function GuideCard({ guide, basePath = '/guides' }: { guide: Guide; basePath?: string }) {
+  const countryCode = guide.country_code || getCountryCodeFromSlug(guide.slug)
+  const flag = countryCode ? COUNTRY_FLAGS[countryCode] : null
+  const href = guide.guide_type === 'country' ? `${basePath}/${guide.slug}` : `/articles/${guide.slug}`
+
+  return (
+    <Link
+      href={href}
+      className="group block bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-amber-300 hover:shadow-xl transition-all hover:-translate-y-1"
+    >
+      <div className="relative aspect-video bg-gray-100">
+        {guide.hero_asset_url ? (
+          <Image
+            src={guide.hero_asset_url}
+            alt={guide.title}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-amber-100 to-orange-100">
+            <span className="text-6xl">{flag || '🌍'}</span>
+          </div>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        {flag && (
+          <div className="absolute bottom-4 left-4">
+            <span className="text-3xl drop-shadow-lg">{flag}</span>
+          </div>
+        )}
+      </div>
+      <div className="p-5">
+        <h3 className="font-bold text-gray-900 text-lg mb-2 group-hover:text-amber-600 transition-colors line-clamp-2">
+          {guide.title}
+        </h3>
+        {guide.excerpt && (
+          <p className="text-gray-600 text-sm line-clamp-2">{guide.excerpt}</p>
+        )}
+        <div className="mt-3 flex items-center text-amber-600 font-medium text-sm">
+          Read Guide <span className="ml-1 group-hover:ml-2 transition-all">→</span>
+        </div>
+      </div>
+    </Link>
+  )
+}
+
 export default async function GuidesPage() {
-  const guides = await getGuides()
+  const { countryGuides, comprehensiveGuides, nomadGuides, visaGuides } = await getGuidesByType()
 
   return (
     <main className="min-h-screen bg-white">
@@ -88,7 +188,7 @@ export default async function GuidesPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl">
             <span className="inline-block px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-semibold mb-6">
-              Country Guides
+              Relocation Guides
             </span>
             <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 leading-tight">
               Your Complete Guide to{' '}
@@ -97,8 +197,8 @@ export default async function GuidesPage() {
               </span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Expert guides covering visa requirements, cost of living, healthcare, and everything
-              you need to know about relocating to a new country.
+              Expert guides covering visa requirements, digital nomad options, cost of living,
+              healthcare, and everything you need to know about relocating to a new country.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -118,83 +218,135 @@ export default async function GuidesPage() {
         </div>
       </section>
 
-      {/* Guides Grid */}
-      <section className="py-20">
+      {/* Quick Links */}
+      <section className="py-8 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
-            Popular Destinations for Expats
-          </h2>
-          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Comprehensive guides covering visa requirements, cost of living, healthcare, and
-            the best cities for each destination.
-          </p>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <a href="#country-guides" className="px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-medium hover:bg-amber-200 transition">
+              Country Guides
+            </a>
+            <a href="#comprehensive" className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition">
+              Comprehensive Guides
+            </a>
+            <a href="#digital-nomad" className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition">
+              Digital Nomad Guides
+            </a>
+            <a href="#visa-guides" className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition">
+              Visa Guides
+            </a>
+          </div>
+        </div>
+      </section>
 
-          {guides.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {guides.map((guide) => {
-                const flag = guide.country_code ? COUNTRY_FLAGS[guide.country_code] : null
-                return (
-                  <Link
-                    key={guide.id}
-                    href={`/guides/${guide.slug}`}
-                    className="group block bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-amber-300 hover:shadow-xl transition-all hover:-translate-y-1"
-                  >
-                    {/* Image */}
-                    <div className="relative aspect-video bg-gray-100">
-                      {guide.hero_asset_url ? (
-                        <Image
-                          src={guide.hero_asset_url}
-                          alt={`Moving to ${guide.country} - expat relocation guide`}
-                          title={`Complete guide to relocating to ${guide.country}`}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-amber-100 to-orange-100">
-                          <span className="text-6xl">{flag || '🌍'}</span>
-                        </div>
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+      {/* Country Guides - Primary */}
+      <section id="country-guides" className="py-16">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                Popular Destinations for Expats
+              </h2>
+              <p className="text-gray-600">
+                Complete moving guides with visa info, costs, healthcare, and best cities.
+              </p>
+            </div>
+          </div>
 
-                      {/* Country Overlay */}
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <div className="flex items-center gap-2">
-                          {flag && <span className="text-3xl drop-shadow-lg">{flag}</span>}
-                          <span className="text-white font-bold text-xl drop-shadow-lg">
-                            {guide.country}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6">
-                      <h3 className="font-bold text-gray-900 text-lg mb-2 group-hover:text-amber-600 transition-colors line-clamp-2">
-                        {guide.title}
-                      </h3>
-                      {guide.excerpt && (
-                        <p className="text-gray-600 text-sm line-clamp-2">
-                          {guide.excerpt}
-                        </p>
-                      )}
-                      <div className="mt-4 flex items-center text-amber-600 font-medium text-sm group-hover:gap-2 transition-all">
-                        Read Guide <span className="ml-1">→</span>
-                      </div>
-                    </div>
-                  </Link>
-                )
-              })}
+          {countryGuides.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {countryGuides.map((guide) => (
+                <GuideCard key={guide.id} guide={guide} />
+              ))}
             </div>
           ) : (
-            <div className="text-center py-12">
-              <p className="text-gray-500">No guides available yet. Check back soon!</p>
-            </div>
+            <p className="text-gray-500 text-center py-8">No country guides available yet.</p>
           )}
         </div>
       </section>
 
+      {/* Comprehensive Guides */}
+      {comprehensiveGuides.length > 0 && (
+        <section id="comprehensive" className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                  Comprehensive Country Guides
+                </h2>
+                <p className="text-gray-600">
+                  In-depth guides covering every aspect of relocating to these destinations.
+                </p>
+              </div>
+              <Link href="/articles" className="text-amber-600 hover:text-amber-500 font-medium text-sm hidden md:block">
+                View all articles →
+              </Link>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {comprehensiveGuides.map((guide) => (
+                <GuideCard key={guide.id} guide={guide} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Digital Nomad Guides */}
+      {nomadGuides.length > 0 && (
+        <section id="digital-nomad" className="py-16">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                  Digital Nomad Guides
+                </h2>
+                <p className="text-gray-600">
+                  Remote work visas, coworking spaces, and nomad-friendly destinations.
+                </p>
+              </div>
+              <Link href="/digital-nomad-visa" className="text-amber-600 hover:text-amber-500 font-medium text-sm hidden md:block">
+                Digital nomad visa guide →
+              </Link>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {nomadGuides.map((guide) => (
+                <GuideCard key={guide.id} guide={guide} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Visa Guides */}
+      {visaGuides.length > 0 && (
+        <section id="visa-guides" className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                  Visa Requirement Guides
+                </h2>
+                <p className="text-gray-600">
+                  Detailed visa information, requirements, and application processes.
+                </p>
+              </div>
+              <Link href="/articles" className="text-amber-600 hover:text-amber-500 font-medium text-sm hidden md:block">
+                View all visa guides →
+              </Link>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {visaGuides.map((guide) => (
+                <GuideCard key={guide.id} guide={guide} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
             What Our Guides Cover
