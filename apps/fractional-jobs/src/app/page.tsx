@@ -736,6 +736,8 @@ export default function HomePage() {
                 <li><Link href="/articles/fractional-salary-guide" className="text-gray-400 hover:text-white transition">Salary Guide</Link></li>
                 <li><Link href="/about" className="text-gray-400 hover:text-white transition">About Us</Link></li>
                 <li><Link href="/contact" className="text-gray-400 hover:text-white transition">Contact</Link></li>
+                <li><Link href="/privacy" className="text-gray-400 hover:text-white transition">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="text-gray-400 hover:text-white transition">Terms of Service</Link></li>
               </ul>
             </div>
           </div>
