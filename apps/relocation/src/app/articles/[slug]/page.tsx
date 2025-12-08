@@ -2,7 +2,8 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { GlobalHeader, GlobalFooter } from '@quest/ui/layout'
+import { StaticHeader } from '@/components/StaticHeader'
+import { StaticFooter } from '@/components/StaticFooter'
 import { ArticleVideo } from './ArticleVideo'
 
 interface Article {
@@ -169,17 +170,15 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   return (
     <main className="min-h-screen bg-white text-gray-900 font-sans">
       {/* Navigation */}
-      <GlobalHeader
+      <StaticHeader
         brandName="Relocation"
         brandAccent="Quest"
         brandGradient="from-amber-400 to-orange-500"
         signInGradient="from-amber-500 to-orange-600"
-        theme="light"
         navItems={[
           { href: '/articles', label: 'Articles', highlight: true },
           { href: '/chat', label: 'Chat' },
           { href: '/voice', label: 'Voice' },
-          { href: '/dashboard', label: 'Dashboard', requiresAuth: true },
         ]}
       />
 
@@ -478,12 +477,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       )}
 
       {/* Footer */}
-      <GlobalFooter
+      <StaticFooter
         brandName="Relocation"
         brandAccent="Quest"
         brandGradient="from-amber-400 to-orange-500"
-        theme="light"
-        compact
       />
     </main>
   )
