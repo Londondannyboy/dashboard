@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --background: #0f0f23;
-  --foreground: #ededed;
+  --background: #ffffff;
+  --foreground: #1f2937;
 }
 
 body {
-  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  background: #ffffff;
   color: var(--foreground);
   min-height: 100vh;
 }

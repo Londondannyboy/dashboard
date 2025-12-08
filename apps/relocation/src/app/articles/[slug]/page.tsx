@@ -1,11 +1,9 @@
-'use client'
-
-import { useState, useEffect } from 'react'
+import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useUser } from '@stackframe/stack'
 import { GlobalHeader, GlobalFooter } from '@quest/ui/layout'
-import MuxPlayer from '@mux/mux-player-react'
+import { ArticleVideo } from './ArticleVideo'
 
 interface Article {
   id: number
@@ -16,16 +14,17 @@ interface Article {
   article_mode: string
   article_angle: string | null
   country: string | null
-  country_name: string | null
   flag_emoji: string | null
   featured_asset_url: string | null
   hero_asset_url: string | null
+  hero_asset_alt: string | null
   video_playback_id: string | null
   published_at: string | null
   word_count: number | null
   is_featured: boolean | null
+  meta_description: string | null
   payload: {
-    faq?: Array<{ question: string; answer: string }>
+    faq?: Array<{ q: string; a: string } | { question: string; answer: string }>
     callouts?: Array<{ type: string; title: string; content: string }>
     stat_highlight?: { value: string; label: string; context: string }
     timeline?: Array<{ date: string; title: string; description: string }>
@@ -60,88 +59,95 @@ function getThumbnail(playbackId: string | null, time: number = 5): string {
   return `https://image.mux.com/${playbackId}/thumbnail.jpg?time=${time}&width=800`
 }
 
-export default function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
-  const user = useUser()
-  const [article, setArticle] = useState<Article | null>(null)
-  const [relatedArticles, setRelatedArticles] = useState<RelatedArticle[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [slug, setSlug] = useState<string>('')
+const GATEWAY_URL = process.env.GATEWAY_URL || process.env.NEXT_PUBLIC_GATEWAY_URL || 'https://quest-gateway-production.up.railway.app'
 
-  useEffect(() => {
-    params.then(p => setSlug(p.slug))
-  }, [params])
-
-  useEffect(() => {
-    if (!slug) return
-
-    const fetchArticle = async () => {
-      try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_GATEWAY_URL}/dashboard/content/articles/${slug}`
-        )
-        if (!res.ok) {
-          throw new Error('Article not found')
-        }
-        const data = await res.json()
-        if (!data.article) {
-          throw new Error('Article not found')
-        }
-        setArticle(data.article)
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load article')
-      } finally {
-        setLoading(false)
+async function getArticle(slug: string): Promise<Article | null> {
+  try {
+    const res = await fetch(
+      `${GATEWAY_URL}/dashboard/content/articles/${slug}`,
+      {
+        next: { revalidate: 3600 },
+        headers: { 'Accept': 'application/json' }
       }
-    }
-
-    const fetchRelated = async () => {
-      try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_GATEWAY_URL}/dashboard/content/articles?limit=4`
-        )
-        if (res.ok) {
-          const data = await res.json()
-          // Filter out the current article
-          const related = (data.articles || [])
-            .filter((a: RelatedArticle) => a.slug !== slug)
-            .slice(0, 3)
-          setRelatedArticles(related)
-        }
-      } catch (err) {
-        console.error('Failed to fetch related articles:', err)
-      }
-    }
-
-    fetchArticle()
-    fetchRelated()
-  }, [slug])
-
-  if (loading) {
-    return (
-      <main className="min-h-screen bg-[#0a0a0a] text-white font-sans">
-        <div className="max-w-4xl mx-auto px-6 py-32 text-center">
-          <div className="w-12 h-12 border-2 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-gray-400">Loading article...</p>
-        </div>
-      </main>
     )
+    if (!res.ok) {
+      console.error(`Failed to fetch article ${slug}: ${res.status}`)
+      return null
+    }
+    const data = await res.json()
+    return data.article || null
+  } catch (error) {
+    console.error(`Error fetching article ${slug}:`, error)
+    return null
+  }
+}
+
+async function getRelatedArticles(currentSlug: string): Promise<RelatedArticle[]> {
+  try {
+    const res = await fetch(
+      `${GATEWAY_URL}/dashboard/content/articles?limit=4`,
+      {
+        next: { revalidate: 3600 },
+        headers: { 'Accept': 'application/json' }
+      }
+    )
+    if (!res.ok) return []
+    const data = await res.json()
+    return (data.articles || [])
+      .filter((a: RelatedArticle) => a.slug !== currentSlug)
+      .slice(0, 3)
+  } catch {
+    return []
+  }
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const article = await getArticle(slug)
+
+  if (!article) {
+    return {
+      title: 'Article Not Found | Relocation Quest',
+    }
   }
 
-  if (error || !article) {
-    return (
-      <main className="min-h-screen bg-[#0a0a0a] text-white font-sans">
-        <div className="max-w-4xl mx-auto px-6 py-32 text-center">
-          <p className="text-2xl text-gray-400 mb-4">{error || 'Article not found'}</p>
-          <Link
-            href="/articles"
-            className="text-amber-500 hover:text-amber-400 transition-colors"
-          >
-            ← Back to articles
-          </Link>
-        </div>
-      </main>
-    )
+  const title = article.title
+  const description = article.meta_description || article.excerpt || `Read about ${article.title} on Relocation Quest`
+  const thumbnail = article.video_playback_id
+    ? getThumbnail(article.video_playback_id, 5)
+    : article.hero_asset_url
+
+  return {
+    title: `${title} | Relocation Quest`,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      publishedTime: article.published_at || undefined,
+      images: thumbnail ? [{ url: thumbnail, width: 800, height: 450 }] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: thumbnail ? [thumbnail] : [],
+    },
+    alternates: {
+      canonical: `https://relocation.quest/articles/${slug}`,
+    },
+  }
+}
+
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const [article, relatedArticles] = await Promise.all([
+    getArticle(slug),
+    getRelatedArticles(slug),
+  ])
+
+  if (!article) {
+    notFound()
   }
 
   const config = MODE_CONFIG[article.article_mode] || MODE_CONFIG.topic
@@ -154,14 +160,21 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
     : null
   const readTime = article.word_count ? Math.ceil(article.word_count / 200) : 5
 
+  // Normalize FAQ format (some use q/a, some use question/answer)
+  const faqItems = article.payload?.faq?.map(item => ({
+    question: 'question' in item ? item.question : item.q,
+    answer: 'answer' in item ? item.answer : item.a,
+  })) || []
+
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white font-sans">
+    <main className="min-h-screen bg-white text-gray-900 font-sans">
       {/* Navigation */}
       <GlobalHeader
         brandName="Relocation"
         brandAccent="Quest"
         brandGradient="from-amber-400 to-orange-500"
-        signInGradient="from-indigo-500 to-purple-600"
+        signInGradient="from-amber-500 to-orange-600"
+        theme="light"
         navItems={[
           { href: '/articles', label: 'Articles', highlight: true },
           { href: '/chat', label: 'Chat' },
@@ -174,19 +187,12 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
       <header className="relative pt-16">
         {article.video_playback_id ? (
           <div className="relative">
-            <MuxPlayer
-              playbackId={article.video_playback_id}
-              autoPlay="muted"
-              loop
-              muted
-              className="w-full aspect-video max-h-[70vh] object-cover"
-              style={{ '--controls': 'none' }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/80 via-transparent to-[#0a0a0a]/80" />
+            <ArticleVideo playbackId={article.video_playback_id} />
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-transparent to-white/80 pointer-events-none" />
 
             {/* Title overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
+            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12 pointer-events-none">
               <div className="max-w-4xl mx-auto">
                 <div className="flex items-center gap-3 mb-4">
                   {article.flag_emoji && (
@@ -196,24 +202,24 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
                     {config.icon} {config.label}
                   </span>
                 </div>
-                <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight drop-shadow-lg">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-tight drop-shadow-lg">
                   {article.title}
                 </h1>
               </div>
             </div>
           </div>
         ) : (
-          <div className="bg-gradient-to-b from-gray-900 to-[#0a0a0a] pt-24 pb-16">
+          <div className="bg-gradient-to-b from-amber-50 to-white pt-24 pb-16">
             <div className="max-w-4xl mx-auto px-6">
               <div className="flex items-center gap-3 mb-4">
                 {article.flag_emoji && (
                   <span className="text-3xl">{article.flag_emoji}</span>
                 )}
-                <span className={`px-4 py-1.5 rounded-full text-sm font-semibold bg-gradient-to-r ${config.gradient}`}>
+                <span className={`px-4 py-1.5 rounded-full text-sm font-semibold text-white bg-gradient-to-r ${config.gradient}`}>
                   {config.icon} {config.label}
                 </span>
               </div>
-              <h1 className="text-3xl md:text-5xl font-black text-white leading-tight">
+              <h1 className="text-3xl md:text-5xl font-black text-gray-900 leading-tight">
                 {article.title}
               </h1>
             </div>
@@ -222,34 +228,34 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
       </header>
 
       {/* Article Meta */}
-      <div className="border-b border-white/10 bg-white/5">
+      <div className="border-b border-gray-200 bg-gray-50">
         <div className="max-w-4xl mx-auto px-6 py-6">
-          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white font-bold text-sm">
                 RQ
               </div>
-              <span className="font-medium text-white">
+              <span className="font-medium text-gray-900">
                 Relocation Quest
               </span>
             </div>
             {publishDate && (
               <>
-                <span className="text-gray-600">•</span>
+                <span className="text-gray-400">•</span>
                 <span>{publishDate}</span>
               </>
             )}
             {article.word_count && (
               <>
-                <span className="text-gray-600">•</span>
+                <span className="text-gray-400">•</span>
                 <span>{article.word_count.toLocaleString()} words</span>
               </>
             )}
-            <span className="text-gray-600">•</span>
+            <span className="text-gray-400">•</span>
             <span>{readTime} min read</span>
           </div>
           {article.excerpt && (
-            <p className="mt-4 text-lg text-amber-400/80 font-medium leading-relaxed">
+            <p className="mt-4 text-lg text-amber-600 font-medium leading-relaxed">
               {article.excerpt}
             </p>
           )}
@@ -260,16 +266,16 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
       <article className="max-w-4xl mx-auto px-6 py-12">
         {article.content ? (
           <div
-            className="prose prose-lg prose-invert max-w-none
-              prose-headings:font-bold prose-headings:text-white
+            className="prose prose-lg max-w-none
+              prose-headings:font-bold prose-headings:text-gray-900
               prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:border-l-4 prose-h2:border-amber-500 prose-h2:pl-4
               prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
-              prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-6
-              prose-a:text-amber-500 prose-a:no-underline hover:prose-a:text-amber-400
-              prose-strong:text-amber-400 prose-strong:font-semibold
+              prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6
+              prose-a:text-amber-600 prose-a:no-underline hover:prose-a:text-amber-500
+              prose-strong:text-amber-700 prose-strong:font-semibold
               prose-ul:list-none prose-ul:pl-0 prose-ul:space-y-3
-              prose-li:bg-white/5 prose-li:border-l-2 prose-li:border-amber-500 prose-li:px-4 prose-li:py-3 prose-li:rounded-r-lg
-              prose-blockquote:border-l-4 prose-blockquote:border-amber-500 prose-blockquote:bg-white/5 prose-blockquote:rounded-r-xl prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:italic
+              prose-li:bg-amber-50 prose-li:border-l-2 prose-li:border-amber-500 prose-li:px-4 prose-li:py-3 prose-li:rounded-r-lg
+              prose-blockquote:border-l-4 prose-blockquote:border-amber-500 prose-blockquote:bg-amber-50 prose-blockquote:rounded-r-xl prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:italic
             "
             dangerouslySetInnerHTML={{ __html: article.content }}
           />
@@ -294,29 +300,37 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
           </div>
         )}
 
-        {/* FAQ Section */}
-        {article.payload?.faq && article.payload.faq.length > 0 && (
-          <div className="my-12">
-            <h2 className="text-2xl font-bold text-white mb-6 border-l-4 border-amber-500 pl-4">
+        {/* FAQ Section with Schema.org markup */}
+        {faqItems.length > 0 && (
+          <section className="my-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-amber-500 pl-4">
               Frequently Asked Questions
             </h2>
-            <div className="space-y-4">
-              {article.payload.faq.map((item, idx) => (
+            <div className="space-y-4" itemScope itemType="https://schema.org/FAQPage">
+              {faqItems.map((item, idx) => (
                 <details
                   key={idx}
-                  className="group bg-white/5 border border-white/10 rounded-xl overflow-hidden"
+                  className="group bg-gray-50 border border-gray-200 rounded-xl overflow-hidden"
+                  itemScope
+                  itemProp="mainEntity"
+                  itemType="https://schema.org/Question"
                 >
-                  <summary className="flex items-center justify-between p-4 cursor-pointer hover:bg-white/5">
-                    <span className="font-medium text-white">{item.question}</span>
+                  <summary className="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-100">
+                    <span className="font-medium text-gray-900" itemProp="name">{item.question}</span>
                     <span className="text-amber-500 group-open:rotate-180 transition-transform">▼</span>
                   </summary>
-                  <div className="px-4 pb-4 text-gray-300">
-                    {item.answer}
+                  <div
+                    className="px-4 pb-4 text-gray-700"
+                    itemScope
+                    itemProp="acceptedAnswer"
+                    itemType="https://schema.org/Answer"
+                  >
+                    <span itemProp="text">{item.answer}</span>
                   </div>
                 </details>
               ))}
             </div>
-          </div>
+          </section>
         )}
 
         {/* Callouts */}
@@ -335,9 +349,9 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
               >
                 <div className="flex items-center gap-2 mb-2">
                   <span>{callout.type === 'warning' ? '⚠️' : callout.type === 'tip' ? '💡' : 'ℹ️'}</span>
-                  <span className="font-semibold text-white">{callout.title}</span>
+                  <span className="font-semibold text-gray-900">{callout.title}</span>
                 </div>
-                <p className="text-gray-300">{callout.content}</p>
+                <p className="text-gray-700">{callout.content}</p>
               </div>
             ))}
           </div>
@@ -346,16 +360,16 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
         {/* Timeline */}
         {article.payload?.timeline && article.payload.timeline.length > 0 && (
           <div className="my-12">
-            <h2 className="text-2xl font-bold text-white mb-6 border-l-4 border-amber-500 pl-4">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-amber-500 pl-4">
               Timeline
             </h2>
-            <div className="space-y-4 border-l-2 border-amber-500/30 pl-6">
+            <div className="space-y-4 border-l-2 border-amber-300 pl-6">
               {article.payload.timeline.map((item, idx) => (
                 <div key={idx} className="relative">
                   <div className="absolute -left-8 w-3 h-3 bg-amber-500 rounded-full" />
-                  <div className="text-sm text-amber-400 font-medium">{item.date}</div>
-                  <div className="text-white font-semibold">{item.title}</div>
-                  <div className="text-gray-400 text-sm">{item.description}</div>
+                  <div className="text-sm text-amber-600 font-medium">{item.date}</div>
+                  <div className="text-gray-900 font-semibold">{item.title}</div>
+                  <div className="text-gray-600 text-sm">{item.description}</div>
                 </div>
               ))}
             </div>
@@ -364,8 +378,8 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
 
         {/* Sources */}
         {article.payload?.sources && article.payload.sources.length > 0 && (
-          <div className="my-12 p-6 bg-white/5 border border-white/10 rounded-xl">
-            <h3 className="text-lg font-semibold text-white mb-4">Sources</h3>
+          <div className="my-12 p-6 bg-gray-50 border border-gray-200 rounded-xl">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Sources</h3>
             <ul className="space-y-2">
               {article.payload.sources.map((source, idx) => (
                 <li key={idx}>
@@ -384,19 +398,19 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
         )}
 
         {/* Article Footer */}
-        <footer className="mt-16 pt-8 border-t border-white/10">
+        <footer className="mt-16 pt-8 border-t border-gray-200">
           <div className="flex items-center gap-4">
             {article.video_playback_id && (
               <Image
                 src={getThumbnail(article.video_playback_id, 10)}
-                alt=""
+                alt="Relocation Quest Editorial Team"
                 width={64}
                 height={64}
-                className="rounded-full border-2 border-amber-500/30 object-cover"
+                className="rounded-full border-2 border-amber-300 object-cover"
               />
             )}
             <div>
-              <p className="font-medium text-white">Relocation Quest Editorial Team</p>
+              <p className="font-medium text-gray-900">Relocation Quest Editorial Team</p>
               <p className="text-sm text-gray-500">
                 Published {publishDate} • {article.word_count?.toLocaleString()} words
               </p>
@@ -405,7 +419,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
           <div className="mt-6">
             <Link
               href="/articles"
-              className="inline-flex items-center text-amber-500 hover:text-amber-400 font-medium transition-colors"
+              className="inline-flex items-center text-amber-600 hover:text-amber-500 font-medium transition-colors"
             >
               ← Back to articles
             </Link>
@@ -415,9 +429,9 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
 
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
-        <section className="border-t border-white/10 py-16">
+        <section className="border-t border-gray-200 py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-2xl font-bold text-white mb-8">More Articles</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-8">More Articles</h2>
             <div className="grid md:grid-cols-3 gap-6">
               {relatedArticles.map((related) => {
                 const relConfig = MODE_CONFIG[related.article_mode] || MODE_CONFIG.topic
@@ -425,7 +439,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
                   <Link
                     key={related.id}
                     href={`/articles/${related.slug}`}
-                    className="group block bg-white/5 border border-white/10 rounded-xl overflow-hidden hover:border-white/20 transition-all hover:-translate-y-1"
+                    className="group block bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-amber-300 hover:shadow-lg transition-all hover:-translate-y-1"
                   >
                     <div className="relative aspect-video">
                       {related.video_playback_id ? (
@@ -436,19 +450,19 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
                           className="object-cover"
                         />
                       ) : (
-                        <div className={`w-full h-full bg-gradient-to-br ${relConfig.gradient} opacity-30 flex items-center justify-center`}>
+                        <div className={`w-full h-full bg-gradient-to-br ${relConfig.gradient} opacity-20 flex items-center justify-center`}>
                           <span className="text-4xl">{relConfig.icon}</span>
                         </div>
                       )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-white/90 to-transparent" />
                       <div className="absolute bottom-3 left-3">
-                        <span className={`px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${relConfig.gradient}`}>
+                        <span className={`px-3 py-1 rounded-full text-xs font-semibold text-white bg-gradient-to-r ${relConfig.gradient}`}>
                           {relConfig.icon} {relConfig.label}
                         </span>
                       </div>
                     </div>
                     <div className="p-4">
-                      <h3 className="font-bold text-white line-clamp-2 group-hover:text-amber-400 transition-colors">
+                      <h3 className="font-bold text-gray-900 line-clamp-2 group-hover:text-amber-600 transition-colors">
                         {related.title}
                       </h3>
                       {related.excerpt && (
@@ -468,6 +482,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
         brandName="Relocation"
         brandAccent="Quest"
         brandGradient="from-amber-400 to-orange-500"
+        theme="light"
         compact
       />
     </main>

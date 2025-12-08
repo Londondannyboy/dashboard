@@ -6,7 +6,10 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Quest App',
+  title: {
+    default: 'Relocation Quest',
+    template: '%s',
+  },
   description: 'AI-powered relocation assistant with voice and text chat',
   icons: {
     icon: [
