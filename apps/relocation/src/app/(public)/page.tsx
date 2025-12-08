@@ -102,6 +102,7 @@ export default async function HomePage() {
         brandGradient="from-amber-400 to-orange-500"
         signInGradient="from-indigo-500 to-purple-600"
         navItems={[
+          { href: '/guides', label: 'Guides' },
           { href: '/articles', label: 'Articles', highlight: true },
           { href: '/chat', label: 'Chat' },
           { href: '/voice', label: 'Voice' },

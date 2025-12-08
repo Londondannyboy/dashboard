@@ -16,6 +16,7 @@ interface StaticHeaderProps {
 }
 
 const defaultNavItems: NavItem[] = [
+  { href: '/guides', label: 'Guides' },
   { href: '/articles', label: 'Articles', highlight: true },
   { href: '/chat', label: 'Chat' },
   { href: '/voice', label: 'Voice' },
