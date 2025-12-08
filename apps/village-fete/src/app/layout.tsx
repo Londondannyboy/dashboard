@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -53,7 +54,33 @@ export const metadata: Metadata = {
   },
 }
 
-
+// FAQ data for rich snippets
+const faqs = [
+  {
+    question: 'What does village fete insurance cover?',
+    answer: 'Coverage includes public liability for visitor injuries, marquee and equipment insurance, event cancellation, weather cover, and protection for fundraising activities like raffles and competitions.'
+  },
+  {
+    question: 'How much does village fete insurance cost?',
+    answer: 'Single-event fete insurance typically costs £75-£200 depending on expected attendance, activities planned, and whether you include cancellation cover. Annual policies for regular events are more economical.'
+  },
+  {
+    question: 'Do we need insurance for a small village fete?',
+    answer: 'Yes, most venues and councils require proof of public liability insurance. It protects your committee and volunteers from personal financial liability if someone is injured at the event.'
+  },
+  {
+    question: 'Does it cover weather cancellation?',
+    answer: 'Weather cover is available as an add-on and pays out if excessive rain, wind, or snow forces cancellation. You\'ll need to set trigger points like rainfall measurements for claims.'
+  },
+  {
+    question: 'Are volunteers and committee members covered?',
+    answer: 'Yes, public liability insurance covers organizers, committee members, and volunteers acting on behalf of the event. Consider trustee indemnity for committee financial protection too.'
+  },
+  {
+    question: 'What about funfair rides and inflatables?',
+    answer: 'Equipment suppliers should have their own insurance, but verify this. Your policy should cover your liability for hiring them. Higher-risk activities may need specific cover.'
+  }
+]
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -104,7 +131,8 @@ const jsonLd = {
   url: 'https://villagefete.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Community Event Insurance', 'Church Event Insurance', 'Parish Council Insurance', 'Charity Event Insurance'],
-  }
+  },
+  ...createFAQSchema(faqs),
   ]
 }
 

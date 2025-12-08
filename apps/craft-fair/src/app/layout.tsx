@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -53,7 +54,33 @@ export const metadata: Metadata = {
   },
 }
 
-
+// FAQ data for rich snippets
+const faqs = [
+  {
+    question: 'What does craft fair insurance cover?',
+    answer: 'Coverage includes public liability for visitor injuries, product liability for items sold, stock insurance against theft or damage, stall equipment protection, and personal accident cover for stallholders.'
+  },
+  {
+    question: 'How much does craft fair insurance cost?',
+    answer: 'Single-event policies start from £30-£60. Annual policies for regular craft fair traders typically cost £80-£200 depending on stock value, sales turnover, and coverage limits.'
+  },
+  {
+    question: 'Do I need insurance for selling at craft fairs?',
+    answer: 'Yes, most craft fair organizers require proof of public liability insurance before allowing you to trade. It\'s essential for protecting yourself from injury claims and product liability issues.'
+  },
+  {
+    question: 'What\'s the difference between public and product liability?',
+    answer: 'Public liability covers injuries to visitors at your stall. Product liability covers claims from products you sell causing harm later, such as jewelry causing allergic reactions or unsafe toys.'
+  },
+  {
+    question: 'Does it cover my stock and materials?',
+    answer: 'Yes, you can add stock insurance to cover your handmade items, raw materials, and finished products against theft, damage, or loss during transport and at the event.'
+  },
+  {
+    question: 'Can I get annual cover for multiple craft fairs?',
+    answer: 'Yes, annual policies are more cost-effective if you attend 3+ events per year. They provide continuous cover for all events, markets, and sometimes even online sales.'
+  }
+]
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -104,7 +131,8 @@ const jsonLd = {
   url: 'https://craftfair.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Market Stall Insurance', 'Craft Fair Insurance', 'Farmers Market Insurance', 'Craft Seller Insurance'],
-  }
+  },
+  ...createFAQSchema(faqs),
   ]
 }
 

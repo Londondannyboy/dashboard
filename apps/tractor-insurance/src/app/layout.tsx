@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Providers } from './providers'
 import './globals.css'
+import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -55,6 +56,34 @@ export const metadata: Metadata = {
     apple: '/icon.svg',
   },
 }
+
+// FAQ data for rich snippets
+const faqs = [
+  {
+    question: 'What does agricultural tractor insurance cover?',
+    answer: 'Coverage includes third-party liability, accidental damage, theft, fire, malicious damage, breakdown recovery, and attached implements. You can add cover for agricultural employees and business use.'
+  },
+  {
+    question: 'How much does tractor insurance cost?',
+    answer: 'Premiums vary significantly based on tractor value, usage, and security. Expect to pay £200-£800 annually for a standard farm tractor, with vintage and high-value models costing more.'
+  },
+  {
+    question: 'Is tractor insurance required by law?',
+    answer: 'Yes, if you use your tractor on public roads, you legally need at least third-party insurance. Even for private land use only, insurance is strongly recommended.'
+  },
+  {
+    question: 'Does it cover attached equipment and implements?',
+    answer: 'Yes, most policies cover permanently attached equipment. Towed implements like ploughs, harrows, and trailers can be added to your policy for additional premium.'
+  },
+  {
+    question: 'Can I insure vintage or classic tractors?',
+    answer: 'Yes, specialist policies are available for vintage and classic tractors with agreed value cover, show use, and restoration coverage tailored to collector needs.'
+  },
+  {
+    question: 'What about using tractors on public roads?',
+    answer: 'Road use is covered, but you must ensure your tractor is roadworthy, properly registered, and complies with DVLA regulations including lights, reflectors, and registration plates.'
+  }
+]
 
 // JSON-LD structured data for the insurance quote service
 const jsonLd = {
@@ -112,6 +141,9 @@ const localBusinessJsonLd = {
   url: 'https://tractorinsurance.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Agricultural Tractor Insurance', 'Tractor Insurance', 'Agricultural Insurance', 'Farm Vehicle Insurance'],
+  },
+  ...createFAQSchema(faqs),
+  ]
 }
 
 export default function RootLayout({

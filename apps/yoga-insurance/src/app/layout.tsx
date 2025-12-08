@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -55,7 +56,37 @@ export const metadata: Metadata = {
   },
 }
 
-
+// FAQ data for rich snippets
+const faqs = [
+  {
+    question: 'What does yoga teacher insurance cover?',
+    answer: 'Coverage includes public liability for student injuries, professional indemnity for advice claims, equipment insurance, and treatment risk cover. Some policies include online class coverage.'
+  },
+  {
+    question: 'How much does yoga teacher insurance cost?',
+    answer: 'Annual premiums range from £60-£200 depending on class frequency, student numbers, and whether you teach at studios, outdoors, online, or from home.'
+  },
+  {
+    question: 'Do I need insurance to teach yoga?',
+    answer: 'Most studios, gyms, and venues require proof of insurance before allowing you to teach. It\'s also essential for protecting yourself financially from injury claims and professional negligence.'
+  },
+  {
+    question: 'Does it cover online yoga classes?',
+    answer: 'Yes, many modern policies include online teaching via Zoom, YouTube, or pre-recorded content. Check your policy specifically mentions virtual/online class coverage.'
+  },
+  {
+    question: 'What\'s the difference between public liability and professional indemnity?',
+    answer: 'Public liability covers physical injuries to students. Professional indemnity covers financial losses from poor advice, incorrect technique instruction, or failure to identify student health issues.'
+  },
+  {
+    question: 'Am I covered for outdoor yoga sessions?',
+    answer: 'Yes, most policies cover outdoor teaching in parks, beaches, and gardens. Check geographical limits and whether you need additional cover for specific locations or events.'
+  },
+  {
+    question: 'Do I need insurance if I only teach occasionally?',
+    answer: 'Yes, even occasional teaching needs insurance. One injury claim could cost thousands. Many insurers offer flexible policies for part-time teachers at reduced rates.'
+  }
+]
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -106,7 +137,8 @@ const jsonLd = {
   url: 'https://yogainsurance.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Yoga Teacher Insurance', 'Yoga Instructor Insurance', 'Pilates Teacher Insurance', 'Fitness Professional Insurance'],
-  }
+  },
+  ...createFAQSchema(faqs),
   ]
 }
 
