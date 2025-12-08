@@ -340,6 +340,17 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
       {/* Article Content */}
       <article className="max-w-4xl mx-auto px-6 py-12">
+        {/* SEO Intro - includes title keywords for search engines */}
+        <p className="text-lg text-gray-600 mb-8 pb-8 border-b border-gray-200">
+          Welcome to our {new Date().getFullYear()} complete guide on <strong className="text-gray-900">{article.title.replace(/ \| Relocation Quest$/, '').replace(/\d{4}:?\s*/g, '')}</strong>.
+          {article.country && (
+            <> This comprehensive guide covers everything you need to know about {article.country}, updated for {new Date().getFullYear()}.</>
+          )}
+          {!article.country && (
+            <> This comprehensive resource is updated for {new Date().getFullYear()} with the latest information and practical advice.</>
+          )}
+        </p>
+
         {article.content ? (
           <div
             className="prose prose-lg max-w-none
