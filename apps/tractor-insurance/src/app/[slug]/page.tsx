@@ -45,12 +45,12 @@ async function getArticle(slug: string): Promise<Article | null> {
 async function getRelatedArticles(articleId: number): Promise<Article[]> {
   try {
     const articles = await sql`
-      SELECT id, title, slug, excerpt, published_at, created_at, featured_asset_url, target_keyword, keyword_volume
+      SELECT id, title, slug, excerpt, published_at, created_at, featured_asset_url
       FROM articles
       WHERE app = 'tractor-insurance'
         AND status = 'published'
         AND id != ${articleId}
-      ORDER BY keyword_volume DESC NULLS LAST
+      ORDER BY published_at DESC NULLS LAST
       LIMIT 4
     `
     return articles as Article[]
@@ -231,12 +231,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                       )}
                     </div>
                     <div className="p-4">
-                      {related.keyword_volume && (
-                        <span className="text-xs text-green-600 font-medium">
-                          {related.keyword_volume.toLocaleString()} searches/mo
-                        </span>
-                      )}
-                      <h3 className="mt-1 text-sm font-semibold text-slate-900 group-hover:text-green-600 transition line-clamp-2">
+                      <h3 className="text-sm font-semibold text-slate-900 group-hover:text-green-600 transition line-clamp-2">
                         {related.title}
                       </h3>
                     </div>
