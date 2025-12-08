@@ -604,8 +604,10 @@ export default async function HomePage() {
             <div>
               <h4 className="font-bold text-lg mb-4">Company</h4>
               <ul className="space-y-2">
-                <li><Link href="/" className="text-gray-400 hover:text-white transition">About Us</Link></li>
-                <li><Link href="/" className="text-gray-400 hover:text-white transition">Contact</Link></li>
+                <li><Link href="/about" className="text-gray-400 hover:text-white transition">About Us</Link></li>
+                <li><Link href="/contact" className="text-gray-400 hover:text-white transition">Contact</Link></li>
+                <li><Link href="/privacy" className="text-gray-400 hover:text-white transition">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="text-gray-400 hover:text-white transition">Terms of Service</Link></li>
               </ul>
             </div>
           </div>

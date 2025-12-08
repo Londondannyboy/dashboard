@@ -1029,7 +1029,7 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="border-t border-slate-700/50 py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
             <div>
               <h4 className="text-white font-semibold mb-3">Puppy Insurance UK</h4>
               <p className="text-sm text-slate-400">
@@ -1060,6 +1060,15 @@ export default function HomePage() {
                 <li><a href="#prices" className="hover:text-amber-400">Puppy Insurance Prices</a></li>
                 <li><a href="/free-puppy-insurance-breeders" className="hover:text-amber-400">Free Insurance for Breeders</a></li>
                 <li><a href="#cover-types" className="hover:text-amber-400">Cover Types Explained</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-white font-semibold mb-3">Legal</h4>
+              <ul className="text-sm text-slate-400 space-y-2">
+                <li><a href="/about" className="hover:text-amber-400">About Us</a></li>
+                <li><a href="/contact" className="hover:text-amber-400">Contact</a></li>
+                <li><a href="/privacy" className="hover:text-amber-400">Privacy Policy</a></li>
+                <li><a href="/terms" className="hover:text-amber-400">Terms of Service</a></li>
               </ul>
             </div>
           </div>
