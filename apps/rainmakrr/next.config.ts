@@ -477,12 +477,6 @@ const nextConfig: NextConfig = {
         destination: '/top-private-equity-firms-australia-private-equity-australia',
         permanent: true,
       },
-      // Finland VC
-      {
-        source: '/top-venture-capital-firms-finland-venture-capital-finland',
-        destination: '/top-venture-capital-firms-finland-venture-capital-finland',
-        permanent: true,
-      },
       // Portugal VC
       {
         source: '/top-venture-capital-firms-portugal',
@@ -506,17 +500,7 @@ const nextConfig: NextConfig = {
         destination: '/top-venture-capital-firms-london-venture-capital-uk',
         permanent: true,
       },
-      // Placement agents regional
-      {
-        source: '/top-private-equity-placement-agents-europe/:path*',
-        destination: '/top-private-equity-placement-agents-europe',
-        permanent: true,
-      },
-      {
-        source: '/top-private-equity-placement-agents-south-africa/:path*',
-        destination: '/top-private-equity-placement-agents-south-africa',
-        permanent: true,
-      },
+      // Placement agents regional - no redirects needed, these are the canonical URLs
       // Low-value redirects to homepage/existing
       {
         source: '/faroe-islands-private-equity-news-faroe-islands',
