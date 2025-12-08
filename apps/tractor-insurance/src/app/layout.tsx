@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { Providers } from './providers'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -47,30 +48,49 @@ export const metadata: Metadata = {
 // JSON-LD structured data for the insurance quote service
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: 'Agricultural Tractor Insurance UK',
-  description: 'Free UK agricultural tractor insurance quote comparison service for farm vehicles and machinery',
-  url: 'https://tractorinsurance.quest',
-  applicationCategory: 'FinanceApplication',
-  operatingSystem: 'Any',
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'GBP',
-    description: 'Free agricultural tractor insurance quote comparison service',
-  },
-  featureList: [
-    'Compare agricultural tractor insurance quotes',
-    'Agricultural vehicle coverage',
-    'Farm machinery insurance',
-    'Smallholder and contractor cover',
-    'Comprehensive and third party options',
-    'Implement and attachment cover',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      name: 'Agricultural Tractor Insurance UK',
+      description: 'Free UK agricultural tractor insurance quote comparison service for farm vehicles and machinery',
+      url: 'https://tractorinsurance.quest',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: 'https://tractorinsurance.quest?q={search_term_string}',
+        },
+        'query-input': 'required name=search_term_string',
+      },
+      inLanguage: 'en-GB',
+    },
+    {
+      '@type': 'WebApplication',
+      name: 'Agricultural Tractor Insurance UK',
+      description: 'Free UK agricultural tractor insurance quote comparison service for farm vehicles and machinery',
+      url: 'https://tractorinsurance.quest',
+      applicationCategory: 'FinanceApplication',
+      operatingSystem: 'Any',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'GBP',
+        description: 'Free agricultural tractor insurance quote comparison service',
+      },
+      featureList: [
+        'Compare agricultural tractor insurance quotes',
+        'Agricultural vehicle coverage',
+        'Farm machinery insurance',
+        'Smallholder and contractor cover',
+        'Comprehensive and third party options',
+        'Implement and attachment cover',
+      ],
+      areaServed: {
+        '@type': 'Country',
+        name: 'United Kingdom',
+      },
+    },
   ],
-  areaServed: {
-    '@type': 'Country',
-    name: 'United Kingdom',
-  },
 }
 
 const localBusinessJsonLd = {
@@ -101,7 +121,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
