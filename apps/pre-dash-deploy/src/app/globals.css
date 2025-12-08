@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --primary: #7c3aed;
+  --primary-dark: #6d28d9;
+  --accent: #06b6d4;
+  --accent-light: #cffafe;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hero gradient - purple to cyan tech theme */
+.hero-gradient {
+  background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 50%, #6d28d9 100%);
+}
+
+/* Accent gradient */
+.accent-gradient {
+  background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Stats counter animation */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stat-number {
+  animation: countUp 0.6s ease-out forwards;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-violet-600 hover:bg-violet-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200;
+}
+
+.btn-secondary {
+  @apply bg-white hover:bg-gray-50 text-violet-600 font-semibold px-6 py-3 rounded-lg border-2 border-violet-600 transition-all duration-200;
+}
+
+.btn-accent {
+  @apply bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200;
+}
+
+/* Job card styles */
+.job-card {
+  @apply bg-white rounded-xl border border-gray-200 p-6 transition-all duration-200 hover:border-violet-300 hover:shadow-lg;
+}
+
+/* Category card */
+.category-card {
+  @apply bg-white rounded-xl border border-gray-200 p-6 text-center transition-all duration-200 hover:border-cyan-300 hover:shadow-lg cursor-pointer;
+}
+
+/* Testimonial card */
+.testimonial-card {
+  @apply bg-white rounded-2xl p-8 shadow-lg border border-gray-100;
+}
+
+/* Tech stack badge */
+.tech-badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-violet-100 text-violet-700;
+}
