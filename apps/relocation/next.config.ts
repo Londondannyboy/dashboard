@@ -43,8 +43,9 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       // Generic pattern for other root-level pages that should be articles
+      // Excludes pillar pages like /digital-nomad-visa
       {
-        source: '/:slug((?!articles|chat|voice|dashboard|handler|api|_next).*-visa.*)',
+        source: '/:slug((?!articles|chat|voice|dashboard|handler|api|_next|digital-nomad-visa|guides|move-to-europe|calculator|jobs|moving-abroad|relocation-assistance).*-visa.*)',
         destination: '/articles/:slug',
         permanent: true,
       },
