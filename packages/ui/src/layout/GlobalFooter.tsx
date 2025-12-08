@@ -47,7 +47,7 @@ export function GlobalFooter({
   companyLinks = defaultCompanyLinks,
   socialLinks = {},
   compact = false,
-  theme = 'dark',
+  theme = 'light',
 }: GlobalFooterProps) {
   const isLight = theme === 'light'
 

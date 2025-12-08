@@ -34,7 +34,7 @@ export function GlobalHeader({
   brandGradient = 'from-purple-400 to-pink-500',
   signInGradient = 'from-purple-500 to-pink-500',
   signInPath = '/handler/sign-in',
-  theme = 'dark',
+  theme = 'light',
 }: GlobalHeaderProps) {
   const user = useUser()
   const isLight = theme === 'light'
