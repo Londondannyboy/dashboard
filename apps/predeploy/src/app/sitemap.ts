@@ -18,7 +18,7 @@ async function getBaseUrl(): Promise<string> {
   }
 
   // Fallback to environment variables or default
-  return process.env.NEXT_PUBLIC_BASE_URL || 'https://predeploy.quest'
+  return process.env.NEXT_PUBLIC_BASE_URL || 'https://predeploy.ai'
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
