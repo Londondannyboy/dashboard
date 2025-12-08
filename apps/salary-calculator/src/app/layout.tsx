@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
     default: 'Salary Calculator UK 2025 | Free Take Home Pay Calculator',
     template: '%s | Salary Calculator UK',
   },
-  description: 'Free UK salary calculator 2025/26. Calculate your take home pay, income tax, National Insurance, student loan repayments and pension deductions. Updated with latest tax rates for England, Wales, Scotland and Northern Ireland.',
+  description: 'Free UK salary calculator 2025/26. Calculate take home pay, tax, NI & pension deductions instantly. Updated with latest rates for all UK regions.',
   keywords: 'salary calculator, salary calculator uk, uk salary calculator, take home pay calculator, tax calculator uk, income tax calculator, national insurance calculator, net salary calculator, gross to net calculator, payslip calculator, wage calculator uk, salary after tax, pay calculator, earnings calculator, uk tax calculator 2025',
   authors: [{ name: 'Salary Calculator UK' }],
   metadataBase: new URL('https://salarycalculator.quest'),
@@ -58,6 +59,38 @@ export const metadata: Metadata = {
   },
 }
 
+// FAQ data for rich snippets
+const faqs = [
+  {
+    question: 'How does the Salary Calculator work?',
+    answer: 'Enter your gross salary, and the calculator instantly shows your take-home pay after deducting income tax, National Insurance, student loan repayments, and pension contributions using the latest UK tax rates.'
+  },
+  {
+    question: 'Is the Salary Calculator free?',
+    answer: 'Yes, it\'s completely free with no registration required. Calculate your take-home pay as many times as you need.'
+  },
+  {
+    question: 'What tax year does this calculator use?',
+    answer: 'The calculator uses the current 2025/26 tax year rates and is updated annually when HMRC announces new tax bands, allowances, and National Insurance thresholds.'
+  },
+  {
+    question: 'Does it include Scottish tax rates?',
+    answer: 'Yes, you can select Scotland to apply Scottish income tax rates, which differ from the rest of the UK due to devolved tax powers.'
+  },
+  {
+    question: 'Can I calculate hourly, weekly, or annual salaries?',
+    answer: 'Yes, you can enter your salary as an hourly rate, weekly wage, monthly income, or annual salary. The calculator converts and shows all pay frequencies.'
+  },
+  {
+    question: 'Does it include student loan deductions?',
+    answer: 'Yes, the calculator includes Plan 1, Plan 2, Plan 4, and Postgraduate Loan deductions based on your income and the relevant repayment thresholds.'
+  },
+  {
+    question: 'Are pension contributions included?',
+    answer: 'Yes, you can add your pension contribution percentage, and the calculator shows your take-home pay after both employer and employee pension deductions.'
+  }
+]
+
 // JSON-LD structured data for the calculator
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -96,7 +129,8 @@ const jsonLd = {
     'Scottish tax rates',
     '2025/26 tax year rates',
   ],
-  }
+  },
+  ...createFAQSchema(faqs),
   ]
 }
 

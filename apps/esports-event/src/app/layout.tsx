@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
     default: 'Esports Event Insurance UK 2025 | Gaming Tournament & LAN Party Cover',
     template: '%s | Esports Event Insurance UK',
   },
-  description: 'Esports event insurance for gaming tournaments, LAN parties, and gaming conventions in the UK. Get public liability cover and equipment insurance for your esports events.',
+  description: 'Plan epic esports events in the UK. Find venues, equipment & tournament management services. Host professional gaming competitions.',
   keywords: 'esports event insurance, gaming tournament insurance, lan party insurance, esports venue insurance, gaming convention insurance, esports insurance uk, gaming event insurance',
   authors: [{ name: 'Esports Event Insurance UK' }],
   metadataBase: new URL('https://esportsevent.quest'),
@@ -53,7 +54,33 @@ export const metadata: Metadata = {
   },
 }
 
-
+// FAQ data for rich snippets
+const faqs = [
+  {
+    question: 'What does esports event insurance cover?',
+    answer: 'Coverage includes public liability for attendee injuries, equipment insurance for gaming hardware, event cancellation, cyber liability, and protection for streaming equipment and prize money.'
+  },
+  {
+    question: 'How much does esports event insurance cost?',
+    answer: 'Insurance for small tournaments starts from £100-£200. Larger esports events with substantial prize pools and equipment can cost £500-£2,000 depending on scale and coverage.'
+  },
+  {
+    question: 'Who needs esports event insurance?',
+    answer: 'Tournament organizers, esports venues, LAN party hosts, and gaming cafes all need insurance to protect against liability claims, equipment damage, and event cancellation costs.'
+  },
+  {
+    question: 'Does it cover gaming equipment damage?',
+    answer: 'Yes, specialist policies cover gaming PCs, consoles, monitors, VR equipment, streaming hardware, and networking equipment against theft, damage, and technical failure during events.'
+  },
+  {
+    question: 'Is cyber liability included?',
+    answer: 'Many esports policies include cyber liability to cover DDoS attacks, data breaches, stream hijacking, and other cyber incidents that could disrupt your tournament or expose attendee data.'
+  },
+  {
+    question: 'Can I insure online-only esports tournaments?',
+    answer: 'Yes, you can get coverage for virtual events including protection for technical failures, cyber attacks, and professional indemnity for organizing and running online competitions.'
+  }
+]
 
 const jsonLd = {
   '@context': 'https://schema.org',

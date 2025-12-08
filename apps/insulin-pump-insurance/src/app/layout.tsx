@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     default: 'Insulin Pump Insurance UK 2025 | Compare Diabetes Device Cover',
     template: '%s | Insulin Pump Insurance UK',
   },
-  description: 'Compare insulin pump insurance quotes from UK specialist insurers. Get comprehensive cover for your insulin pump, CGM, and diabetes technology. Protect against loss, theft, and accidental damage from just £6.95/month.',
+  description: 'Compare insulin pump insurance quotes from UK specialists. Get comprehensive cover for Type 1 diabetes medical devices. Instant quotes.',
   keywords: 'insulin pump insurance, insulin pump insurance uk, diabetes pump insurance, cgm insurance, continuous glucose monitor insurance, omnipod insurance, medtronic pump insurance, tandem tslim insurance, dexcom insurance, freestyle libre insurance, diabetes technology insurance, pump cover uk',
   authors: [{ name: 'Insulin Pump Insurance UK' }],
   metadataBase: new URL('https://insulinpumpinsurance.quest'),

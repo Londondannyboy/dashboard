@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Graduate Recruitment Agencies London | Graduated Quest',
-  description: 'Leading graduate recruitment agency in London connecting talented university graduates with top UK employers. Expert career guidance, CV support, and interview coaching for entry-level positions.',
+  description: 'Plan the perfect UK graduation celebration. Find venues, photographers & party services. Make your graduation unforgettable.',
   keywords: 'graduate recruitment agencies london, graduate jobs london, graduate recruitment uk, entry level jobs london, graduate schemes, graduate careers',
   metadataBase: new URL('https://graduated.quest'),
   openGraph: {

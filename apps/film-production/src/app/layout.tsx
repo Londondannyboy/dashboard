@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     default: 'Film Production Insurance UK 2025 | Short Film & TV Production Cover',
     template: '%s | Film Production Insurance UK',
   },
-  description: 'Film production insurance for short films, TV, documentaries, and commercials. Get quotes for independent filmmakers, production companies, and content creators in the UK.',
+  description: 'Find UK film production services & crews. Browse locations, equipment hire & post-production. Bring your film project to life.',
   keywords: 'film production insurance, short film insurance, tv production insurance, video production insurance, documentary insurance, music video insurance, commercial production insurance, film equipment insurance, cast and crew insurance, independent film insurance, production company insurance, filmmakers insurance uk',
   authors: [{ name: 'Film Production Insurance UK' }],
   metadataBase: new URL('https://filmproduction.quest'),

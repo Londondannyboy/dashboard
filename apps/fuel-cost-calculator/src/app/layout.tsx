@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -55,6 +56,34 @@ export const metadata: Metadata = {
   },
 }
 
+// FAQ data for rich snippets
+const faqs = [
+  {
+    question: 'How does the Fuel Cost Calculator work?',
+    answer: 'Enter your journey distance, vehicle\'s MPG (miles per gallon), and current fuel price. The calculator instantly shows your trip\'s fuel cost and total consumption.'
+  },
+  {
+    question: 'Is the Fuel Cost Calculator free?',
+    answer: 'Yes, it\'s completely free with no registration or payment required. Calculate unlimited journeys anytime.'
+  },
+  {
+    question: 'Can I calculate costs for multiple journeys?',
+    answer: 'Yes, you can calculate costs for individual trips or estimate weekly, monthly, and annual fuel expenses based on your regular mileage.'
+  },
+  {
+    question: 'Does it work for both petrol and diesel?',
+    answer: 'Yes, the calculator works for petrol, diesel, and other fuel types. Simply enter the appropriate fuel price for your vehicle type.'
+  },
+  {
+    question: 'How do I find my car\'s MPG?',
+    answer: 'Check your vehicle\'s manual, manufacturer website, or use the trip computer display. You can also calculate it by dividing miles driven by fuel consumed.'
+  },
+  {
+    question: 'Are fuel prices updated automatically?',
+    answer: 'The calculator uses current UK average fuel prices by default, but you can manually adjust the price to match your local rates for more accurate results.'
+  }
+]
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -93,7 +122,8 @@ const jsonLd = {
     'Business mileage calculator',
     'Trip cost planning',
   ],
-  }
+  },
+  ...createFAQSchema(faqs),
   ]
 }
 

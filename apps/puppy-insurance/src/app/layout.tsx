@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     default: 'Puppy Insurance UK 2025 | Compare Pet Insurance for Puppies & Dogs',
     template: '%s | Puppy Insurance UK',
   },
-  description: 'Compare puppy insurance quotes from leading UK pet insurers. Get comprehensive cover for your new puppy including vet fees, illness, accidents & more. Use our free puppy insurance calculator to estimate costs.',
+  description: 'Compare puppy insurance quotes instantly. Get cover from 8 weeks old. Protect your puppy with comprehensive UK pet insurance.',
   keywords: 'puppy insurance, puppy insurance uk, pet insurance for puppies, dog insurance, puppy insurance cost, best puppy insurance, cheap puppy insurance, puppy insurance comparison, lifetime puppy insurance, how much is puppy insurance, puppy vet insurance, new puppy insurance, puppy health insurance, dog insurance uk, pet insurance quotes, puppy insurance calculator',
   authors: [{ name: 'Puppy Insurance UK' }],
   metadataBase: new URL('https://puppyinsurance.quest'),

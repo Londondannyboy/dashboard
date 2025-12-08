@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     default: 'Craft Fair Insurance UK 2025 | Market Stall & Trader Cover',
     template: '%s | Craft Fair Insurance UK',
   },
-  description: 'Market stall insurance for craft fairs, farmers markets, car boot sales, and traders. Get public liability insurance quotes for craft sellers and market traders.',
+  description: 'Find craft fairs & artisan markets across the UK. Book stall spaces, browse events & connect with makers. Grow your craft business.',
   keywords: 'craft fair insurance, market stall insurance, farmers market insurance, car boot sale insurance, craft seller insurance, market trader insurance, one day stall insurance',
   authors: [{ name: 'Craft Fair Insurance UK' }],
   metadataBase: new URL('https://craftfair.quest'),

@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Fractional Jobs UK | Find Fractional Executive Roles in London & UK',
-  description: 'Discover fractional jobs in the UK. Browse fractional CFO, CMO, CTO and executive roles in London. Connect with top fractional recruitment agencies and find flexible leadership opportunities.',
+  description: 'Find fractional executive jobs in the UK. Browse part-time C-suite & senior leadership roles. Connect with top companies hiring fractional talent.',
   keywords: 'fractional jobs, fractional jobs UK, fractional jobs London, fractional recruitment agencies, fractional CFO, fractional CMO, fractional CTO, fractional executive, part-time executive roles, interim executive',
   metadataBase: new URL('https://fractional.quest'),
   openGraph: {

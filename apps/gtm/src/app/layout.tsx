@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'GTM Agency | Go-To-Market Strategy & Planning | GTM Quest',
-  description: 'Leading GTM agency for go-to-market strategy. AI-powered GTM planning, expert consultants, and proven frameworks. Launch your product with the top GTM agency partner.',
+  description: 'Launch your product successfully with our go-to-market platform. Get templates, strategies & tools for UK B2B & SaaS companies.',
   keywords: 'GTM agency, go-to-market agency, GTM strategy, go-to-market strategy, GTM consultant, product launch agency, sales strategy agency',
   metadataBase: new URL('https://gtm.quest'),
   openGraph: {

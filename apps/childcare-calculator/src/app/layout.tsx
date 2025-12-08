@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
     default: 'Childcare Calculator UK 2025 | Free Childcare Cost Calculator',
     template: '%s | Childcare Calculator UK',
   },
-  description: 'Free UK childcare calculator 2025. Calculate childcare costs for nurseries, childminders, nannies and after-school clubs. Compare costs by age, region and childcare type. Check eligibility for Tax-Free Childcare and 30 free hours.',
+  description: 'Free UK childcare calculator 2025. Calculate nursery, childminder & nanny costs instantly. Compare by age, region & type. Check Tax-Free Childcare.',
   keywords: 'childcare calculator, childcare costs uk, nursery costs, childminder costs, nanny costs, childcare calculator uk, cost of childcare, tax free childcare calculator, 30 hours free childcare, childcare costs by age, nursery fees calculator, childcare cost calculator, uk childcare calculator, childcare budget calculator',
   authors: [{ name: 'Childcare Calculator UK' }],
   metadataBase: new URL('https://childcarecalculator.quest'),
@@ -58,6 +59,34 @@ export const metadata: Metadata = {
   },
 }
 
+// FAQ data for rich snippets
+const faqs = [
+  {
+    question: 'How does the Childcare Calculator work?',
+    answer: 'The calculator estimates your childcare costs based on your location, number of children, and type of care needed. It shows your total weekly and monthly costs, helping you plan your childcare budget.'
+  },
+  {
+    question: 'Is the Childcare Calculator free to use?',
+    answer: 'Yes, the calculator is completely free to use with no registration required. Simply enter your details to get instant cost estimates.'
+  },
+  {
+    question: 'What childcare types are included?',
+    answer: 'The calculator covers nursery care, childminder services, after-school clubs, and holiday care. You can mix different care types to match your specific needs.'
+  },
+  {
+    question: 'Does it include government funding?',
+    answer: 'Yes, the calculator accounts for free childcare hours you may be entitled to, including 15 or 30 hours of funded childcare for eligible families in the UK.'
+  },
+  {
+    question: 'Can I compare childcare costs across different areas?',
+    answer: 'Yes, you can adjust the location to see how childcare costs vary across different regions in the UK, helping you make informed decisions about where to live.'
+  },
+  {
+    question: 'How accurate are the cost estimates?',
+    answer: 'The calculator uses current UK average rates from official sources and is updated regularly. Actual costs may vary depending on your specific provider and location.'
+  }
+]
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -95,7 +124,8 @@ const jsonLd = {
     '30 hours free childcare checker',
     'Government support calculator',
   ],
-  }
+  },
+  ...createFAQSchema(faqs),
   ]
 }
 

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     default: 'Mobility Scooter Insurance UK 2025 | Compare Quotes & Save',
     template: '%s | Mobility Scooter Insurance UK',
   },
-  description: 'Compare mobility scooter insurance quotes from specialist UK insurers. Get cheap mobility scooter insurance, disability scooter cover & electric wheelchair insurance. Free quotes - comprehensive cover for your mobility equipment.',
+  description: 'Compare mobility scooter insurance quotes instantly. Get specialist UK cover for road & pavement use. Save on premiums today.',
   keywords: 'mobility scooter insurance, mobility scooter insurance uk, electric scooter insurance, disability scooter insurance, mobility scooter cover, cheap mobility scooter insurance, best mobility scooter insurance, compare mobility scooter insurance, mobility insurance, electric wheelchair insurance, powerchair insurance, mobility aid insurance, scooter insurance for disabled, mobility equipment insurance',
   authors: [{ name: 'Mobility Scooter Insurance UK' }],
   metadataBase: new URL('https://mobilityscooterinsurance.quest'),

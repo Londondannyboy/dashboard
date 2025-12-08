@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
     default: 'Drone Insurance UK 2025 | UAV & Quadcopter Insurance Quotes',
     template: '%s | Drone Insurance UK',
   },
-  description: 'Compare drone insurance quotes from specialist UK insurers. Get UAV insurance, quadcopter insurance & commercial drone cover. Hobbyist and professional drone insurance - public liability, hull damage & equipment cover.',
+  description: 'Compare drone insurance quotes for UK pilots. Get specialist cover for commercial & recreational drones. Instant quotes from top insurers.',
   keywords: 'drone insurance, drone insurance uk, uav insurance, quadcopter insurance, commercial drone insurance, drone public liability insurance, fpv drone insurance, dji drone insurance, drone insurance for beginners, cheap drone insurance, best drone insurance uk, drone cover, drone liability insurance, recreational drone insurance, professional drone insurance, a2 cofc drone insurance',
   authors: [{ name: 'Drone Insurance UK' }],
   metadataBase: new URL('https://droneinsurance.quest'),
@@ -55,7 +56,37 @@ export const metadata: Metadata = {
   },
 }
 
-
+// FAQ data for rich snippets
+const faqs = [
+  {
+    question: 'What does drone insurance cover?',
+    answer: 'Drone insurance typically covers public liability for third-party damage, hull insurance for your drone and equipment, theft, and damage during flight. Commercial policies also include professional indemnity.'
+  },
+  {
+    question: 'How much does drone insurance cost in the UK?',
+    answer: 'Recreational drone insurance starts from around £50-£100 per year. Commercial drone insurance typically costs £200-£500 annually depending on your equipment value and business use.'
+  },
+  {
+    question: 'Who needs drone insurance?',
+    answer: 'Commercial drone operators legally require insurance with minimum £1 million public liability cover. Recreational pilots are not legally required to have insurance, but it\'s highly recommended for protection.'
+  },
+  {
+    question: 'Is drone insurance required by law?',
+    answer: 'Yes, commercial drone operators must have insurance. The CAA requires at least £1 million public liability cover for any commercial drone operation in the UK.'
+  },
+  {
+    question: 'What\'s not covered by drone insurance?',
+    answer: 'Exclusions typically include deliberate damage, flying in restricted airspace, unregistered drones, criminal activity, and flying outside policy geographical limits or height restrictions.'
+  },
+  {
+    question: 'How do I get a drone insurance quote?',
+    answer: 'Use our comparison service to get multiple quotes from UK drone insurance specialists. You\'ll need details about your drone, its value, and how you plan to use it.'
+  },
+  {
+    question: 'Can I get instant drone insurance coverage?',
+    answer: 'Yes, many insurers offer instant online cover. Once you purchase your policy, you can typically download your certificate immediately and start flying the same day.'
+  }
+]
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -106,7 +137,8 @@ const jsonLd = {
   url: 'https://droneinsurance.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Drone Insurance', 'UAV Insurance', 'Quadcopter Insurance', 'Commercial Drone Insurance'],
-  }
+  },
+  ...createFAQSchema(faqs),
   ]
 }
 

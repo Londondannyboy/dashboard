@@ -18,6 +18,98 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
+  apps/better-off-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  apps/bonus-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
   apps/chief-of-staff:
     dependencies:
       '@neondatabase/serverless':
@@ -78,9 +170,6 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.2.0(react@19.2.0)
-      recharts:
-        specifier: ^2.15.0
-        version: 2.15.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       server-only:
         specifier: ^0.0.1
         version: 0.0.1
@@ -241,6 +330,52 @@ importers:
         specifier: ^5.9.0
         version: 5.9.3
 
+  apps/drawdown-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
   apps/drone-insurance:
     dependencies:
       next:
@@ -252,6 +387,52 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.2.0(react@19.2.0)
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  apps/each-way-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
     devDependencies:
       '@types/node':
         specifier: ^20.0.0
@@ -679,6 +860,98 @@ importers:
         specifier: ^5.0.0
         version: 5.9.3
 
+  apps/hourly-to-salary-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  apps/income-tax-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
   apps/insulin-pump-insurance:
     dependencies:
       '@quest/ui':
@@ -779,6 +1052,190 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.2.0(react@19.2.0)
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  apps/mortgage-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  apps/mortgage-overpayment-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  apps/mortgage-repayment-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  apps/national-insurance-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
     devDependencies:
       '@types/node':
         specifier: ^20.0.0
@@ -1236,6 +1693,52 @@ importers:
         specifier: ^5.0.0
         version: 5.9.3
 
+  apps/round-robin-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
   apps/salary-calculator:
     dependencies:
       '@quest/ui':
@@ -1250,9 +1753,144 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.2.0(react@19.2.0)
-      recharts:
-        specifier: ^2.15.0
-        version: 2.15.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  apps/scottish-tax-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  apps/self-employed-tax-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  apps/sipp-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
       server-only:
         specifier: ^0.0.1
         version: 0.0.1
@@ -1386,6 +2024,236 @@ importers:
         specifier: ^5.0.0
         version: 5.9.3
 
+  apps/student-loan-repayment-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  apps/student-loan-repayment-plan1-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  apps/take-home-earnings-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  apps/tax-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  apps/tdee-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
   apps/tractor-insurance:
     dependencies:
       '@neondatabase/serverless':
@@ -1400,6 +2268,52 @@ importers:
       marked:
         specifier: ^17.0.0
         version: 17.0.1
+      next:
+        specifier: ^16.0.7
+        version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.7)
+      autoprefixer:
+        specifier: ^10.4.0
+        version: 10.4.22(postcss@8.5.6)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      eslint-config-next:
+        specifier: ^15.0.0
+        version: 15.5.7(eslint@8.57.1)(typescript@5.9.3)
+      postcss:
+        specifier: ^8.4.0
+        version: 8.5.6
+      tailwindcss:
+        specifier: ^3.4.0
+        version: 3.4.18(tsx@4.21.0)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  apps/vat-calculator:
+    dependencies:
+      '@quest/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       next:
         specifier: ^16.0.7
         version: 16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)

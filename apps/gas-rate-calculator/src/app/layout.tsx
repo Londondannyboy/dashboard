@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
     default: 'Gas Rate Calculator UK | Free Gas Appliance Heat Input Calculator',
     template: '%s | Gas Rate Calculator UK',
   },
-  description: 'Free UK gas rate calculator for gas engineers. Calculate gas appliance heat input in kW from meter readings or test dial. Supports metric and imperial measurements. Essential tool for gas safe registered engineers.',
+  description: 'Free gas rate calculator for UK gas engineers. Calculate appliance heat input in kW from meter readings. Metric & imperial support.',
   keywords: 'gas rate calculator, gas rate calculator uk, gas calculator, heat input calculator, gas appliance calculator, gas engineer calculator, gas safe calculator, meter reading calculator, test dial calculator, kW calculator gas, gas consumption calculator, gas rate kW, gas flow rate calculator, burner pressure calculator',
   authors: [{ name: 'Gas Rate Calculator UK' }],
   metadataBase: new URL('https://gasratecalculator.quest'),
@@ -55,6 +56,38 @@ export const metadata: Metadata = {
   },
 }
 
+// FAQ data for rich snippets
+const faqs = [
+  {
+    question: 'How does the Gas Rate Calculator work?',
+    answer: 'The calculator uses meter readings or test dial measurements to calculate the heat input (kW) of your gas appliances. Simply enter your readings for instant results following Gas Safe guidelines.'
+  },
+  {
+    question: 'Is the Gas Rate Calculator free?',
+    answer: 'Yes, the calculator is completely free to use with no registration required. It\'s designed as a professional tool for Gas Safe engineers and trainees.'
+  },
+  {
+    question: 'What measurements do I need?',
+    answer: 'You need either meter readings taken over a timed period, or test dial measurements showing the volume of gas consumed. The calculator supports both metric and imperial units.'
+  },
+  {
+    question: 'Is this calculator Gas Safe compliant?',
+    answer: 'Yes, the calculations follow Gas Safe Register standards and industry best practices for determining appliance heat input and gas consumption rates.'
+  },
+  {
+    question: 'Can I use this for domestic and commercial appliances?',
+    answer: 'Yes, the calculator works for both domestic and commercial gas appliances including boilers, cookers, fires, and industrial equipment.'
+  },
+  {
+    question: 'Do I need to enter the calorific value?',
+    answer: 'The calculator uses the standard UK calorific value by default, but you can adjust this if you have specific regional data from your gas supplier.'
+  },
+  {
+    question: 'Does it calculate both gross and net heat input?',
+    answer: 'Yes, the calculator provides both gross and net kW values, giving you complete data for appliance rating verification and Gas Safe compliance checks.'
+  }
+]
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -95,6 +128,7 @@ const jsonLd = {
         'Gas Safe compliant calculations',
       ],
     },
+    ...createFAQSchema(faqs),
   ],
 }
 

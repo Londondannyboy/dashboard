@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     default: 'Yoga Teacher Insurance UK 2025 | Compare Instructor Insurance',
     template: '%s | Yoga Teacher Insurance UK',
   },
-  description: 'Compare yoga teacher insurance quotes from specialist UK insurers. Get yoga instructor insurance, pilates teacher insurance & fitness professional cover. Public liability, professional indemnity & treatment risk insurance.',
+  description: 'Compare yoga teacher insurance quotes instantly. Get specialist UK cover for yoga instructors & studios. Save on premiums today.',
   keywords: 'yoga teacher insurance, yoga instructor insurance, yoga insurance uk, yoga liability insurance, pilates teacher insurance, yoga professional indemnity, yoga public liability insurance, fitness instructor insurance, yoga therapist insurance, hot yoga insurance, aerial yoga insurance, yoga retreat insurance, yoga studio insurance, cheap yoga insurance, best yoga teacher insurance uk',
   authors: [{ name: 'Yoga Teacher Insurance UK' }],
   metadataBase: new URL('https://yogainsurance.quest'),
