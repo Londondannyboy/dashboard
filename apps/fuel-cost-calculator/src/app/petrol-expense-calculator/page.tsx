@@ -1,27 +1,27 @@
 import { Metadata } from 'next'
-import { FuelCostCalculator } from '../components/FuelCostCalculator'
+import { FuelCostCalculator } from '../../components/FuelCostCalculator'
 
 export const metadata: Metadata = {
-  title: 'Fuel Cost Calculator UK | Calculate Petrol & Diesel Costs',
-  description: 'Free UK fuel cost calculator. Calculate cost per mile, journey fuel costs, and fuel efficiency for petrol and diesel cars. Perfect for commuters and business mileage.',
-  keywords: 'fuel cost calculator, cost per mile, journey cost, petrol calculator, diesel calculator, fuel economy, mileage calculator, fuel expense',
+  title: 'Petrol Expense Calculator UK | Calculate Fuel Costs & Track Spending',
+  description: 'Free UK petrol expense calculator. Track your petrol costs, calculate fuel expenses per mile, and manage your fuel budget. Perfect for commuters and business mileage tracking.',
+  keywords: 'petrol expense calculator, petrol cost calculator uk, fuel expense tracker, petrol spending calculator, fuel budget calculator, petrol cost tracker, UK fuel calculator',
   openGraph: {
-    title: 'Fuel Cost Calculator UK',
-    description: 'Calculate your fuel costs instantly with our free UK fuel cost calculator.',
+    title: 'Petrol Expense Calculator UK',
+    description: 'Calculate and track your petrol expenses with our free UK petrol expense calculator.',
     type: 'website',
-    url: 'https://fuelcostcalculator.quest',
+    url: 'https://fuelcostcalculator.quest/petrol-expense-calculator',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Fuel Cost Calculator UK',
-    description: 'Calculate fuel costs per mile and for journeys with our free calculator.',
+    title: 'Petrol Expense Calculator UK',
+    description: 'Free petrol expense calculator for tracking fuel costs and spending.',
   },
   alternates: {
-    canonical: 'https://fuelcostcalculator.quest',
+    canonical: 'https://fuelcostcalculator.quest/petrol-expense-calculator',
   },
 }
 
-export default function HomePage() {
+export default function PetrolExpenseCalculatorPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
@@ -38,12 +38,13 @@ export default function HomePage() {
                 <span className="text-xl font-bold text-white">
                   Fuel Cost <span className="text-blue-400">Calculator</span>
                 </span>
-                <p className="text-xs text-slate-400">UK Cost Per Mile & Journey Calculator</p>
+                <p className="text-xs text-slate-400">UK Fuel Expense Tracker</p>
               </div>
             </a>
             <div className="hidden sm:flex items-center gap-4 text-sm">
+              <a href="/" className="text-slate-300 hover:text-white transition-colors">Home</a>
               <a href="#calculator" className="text-slate-300 hover:text-white transition-colors">Calculator</a>
-              <a href="#how-it-works" className="text-slate-300 hover:text-white transition-colors">How It Works</a>
+              <a href="#why-track" className="text-slate-300 hover:text-white transition-colors">Why Track</a>
               <a href="#faq" className="text-slate-300 hover:text-white transition-colors">FAQ</a>
             </div>
           </div>
@@ -51,17 +52,17 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-12 sm:py-16 px-4">
+      <section className="py-12 sm:py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4">
-            Fuel Cost Calculator
+            Petrol Expense Calculator
             <span className="bg-gradient-to-r from-blue-400 to-cyan-500 bg-clip-text text-transparent"> UK</span>
           </h1>
           <p className="text-lg text-slate-400 mb-2">
-            Free <strong>fuel cost calculator</strong> for UK drivers. Calculate petrol and diesel costs per mile, journey expenses, and fuel efficiency instantly.
+            Track your <strong>petrol expenses</strong> and manage your fuel budget effectively. Our free petrol cost calculator helps you understand exactly how much you're spending on fuel.
           </p>
           <p className="text-sm text-slate-500">
-            Perfect for commuters, business mileage tracking, and trip cost planning. Works with all cars.
+            Calculate petrol costs per mile, track fuel spending, and identify savings opportunities.
           </p>
         </div>
       </section>
@@ -71,23 +72,23 @@ export default function HomePage() {
         <FuelCostCalculator />
       </section>
 
-      {/* Info Section */}
-      <section className="py-16 px-4 bg-slate-800/30">
+      {/* Why Track Petrol Expenses */}
+      <section id="why-track" className="py-16 px-4 bg-slate-800/30">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-12">
-            Why Use Our Fuel Cost Calculator?
+            Why Track Your Petrol Expenses?
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
               <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center mb-4">
                 <svg className="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Save Money</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">Reduce Spending</h3>
               <p className="text-sm text-slate-400">
-                Track your fuel spending and identify ways to reduce costs through better route planning and fuel-efficient driving.
+                Understanding your petrol spending helps you identify ways to reduce fuel costs through efficient driving and route planning.
               </p>
             </div>
 
@@ -97,9 +98,9 @@ export default function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Track Expenses</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">Budget Accurately</h3>
               <p className="text-sm text-slate-400">
-                Easily calculate and track business mileage claims, tax deductions, and personal driving expenses for budgeting.
+                Know your true petrol costs to create realistic budgets for personal and business travel.
               </p>
             </div>
 
@@ -109,20 +110,32 @@ export default function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Quick Estimates</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">Tax Deductions</h3>
               <p className="text-sm text-slate-400">
-                Get instant calculations for journey costs before you travel. Plan your budget for long trips and commutes.
+                Track business petrol expenses for tax deductions and mileage allowance claims.
+              </p>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
+              <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Make Informed Decisions</h3>
+              <p className="text-sm text-slate-400">
+                Compare petrol vs diesel, plan long trips, and evaluate vehicle efficiency with real data.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section id="how-it-works" className="py-16 px-4">
+      {/* How to Calculate Section */}
+      <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-12">
-            How to Use the Fuel Cost Calculator
+            How to Calculate Your Petrol Expenses
           </h2>
 
           <div className="space-y-6">
@@ -131,9 +144,9 @@ export default function HomePage() {
                 <span className="text-sm font-bold text-blue-400">1</span>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-white mb-2">Choose Your Calculator</h3>
+                <h3 className="text-lg font-semibold text-white mb-2">Know Your Fuel Economy (MPG)</h3>
                 <p className="text-slate-400">
-                  Select the calculator that matches your needs: Cost per Mile (for actual trips), Journey Cost (for planned trips), or Price Analysis (to compare fuel prices).
+                  Find your car's fuel efficiency (Miles Per Gallon) in your manual or search online. Average UK cars get 30-45 MPG depending on driving conditions.
                 </p>
               </div>
             </div>
@@ -143,9 +156,9 @@ export default function HomePage() {
                 <span className="text-sm font-bold text-blue-400">2</span>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-white mb-2">Enter Your Details</h3>
+                <h3 className="text-lg font-semibold text-white mb-2">Check Current Petrol Prices</h3>
                 <p className="text-slate-400">
-                  Input your journey distance, fuel costs, fuel economy (MPG), and current fuel prices. All UK values are supported.
+                  Note the current petrol price per litre at your usual fuel station. Prices vary by location and petrol station. Check current prices before calculating.
                 </p>
               </div>
             </div>
@@ -155,50 +168,24 @@ export default function HomePage() {
                 <span className="text-sm font-bold text-blue-400">3</span>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-white mb-2">Get Your Results</h3>
+                <h3 className="text-lg font-semibold text-white mb-2">Enter Your Details</h3>
                 <p className="text-slate-400">
-                  Instantly see your fuel costs per mile, total journey expenses, and fuel efficiency estimates. Perfect for budgeting.
+                  Input your journey distance, fuel economy, and petrol price. Our calculator instantly shows your total petrol cost and cost per mile.
                 </p>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Specialist Calculators Section */}
-      <section className="py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-white text-center mb-4">
-            Specialist Fuel Calculators
-          </h2>
-          <p className="text-slate-400 text-center mb-8 max-w-2xl mx-auto">
-            Use our targeted calculators for specific fuel cost scenarios
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <a href="/petrol-expense-calculator" className="bg-gradient-to-br from-blue-500/20 to-blue-600/10 rounded-2xl p-6 border border-blue-500/30 hover:border-blue-400/50 transition-colors group">
-              <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+            <div className="flex gap-4">
+              <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                <span className="text-sm font-bold text-blue-400">4</span>
               </div>
-              <h3 className="text-xl font-bold text-blue-400 mb-2 group-hover:text-blue-300">Petrol Expense Calculator</h3>
-              <p className="text-sm text-slate-400">
-                Track your petrol spending and manage your fuel budget. Perfect for understanding your fuel expenses and identifying savings opportunities.
-              </p>
-            </a>
-
-            <a href="/journey-cost-calculator" className="bg-gradient-to-br from-green-500/20 to-green-600/10 rounded-2xl p-6 border border-green-500/30 hover:border-green-400/50 transition-colors group">
-              <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m7 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-2">Analyze and Plan</h3>
+                <p className="text-slate-400">
+                  Review your petrol expenses, compare different scenarios, and identify opportunities to reduce fuel costs through better driving or trip planning.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-green-400 mb-2 group-hover:text-green-300">Journey Cost Calculator</h3>
-              <p className="text-sm text-slate-400">
-                Plan your trip fuel costs before you travel. Ideal for road trips, long journeys, and commute budgeting with accurate estimates.
-              </p>
-            </a>
+            </div>
           </div>
         </div>
       </section>
@@ -207,106 +194,107 @@ export default function HomePage() {
       <section id="faq" className="py-16 px-4 bg-slate-800/30">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-12">
-            Frequently Asked Questions
+            Petrol Expense Calculator - FAQ
           </h2>
 
           <div className="space-y-4">
             <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
               <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
-                How do I know my car's MPG?
+                What's included in petrol expenses?
                 <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </summary>
               <div className="px-6 pb-4 text-sm text-slate-400">
-                You can find your car's fuel efficiency (MPG - Miles Per Gallon) in several ways: (1) Your car's manual or service book, (2) The manufacturer's specifications, (3) Official EPA/WLTP ratings online, (4) By calculating it from your actual driving: divide miles driven by litres of fuel used. Average UK cars get 30-45 MPG depending on driving conditions and vehicle type.
+                Petrol expenses include the cost of fuel consumed during your journeys. Our calculator accounts for your vehicle's fuel efficiency (MPG) and current petrol prices to determine total expenses. This includes commute costs, business travel, leisure trips, and any journey requiring petrol.
               </div>
             </details>
 
             <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
               <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
-                Why do my actual costs differ from the calculator?
+                How accurate is this petrol expense calculator?
                 <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </summary>
               <div className="px-6 pb-4 text-sm text-slate-400">
-                Several factors affect actual fuel costs: (1) Driving conditions - city driving uses more fuel than motorway, (2) Weather - cold weather reduces fuel efficiency, (3) Vehicle condition - underinflated tyres increase consumption, (4) Driving style - aggressive acceleration and speeding increase fuel usage, (5) Actual fuel prices vary by location and petrol station. The calculator provides estimates; actual costs may vary.
+                The calculator is highly accurate when you provide real data. Accuracy depends on: (1) Your car's actual MPG - manufacturer figures are often optimistic, (2) Current petrol prices at your location, (3) Driving conditions - city driving uses more fuel than motorway. For best accuracy, measure your actual fuel consumption over 2-3 fill-ups and use current prices from your local petrol station.
               </div>
             </details>
 
             <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
               <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
-                Can I use this for business mileage claims?
+                Can I use this for business petrol expenses?
                 <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </summary>
               <div className="px-6 pb-4 text-sm text-slate-400">
-                Yes! This calculator is perfect for tracking business mileage and tax deductions. In the UK, you can claim a mileage allowance for business use. The calculator helps you determine actual fuel costs and track your expenses. Always keep detailed records of your journeys and fuel expenses. Check with HMRC or your accountant for the current mileage allowance rates and tax deduction rules.
+                Yes! This petrol expense calculator is perfect for tracking business mileage expenses. Use it to calculate petrol costs for client visits, conferences, and business travel. Keep detailed records of dates, distances, and purposes for tax deduction claims. In the UK, you can claim business mileage allowances. Consult your accountant for current tax rates and deduction rules.
               </div>
             </details>
 
             <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
               <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
-                What's the difference between petrol and diesel costs?
+                How can I reduce my petrol expenses?
                 <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </summary>
               <div className="px-6 pb-4 text-sm text-slate-400">
-                Diesel and petrol have different costs and efficiency: (1) Diesel is typically more expensive per litre, (2) Diesel cars generally achieve better MPG (5-20% more efficient), (3) Over longer distances or high mileage, diesel can be cheaper overall, (4) Petrol cars are often cheaper upfront. Use our calculator with your actual fuel price and MPG to compare costs for your specific situation and journey distance.
+                Reduce petrol expenses with these tips: (1) Maintain proper tyre pressure - underinflated tyres increase fuel consumption, (2) Reduce unnecessary weight - remove roof racks and excess items, (3) Drive smoothly - avoid rapid acceleration and hard braking, (4) Plan efficient routes - use sat nav to avoid congestion, (5) Combine trips - plan multiple errands in one journey, (6) Regular servicing - a well-maintained engine is more efficient, (7) Use supermarket fuel - often cheaper than branded stations.
               </div>
             </details>
 
             <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
               <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
-                How accurate is the fuel price data?
+                Is diesel cheaper than petrol?
                 <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </summary>
               <div className="px-6 pb-4 text-sm text-slate-400">
-                You enter the fuel price manually, so accuracy depends on current prices at your location. Fuel prices vary by: (1) Location - different areas have different prices, (2) Petrol station - branded stations charge differently, (3) Time - prices fluctuate daily based on crude oil and market conditions. For accurate calculations, check current prices at your usual petrol station before using the calculator. Supermarket fuel is often cheaper than branded stations.
+                Diesel costs and efficiency depend on: (1) Per litre price - diesel is sometimes more expensive per litre than petrol, (2) Fuel efficiency - diesel cars typically achieve 15-20% better MPG, (3) Total cost - over long distances, diesel is often cheaper overall despite higher per-litre price. Use our calculator to compare diesel vs petrol costs with your actual vehicle specs and local fuel prices.
               </div>
             </details>
 
             <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
               <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
-                Can I use this calculator for electric vehicles (EVs)?
+                How do petrol prices affect my expenses?
                 <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </summary>
               <div className="px-6 pb-4 text-sm text-slate-400">
-                This calculator is designed for petrol and diesel vehicles. Electric vehicles have different cost structures based on electricity prices (pence per kWh) rather than fuel consumption (MPG). However, you can estimate EV costs by calculating your electricity rate as equivalent "fuel" price and using typical EV efficiency ratings (miles per kWh). We're developing an EV cost calculator - check back soon!
+                Petrol prices directly impact your fuel expenses: (1) A 10p increase per litre adds £5-6 to every 100 miles, (2) Prices vary by location - urban stations charge more than rural, (3) Supermarket fuel is typically 2-5p cheaper per litre, (4) Prices fluctuate daily based on crude oil costs. Monitor petrol prices regularly and consider longer trips when prices are lower to manage your expenses effectively.
               </div>
             </details>
 
             <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
               <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
-                What counts as a business journey?
+                What's the difference between city and motorway petrol consumption?
                 <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </summary>
               <div className="px-6 pb-4 text-sm text-slate-400">
-                For UK tax purposes, a business journey is travel in the course of your business. This includes: (1) Meetings and client visits, (2) Site visits and inspections, (3) Conference and training attendance, (4) Delivering goods or services. Commuting from home to your main office is generally NOT classed as business mileage. Always keep detailed records including dates, distances, and purpose of journey for tax deduction claims.
-              </div>
-            </details>
-
-            <details className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden group">
-              <summary className="px-6 py-4 cursor-pointer text-white font-medium flex items-center justify-between">
-                How can I improve my car's fuel efficiency?
-                <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </summary>
-              <div className="px-6 pb-4 text-sm text-slate-400">
-                Simple tips to improve fuel efficiency: (1) Check tyre pressure regularly - underinflated tyres use more fuel, (2) Service your car regularly - a well-maintained engine is more efficient, (3) Avoid carrying unnecessary weight, (4) Remove roof racks when not needed, (5) Drive smoothly - avoid rapid acceleration and hard braking, (6) Avoid idling - turn off engine in traffic, (7) Plan efficient routes - use sat nav to avoid congestion, (8) Combine trips to reduce total distance driven.
+                City driving is significantly less efficient: (1) City driving - typically 20-30% worse fuel economy due to stop-start traffic, (2) Motorway driving - typically 15-25% better fuel economy due to steady speeds, (3) Mixed driving - falls between the two extremes, (4) Cold engines - consume more fuel, especially for short city trips. Use your actual consumption figures rather than manufacturer ratings for more accurate expense calculations.
               </div>
             </details>
           </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl font-bold text-white mb-4">Start Tracking Your Petrol Expenses Today</h2>
+          <p className="text-slate-400 mb-8">
+            Use our free petrol expense calculator to understand your fuel spending and find ways to save money.
+          </p>
+          <a href="#calculator" className="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors">
+            Open Calculator
+          </a>
         </div>
       </section>
 
@@ -315,16 +303,16 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div>
-              <h4 className="text-white font-semibold mb-3">Fuel Cost Calculator UK</h4>
+              <h4 className="text-white font-semibold mb-3">Petrol Expense Calculator</h4>
               <p className="text-sm text-slate-400">
-                Free fuel cost calculator for UK drivers. Calculate petrol and diesel costs per mile, journey expenses, and fuel efficiency instantly.
+                Free UK petrol expense calculator for tracking fuel costs and managing your fuel budget.
               </p>
             </div>
             <div>
               <h4 className="text-white font-semibold mb-3">Quick Links</h4>
               <ul className="text-sm text-slate-400 space-y-2">
+                <li><a href="/" className="hover:text-blue-400">Home</a></li>
                 <li><a href="#calculator" className="hover:text-blue-400">Calculator</a></li>
-                <li><a href="#how-it-works" className="hover:text-blue-400">How It Works</a></li>
                 <li><a href="#faq" className="hover:text-blue-400">FAQ</a></li>
                 <li><a href="/about" className="hover:text-blue-400">About</a></li>
               </ul>
@@ -340,7 +328,7 @@ export default function HomePage() {
           </div>
           <div className="pt-8 border-t border-slate-700/50 text-center">
             <p className="text-xs text-slate-500">
-              Fuel Cost Calculator UK - Free fuel cost calculator for UK drivers
+              Petrol Expense Calculator UK - Free fuel expense tracker for UK drivers
             </p>
           </div>
         </div>
