@@ -864,6 +864,320 @@ export default function HomePage() {
               </div>
             </a>
           </div>
+
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <a href="/farm-machinery-insurance" className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-2xl p-6 border border-green-500/20 hover:border-green-500/40 transition-colors group">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center">
+                  <span className="text-2xl">🌾</span>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white group-hover:text-green-400">Farm Machinery Insurance</h3>
+                  <p className="text-sm text-slate-400">Cover all your agricultural equipment under one policy</p>
+                </div>
+              </div>
+            </a>
+
+            <a href="/compare-tractor-insurance" className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-2xl p-6 border border-cyan-500/20 hover:border-cyan-500/40 transition-colors group">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center">
+                  <span className="text-2xl">⚖️</span>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white group-hover:text-cyan-400">Compare Tractor Insurance</h3>
+                  <p className="text-sm text-slate-400">Compare quotes from leading UK agricultural insurers</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Best Tractor Insurance Section */}
+      <section id="best-tractor-insurance" className="py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-white text-center mb-4">
+            How to Find the Best Tractor Insurance UK
+          </h2>
+          <p className="text-slate-400 text-center mb-12 max-w-3xl mx-auto">
+            The <strong>best tractor insurance</strong> combines adequate cover with competitive pricing. Here's what to look for when choosing your policy:
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-green-500/30">
+              <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Right Cover Level</h3>
+              <p className="text-sm text-slate-400">
+                The <strong>best tractor insurance</strong> matches your needs. Comprehensive for high-value tractors, third party for older machines or limited road use.
+              </p>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-green-500/30">
+              <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Competitive Premium</h3>
+              <p className="text-sm text-slate-400">
+                Compare quotes from multiple insurers. The <strong>best tractor insurance</strong> deals often come from specialist agricultural insurers who understand farming.
+              </p>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-green-500/30">
+              <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Good Claims Service</h3>
+              <p className="text-sm text-slate-400">
+                Read reviews and choose insurers known for fair, prompt claims handling. Agricultural specialists often provide better service for farm claims.
+              </p>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-green-500/30">
+              <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Road Use Included</h3>
+              <p className="text-sm text-slate-400">
+                Ensure your policy covers road use if you travel on public roads. The <strong>best tractor insurance</strong> for farmers includes adequate road mileage.
+              </p>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-green-500/30">
+              <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Implement Cover Option</h3>
+              <p className="text-sm text-slate-400">
+                Check if attached implements can be covered. Loaders, ploughs, and other equipment may need to be listed separately for the <strong>best tractor insurance</strong> protection.
+              </p>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-green-500/30">
+              <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Fair Excess</h3>
+              <p className="text-sm text-slate-400">
+                Check the policy excess - the amount you pay towards claims. Very low premiums may have high excesses that make small claims uneconomical.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8 text-center">
+            <a href="/compare-tractor-insurance" className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 font-medium">
+              Compare the best tractor insurance quotes
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Cheap Tractor Insurance Section */}
+      <section id="cheap-tractor-insurance" className="py-16 px-4 bg-slate-800/30">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-white text-center mb-4">
+            Tips for Cheap Tractor Insurance UK
+          </h2>
+          <p className="text-slate-400 text-center mb-12 max-w-3xl mx-auto">
+            Looking for <strong>cheap tractor insurance</strong>? Here are proven ways to reduce your agricultural tractor insurance premiums without sacrificing essential cover:
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700/50">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-green-400 font-bold">1</span>
+                </div>
+                <div>
+                  <h3 className="text-white font-semibold mb-1">Compare Multiple Quotes</h3>
+                  <p className="text-sm text-slate-400">
+                    Never accept the first price. <strong>Cheap tractor insurance</strong> comes from comparing - use our quote tool to see offers from multiple specialist insurers.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700/50">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-green-400 font-bold">2</span>
+                </div>
+                <div>
+                  <h3 className="text-white font-semibold mb-1">Secure Storage</h3>
+                  <p className="text-sm text-slate-400">
+                    Keeping your tractor in a locked building overnight can reduce premiums by 10-15%. Insurers reward good security with <strong>cheap tractor insurance</strong> rates.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700/50">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-green-400 font-bold">3</span>
+                </div>
+                <div>
+                  <h3 className="text-white font-semibold mb-1">Fit Security Devices</h3>
+                  <p className="text-sm text-slate-400">
+                    Trackers, immobilisers, and CESAR marking can attract discounts. Many insurers require these for high-value tractors - they also lead to <strong>cheap tractor insurance</strong>.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700/50">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-green-400 font-bold">4</span>
+                </div>
+                <div>
+                  <h3 className="text-white font-semibold mb-1">Increase Your Excess</h3>
+                  <p className="text-sm text-slate-400">
+                    Agreeing to pay more towards any claim reduces your premium. If you can afford a higher excess, you'll get <strong>cheap tractor insurance</strong> quotes.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700/50">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-green-400 font-bold">5</span>
+                </div>
+                <div>
+                  <h3 className="text-white font-semibold mb-1">Pay Annually</h3>
+                  <p className="text-sm text-slate-400">
+                    Monthly payments usually include interest charges of 5-15%. Paying your <strong>cheap tractor insurance</strong> premium in full saves money overall.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700/50">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-green-400 font-bold">6</span>
+                </div>
+                <div>
+                  <h3 className="text-white font-semibold mb-1">Limit Road Mileage</h3>
+                  <p className="text-sm text-slate-400">
+                    If your tractor rarely leaves the farm, declare limited road use. Lower mileage policies are often cheaper - ideal for <strong>cheap tractor insurance</strong>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Single Tractor Insurance Section */}
+      <section id="single-tractor-insurance" className="py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-white text-center mb-4">
+            Single Tractor Insurance for Smallholders
+          </h2>
+          <p className="text-slate-400 text-center mb-12 max-w-3xl mx-auto">
+            <strong>Single tractor insurance</strong> provides affordable cover for smallholders, hobby farmers, and landowners with just one tractor. You don't need a full farm policy to protect your tractor.
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
+              <h3 className="text-lg font-semibold text-white mb-4">Who Needs Single Tractor Insurance?</h3>
+              <ul className="space-y-3 text-sm">
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-slate-300"><strong>Smallholders</strong> with a few acres and one tractor for land management</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-slate-300"><strong>Hobby farmers</strong> using a tractor for paddock maintenance and hay making</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-slate-300"><strong>Estate owners</strong> with a compact tractor for groundskeeping</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-slate-300"><strong>Equestrian properties</strong> using a tractor for arena maintenance and muck spreading</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-slate-300"><strong>Vintage tractor enthusiasts</strong> with a classic for shows and road runs</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
+              <h3 className="text-lg font-semibold text-white mb-4">Single Tractor Insurance Benefits</h3>
+              <ul className="space-y-3 text-sm">
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-slate-300"><strong>Standalone policies</strong> - no need for expensive whole-farm insurance</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-slate-300"><strong>Affordable premiums</strong> from around £150/year for basic cover</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-slate-300"><strong>Flexible cover</strong> - comprehensive, TPFT, or third party only options</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-slate-300"><strong>Road use included</strong> for trips between fields or to the local dealer</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-slate-300"><strong>Quick quotes</strong> - get <strong>single tractor insurance</strong> cover sorted in minutes</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-8 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-2xl p-6 border border-green-500/20 text-center">
+            <p className="text-slate-300 mb-4">
+              <strong>Single tractor insurance</strong> starts from around £150/year for third party cover, or £300-£500 for comprehensive protection. The exact price depends on your tractor's value, age, and how you use it.
+            </p>
+            <a href="#calculator" className="inline-block px-6 py-3 rounded-lg font-semibold bg-green-500 text-white hover:bg-green-600 transition-colors">
+              Get Single Tractor Quote
+            </a>
+          </div>
         </div>
       </section>
 

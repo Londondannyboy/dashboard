@@ -130,6 +130,8 @@ export const TRACTOR_INSURANCE_STATIC_ROUTES = [
   { path: '/articles', changeFrequency: 'daily' as const, priority: 0.8 },
   { path: '/vintage-tractor-insurance', changeFrequency: 'weekly' as const, priority: 0.9 },
   { path: '/tractor-insurance-cost', changeFrequency: 'weekly' as const, priority: 0.9 },
+  { path: '/farm-machinery-insurance', changeFrequency: 'weekly' as const, priority: 0.9 },
+  { path: '/compare-tractor-insurance', changeFrequency: 'weekly' as const, priority: 0.9 },
   { path: '/kubota-tractor-insurance', changeFrequency: 'weekly' as const, priority: 0.8 },
   { path: '/john-deere-tractor-insurance', changeFrequency: 'weekly' as const, priority: 0.8 },
   { path: '/massey-ferguson-tractor-insurance', changeFrequency: 'weekly' as const, priority: 0.8 },
