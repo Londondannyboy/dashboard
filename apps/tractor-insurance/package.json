@@ -10,7 +10,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
     "@quest/ui": "workspace:*",
+    "marked": "^15.0.4",
     "next": "^16.0.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
