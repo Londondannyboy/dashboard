@@ -41,21 +41,38 @@ export const metadata: Metadata = {
   },
 }
 
+
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebSite',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'PVC Quest',
+    url: 'https://pvc.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://pvc.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebSite',
   name: 'PVC Quest',
   description: 'The insider guide to venture capital. VC firm rankings, startup funding rounds, and market insights.',
   url: 'https://pvc.quest',
-}
-
-const organizationJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
+  },
+  {
+    '@type': 'Organization',
   name: 'PVC Quest',
   description: 'Venture capital intelligence platform providing VC rankings, startup funding data, and market insights',
   url: 'https://pvc.quest',
   areaServed: 'Global',
+  }
+  ]
 }
 
 export default function RootLayout({
@@ -69,10 +86,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
       </head>
       <body className={inter.className}>

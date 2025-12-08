@@ -40,17 +40,32 @@ export const metadata: Metadata = {
   },
 }
 
+
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebSite',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'MBA Quest',
+    url: 'https://mba.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://mba.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebSite',
   name: 'MBA Quest',
   description: 'Compare the best online MBA programs worldwide. Expert reviews, rankings, and comprehensive guides.',
   url: 'https://mba.quest',
-}
-
-const educationJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebApplication',
+  },
+  {
+    '@type': 'WebApplication',
   name: 'MBA Quest',
   description: 'Online MBA program comparison and ranking tool',
   url: 'https://mba.quest',
@@ -67,6 +82,8 @@ const educationJsonLd = {
     '@type': 'Country',
     name: 'United Kingdom',
   },
+  }
+  ]
 }
 
 export default function RootLayout({
@@ -80,10 +97,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(educationJsonLd) }}
         />
       </head>
       <body className={inter.className}>{children}</body>

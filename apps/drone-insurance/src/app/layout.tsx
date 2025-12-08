@@ -44,9 +44,26 @@ export const metadata: Metadata = {
   },
 }
 
+
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'Drone Insurance UK',
+    url: 'https://droneinsurance.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://droneinsurance.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebApplication',
   name: 'Drone Insurance UK',
   description: 'Free UK drone insurance quote comparison service for UAVs, quadcopters and commercial drones',
   url: 'https://droneinsurance.quest',
@@ -70,16 +87,16 @@ const jsonLd = {
     '@type': 'Country',
     name: 'United Kingdom',
   },
-}
-
-const localBusinessJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'InsuranceAgency',
+  },
+  {
+    '@type': 'InsuranceAgency',
   name: 'Drone Insurance UK',
   description: 'Specialist drone and UAV insurance comparison service for UK pilots',
   url: 'https://droneinsurance.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Drone Insurance', 'UAV Insurance', 'Quadcopter Insurance', 'Commercial Drone Insurance'],
+  }
+  ]
 }
 
 export default function RootLayout({
@@ -93,10 +110,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
       </head>
       <body className={inter.className}>

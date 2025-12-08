@@ -44,9 +44,26 @@ export const metadata: Metadata = {
   },
 }
 
+
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'Yoga Teacher Insurance UK',
+    url: 'https://yogainsurance.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://yogainsurance.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebApplication',
   name: 'Yoga Teacher Insurance UK',
   description: 'Free UK yoga teacher insurance quote comparison service for instructors and wellness professionals',
   url: 'https://yogainsurance.quest',
@@ -70,16 +87,16 @@ const jsonLd = {
     '@type': 'Country',
     name: 'United Kingdom',
   },
-}
-
-const localBusinessJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'InsuranceAgency',
+  },
+  {
+    '@type': 'InsuranceAgency',
   name: 'Yoga Teacher Insurance UK',
   description: 'Specialist yoga teacher insurance comparison service for UK instructors',
   url: 'https://yogainsurance.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Yoga Teacher Insurance', 'Yoga Instructor Insurance', 'Pilates Teacher Insurance', 'Fitness Professional Insurance'],
+  }
+  ]
 }
 
 export default function RootLayout({
@@ -93,10 +110,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
       </head>
       <body className={inter.className}>

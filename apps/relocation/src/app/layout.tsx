@@ -45,31 +45,46 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'Relocation Quest',
-  description: 'AI-powered relocation assistant helping you move abroad with personalized visa guides and cost of living comparisons.',
-  url: 'https://relocation.quest',
-}
-
-const applicationJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: 'Relocation Quest',
-  description: 'AI-powered international relocation assistant',
-  url: 'https://relocation.quest',
-  applicationCategory: 'TravelApplication',
-  operatingSystem: 'Any',
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'GBP',
-    description: 'Free relocation planning assistant',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'Relocation Quest',
+    url: 'https://relocation.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://relocation.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
   },
-  featureList: ['AI relocation advice', 'Visa guides', 'Cost of living comparisons', 'Country guides', 'Digital nomad information'],
-  areaServed: {
-    '@type': 'Country',
-    name: 'Global',
+  {
+    '@type': 'WebSite',
+    name: 'Relocation Quest',
+    description: 'AI-powered relocation assistant helping you move abroad with personalized visa guides and cost of living comparisons.',
+    url: 'https://relocation.quest',
   },
+  {
+    '@type': 'WebApplication',
+    name: 'Relocation Quest',
+    description: 'AI-powered international relocation assistant',
+    url: 'https://relocation.quest',
+    applicationCategory: 'TravelApplication',
+    operatingSystem: 'Any',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'GBP',
+      description: 'Free relocation planning assistant',
+    },
+    featureList: ['AI relocation advice', 'Visa guides', 'Cost of living comparisons', 'Country guides', 'Digital nomad information'],
+    areaServed: {
+      '@type': 'Country',
+      name: 'Global',
+    },
+  }
+  ]
 }
 
 // Root layout without Providers - auth routes add Providers via (auth)/layout.tsx
@@ -84,10 +99,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(applicationJsonLd) }}
         />
       </head>
       <body className={inter.className}>{children}</body>

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     description: 'Specialist insurance for one-off events, exhibitions, trade shows, and temporary occasions.',
     type: 'website',
     locale: 'en_GB',
-    siteName: 'Special Event Insurance',
+    siteName: 'Special Event Insurance UK',
   },
   twitter: {
     card: 'summary_large_image',
@@ -42,9 +42,26 @@ export const metadata: Metadata = {
   },
 }
 
+
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'Special Event Insurance UK',
+    url: 'https://specialevent.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://specialevent.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebApplication',
   name: 'Special Event Insurance UK',
   description: 'Free UK special event insurance quote comparison service',
   url: 'https://specialevent.quest',
@@ -68,16 +85,16 @@ const jsonLd = {
     '@type': 'Country',
     name: 'United Kingdom',
   },
-}
-
-const localBusinessJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'InsuranceAgency',
+  },
+  {
+    '@type': 'InsuranceAgency',
   name: 'Special Event Insurance UK',
   description: 'Specialist one-off and temporary event insurance',
   url: 'https://specialevent.quest',
   areaServed: 'United Kingdom',
   serviceType: ['One-Off Event Insurance', 'Exhibition Insurance', 'Trade Show Insurance', 'Pop-Up Event Insurance'],
+  }
+  ]
 }
 
 export default function RootLayout({
@@ -91,10 +108,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
       </head>
       <body className={inter.className}>

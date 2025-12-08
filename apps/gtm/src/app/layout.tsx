@@ -42,22 +42,39 @@ export const metadata: Metadata = {
   },
 }
 
+
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebSite',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'GTM Quest',
+    url: 'https://gtm.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://gtm.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebSite',
   name: 'GTM Quest',
   description: 'Leading GTM agency for go-to-market strategy. AI-powered planning and expert consultants.',
   url: 'https://gtm.quest',
-}
-
-const serviceJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
+  },
+  {
+    '@type': 'ProfessionalService',
   name: 'GTM Quest',
   description: 'Go-to-market strategy agency providing AI-powered GTM planning and consulting',
   url: 'https://gtm.quest',
   areaServed: 'Global',
   serviceType: ['GTM Strategy', 'Product Launch', 'Go-To-Market Planning', 'GTM Consulting'],
+  }
+  ]
 }
 
 export default function RootLayout({
@@ -71,10 +88,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
         />
       </head>
       <body className={inter.className}>

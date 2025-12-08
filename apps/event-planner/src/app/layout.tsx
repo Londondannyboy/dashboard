@@ -42,9 +42,26 @@ export const metadata: Metadata = {
   },
 }
 
+
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'Event Planner Insurance UK',
+    url: 'https://eventplanner.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://eventplanner.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebApplication',
   name: 'Event Planner Insurance UK',
   description: 'Free UK event planner insurance quote comparison service',
   url: 'https://eventplanner.quest',
@@ -68,16 +85,16 @@ const jsonLd = {
     '@type': 'Country',
     name: 'United Kingdom',
   },
-}
-
-const localBusinessJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'InsuranceAgency',
+  },
+  {
+    '@type': 'InsuranceAgency',
   name: 'Event Planner Insurance UK',
   description: 'Specialist event insurance for professional event planners and organisers',
   url: 'https://eventplanner.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Event Insurance', 'Public Liability Insurance', 'Event Management Insurance', 'Charity Event Insurance'],
+  }
+  ]
 }
 
 export default function RootLayout({
@@ -91,10 +108,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
       </head>
       <body className={inter.className}>

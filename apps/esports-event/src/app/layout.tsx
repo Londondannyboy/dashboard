@@ -42,9 +42,26 @@ export const metadata: Metadata = {
   },
 }
 
+
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'Esports Event Insurance UK',
+    url: 'https://esportsevent.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://esportsevent.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebApplication',
   name: 'Esports Event Insurance UK',
   description: 'Free UK esports event insurance quote comparison service for gaming tournaments and LAN parties',
   url: 'https://esportsevent.quest',
@@ -68,16 +85,16 @@ const jsonLd = {
     '@type': 'Country',
     name: 'United Kingdom',
   },
-}
-
-const localBusinessJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'InsuranceAgency',
+  },
+  {
+    '@type': 'InsuranceAgency',
   name: 'Esports Event Insurance UK',
   description: 'Specialist esports and gaming event insurance for UK tournament organisers',
   url: 'https://esportsevent.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Esports Insurance', 'Gaming Tournament Insurance', 'LAN Party Insurance', 'Gaming Convention Insurance'],
+  }
+  ]
 }
 
 export default function RootLayout({
@@ -91,10 +108,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
       </head>
       <body className={inter.className}>

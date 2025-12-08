@@ -50,7 +50,22 @@ export const metadata: Metadata = {
 // JSON-LD structured data for the calculator
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'Salary Calculator UK',
+    url: 'https://salarycalculator.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://salarycalculator.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebApplication',
   name: 'Salary Calculator UK',
   description: 'Free UK salary calculator to work out your take home pay after tax, National Insurance and other deductions',
   url: 'https://salarycalculator.quest',
@@ -70,6 +85,8 @@ const jsonLd = {
     'Scottish tax rates',
     '2025/26 tax year rates',
   ],
+  }
+  ]
 }
 
 export default function RootLayout({

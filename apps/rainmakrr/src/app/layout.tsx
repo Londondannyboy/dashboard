@@ -41,21 +41,38 @@ export const metadata: Metadata = {
   },
 }
 
+
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebSite',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'Rainmakrr',
+    url: 'https://rainmakrr.com',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://rainmakrr.com/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebSite',
   name: 'Rainmakrr',
   description: 'Top PE & VC placement agent rankings, fund placement news, and deal flow intelligence.',
   url: 'https://rainmakrr.com',
-}
-
-const organizationJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
+  },
+  {
+    '@type': 'Organization',
   name: 'Rainmakrr',
   description: 'Private equity and venture capital placement agent intelligence platform',
   url: 'https://rainmakrr.com',
   areaServed: 'Global',
+  }
+  ]
 }
 
 export default function RootLayout({
@@ -69,10 +86,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
       </head>
       <body className={inter.className}>

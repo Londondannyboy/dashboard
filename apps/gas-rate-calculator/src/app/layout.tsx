@@ -46,25 +46,44 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: 'Gas Rate Calculator UK',
-  description: 'Free UK gas rate calculator to calculate gas appliance heat input from meter readings or test dial measurements',
-  url: 'https://gasratecalculator.quest',
-  applicationCategory: 'UtilityApplication',
-  operatingSystem: 'Any',
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'GBP',
-  },
-  featureList: [
-    'Calculate gas rate from meter readings',
-    'Calculate gas rate from test dial',
-    'Metric measurement support',
-    'Imperial measurement support',
-    'Gross and net kW output',
-    'Built-in timer function',
-    'Gas Safe compliant calculations',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      name: 'Gas Rate Calculator UK',
+      description: 'Free UK gas rate calculator to calculate gas appliance heat input from meter readings or test dial measurements',
+      url: 'https://gasratecalculator.quest',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: 'https://gasratecalculator.quest?q={search_term_string}',
+        },
+        'query-input': 'required name=search_term_string',
+      },
+      inLanguage: 'en-GB',
+    },
+    {
+      '@type': 'WebApplication',
+      name: 'Gas Rate Calculator UK',
+      description: 'Free UK gas rate calculator to calculate gas appliance heat input from meter readings or test dial measurements',
+      url: 'https://gasratecalculator.quest',
+      applicationCategory: 'UtilityApplication',
+      operatingSystem: 'Any',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'GBP',
+      },
+      featureList: [
+        'Calculate gas rate from meter readings',
+        'Calculate gas rate from test dial',
+        'Metric measurement support',
+        'Imperial measurement support',
+        'Gross and net kW output',
+        'Built-in timer function',
+        'Gas Safe compliant calculations',
+      ],
+    },
   ],
 }
 

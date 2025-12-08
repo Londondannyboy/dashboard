@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     description: 'Stamp Duty Calculator - Calculate your UK Stamp Duty Land Tax instantly. Free calculator with 2025 rates.',
     type: 'website',
     locale: 'en_GB',
-    siteName: 'Stamp Duty Calculator',
+    siteName: 'Stamp Duty Calculator UK',
   },
   twitter: {
     card: 'summary_large_image',
@@ -50,23 +50,42 @@ export const metadata: Metadata = {
 // JSON-LD structured data for the calculator
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: 'Stamp Duty Calculator',
-  description: 'Free UK Stamp Duty Land Tax calculator for residential properties',
-  url: 'https://stampdutycalculator.quest',
-  applicationCategory: 'FinanceApplication',
-  operatingSystem: 'Any',
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'GBP',
-  },
-  featureList: [
-    'Calculate UK Stamp Duty Land Tax',
-    'First-time buyer relief calculator',
-    'Additional property surcharge calculator',
-    'Non-UK resident stamp duty calculator',
-    '2025 SDLT rates',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      name: 'Stamp Duty Calculator UK',
+      description: 'Free UK Stamp Duty Land Tax calculator for residential properties',
+      url: 'https://stampdutycalculator.quest',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: 'https://stampdutycalculator.quest?q={search_term_string}',
+        },
+        'query-input': 'required name=search_term_string',
+      },
+      inLanguage: 'en-GB',
+    },
+    {
+      '@type': 'WebApplication',
+      name: 'Stamp Duty Calculator UK',
+      description: 'Free UK Stamp Duty Land Tax calculator for residential properties',
+      url: 'https://stampdutycalculator.quest',
+      applicationCategory: 'FinanceApplication',
+      operatingSystem: 'Any',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'GBP',
+      },
+      featureList: [
+        'Calculate UK Stamp Duty Land Tax',
+        'First-time buyer relief calculator',
+        'Additional property surcharge calculator',
+        'Non-UK resident stamp duty calculator',
+        '2025 SDLT rates',
+      ],
+    },
   ],
 }
 

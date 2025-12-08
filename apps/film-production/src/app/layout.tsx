@@ -44,9 +44,26 @@ export const metadata: Metadata = {
   },
 }
 
+
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'Film Production Insurance UK',
+    url: 'https://filmproduction.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://filmproduction.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebApplication',
   name: 'Film Production Insurance UK',
   description: 'Free UK film production insurance quote comparison service for short films, TV, documentaries, and commercials',
   url: 'https://filmproduction.quest',
@@ -71,16 +88,16 @@ const jsonLd = {
     '@type': 'Country',
     name: 'United Kingdom',
   },
-}
-
-const localBusinessJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'InsuranceAgency',
+  },
+  {
+    '@type': 'InsuranceAgency',
   name: 'Film Production Insurance UK',
   description: 'Specialist film and video production insurance comparison service for UK creators',
   url: 'https://filmproduction.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Film Production Insurance', 'Short Film Insurance', 'TV Production Insurance', 'Documentary Insurance', 'Commercial Production Insurance'],
+  }
+  ]
 }
 
 export default function RootLayout({
@@ -94,10 +111,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
       </head>
       <body className={inter.className}>

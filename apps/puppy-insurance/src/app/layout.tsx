@@ -45,9 +45,28 @@ export const metadata: Metadata = {
 }
 
 // JSON-LD structured data for the insurance quote service
+
+
+
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'Puppy Insurance UK',
+    url: 'https://puppyinsurance.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://puppyinsurance.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebApplication',
   name: 'Puppy Insurance UK Calculator',
   description: 'Free UK puppy insurance comparison and calculator service',
   url: 'https://puppyinsurance.quest',
@@ -71,21 +90,17 @@ const jsonLd = {
     '@type': 'Country',
     name: 'United Kingdom',
   },
-}
-
-const localBusinessJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'InsuranceAgency',
+  },
+  {
+    '@type': 'InsuranceAgency',
   name: 'Puppy Insurance UK',
   description: 'Specialist puppy and dog insurance comparison service for UK pet owners',
   url: 'https://puppyinsurance.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Pet Insurance', 'Puppy Insurance', 'Dog Insurance', 'Animal Insurance'],
-}
-
-const faqJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
+  },
+  {
+    '@type': 'FAQPage',
   mainEntity: [
     {
       '@type': 'Question',
@@ -112,6 +127,8 @@ const faqJsonLd = {
       },
     },
   ],
+  }
+  ]
 }
 
 export default function RootLayout({
@@ -125,14 +142,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
       </head>
       <body className={inter.className}>

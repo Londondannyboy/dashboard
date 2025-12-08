@@ -44,9 +44,26 @@ export const metadata: Metadata = {
   },
 }
 
+
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'Mobility Scooter Insurance UK',
+    url: 'https://mobilityscooterinsurance.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://mobilityscooterinsurance.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebApplication',
   name: 'Mobility Scooter Insurance UK',
   description: 'Free UK mobility scooter insurance quote comparison service for disability scooters and electric wheelchairs',
   url: 'https://mobilityscooterinsurance.quest',
@@ -70,16 +87,16 @@ const jsonLd = {
     '@type': 'Country',
     name: 'United Kingdom',
   },
-}
-
-const localBusinessJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'InsuranceAgency',
+  },
+  {
+    '@type': 'InsuranceAgency',
   name: 'Mobility Scooter Insurance UK',
   description: 'Specialist mobility scooter insurance comparison service for UK users',
   url: 'https://mobilityscooterinsurance.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Mobility Scooter Insurance', 'Disability Scooter Insurance', 'Electric Wheelchair Insurance', 'Mobility Aid Insurance'],
+  }
+  ]
 }
 
 export default function RootLayout({
@@ -93,10 +110,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
       </head>
       <body className={inter.className}>

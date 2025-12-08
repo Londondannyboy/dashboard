@@ -40,22 +40,39 @@ export const metadata: Metadata = {
   },
 }
 
+
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebSite',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'Graduated Quest',
+    url: 'https://graduated.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://graduated.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebSite',
   name: 'Graduated Quest',
   description: 'Leading graduate recruitment agency in London connecting talented university graduates with top UK employers.',
   url: 'https://graduated.quest',
-}
-
-const organizationJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'EmploymentAgency',
+  },
+  {
+    '@type': 'EmploymentAgency',
   name: 'Graduated Quest',
   description: 'Graduate recruitment agency specializing in entry-level positions for university graduates in London and UK',
   url: 'https://graduated.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Graduate Recruitment', 'Entry Level Jobs', 'Graduate Schemes', 'Career Guidance'],
+  }
+  ]
 }
 
 export default function RootLayout({
@@ -69,10 +86,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
       </head>
       <body className={inter.className}>{children}</body>

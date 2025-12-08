@@ -42,9 +42,26 @@ export const metadata: Metadata = {
   },
 }
 
+
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'Village Fete Insurance UK',
+    url: 'https://villagefete.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://villagefete.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebApplication',
   name: 'Village Fete Insurance UK',
   description: 'Free UK community and village fete insurance quote service',
   url: 'https://villagefete.quest',
@@ -68,16 +85,16 @@ const jsonLd = {
     '@type': 'Country',
     name: 'United Kingdom',
   },
-}
-
-const localBusinessJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'InsuranceAgency',
+  },
+  {
+    '@type': 'InsuranceAgency',
   name: 'Village Fete Insurance UK',
   description: 'Specialist community and village event insurance',
   url: 'https://villagefete.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Community Event Insurance', 'Church Event Insurance', 'Parish Council Insurance', 'Charity Event Insurance'],
+  }
+  ]
 }
 
 export default function RootLayout({
@@ -91,10 +108,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
       </head>
       <body className={inter.className}>

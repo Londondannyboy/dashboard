@@ -40,22 +40,39 @@ export const metadata: Metadata = {
   },
 }
 
+
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebSite',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'Fractional Quest',
+    url: 'https://fractional.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://fractional.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebSite',
   name: 'Fractional Quest',
   description: 'Discover fractional jobs in the UK. Browse fractional CFO, CMO, CTO and executive roles in London.',
   url: 'https://fractional.quest',
-}
-
-const jobBoardJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'EmploymentAgency',
+  },
+  {
+    '@type': 'EmploymentAgency',
   name: 'Fractional Quest',
   description: 'UK platform connecting businesses with fractional executives - CFOs, CMOs, CTOs and other part-time leadership roles',
   url: 'https://fractional.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Fractional CFO', 'Fractional CMO', 'Fractional CTO', 'Interim Executive', 'Part-time Executive'],
+  }
+  ]
 }
 
 export default function RootLayout({
@@ -69,10 +86,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jobBoardJsonLd) }}
         />
       </head>
       <body className={inter.className}>{children}</body>

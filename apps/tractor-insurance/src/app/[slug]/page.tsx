@@ -3,6 +3,7 @@ import { sql } from '@/lib/db'
 import { notFound } from 'next/navigation'
 import { marked } from 'marked'
 import Link from 'next/link'
+
 interface Article {
   id: number
   title: string

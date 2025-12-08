@@ -49,7 +49,22 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'Childcare Calculator UK',
+    url: 'https://childcarecalculator.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://childcarecalculator.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebApplication',
   name: 'Childcare Calculator UK',
   description: 'Free UK childcare calculator to work out nursery, childminder and nanny costs. Compare childcare options and check government support eligibility.',
   url: 'https://childcarecalculator.quest',
@@ -69,6 +84,8 @@ const jsonLd = {
     '30 hours free childcare checker',
     'Government support calculator',
   ],
+  }
+  ]
 }
 
 export default function RootLayout({

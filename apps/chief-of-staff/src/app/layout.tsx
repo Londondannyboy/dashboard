@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description: 'Chief of staff recruitment agency for the UK. Find the best recruiters for executive roles in London.',
     type: 'website',
     locale: 'en_GB',
-    siteName: 'Chief of Staff Recruitment Agency UK',
+    siteName: 'Chief of Staff Recruitment',
   },
   twitter: {
     card: 'summary_large_image',
@@ -40,22 +40,39 @@ export const metadata: Metadata = {
   },
 }
 
+
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebSite',
+  '@graph': [
+  {
+    '@type': 'WebSite',
+    name: 'Chief of Staff Recruitment',
+    url: 'https://chiefofstaff.quest',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://chiefofstaff.quest/?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@type': 'WebSite',
   name: 'Chief of Staff Recruitment Agency UK',
   description: 'Chief of staff recruitment agency for the UK. Find the best recruiters for executive roles in London.',
   url: 'https://chiefofstaff.quest',
-}
-
-const organizationJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'EmploymentAgency',
+  },
+  {
+    '@type': 'EmploymentAgency',
   name: 'Chief of Staff Quest',
   description: 'UK recruitment agency specializing in Chief of Staff and executive assistant positions',
   url: 'https://chiefofstaff.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Executive Recruitment', 'Chief of Staff Recruitment', 'Executive Assistant Recruitment'],
+  }
+  ]
 }
 
 export default function RootLayout({
@@ -69,10 +86,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
       </head>
       <body className={inter.className}>{children}</body>
