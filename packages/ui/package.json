@@ -47,6 +47,10 @@
     "./pages": {
       "types": "./dist/pages/index.d.ts",
       "import": "./dist/pages/index.js"
+    },
+    "./sitemap": {
+      "types": "./dist/sitemap/index.d.ts",
+      "import": "./dist/sitemap/index.js"
     }
   },
   "scripts": {
