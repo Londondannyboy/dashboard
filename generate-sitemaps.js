@@ -9,6 +9,7 @@
  * 3. Detects routes by scanning the app directory structure
  * 4. Generates sitemap.ts using shared utilities from @quest/ui/sitemap
  * 5. Generates robots.ts using shared utilities
+ * 6. Can audit existing files for quality and completeness
  */
 
 const fs = require('fs');
@@ -33,6 +34,7 @@ const stats = {
   sitemapsCreated: 0,
   robotsCreated: 0,
   skipped: 0,
+  needsUpgrade: 0,
   errors: [],
 };
 
@@ -91,6 +93,7 @@ function hasDynamicRoutes(appPath) {
   const srcAppPath = path.join(appPath, 'src', 'app');
 
   function checkDir(dir) {
+    if (!fs.existsSync(dir)) return false;
     const entries = fs.readdirSync(dir, { withFileTypes: true });
     for (const entry of entries) {
       if (entry.isDirectory()) {
@@ -107,6 +110,71 @@ function hasDynamicRoutes(appPath) {
   }
 
   return checkDir(srcAppPath);
+}
+
+/**
+ * Audit existing sitemap.ts
+ */
+function auditSitemap(sitemapPath, appName, baseUrl, routes) {
+  try {
+    const content = fs.readFileSync(sitemapPath, 'utf8');
+    const issues = [];
+
+    // Check if it uses shared utilities
+    const usesSharedUtils = content.includes('@quest/ui/sitemap');
+    if (!usesSharedUtils) {
+      issues.push('Not using shared utilities from @quest/ui/sitemap');
+    }
+
+    // Check if all routes are included
+    const routesArray = Array.from(routes);
+    const missingRoutes = [];
+    for (const route of routesArray) {
+      const routePath = route || '/';
+      if (!content.includes(routePath) && routePath !== '/') {
+        missingRoutes.push(routePath);
+      }
+    }
+
+    if (missingRoutes.length > 0) {
+      issues.push(`Missing routes: ${missingRoutes.join(', ')}`);
+    }
+
+    // Check if using predefined constant when available
+    const useConstant = ROUTE_CONSTANTS[appName];
+    if (useConstant && !content.includes(useConstant)) {
+      issues.push(`Could use ${useConstant} constant`);
+    }
+
+    return { usesSharedUtils, issues };
+  } catch (error) {
+    return { usesSharedUtils: false, issues: [`Error reading file: ${error.message}`] };
+  }
+}
+
+/**
+ * Audit existing robots.ts
+ */
+function auditRobots(robotsPath, baseUrl) {
+  try {
+    const content = fs.readFileSync(robotsPath, 'utf8');
+    const issues = [];
+
+    // Check if it uses shared utilities
+    const usesSharedUtils = content.includes('generateRobots');
+    if (!usesSharedUtils) {
+      issues.push('Not using generateRobots from @quest/ui/sitemap');
+    }
+
+    // Check if sitemap URL is correct
+    if (!content.includes(`${baseUrl}/sitemap.xml`)) {
+      issues.push('Sitemap URL may be incorrect');
+    }
+
+    return { usesSharedUtils, issues };
+  } catch (error) {
+    return { usesSharedUtils: false, issues: [`Error reading file: ${error.message}`] };
+  }
 }
 
 /**
@@ -185,7 +253,9 @@ export default function robots() {
 /**
  * Process a single app
  */
-function processApp(appName, dryRun = false) {
+function processApp(appName, options = {}) {
+  const { dryRun = false, audit = false, upgrade = false } = options;
+
   console.log(`\n📦 Processing: ${appName}`);
 
   const appPath = path.join(APPS_DIR, appName);
@@ -213,7 +283,7 @@ function processApp(appName, dryRun = false) {
 
   // Scan routes
   const routes = scanRoutes(appPath);
-  console.log(`  📄 Found ${routes.size} routes:`, Array.from(routes).sort());
+  console.log(`  📄 Found ${routes.size} routes`);
 
   // Check for dynamic routes
   const hasDynamic = hasDynamicRoutes(appPath);
@@ -227,31 +297,65 @@ function processApp(appName, dryRun = false) {
     console.log(`  🎯 Using predefined routes: ${useConstant}`);
   }
 
+  // Audit mode - check existing files
+  if (audit) {
+    if (fs.existsSync(sitemapPath)) {
+      const sitemapAudit = auditSitemap(sitemapPath, appName, baseUrl, routes);
+      console.log(`  📋 Sitemap audit:`);
+      console.log(`     Uses shared utils: ${sitemapAudit.usesSharedUtils ? '✅' : '❌'}`);
+      if (sitemapAudit.issues.length > 0) {
+        console.log(`     Issues: ${sitemapAudit.issues.join('; ')}`);
+        stats.needsUpgrade++;
+      } else {
+        console.log(`     Issues: None ✅`);
+      }
+    } else {
+      console.log(`  📋 Sitemap: Missing ❌`);
+    }
+
+    if (fs.existsSync(robotsPath)) {
+      const robotsAudit = auditRobots(robotsPath, baseUrl);
+      console.log(`  🤖 Robots audit:`);
+      console.log(`     Uses shared utils: ${robotsAudit.usesSharedUtils ? '✅' : '❌'}`);
+      if (robotsAudit.issues.length > 0) {
+        console.log(`     Issues: ${robotsAudit.issues.join('; ')}`);
+      } else {
+        console.log(`     Issues: None ✅`);
+      }
+    } else {
+      console.log(`  🤖 Robots: Missing ❌`);
+    }
+
+    return;
+  }
+
   // Generate sitemap.ts
-  if (fs.existsSync(sitemapPath)) {
-    console.log(`  ⏭️  sitemap.ts already exists - skipping`);
+  const sitemapExists = fs.existsSync(sitemapPath);
+  if (sitemapExists && !upgrade) {
+    console.log(`  ⏭️  sitemap.ts already exists - skipping (use --upgrade to replace)`);
   } else {
     const sitemapContent = generateSitemapContent(appName, baseUrl, routes, useConstant);
     if (!dryRun) {
       fs.writeFileSync(sitemapPath, sitemapContent);
-      console.log(`  ✅ Created sitemap.ts`);
+      console.log(`  ✅ ${sitemapExists ? 'Upgraded' : 'Created'} sitemap.ts`);
       stats.sitemapsCreated++;
     } else {
-      console.log(`  🔍 [DRY RUN] Would create sitemap.ts`);
+      console.log(`  🔍 [DRY RUN] Would ${sitemapExists ? 'upgrade' : 'create'} sitemap.ts`);
     }
   }
 
   // Generate robots.ts
-  if (fs.existsSync(robotsPath)) {
-    console.log(`  ⏭️  robots.ts already exists - skipping`);
+  const robotsExists = fs.existsSync(robotsPath);
+  if (robotsExists && !upgrade) {
+    console.log(`  ⏭️  robots.ts already exists - skipping (use --upgrade to replace)`);
   } else {
     const robotsContent = generateRobotsContent(baseUrl);
     if (!dryRun) {
       fs.writeFileSync(robotsPath, robotsContent);
-      console.log(`  ✅ Created robots.ts`);
+      console.log(`  ✅ ${robotsExists ? 'Upgraded' : 'Created'} robots.ts`);
       stats.robotsCreated++;
     } else {
-      console.log(`  🔍 [DRY RUN] Would create robots.ts`);
+      console.log(`  🔍 [DRY RUN] Would ${robotsExists ? 'upgrade' : 'create'} robots.ts`);
     }
   }
 }
@@ -263,12 +367,22 @@ function main() {
   const args = process.argv.slice(2);
   const dryRun = args.includes('--dry-run');
   const testMode = args.includes('--test');
+  const audit = args.includes('--audit');
+  const upgrade = args.includes('--upgrade');
 
   console.log('🚀 Sitemap & Robots Generator for Quest Apps');
   console.log('='.repeat(50));
 
   if (dryRun) {
     console.log('🔍 DRY RUN MODE - No files will be created\n');
+  }
+
+  if (audit) {
+    console.log('🔎 AUDIT MODE - Checking existing files\n');
+  }
+
+  if (upgrade) {
+    console.log('⬆️  UPGRADE MODE - Will replace existing files\n');
   }
 
   // Get all apps
@@ -294,7 +408,7 @@ function main() {
   // Process each app
   for (const appName of appsToProcess) {
     try {
-      processApp(appName, dryRun);
+      processApp(appName, { dryRun, audit, upgrade });
     } catch (error) {
       console.error(`  ❌ Error processing ${appName}:`, error.message);
       stats.errors.push(`${appName}: ${error.message}`);
@@ -306,9 +420,15 @@ function main() {
   console.log('📈 SUMMARY');
   console.log('='.repeat(50));
   console.log(`Total apps processed: ${stats.total}`);
-  console.log(`Sitemaps created: ${stats.sitemapsCreated}`);
-  console.log(`Robots.ts created: ${stats.robotsCreated}`);
-  console.log(`Skipped: ${stats.skipped}`);
+
+  if (audit) {
+    console.log(`Apps needing upgrade: ${stats.needsUpgrade}`);
+  } else {
+    console.log(`Sitemaps created: ${stats.sitemapsCreated}`);
+    console.log(`Robots.ts created: ${stats.robotsCreated}`);
+    console.log(`Skipped: ${stats.skipped}`);
+  }
+
   console.log(`Errors: ${stats.errors.length}`);
 
   if (stats.errors.length > 0) {
@@ -319,11 +439,15 @@ function main() {
   console.log('\n✨ Done!');
 
   if (dryRun) {
-    console.log('\nRun without --dry-run to create the files.');
+    console.log('\n💡 Run without --dry-run to create the files.');
   }
 
   if (testMode) {
     console.log('\n🧪 Test mode complete. Run without --test to process all apps.');
+  }
+
+  if (audit && stats.needsUpgrade > 0) {
+    console.log(`\n💡 Run with --upgrade to update files with shared utilities.`);
   }
 }
 

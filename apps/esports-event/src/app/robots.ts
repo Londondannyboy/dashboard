@@ -1,11 +1,5 @@
-import type { MetadataRoute } from 'next'
+import { generateRobots } from '@quest/ui/sitemap'
 
-export default function robots(): MetadataRoute.Robots {
-  return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-    },
-    sitemap: 'https://esportsevent.quest/sitemap.xml',
-  }
+export default function robots() {
+  return generateRobots('https://esportsevent.quest')
 }

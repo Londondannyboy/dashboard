@@ -1,20 +1,5 @@
-import { MetadataRoute } from 'next'
+import { generateRobots } from '@quest/ui/sitemap'
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://relocation.quest'
-
-export default function robots(): MetadataRoute.Robots {
-  return {
-    rules: [
-      {
-        userAgent: '*',
-        allow: '/',
-        disallow: [
-          '/api/',
-          '/handler/',
-          '/dashboard',
-        ],
-      },
-    ],
-    sitemap: `${BASE_URL}/sitemap.xml`,
-  }
+export default function robots() {
+  return generateRobots('https://relocation.quest')
 }

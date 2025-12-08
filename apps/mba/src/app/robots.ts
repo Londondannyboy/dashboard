@@ -1,6 +1,5 @@
-import { MetadataRoute } from 'next'
-import { generateRobots } from '@quest/ui'
+import { generateRobots } from '@quest/ui/sitemap'
 
-export default function robots(): MetadataRoute.Robots {
+export default function robots() {
   return generateRobots('https://mba.quest')
 }

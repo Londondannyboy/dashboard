@@ -1,12 +1,8 @@
 import { MetadataRoute } from 'next'
-import { generateStaticSitemap } from '@quest/ui'
+import { generateStaticSitemap } from '@quest/ui/sitemap'
 
 const staticRoutes = [
-  { path: '', changeFrequency: 'weekly' as const, priority: 1.0 },
-  { path: '/commercial-drone-insurance', changeFrequency: 'weekly' as const, priority: 0.9 },
-  { path: '/recreational-drone-insurance', changeFrequency: 'weekly' as const, priority: 0.9 },
-  { path: '/fpv-drone-insurance', changeFrequency: 'weekly' as const, priority: 0.9 },
-  { path: '/drone-liability-insurance', changeFrequency: 'weekly' as const, priority: 0.9 },
+  { path: '', changeFrequency: 'daily' as const, priority: 1 }
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

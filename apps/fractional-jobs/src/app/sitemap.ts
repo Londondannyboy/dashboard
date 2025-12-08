@@ -1,111 +1,28 @@
 import { MetadataRoute } from 'next'
-import { getAllArticles } from '@/lib/articles'
+import { generateStaticSitemap } from '@quest/ui/sitemap'
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://fractional.quest'
+const staticRoutes = [
+  { path: '', changeFrequency: 'daily' as const, priority: 1 },
+  { path: '/about', changeFrequency: 'monthly' as const, priority: 0.7 },
+  { path: '/agencies', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/articles', changeFrequency: 'daily' as const, priority: 0.8 },
+  { path: '/cfo', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/cmo', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/contact', changeFrequency: 'monthly' as const, priority: 0.7 },
+  { path: '/coo', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/cto', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/guide', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/hr', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/jobs', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/london', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/privacy', changeFrequency: 'yearly' as const, priority: 0.3 },
+  { path: '/remote', changeFrequency: 'weekly' as const, priority: 0.8 },
+  { path: '/terms', changeFrequency: 'yearly' as const, priority: 0.3 }
+]
 
-  // Static pages
-  const staticPages: MetadataRoute.Sitemap = [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/jobs`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/london`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/remote`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/cfo`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/cmo`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/cto`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/coo`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/hr`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/guide`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/agencies`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/articles`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-  ]
-
-  // Dynamic article pages from Neon database
-  let articlePages: MetadataRoute.Sitemap = []
-
-  try {
-    const articles = await getAllArticles()
-    articlePages = articles.map((article) => ({
-      url: `${baseUrl}/articles/${article.slug}`,
-      lastModified: new Date(article.updated_at || article.created_at),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    }))
-  } catch (error) {
-    console.error('Failed to fetch articles for sitemap:', error)
-  }
-
-  return [...staticPages, ...articlePages]
+export default function sitemap(): MetadataRoute.Sitemap {
+  return generateStaticSitemap({
+    baseUrl: 'https://fractional.quest',
+    staticRoutes,
+  })
 }
