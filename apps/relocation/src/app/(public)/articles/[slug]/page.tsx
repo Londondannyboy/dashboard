@@ -284,6 +284,35 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               </div>
             </div>
           </div>
+        ) : article.hero_asset_url ? (
+          <div className="relative">
+            <div className="relative h-[50vh] min-h-[400px] max-h-[600px]">
+              <Image
+                src={article.hero_asset_url}
+                alt={article.hero_asset_alt || article.title}
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-transparent to-white/60" />
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
+              <div className="max-w-4xl mx-auto">
+                <div className="flex items-center gap-3 mb-4">
+                  {article.flag_emoji && (
+                    <span className="text-3xl">{article.flag_emoji}</span>
+                  )}
+                  <span className={`px-4 py-1.5 rounded-full text-sm font-semibold text-white bg-gradient-to-r ${config.gradient}`}>
+                    {config.icon} {config.label}
+                  </span>
+                </div>
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-tight drop-shadow-lg">
+                  {article.title}
+                </h1>
+              </div>
+            </div>
+          </div>
         ) : (
           <div className="bg-gradient-to-b from-amber-50 to-white pt-24 pb-16">
             <div className="max-w-4xl mx-auto px-6">

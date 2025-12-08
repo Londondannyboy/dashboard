@@ -123,54 +123,56 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       </div>
 
       <main className="flex-1">
-        {/* Hero Section - Dark */}
-        <section className="bg-slate-900 pt-24 pb-16 px-6">
-          <div className="max-w-3xl mx-auto">
+        {/* Hero Section with Background Image */}
+        <section
+          className="relative pt-24 pb-20 px-6 min-h-[400px] md:min-h-[500px] flex items-end"
+          style={{
+            backgroundImage: heroImage ? `url(${heroImage})` : undefined,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-slate-900/40" />
+
+          <div className="relative max-w-3xl mx-auto w-full">
             {/* Category & Meta */}
             <div className="flex flex-wrap items-center gap-3 mb-6">
-              <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm font-medium">
+              <span className="px-3 py-1 bg-blue-500/30 backdrop-blur-sm text-blue-200 rounded-full text-sm font-medium">
                 {category}
               </span>
-              <span className="text-slate-400 text-sm">{publishDate}</span>
-              <span className="text-slate-500">•</span>
-              <span className="text-slate-400 text-sm">{readTime}</span>
+              <span className="text-slate-300 text-sm">{publishDate}</span>
+              <span className="text-slate-400">•</span>
+              <span className="text-slate-300 text-sm">{readTime}</span>
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
               {article.title}
             </h1>
 
             {/* Excerpt */}
             {article.excerpt && (
-              <p className="text-lg md:text-xl text-slate-300 leading-relaxed">
+              <p className="text-lg md:text-xl text-slate-200 leading-relaxed drop-shadow-md">
                 {article.excerpt}
               </p>
             )}
           </div>
         </section>
 
-        {/* Hero Image */}
-        {heroImage && (
+        {/* Video Section (only if video exists) */}
+        {article.video_playback_id && (
           <section className="bg-slate-100 px-6 py-8">
             <div className="max-w-4xl mx-auto">
               <div className="rounded-xl overflow-hidden shadow-lg">
-                {article.video_playback_id ? (
-                  <div className="relative aspect-video bg-black">
-                    <iframe
-                      src={`https://stream.mux.com/${article.video_playback_id}`}
-                      className="absolute inset-0 w-full h-full"
-                      allow="autoplay; fullscreen; picture-in-picture"
-                      allowFullScreen
-                    />
-                  </div>
-                ) : (
-                  <img
-                    src={heroImage}
-                    alt={article.hero_asset_alt || article.title}
-                    className="w-full aspect-video object-cover"
+                <div className="relative aspect-video bg-black">
+                  <iframe
+                    src={`https://stream.mux.com/${article.video_playback_id}`}
+                    className="absolute inset-0 w-full h-full"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowFullScreen
                   />
-                )}
+                </div>
               </div>
             </div>
           </section>

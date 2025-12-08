@@ -71,7 +71,7 @@ function formatDate(date: string | null): string {
 }
 
 function parseMarkdown(content: string): string {
-  return marked.parse(content, { async: false }) as string
+  return marked(content) as string
 }
 
 function estimateReadTime(wordCount: number | null, content: string): string {
