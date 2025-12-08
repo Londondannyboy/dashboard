@@ -231,6 +231,12 @@ importers:
 
   apps/fractional-jobs:
     dependencies:
+      '@neondatabase/serverless':
+        specifier: ^1.0.0
+        version: 1.0.2
+      '@quest/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@quest/ui':
         specifier: workspace:*
         version: link:../../packages/ui

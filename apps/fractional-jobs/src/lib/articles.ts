@@ -93,5 +93,5 @@ export async function getAllArticleSlugs(): Promise<string[]> {
     WHERE app = 'fractional'
     AND status = 'published'
   `
-  return rows.map((row: { slug: string }) => row.slug)
+  return (rows as Array<{ slug: string }>).map((row) => row.slug)
 }

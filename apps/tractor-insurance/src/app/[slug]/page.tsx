@@ -3,8 +3,6 @@ import { sql } from '@/lib/db'
 import { notFound } from 'next/navigation'
 import { marked } from 'marked'
 import Link from 'next/link'
-import type { Metadata } from 'next'
-
 interface Article {
   id: number
   title: string
@@ -78,25 +76,6 @@ function estimateReadTime(wordCount: number | null, content: string): string {
   const words = wordCount || content.split(/\s+/).length
   const minutes = Math.ceil(words / 200)
   return `${minutes} min read`
-}
-
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params
-  const article = await getArticle(slug)
-
-  if (!article) {
-    return { title: 'Article Not Found' }
-  }
-
-  return {
-    title: `${article.title} | Tractor Insurance Quest`,
-    description: article.meta_description || article.excerpt || `Learn about ${article.title.toLowerCase()}`,
-    openGraph: {
-      title: article.title,
-      description: article.meta_description || article.excerpt || undefined,
-      images: article.hero_asset_url ? [article.hero_asset_url] : undefined,
-    }
-  }
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
