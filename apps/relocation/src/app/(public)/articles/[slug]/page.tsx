@@ -44,6 +44,8 @@ interface RelatedArticle {
   excerpt: string | null
   video_playback_id: string | null
   article_mode: string
+  country: string | null
+  flag_emoji: string | null
 }
 
 const MODE_CONFIG: Record<string, { label: string; icon: string; gradient: string }> = {
@@ -83,10 +85,10 @@ async function getArticle(slug: string): Promise<Article | null> {
   }
 }
 
-async function getRelatedArticles(currentSlug: string): Promise<RelatedArticle[]> {
+async function getAllArticles(): Promise<RelatedArticle[]> {
   try {
     const res = await fetch(
-      `${GATEWAY_URL}/dashboard/content/articles?limit=4`,
+      `${GATEWAY_URL}/dashboard/content/articles?limit=200`,
       {
         next: { revalidate: 3600 },
         headers: { 'Accept': 'application/json' }
@@ -94,12 +96,65 @@ async function getRelatedArticles(currentSlug: string): Promise<RelatedArticle[]
     )
     if (!res.ok) return []
     const data = await res.json()
-    return (data.articles || [])
-      .filter((a: RelatedArticle) => a.slug !== currentSlug)
-      .slice(0, 3)
+    return data.articles || []
   } catch {
     return []
   }
+}
+
+function getRelatedArticles(
+  allArticles: RelatedArticle[],
+  currentArticle: Article,
+  count: number = 4
+): RelatedArticle[] {
+  const currentSlug = currentArticle.slug
+  const currentCountry = currentArticle.country
+  const currentMode = currentArticle.article_mode
+
+  // Filter out current article
+  const others = allArticles.filter(a => a.slug !== currentSlug)
+
+  // Prioritize: same country > same mode > others
+  const sameCountry = others.filter(a => a.country && a.country === currentCountry)
+  const sameMode = others.filter(a => a.article_mode === currentMode && a.country !== currentCountry)
+  const rest = others.filter(a => a.country !== currentCountry && a.article_mode !== currentMode)
+
+  // Combine and deduplicate
+  const combined = [...sameCountry, ...sameMode, ...rest]
+  const seen = new Set<number>()
+  const unique: RelatedArticle[] = []
+  for (const article of combined) {
+    if (!seen.has(article.id)) {
+      seen.add(article.id)
+      unique.push(article)
+    }
+    if (unique.length >= count) break
+  }
+
+  return unique
+}
+
+function getArticlesByCountry(
+  allArticles: RelatedArticle[],
+  country: string | null,
+  excludeSlug: string,
+  count: number = 4
+): RelatedArticle[] {
+  if (!country) return []
+  return allArticles
+    .filter(a => a.country === country && a.slug !== excludeSlug)
+    .slice(0, count)
+}
+
+function getArticlesByMode(
+  allArticles: RelatedArticle[],
+  mode: string,
+  excludeSlug: string,
+  count: number = 4
+): RelatedArticle[] {
+  return allArticles
+    .filter(a => a.article_mode === mode && a.slug !== excludeSlug)
+    .slice(0, count)
 }
 
 // Pre-render articles at build time for SEO
@@ -158,14 +213,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const [article, relatedArticles] = await Promise.all([
+  const [article, allArticles] = await Promise.all([
     getArticle(slug),
-    getRelatedArticles(slug),
+    getAllArticles(),
   ])
 
   if (!article) {
     notFound()
   }
+
+  // Compute related articles
+  const relatedArticles = getRelatedArticles(allArticles, article, 5)
+  const sameCountryArticles = getArticlesByCountry(allArticles, article.country, article.slug, 4)
+  const sameModeArticles = getArticlesByMode(allArticles, article.article_mode, article.slug, 4)
+    .filter(a => !sameCountryArticles.find(c => c.id === a.id)) // Exclude duplicates
 
   const config = MODE_CONFIG[article.article_mode] || MODE_CONFIG.topic
   const publishDate = article.published_at
@@ -298,6 +359,63 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <div className="text-center py-12 text-gray-500">
             <p>No content available for this article.</p>
           </div>
+        )}
+
+        {/* Related Guides Section - Internal Links for SEO */}
+        {sameCountryArticles.length > 0 && (
+          <section className="my-12 p-6 bg-amber-50 border border-amber-200 rounded-xl">
+            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              {article.flag_emoji && <span>{article.flag_emoji}</span>}
+              More {article.country ? `${article.country} ` : ''}Guides
+            </h3>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {sameCountryArticles.map((related) => {
+                const relConfig = MODE_CONFIG[related.article_mode] || MODE_CONFIG.topic
+                return (
+                  <Link
+                    key={related.id}
+                    href={`/articles/${related.slug}`}
+                    className="flex items-center gap-3 p-3 bg-white rounded-lg border border-amber-100 hover:border-amber-300 hover:shadow-sm transition-all group"
+                  >
+                    <span className={`w-8 h-8 rounded-lg bg-gradient-to-br ${relConfig.gradient} flex items-center justify-center text-sm text-white flex-shrink-0`}>
+                      {relConfig.icon}
+                    </span>
+                    <span className="text-gray-900 font-medium text-sm line-clamp-2 group-hover:text-amber-600 transition-colors">
+                      {related.title}
+                    </span>
+                  </Link>
+                )
+              })}
+            </div>
+          </section>
+        )}
+
+        {/* Similar Guides by Type */}
+        {sameModeArticles.length > 0 && (
+          <section className="my-12 p-6 bg-gray-50 border border-gray-200 rounded-xl">
+            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <span className={`w-8 h-8 rounded-lg bg-gradient-to-br ${config.gradient} flex items-center justify-center text-sm text-white`}>
+                {config.icon}
+              </span>
+              More {config.label}s
+            </h3>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {sameModeArticles.slice(0, 4).map((related) => (
+                <Link
+                  key={related.id}
+                  href={`/articles/${related.slug}`}
+                  className="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-100 hover:border-amber-300 hover:shadow-sm transition-all group"
+                >
+                  {related.flag_emoji && (
+                    <span className="text-xl flex-shrink-0">{related.flag_emoji}</span>
+                  )}
+                  <span className="text-gray-900 font-medium text-sm line-clamp-2 group-hover:text-amber-600 transition-colors">
+                    {related.title}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
         )}
 
         {/* Stat Highlight */}
@@ -446,8 +564,16 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       {relatedArticles.length > 0 && (
         <section className="border-t border-gray-200 py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">More Articles</h2>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-2xl font-bold text-gray-900">More Articles</h2>
+              <Link
+                href="/articles"
+                className="text-amber-600 hover:text-amber-500 font-medium text-sm flex items-center gap-1"
+              >
+                View all articles <span>→</span>
+              </Link>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
               {relatedArticles.map((related) => {
                 const relConfig = MODE_CONFIG[related.article_mode] || MODE_CONFIG.topic
                 return (
@@ -491,6 +617,30 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           </div>
         </section>
       )}
+
+      {/* Browse by Category - Additional Internal Links */}
+      <section className="py-12 bg-white border-t border-gray-200">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">Browse by Category</h2>
+          <div className="flex flex-wrap gap-3">
+            {Object.entries(MODE_CONFIG).map(([mode, cfg]) => (
+              <Link
+                key={mode}
+                href={`/articles#${mode}`}
+                className={`px-4 py-2 rounded-full text-sm font-semibold text-white bg-gradient-to-r ${cfg.gradient} hover:opacity-90 transition-opacity`}
+              >
+                {cfg.icon} {cfg.label}
+              </Link>
+            ))}
+            <Link
+              href="/articles"
+              className="px-4 py-2 rounded-full text-sm font-semibold text-amber-600 border-2 border-amber-500 hover:bg-amber-50 transition-colors"
+            >
+              All Articles →
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
       <StaticFooter
