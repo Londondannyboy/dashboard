@@ -16,13 +16,14 @@ const nextConfig: NextConfig = {
     const regions = [
       'us',
       'uk',
-      'europe',
       'asia-pacific',
       'north-america',
       'latin-america',
       'middle-east',
       'africa',
       'singapore',
+      // Note: 'europe' is not included because /top-private-equity-placement-agents-europe
+      // is now a real article page in the database, not a redirect to /top-private-equity-placement-agents/europe
     ]
 
     const regionRedirects = regions.map((region) => ({
