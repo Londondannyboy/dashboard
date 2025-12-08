@@ -326,7 +326,8 @@ export default async function HomePage() {
                       <div className="mb-4 h-12 flex items-center">
                         <img
                           src={company.logo_url}
-                          alt={`${company.name} logo`}
+                          alt={`${company.name} - Chief of Staff recruitment agency`}
+                          title="Chief of Staff recruitment agency"
                           className="h-10 w-auto"
                         />
                       </div>
@@ -446,7 +447,7 @@ export default async function HomePage() {
                 {articles.map((article: any) => (
                   <article key={article.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
                     {article.featured_asset_url && (
-                      <img src={article.featured_asset_url} alt={article.featured_asset_alt || article.title} className="w-full h-48 object-cover" />
+                      <img src={article.featured_asset_url} alt={`${article.featured_asset_alt || article.title} - Chief of Staff recruitment agency`} title="Chief of Staff recruitment agency article" className="w-full h-48 object-cover" />
                     )}
                     <div className="p-6">
                       {article.article_angle && (
