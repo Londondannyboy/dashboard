@@ -71,3 +71,20 @@ export {
 } from './queries.js'
 
 export type { ConversationFact } from './queries.js'
+
+// SEO Validation
+export {
+  SEO_RULES,
+  validateTitleLength,
+  validateMetaDescription,
+  validateTitleKeywordsInContent,
+  validateInternalLinks,
+  countInternalLinks,
+  validateArticleSEO,
+  shortenTitle,
+} from './seo-validation.js'
+
+export type {
+  SEOValidationResult,
+  ArticleSEOInput,
+} from './seo-validation.js'
