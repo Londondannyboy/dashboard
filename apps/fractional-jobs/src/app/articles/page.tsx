@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
+import { getAllArticles } from '@/lib/articles'
 
 export const metadata: Metadata = {
   title: 'Fractional Jobs Articles & Guides | Fractional Career Advice | Fractional Quest',
@@ -7,60 +9,19 @@ export const metadata: Metadata = {
   keywords: 'fractional jobs guide, fractional executive career, fractional CFO salary, how to become fractional executive, fractional work UK',
 }
 
-const articles = [
-  {
-    id: 1,
-    title: 'What is a Fractional Executive? Complete Guide for 2025',
-    excerpt: 'Everything you need to know about fractional executive roles, including how they differ from interim and consulting positions.',
-    category: 'Getting Started',
-    readTime: '8 min read',
-    date: 'December 2024',
-  },
-  {
-    id: 2,
-    title: 'Fractional CFO Salary Guide UK 2025',
-    excerpt: 'Comprehensive breakdown of Fractional CFO day rates in the UK, including London premiums and industry variations.',
-    category: 'Salary & Rates',
-    readTime: '6 min read',
-    date: 'December 2024',
-  },
-  {
-    id: 3,
-    title: 'How to Transition from Full-Time to Fractional',
-    excerpt: 'Step-by-step guide to building a successful fractional career, from finding your first client to managing multiple engagements.',
-    category: 'Career Advice',
-    readTime: '10 min read',
-    date: 'November 2024',
-  },
-  {
-    id: 4,
-    title: 'Top 10 Fractional Recruitment Agencies in the UK',
-    excerpt: 'Our curated list of the best fractional executive recruitment agencies, with specialties and placement track records.',
-    category: 'Agencies',
-    readTime: '7 min read',
-    date: 'November 2024',
-  },
-  {
-    id: 5,
-    title: 'Fractional CTO vs Interim CTO: Key Differences',
-    excerpt: 'Understanding when companies need a Fractional CTO versus an Interim CTO, and what each role entails.',
-    category: 'Roles Explained',
-    readTime: '5 min read',
-    date: 'October 2024',
-  },
-  {
-    id: 6,
-    title: 'Building Your Fractional Executive Brand',
-    excerpt: 'How to position yourself as a fractional executive, including LinkedIn optimization and networking strategies.',
-    category: 'Personal Brand',
-    readTime: '9 min read',
-    date: 'October 2024',
-  },
+const categories = [
+  { name: 'All', slug: 'all' },
+  { name: 'CFO', slug: 'cfo' },
+  { name: 'CMO', slug: 'cmo' },
+  { name: 'CTO', slug: 'cto' },
+  { name: 'Getting Started', slug: 'getting-started' },
+  { name: 'Salary & Rates', slug: 'salary' },
+  { name: 'Locations', slug: 'locations' },
 ]
 
-const categories = ['All', 'Getting Started', 'Salary & Rates', 'Career Advice', 'Agencies', 'Roles Explained', 'Personal Brand']
+export default async function ArticlesPage() {
+  const articles = await getAllArticles()
 
-export default function ArticlesPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -96,22 +57,23 @@ export default function ArticlesPage() {
               Fractional Jobs Articles & Guides
             </h1>
             <p className="text-lg text-gray-600 mb-8">
-              Expert advice on building a successful fractional executive career in the UK.
+              Expert advice on building a successful fractional executive career in the UK. {articles.length} articles covering CFO, CMO, CTO roles and more.
             </p>
 
             {/* Category Filters */}
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => (
-                <button
-                  key={category}
+                <Link
+                  key={category.slug}
+                  href={category.slug === 'all' ? '/articles' : `/articles?category=${category.slug}`}
                   className={`px-4 py-2 rounded-lg font-medium transition ${
-                    category === 'All'
+                    category.slug === 'all'
                       ? 'bg-violet-700 text-white'
                       : 'bg-white text-gray-700 border border-gray-200 hover:border-violet-300'
                   }`}
                 >
-                  {category}
-                </button>
+                  {category.name}
+                </Link>
               ))}
             </div>
           </div>
@@ -122,24 +84,45 @@ export default function ArticlesPage() {
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {articles.map((article) => (
-                <article key={article.id} className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition">
-                  <div className="h-48 bg-gradient-to-br from-violet-100 to-violet-50 flex items-center justify-center">
-                    <span className="text-6xl opacity-50">📄</span>
-                  </div>
+                <article key={article.id} className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition group">
+                  <Link href={`/articles/${article.slug}`}>
+                    <div className="relative h-48 bg-gradient-to-br from-violet-100 to-violet-50">
+                      {article.featured_asset_url ? (
+                        <Image
+                          src={article.featured_asset_url}
+                          alt={article.featured_asset_alt || article.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      ) : (
+                        <div className="flex items-center justify-center h-full">
+                          <span className="text-6xl opacity-50">📄</span>
+                        </div>
+                      )}
+                    </div>
+                  </Link>
                   <div className="p-6">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs font-semibold px-2 py-1 rounded bg-violet-100 text-violet-800">
-                        {article.category}
-                      </span>
-                      <span className="text-xs text-gray-500">{article.readTime}</span>
+                      {article.target_keyword && (
+                        <span className="text-xs font-semibold px-2 py-1 rounded bg-violet-100 text-violet-800">
+                          {article.target_keyword}
+                        </span>
+                      )}
+                      {article.keyword_volume && (
+                        <span className="text-xs text-gray-500">{article.keyword_volume.toLocaleString()} searches/mo</span>
+                      )}
                     </div>
-                    <h2 className="font-bold text-lg text-gray-900 mb-2 hover:text-violet-700">
-                      <Link href={`/articles/${article.id}`}>{article.title}</Link>
+                    <h2 className="font-bold text-lg text-gray-900 mb-2 group-hover:text-violet-700 transition line-clamp-2">
+                      <Link href={`/articles/${article.slug}`}>{article.title}</Link>
                     </h2>
-                    <p className="text-gray-600 text-sm mb-4">{article.excerpt}</p>
+                    {article.excerpt && (
+                      <p className="text-gray-600 text-sm mb-4 line-clamp-2">{article.excerpt}</p>
+                    )}
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-gray-500">{article.date}</span>
-                      <Link href={`/articles/${article.id}`} className="text-violet-700 hover:text-violet-900 text-sm font-semibold">
+                      <span className="text-xs text-gray-500">
+                        {new Date(article.created_at).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}
+                      </span>
+                      <Link href={`/articles/${article.slug}`} className="text-violet-700 hover:text-violet-900 text-sm font-semibold">
                         Read more &rarr;
                       </Link>
                     </div>
@@ -147,6 +130,12 @@ export default function ArticlesPage() {
                 </article>
               ))}
             </div>
+
+            {articles.length === 0 && (
+              <div className="text-center py-16">
+                <p className="text-gray-500 text-lg">No articles found.</p>
+              </div>
+            )}
           </div>
         </section>
 
@@ -181,6 +170,10 @@ export default function ArticlesPage() {
               <span className="text-xl font-black text-white">Fractional</span>
               <span className="text-xl font-black text-amber-400">Quest</span>
             </Link>
+            <div className="flex gap-6 text-sm text-gray-400">
+              <Link href="/privacy" className="hover:text-white">Privacy</Link>
+              <Link href="/terms" className="hover:text-white">Terms</Link>
+            </div>
             <p className="text-gray-400 text-sm">
               &copy; 2025 Fractional Quest. Fractional Jobs UK.
             </p>
