@@ -24,14 +24,16 @@ const config: HomepageConfig = {
   navItems: [
     { href: '/private-equity-placement-agent-news', label: 'News' },
     { href: '/private-equity-placement-agents-list', label: 'Directory' },
+    { href: '/complete-guide-private-equity-placement-agents-2025', label: 'Guides' },
     { href: '/ecosystem', label: 'Network' },
-    { href: '/momentum', label: 'Momentum' },
   ],
   productLinks: [
-    { label: 'Placement Agents', href: '/private-equity-placement-agents-list' },
-    { label: 'Agent Network', href: '/ecosystem' },
-    { label: 'Industry News', href: '/private-equity-placement-agent-news' },
-    { label: 'Deal Flow', href: '/momentum' },
+    { label: 'Placement Agent Directory', href: '/private-equity-placement-agents-list' },
+    { label: 'Top Placement Agents', href: '/top-private-equity-placement-agents-2025' },
+    { label: 'Placement Agent Fees', href: '/placement-agent-fees-private-equity' },
+    { label: 'PE Firms London', href: '/largest-private-equity-firms-london' },
+    { label: 'Top 100 PE Firms UK', href: '/top-100-private-equity-firms-uk-2025' },
+    { label: 'Mid-Market PE Europe', href: '/mid-market-private-equity-firms-europe' },
   ],
   companyLinks: [
     { label: 'About', href: '/about' },
