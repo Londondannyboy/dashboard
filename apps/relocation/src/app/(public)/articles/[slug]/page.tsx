@@ -102,6 +102,22 @@ async function getRelatedArticles(currentSlug: string): Promise<RelatedArticle[]
   }
 }
 
+// Pre-render articles at build time for SEO
+export async function generateStaticParams() {
+  try {
+    const res = await fetch(`${GATEWAY_URL}/dashboard/content/articles?limit=100`, {
+      headers: { 'Accept': 'application/json' }
+    })
+    if (!res.ok) return []
+    const data = await res.json()
+    return (data.articles || []).map((article: { slug: string }) => ({
+      slug: article.slug,
+    }))
+  } catch {
+    return []
+  }
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const article = await getArticle(slug)

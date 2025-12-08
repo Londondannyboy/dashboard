@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: {
     default: 'Relocation Quest',
-    template: '%s | Relocation Quest',
+    template: '%s',  // No suffix - pages provide their own full title
   },
   description: 'AI-powered relocation assistance',
 }
