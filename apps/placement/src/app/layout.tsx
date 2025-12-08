@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Placement Quest - Fund Placement Intelligence',
     description: 'The insider guide to fund placements. Track placement agent mandates and LP relationships.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   robots: {
     index: true,
