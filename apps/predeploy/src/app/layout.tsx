@@ -8,16 +8,29 @@ export const metadata: Metadata = {
   title: 'Forward Deployed Engineer Recruitment Agency UK',
   description: 'Forward deployed engineer recruitment agency for the UK. Find the best recruiters for FDE roles in London. Browse agencies, salary guides, and career advice.',
   keywords: 'forward deployed engineer recruitment agency, forward deployed engineer jobs, FDE recruitment, forward deployed engineer UK, technical recruitment',
+  metadataBase: new URL('https://predeploy.ai'),
   openGraph: {
     title: 'Forward Deployed Engineer Recruitment Agency UK',
     description: 'Forward deployed engineer recruitment agency for the UK. Find the best recruiters for FDE roles in London.',
     type: 'website',
     locale: 'en_GB',
+    siteName: 'PreDeploy',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Forward Deployed Engineer Recruitment Agency UK',
     description: 'Forward deployed engineer recruitment agency for the UK. Find FDE roles in London.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   icons: {
     icon: [
@@ -27,6 +40,24 @@ export const metadata: Metadata = {
   },
 }
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'PreDeploy',
+  description: 'Forward deployed engineer recruitment agency for the UK.',
+  url: 'https://predeploy.ai',
+}
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'EmploymentAgency',
+  name: 'PreDeploy',
+  description: 'UK recruitment agency specializing in forward deployed engineer positions',
+  url: 'https://predeploy.ai',
+  areaServed: 'United Kingdom',
+  serviceType: ['Forward Deployed Engineer Recruitment', 'Technical Recruitment', 'FDE Jobs'],
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -34,6 +65,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-GB">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   )
