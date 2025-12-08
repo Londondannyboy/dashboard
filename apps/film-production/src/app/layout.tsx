@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -55,7 +56,33 @@ export const metadata: Metadata = {
   },
 }
 
-
+// FAQ data for rich snippets
+const faqs = [
+  {
+    question: 'What does film production insurance cover?',
+    answer: 'Coverage includes equipment insurance, public liability, cast insurance, errors and omissions (E&O), props and wardrobe, location damage, and production interruption due to unforeseen circumstances.'
+  },
+  {
+    question: 'How much does film production insurance cost?',
+    answer: 'Short film insurance starts from £200-£500. Feature films and commercials typically pay 1-3% of the production budget. A £100,000 production might cost £1,000-£3,000 to insure.'
+  },
+  {
+    question: 'Is film production insurance required?',
+    answer: 'Yes, most locations, equipment rental companies, and distributors require proof of insurance. Broadcasters and streaming platforms mandate E&O insurance before they\'ll air your content.'
+  },
+  {
+    question: 'What equipment is covered?',
+    answer: 'Cameras, lenses, lighting, audio equipment, drones, editing systems, and all owned or hired production gear. Coverage includes theft, damage, and loss on location or in transit.'
+  },
+  {
+    question: 'Does it cover cast and crew?',
+    answer: 'Yes, you can add cast insurance covering illness or injury that delays production, plus employer\'s liability for crew and public liability for all people on set.'
+  },
+  {
+    question: 'What is E&O insurance and do I need it?',
+    answer: 'Errors & Omissions insurance protects against claims of copyright infringement, defamation, and privacy violations. It\'s essential for distribution and required by most broadcasters and platforms.'
+  }
+]
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -107,7 +134,8 @@ const jsonLd = {
   url: 'https://filmproduction.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Film Production Insurance', 'Short Film Insurance', 'TV Production Insurance', 'Documentary Insurance', 'Commercial Production Insurance'],
-  }
+  },
+  ...createFAQSchema(faqs),
   ]
 }
 

@@ -131,7 +131,8 @@ const jsonLd = {
   url: 'https://esportsevent.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Esports Insurance', 'Gaming Tournament Insurance', 'LAN Party Insurance', 'Gaming Convention Insurance'],
-  }
+  },
+  ...createFAQSchema(faqs),
   ]
 }
 
