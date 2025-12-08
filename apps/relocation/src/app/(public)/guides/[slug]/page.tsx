@@ -210,6 +210,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         videoUrl={guide.video_url}
         imageUrl={guide.hero_asset_url}
         imageAlt={guide.hero_asset_alt}
+        targetKeyword={guide.target_keyword}
       />
 
       {/* Main Content */}
@@ -224,24 +225,12 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
               </p>
             )}
 
-            {/* Quick Stats */}
-            <div className="grid grid-cols-3 gap-4 mb-12 p-6 bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl">
-              <div className="text-center">
-                <div className="text-3xl font-black text-amber-600">
-                  {guide.keyword_difficulty || '?'}
-                </div>
-                <div className="text-sm text-gray-600">SEO Difficulty</div>
-              </div>
-              <div className="text-center border-x border-amber-200">
-                <div className="text-3xl font-black text-amber-600">
-                  {guide.keyword_volume?.toLocaleString() || '?'}
-                </div>
-                <div className="text-sm text-gray-600">Monthly Searches</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl">{flag || '🌍'}</div>
-                <div className="text-sm text-gray-600">{guide.country}</div>
-              </div>
+            {/* Key Info Banner */}
+            <div className="mb-10 p-6 bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl border border-amber-100">
+              <p className="text-gray-700 leading-relaxed">
+                <span className="text-3xl mr-3">{flag || '🌍'}</span>
+                <strong className="text-amber-700">Planning to relocate to {guide.country}?</strong> This comprehensive guide covers everything you need to know about {guide.target_keyword?.replace(/-/g, ' ') || `moving to ${guide.country}`} - from visa requirements and cost of living to healthcare and the best cities for expats.
+              </p>
             </div>
 
             {/* Content */}
@@ -263,7 +252,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             {faqItems.length > 0 && (
               <section className="mt-12">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-amber-500 pl-4">
-                  Frequently Asked Questions
+                  Frequently Asked Questions About Moving to {guide.country}
                 </h2>
                 <div className="space-y-4" itemScope itemType="https://schema.org/FAQPage">
                   {faqItems.map((item, idx) => (
@@ -306,7 +295,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
                   {key === 'visa' && '🛂'}
                   {key === 'cost' && '💰'}
                   {key === 'cities' && '🏙️'}
-                  {section.title}
+                  {guide.country} {section.title}
                 </h3>
                 <ul className="space-y-2">
                   {section.items.map((item, idx) => (
@@ -349,7 +338,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         <section className="border-t border-gray-200 py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-2xl font-bold text-gray-900">More Country Guides</h2>
+              <h2 className="text-2xl font-bold text-gray-900">More Relocation Guides</h2>
               <Link
                 href="/guides"
                 className="text-amber-600 hover:text-amber-500 font-medium text-sm"
@@ -370,7 +359,8 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
                       {related.hero_asset_url ? (
                         <Image
                           src={related.hero_asset_url}
-                          alt={related.country || 'Country guide'}
+                          alt={`Moving to ${related.country} - expat relocation guide`}
+                          title={`Guide to relocating to ${related.country}`}
                           fill
                           className="object-cover"
                         />

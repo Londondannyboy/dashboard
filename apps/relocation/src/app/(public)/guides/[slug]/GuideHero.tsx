@@ -10,9 +10,14 @@ interface GuideHeroProps {
   videoUrl: string | null
   imageUrl: string | null
   imageAlt: string | null
+  targetKeyword?: string | null
 }
 
-export function GuideHero({ title, country, flag, videoUrl, imageUrl, imageAlt }: GuideHeroProps) {
+export function GuideHero({ title, country, flag, videoUrl, imageUrl, imageAlt, targetKeyword }: GuideHeroProps) {
+  // Generate SEO-friendly alt text
+  const seoAlt = imageAlt ||
+    (targetKeyword ? `${targetKeyword.replace(/-/g, ' ')} - ${country} landscape` : null) ||
+    `Moving to ${country} - aerial view of ${country} landscape`
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const [videoError, setVideoError] = useState(false)
@@ -52,7 +57,8 @@ export function GuideHero({ title, country, flag, videoUrl, imageUrl, imageAlt }
             {!isVideoLoaded && imageUrl && (
               <Image
                 src={imageUrl}
-                alt={imageAlt || title}
+                alt={seoAlt}
+                title={`Guide to ${targetKeyword?.replace(/-/g, ' ') || `moving to ${country}`}`}
                 fill
                 className="object-cover"
                 priority
@@ -62,7 +68,8 @@ export function GuideHero({ title, country, flag, videoUrl, imageUrl, imageAlt }
         ) : imageUrl ? (
           <Image
             src={imageUrl}
-            alt={imageAlt || title}
+            alt={seoAlt}
+            title={`Guide to ${targetKeyword?.replace(/-/g, ' ') || `moving to ${country}`}`}
             fill
             className="object-cover"
             priority

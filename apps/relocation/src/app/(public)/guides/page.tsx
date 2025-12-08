@@ -122,16 +122,16 @@ export default async function GuidesPage() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
-            Popular Destinations for Americans
+            Popular Destinations for Expats
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            These guides are ranked by SEO difficulty, starting with the easiest opportunities
-            for relocation seekers.
+            Comprehensive guides covering visa requirements, cost of living, healthcare, and
+            the best cities for each destination.
           </p>
 
           {guides.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {guides.map((guide, index) => {
+              {guides.map((guide) => {
                 const flag = guide.country_code ? COUNTRY_FLAGS[guide.country_code] : null
                 return (
                   <Link
@@ -144,7 +144,8 @@ export default async function GuidesPage() {
                       {guide.hero_asset_url ? (
                         <Image
                           src={guide.hero_asset_url}
-                          alt={guide.country || guide.title}
+                          alt={`Moving to ${guide.country} - expat relocation guide`}
+                          title={`Complete guide to relocating to ${guide.country}`}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
@@ -155,29 +156,14 @@ export default async function GuidesPage() {
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-                      {/* Overlay Info */}
+                      {/* Country Overlay */}
                       <div className="absolute bottom-4 left-4 right-4">
-                        <div className="flex items-center gap-2 mb-2">
+                        <div className="flex items-center gap-2">
                           {flag && <span className="text-3xl drop-shadow-lg">{flag}</span>}
                           <span className="text-white font-bold text-xl drop-shadow-lg">
                             {guide.country}
                           </span>
                         </div>
-                        <div className="flex items-center gap-3 text-white/90 text-sm">
-                          <span className="px-2 py-0.5 bg-white/20 rounded">
-                            KD: {guide.keyword_difficulty}
-                          </span>
-                          <span className="px-2 py-0.5 bg-white/20 rounded">
-                            {guide.keyword_volume?.toLocaleString()} searches/mo
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Rank Badge */}
-                      <div className="absolute top-4 left-4">
-                        <span className="w-10 h-10 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold shadow-lg">
-                          #{index + 1}
-                        </span>
                       </div>
                     </div>
 
