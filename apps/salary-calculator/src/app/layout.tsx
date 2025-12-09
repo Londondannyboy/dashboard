@@ -130,6 +130,14 @@ const jsonLd = {
     '2025/26 tax year rates',
   ],
   },
+  {
+    '@type': 'LocalBusiness',
+    name: 'Salary Calculator UK',
+    description: 'UK salary and tax calculation service helping employees calculate take home pay',
+    url: 'https://salarycalculator.quest',
+    areaServed: 'United Kingdom',
+    serviceType: ['Salary Calculator', 'Tax Calculator', 'Take Home Pay Calculator', 'National Insurance Calculator'],
+  },
   ...createFAQSchema(faqs),
   ]
 }

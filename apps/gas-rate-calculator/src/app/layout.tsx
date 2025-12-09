@@ -128,6 +128,14 @@ const jsonLd = {
         'Gas Safe compliant calculations',
       ],
     },
+    {
+      '@type': 'LocalBusiness',
+      name: 'Gas Rate Calculator UK',
+      description: 'Professional gas rate calculation service for Gas Safe engineers and technicians',
+      url: 'https://gasratecalculator.quest',
+      areaServed: 'United Kingdom',
+      serviceType: ['Gas Rate Calculator', 'Heat Input Calculator', 'Gas Safe Calculations', 'Appliance Testing'],
+    },
     ...createFAQSchema(faqs),
   ],
 }

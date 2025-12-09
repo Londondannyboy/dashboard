@@ -123,6 +123,14 @@ const jsonLd = {
     'Trip cost planning',
   ],
   },
+  {
+    '@type': 'LocalBusiness',
+    name: 'Fuel Cost Calculator UK',
+    description: 'UK fuel cost calculation service for petrol and diesel journey planning',
+    url: 'https://fuelcostcalculator.quest',
+    areaServed: 'United Kingdom',
+    serviceType: ['Fuel Cost Calculator', 'Journey Cost Calculator', 'Mileage Calculator', 'Fuel Economy Calculator'],
+  },
   ...createFAQSchema(faqs),
   ]
 }

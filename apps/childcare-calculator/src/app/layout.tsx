@@ -125,6 +125,14 @@ const jsonLd = {
     'Government support calculator',
   ],
   },
+  {
+    '@type': 'LocalBusiness',
+    name: 'Childcare Calculator UK',
+    description: 'UK childcare cost calculation service helping families budget for nursery, childminder and nanny costs',
+    url: 'https://childcarecalculator.quest',
+    areaServed: 'United Kingdom',
+    serviceType: ['Childcare Cost Calculator', 'Nursery Cost Calculator', 'Childminder Cost Calculator', 'Government Support Eligibility'],
+  },
   ...createFAQSchema(faqs),
   ]
 }

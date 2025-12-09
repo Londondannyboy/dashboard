@@ -82,6 +82,17 @@ const jsonLd = {
   description: 'Private equity and venture capital placement agent intelligence platform',
   url: 'https://rainmakrr.com',
   areaServed: 'Global',
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://rainmakrr.com'
+      }
+    ]
   }
   ]
 }

@@ -82,6 +82,17 @@ const jsonLd = {
   url: 'https://fractional.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Fractional CFO', 'Fractional CMO', 'Fractional CTO', 'Interim Executive', 'Part-time Executive'],
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://fractional.quest'
+      }
+    ]
   }
   ]
 }

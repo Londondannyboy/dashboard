@@ -82,6 +82,17 @@ const jsonLd = {
   description: 'Venture capital intelligence platform providing VC rankings, startup funding data, and market insights',
   url: 'https://pvc.quest',
   areaServed: 'Global',
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://pvc.quest'
+      }
+    ]
   }
   ]
 }

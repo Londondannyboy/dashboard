@@ -94,6 +94,25 @@ const jsonLd = {
       '@type': 'Country',
       name: 'Global',
     },
+  },
+  {
+    '@type': 'LocalBusiness',
+    name: 'Relocation Quest',
+    description: 'International relocation service providing AI-powered guidance for moving abroad',
+    url: 'https://relocation.quest',
+    areaServed: 'Global',
+    serviceType: ['International Relocation', 'Visa Guidance', 'Expatriate Services', 'Moving Assistance'],
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://relocation.quest'
+      }
+    ]
   }
   ]
 }

@@ -93,6 +93,25 @@ const jsonLd = {
     '@type': 'Country',
     name: 'United Kingdom',
   },
+  },
+  {
+    '@type': 'EducationalOrganization',
+    name: 'MBA Quest',
+    description: 'Educational platform helping students compare and find the best MBA programs worldwide',
+    url: 'https://mba.quest',
+    areaServed: 'Global',
+    educationalCredentialAwarded: 'MBA Program Guidance',
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://mba.quest'
+      }
+    ]
   }
   ]
 }

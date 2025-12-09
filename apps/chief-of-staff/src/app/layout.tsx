@@ -82,6 +82,17 @@ const jsonLd = {
   url: 'https://chiefofstaff.quest',
   areaServed: 'United Kingdom',
   serviceType: ['Executive Recruitment', 'Chief of Staff Recruitment', 'Executive Assistant Recruitment'],
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://chiefofstaff.quest'
+      }
+    ]
   }
   ]
 }

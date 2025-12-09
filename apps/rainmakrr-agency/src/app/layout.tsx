@@ -82,6 +82,17 @@ const jsonLd = {
   url: 'https://agency.rainmakrr.com',
   areaServed: 'United Kingdom',
   serviceType: ['Startup Recruitment', 'Tech Jobs', 'Scale-up Recruitment', 'Startup Careers'],
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://agency.rainmakrr.com'
+      }
+    ]
   }
   ]
 }

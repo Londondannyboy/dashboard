@@ -130,20 +130,27 @@ const jsonLd = {
         name: 'United Kingdom',
       },
     },
+    {
+      '@type': 'InsuranceAgency',
+      name: 'Agricultural Tractor Insurance UK',
+      description: 'Specialist agricultural tractor insurance comparison service for UK farmers',
+      url: 'https://tractorinsurance.quest',
+      areaServed: 'United Kingdom',
+      serviceType: ['Agricultural Tractor Insurance', 'Tractor Insurance', 'Agricultural Insurance', 'Farm Vehicle Insurance'],
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://tractorinsurance.quest'
+        }
+      ]
+    },
+    ...createFAQSchema(faqs),
   ],
-}
-
-const localBusinessJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'InsuranceAgency',
-  name: 'Agricultural Tractor Insurance UK',
-  description: 'Specialist agricultural tractor insurance comparison service for UK farmers',
-  url: 'https://tractorinsurance.quest',
-  areaServed: 'United Kingdom',
-  serviceType: ['Agricultural Tractor Insurance', 'Tractor Insurance', 'Agricultural Insurance', 'Farm Vehicle Insurance'],
-  },
-  ...createFAQSchema(faqs),
-  ]
 }
 
 export default function RootLayout({
@@ -157,10 +164,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
       </head>
       <body className={inter.className}>

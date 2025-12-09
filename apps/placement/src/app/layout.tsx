@@ -82,6 +82,17 @@ const jsonLd = {
   description: 'Fund placement intelligence platform tracking placement agents, LP relationships, and fundraising activity',
   url: 'https://placement.quest',
   areaServed: 'Global',
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://placement.quest'
+      }
+    ]
   }
   ]
 }
