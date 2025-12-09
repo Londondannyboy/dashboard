@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Providers } from './providers'
 import './globals.css'
-import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -36,7 +35,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Agricultural Tractor Insurance UK 2025',
     description: 'Get instant agricultural tractor insurance quotes. Compare UK farm insurers.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   robots: {
     index: true,
@@ -149,7 +148,17 @@ const jsonLd = {
         }
       ]
     },
-    ...createFAQSchema(faqs),
+    {
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  },
   ],
 }
 

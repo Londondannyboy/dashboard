@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -35,7 +34,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Stamp Duty Calculator UK 2025',
     description: 'Calculate your UK Stamp Duty instantly with our free stamp duty calculator.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   robots: {
     index: true,
@@ -126,7 +125,17 @@ const jsonLd = {
         '2025 SDLT rates',
       ],
     },
-    ...createFAQSchema(faqs),
+    {
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  },
   ],
 }
 

@@ -1,9 +1,36 @@
-import { MetadataRoute } from 'next'
-import { generateStaticSitemap, STAMP_DUTY_STATIC_ROUTES } from '@quest/ui/sitemap'
+import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return generateStaticSitemap({
-    baseUrl: 'https://stampdutycalculator.quest',
-    staticRoutes: STAMP_DUTY_STATIC_ROUTES,
-  })
+  return [
+    {
+      url: 'https://stampdutycalculator.quest',
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 1,
+    },
+    {
+      url: 'https://stampdutycalculator.quest/about',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: 'https://stampdutycalculator.quest/contact',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://stampdutycalculator.quest/privacy',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: 'https://stampdutycalculator.quest/terms',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+  ]
 }

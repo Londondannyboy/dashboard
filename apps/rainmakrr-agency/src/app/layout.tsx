@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Startup Jobs UK | Rainmakrr Agency',
     description: 'Find startup jobs and recruitment agencies in the UK.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   robots: {
     index: true,

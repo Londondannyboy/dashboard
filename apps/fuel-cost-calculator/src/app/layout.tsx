@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -131,7 +130,17 @@ const jsonLd = {
     areaServed: 'United Kingdom',
     serviceType: ['Fuel Cost Calculator', 'Journey Cost Calculator', 'Mileage Calculator', 'Fuel Economy Calculator'],
   },
-  ...createFAQSchema(faqs),
+  {
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  },
   ]
 }
 

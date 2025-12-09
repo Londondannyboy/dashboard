@@ -1,13 +1,36 @@
-import { MetadataRoute } from 'next'
-import { generateStaticSitemap } from '@quest/ui/sitemap'
-
-const staticRoutes = [
-
-]
+import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return generateStaticSitemap({
-    baseUrl: 'https://relocation.quest',
-    staticRoutes,
-  })
+  return [
+    {
+      url: 'https://relocation.quest',
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 1,
+    },
+    {
+      url: 'https://relocation.quest/about',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: 'https://relocation.quest/contact',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://relocation.quest/privacy',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: 'https://relocation.quest/terms',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+  ]
 }

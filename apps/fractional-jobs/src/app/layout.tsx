@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Fractional Jobs UK | Find Fractional Executive Roles',
     description: 'Discover fractional jobs in the UK. Browse fractional CFO, CMO, CTO and executive roles in London.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   robots: {
     index: true,

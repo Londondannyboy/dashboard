@@ -1,6 +1,12 @@
-import { MetadataRoute } from 'next'
-import { generateRobots } from '@quest/ui'
+import type { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  return generateRobots('https://predeploy.ai')
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/',
+      disallow: ['/admin'],
+    },
+    sitemap: 'https://predeploy.ai/sitemap.xml',
+  }
 }

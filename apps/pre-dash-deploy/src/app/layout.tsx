@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Forward Deployment Engineer Jobs | FDE Recruitment Agency | Pre-Dash Deploy',
     description: 'Leading Forward Deployment Engineer recruitment agency connecting technical talent with top tech companies.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   icons: {
     icon: [

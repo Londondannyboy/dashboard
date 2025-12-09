@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Graduate Recruitment Agencies London | Graduated Quest',
     description: 'Leading graduate recruitment agency in London connecting talented university graduates with top UK employers.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   robots: {
     index: true,

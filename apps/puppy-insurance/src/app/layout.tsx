@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Puppy Insurance UK 2025',
     description: 'Compare puppy insurance quotes. Find the best pet insurance for your new puppy.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   robots: {
     index: true,

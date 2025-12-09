@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Forward Deployed Engineer Recruitment Agency UK',
     description: 'Forward deployed engineer recruitment agency for the UK. Find FDE roles in London.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   robots: {
     index: true,

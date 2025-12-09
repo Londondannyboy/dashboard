@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -35,7 +34,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Gas Rate Calculator UK',
     description: 'Calculate gas appliance heat input with our free gas rate calculator. Metric and imperial support.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   robots: {
     index: true,
@@ -136,7 +135,17 @@ const jsonLd = {
       areaServed: 'United Kingdom',
       serviceType: ['Gas Rate Calculator', 'Heat Input Calculator', 'Gas Safe Calculations', 'Appliance Testing'],
     },
-    ...createFAQSchema(faqs),
+    {
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  },
   ],
 }
 

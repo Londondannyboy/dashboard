@@ -1,9 +1,36 @@
-import { MetadataRoute } from 'next'
-import { generateStaticSitemap, PLACEMENT_STATIC_ROUTES } from '@quest/ui/sitemap'
+import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return generateStaticSitemap({
-    baseUrl: 'https://placement.quest',
-    staticRoutes: PLACEMENT_STATIC_ROUTES,
-  })
+  return [
+    {
+      url: 'https://placement.quest',
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 1,
+    },
+    {
+      url: 'https://placement.quest/about',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: 'https://placement.quest/contact',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://placement.quest/privacy',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: 'https://placement.quest/terms',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+  ]
 }

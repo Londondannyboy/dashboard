@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -35,7 +34,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Esports Event Insurance UK 2025',
     description: 'Gaming tournament and esports event insurance quotes for UK organisers.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   robots: {
     index: true,
@@ -132,7 +131,17 @@ const jsonLd = {
   areaServed: 'United Kingdom',
   serviceType: ['Esports Insurance', 'Gaming Tournament Insurance', 'LAN Party Insurance', 'Gaming Convention Insurance'],
   },
-  ...createFAQSchema(faqs),
+  {
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  },
   ]
 }
 

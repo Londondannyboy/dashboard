@@ -1,6 +1,0 @@
-{
-  "framework": "nextjs",
-  "installCommand": "cd ../.. && pnpm install",
-  "buildCommand": "cd ../.. && pnpm turbo build --filter=@quest/student-loan-repayment-plan1-calculator",
-  "outputDirectory": ".next"
-}

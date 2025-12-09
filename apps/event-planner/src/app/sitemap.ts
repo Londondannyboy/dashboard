@@ -1,13 +1,36 @@
-import { MetadataRoute } from 'next'
-import { generateStaticSitemap } from '@quest/ui/sitemap'
-
-const staticRoutes = [
-  { path: '', changeFrequency: 'daily' as const, priority: 1 }
-]
+import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return generateStaticSitemap({
-    baseUrl: 'https://eventplanner.quest',
-    staticRoutes,
-  })
+  return [
+    {
+      url: 'https://eventplanner.quest',
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 1,
+    },
+    {
+      url: 'https://eventplanner.quest/about',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: 'https://eventplanner.quest/contact',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://eventplanner.quest/privacy',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: 'https://eventplanner.quest/terms',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+  ]
 }

@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Best Online MBA Programs 2025 | MBA Quest',
     description: 'Compare the best online MBA programs worldwide. Expert reviews, rankings, and comprehensive guides.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   robots: {
     index: true,

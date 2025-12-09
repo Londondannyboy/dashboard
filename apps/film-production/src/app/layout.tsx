@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -35,7 +34,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Film Production Insurance UK 2025',
     description: 'Film production insurance quotes for independent creators & production companies.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   robots: {
     index: true,
@@ -135,7 +134,17 @@ const jsonLd = {
   areaServed: 'United Kingdom',
   serviceType: ['Film Production Insurance', 'Short Film Insurance', 'TV Production Insurance', 'Documentary Insurance', 'Commercial Production Insurance'],
   },
-  ...createFAQSchema(faqs),
+  {
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  },
   ]
 }
 

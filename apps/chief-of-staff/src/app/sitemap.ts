@@ -1,19 +1,36 @@
-import { MetadataRoute } from 'next'
-import { generateStaticSitemap } from '@quest/ui/sitemap'
-
-const staticRoutes = [
-  { path: '', changeFrequency: 'daily' as const, priority: 1 },
-  { path: '/about', changeFrequency: 'monthly' as const, priority: 0.7 },
-  { path: '/agencies', changeFrequency: 'weekly' as const, priority: 0.8 },
-  { path: '/articles', changeFrequency: 'daily' as const, priority: 0.8 },
-  { path: '/contact', changeFrequency: 'monthly' as const, priority: 0.7 },
-  { path: '/privacy', changeFrequency: 'yearly' as const, priority: 0.3 },
-  { path: '/terms', changeFrequency: 'yearly' as const, priority: 0.3 }
-]
+import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return generateStaticSitemap({
-    baseUrl: 'https://chiefofstaff.quest',
-    staticRoutes,
-  })
+  return [
+    {
+      url: 'https://chiefofstaff.quest',
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 1,
+    },
+    {
+      url: 'https://chiefofstaff.quest/about',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: 'https://chiefofstaff.quest/contact',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://chiefofstaff.quest/privacy',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: 'https://chiefofstaff.quest/terms',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+  ]
 }

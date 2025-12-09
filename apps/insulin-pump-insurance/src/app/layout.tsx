@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Insulin Pump Insurance UK 2025',
     description: 'Compare insulin pump insurance quotes. Protect your diabetes technology.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   robots: {
     index: true,

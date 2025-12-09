@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'PVC Quest - Venture Capital Intelligence',
     description: 'The insider guide to venture capital. VC firm rankings and startup funding intelligence.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   robots: {
     index: true,

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { createFAQSchema } from '@quest/seo/json-ld'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -35,7 +34,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Salary Calculator UK 2025',
     description: 'Calculate your UK take home pay with our free salary calculator. Updated 2025/26 tax rates.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   robots: {
     index: true,
@@ -138,7 +137,17 @@ const jsonLd = {
     areaServed: 'United Kingdom',
     serviceType: ['Salary Calculator', 'Tax Calculator', 'Take Home Pay Calculator', 'National Insurance Calculator'],
   },
-  ...createFAQSchema(faqs),
+  {
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  },
   ]
 }
 

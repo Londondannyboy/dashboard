@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Rainmakrr - Private Equity Placement Agent Intelligence',
     description: 'Top PE & VC placement agent rankings and fund placement news.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   robots: {
     index: true,

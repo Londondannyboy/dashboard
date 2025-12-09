@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'GTM Agency | Go-To-Market Strategy',
     description: 'Leading GTM agency for go-to-market strategy.',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
   robots: {
     index: true,

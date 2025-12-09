@@ -1,9 +1,36 @@
-import { MetadataRoute } from 'next'
-import { generateStaticSitemap, RAINMAKRR_STATIC_ROUTES } from '@quest/ui/sitemap'
+import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return generateStaticSitemap({
-    baseUrl: 'https://rainmakrr.com',
-    staticRoutes: RAINMAKRR_STATIC_ROUTES,
-  })
+  return [
+    {
+      url: 'https://rainmakrr.com',
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 1,
+    },
+    {
+      url: 'https://rainmakrr.com/about',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: 'https://rainmakrr.com/contact',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://rainmakrr.com/privacy',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: 'https://rainmakrr.com/terms',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+  ]
 }

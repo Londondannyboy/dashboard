@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Quest Dashboard',
     description: 'Manage your relocation and placement journey',
-    image: '/og-image.png',
+    images: '/og-image.png',
   },
 }
 
