@@ -69,7 +69,7 @@ async function getArticle(slug: string): Promise<Article | null> {
     const res = await fetch(
       `${GATEWAY_URL}/dashboard/content/articles/${slug}`,
       {
-        next: { revalidate: 3600 },
+        next: { revalidate: 0 },
         headers: { 'Accept': 'application/json' }
       }
     )
@@ -90,7 +90,7 @@ async function getAllArticles(): Promise<RelatedArticle[]> {
     const res = await fetch(
       `${GATEWAY_URL}/dashboard/content/articles?limit=200`,
       {
-        next: { revalidate: 3600 },
+        next: { revalidate: 60 },
         headers: { 'Accept': 'application/json' }
       }
     )
