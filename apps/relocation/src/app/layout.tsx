@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Relocation Quest - AI-Powered International Relocation Guide',
     description: 'AI-powered relocation assistant helping you move abroad.',
-    image: '/og-image.png',
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
