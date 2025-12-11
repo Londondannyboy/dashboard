@@ -141,8 +141,8 @@ export default function COOPage() {
 
             <div className="hidden md:flex items-center gap-8">
               <Link href="/jobs" className="text-gray-700 hover:text-violet-900 font-medium">All Jobs</Link>
-              <Link href="/remote" className="text-gray-700 hover:text-violet-900 font-medium">Remote</Link>
-              <Link href="/london" className="text-gray-700 hover:text-violet-900 font-medium">London</Link>
+              <Link href="/fractional-jobs-remote" className="text-gray-700 hover:text-violet-900 font-medium">Remote</Link>
+              <Link href="/fractional-jobs-london" className="text-gray-700 hover:text-violet-900 font-medium">London</Link>
               <Link href="/agencies" className="text-gray-700 hover:text-violet-900 font-medium">Agencies</Link>
             </div>
 

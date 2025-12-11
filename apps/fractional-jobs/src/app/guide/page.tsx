@@ -110,14 +110,14 @@ export default function GuidePage() {
             </Link>
 
             <div className="hidden md:flex items-center gap-8">
-              <Link href="/jobs" className="text-gray-700 hover:text-violet-900 font-medium">All Jobs</Link>
-              <Link href="/remote" className="text-gray-700 hover:text-violet-900 font-medium">Remote</Link>
-              <Link href="/london" className="text-gray-700 hover:text-violet-900 font-medium">London</Link>
+              <Link href="/fractional-jobs" className="text-gray-700 hover:text-violet-900 font-medium">All Jobs</Link>
+              <Link href="/fractional-jobs-remote" className="text-gray-700 hover:text-violet-900 font-medium">Remote</Link>
+              <Link href="/fractional-jobs-london" className="text-gray-700 hover:text-violet-900 font-medium">London</Link>
               <Link href="/agencies" className="text-gray-700 hover:text-violet-900 font-medium">Agencies</Link>
             </div>
 
             <div className="flex items-center gap-3">
-              <Link href="/jobs" className="bg-violet-700 hover:bg-violet-800 text-white font-semibold px-5 py-2 rounded-lg transition">
+              <Link href="/fractional-jobs" className="bg-violet-700 hover:bg-violet-800 text-white font-semibold px-5 py-2 rounded-lg transition">
                 Find Jobs
               </Link>
             </div>
@@ -290,7 +290,7 @@ export default function GuidePage() {
               Browse the latest fractional opportunities across the UK.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/jobs" className="bg-violet-700 hover:bg-violet-800 text-white font-bold px-8 py-4 rounded-lg transition">
+              <Link href="/fractional-jobs" className="bg-violet-700 hover:bg-violet-800 text-white font-bold px-8 py-4 rounded-lg transition">
                 Browse All Jobs
               </Link>
               <Link href="/agencies" className="bg-white text-violet-700 border-2 border-violet-700 hover:bg-violet-50 font-bold px-8 py-4 rounded-lg transition">

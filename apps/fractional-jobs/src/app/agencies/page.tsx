@@ -103,14 +103,14 @@ export default function AgenciesPage() {
             </Link>
 
             <div className="hidden md:flex items-center gap-8">
-              <Link href="/jobs" className="text-gray-700 hover:text-violet-900 font-medium">All Jobs</Link>
-              <Link href="/london" className="text-gray-700 hover:text-violet-900 font-medium">London</Link>
+              <Link href="/fractional-jobs" className="text-gray-700 hover:text-violet-900 font-medium">All Jobs</Link>
+              <Link href="/fractional-jobs-london" className="text-gray-700 hover:text-violet-900 font-medium">London</Link>
               <Link href="/agencies" className="text-violet-900 font-medium">Agencies</Link>
               <Link href="/articles" className="text-gray-700 hover:text-violet-900 font-medium">Articles</Link>
             </div>
 
             <div className="flex items-center gap-3">
-              <Link href="/jobs" className="bg-violet-700 hover:bg-violet-800 text-white font-semibold px-5 py-2 rounded-lg transition">
+              <Link href="/fractional-jobs" className="bg-violet-700 hover:bg-violet-800 text-white font-semibold px-5 py-2 rounded-lg transition">
                 Find Jobs
               </Link>
             </div>

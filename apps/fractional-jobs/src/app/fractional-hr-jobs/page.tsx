@@ -2,132 +2,132 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Fractional CTO Jobs UK | Fractional CTO Roles & Positions | Fractional Quest',
-  description: 'Find fractional CTO jobs in the UK. Browse Fractional CTO roles and technology leadership positions in London and across the UK. Part-time CTO opportunities for tech leaders.',
-  keywords: 'fractional cto jobs, fractional cto roles, fractional cto uk, fractional technology director, part-time cto, interim cto uk, fractional chief technology officer, fractional tech lead',
+  title: 'HR Fractional Jobs UK | Fractional HR Director Roles | Fractional Quest',
+  description: 'Find HR fractional jobs in the UK. Browse Fractional HR Director, Fractional Chief People Officer and HR leadership roles in London and across the UK.',
+  keywords: 'hr fractional jobs, fractional HR director, fractional chief people officer, fractional HR jobs UK, part-time HR director, interim HR director UK, fractional people director',
 }
 
-const ctoJobs = [
+const hrJobs = [
   {
     id: 1,
-    title: 'Fractional CTO',
-    company: 'FinTech Startup',
+    title: 'Fractional HR Director',
+    company: 'Tech Scale-up (Series B)',
     location: 'London, UK',
     type: 'Hybrid',
-    commitment: '3 days/week',
-    rate: '1,000 - 1,400',
+    commitment: '2 days/week',
+    rate: '700 - 900',
     currency: 'GBP',
     period: 'day',
-    badges: ['Featured', 'FinTech'],
-    description: 'Fast-growing FinTech seeking a Fractional CTO to lead technical architecture, engineering team development, and product roadmap execution.',
+    badges: ['Featured', 'Tech'],
+    description: 'Fast-growing tech company seeking a Fractional HR Director to build people processes, lead talent acquisition strategy, and develop company culture during rapid scaling.',
     postedDays: 1,
   },
   {
     id: 2,
-    title: 'Fractional CTO',
-    company: 'HealthTech Scale-up',
-    location: 'Cambridge, UK',
-    type: 'Hybrid',
+    title: 'Fractional Chief People Officer',
+    company: 'FinTech Startup',
+    location: 'London, UK',
+    type: 'Remote / Hybrid',
     commitment: '2-3 days/week',
-    rate: '900 - 1,200',
+    rate: '850 - 1,100',
     currency: 'GBP',
     period: 'day',
-    badges: ['HealthTech', 'Series A'],
-    description: 'HealthTech company seeking a Fractional CTO to lead platform development, ensure HIPAA compliance, and scale engineering team.',
+    badges: ['FinTech', 'CPO Level'],
+    description: 'FinTech startup seeking a Fractional CPO to lead people strategy, build HR infrastructure, and support international expansion across Europe.',
     postedDays: 2,
   },
   {
     id: 3,
-    title: 'Fractional CTO',
-    company: 'E-commerce Platform',
+    title: 'Fractional HR Director',
+    company: 'Professional Services Firm',
     location: 'Manchester, UK',
-    type: 'Remote',
-    commitment: '2 days/week',
-    rate: '850 - 1,100',
+    type: 'Hybrid',
+    commitment: '1-2 days/week',
+    rate: '650 - 800',
     currency: 'GBP',
     period: 'day',
-    badges: ['Remote', 'E-commerce'],
-    description: 'Growing e-commerce platform seeking a Fractional CTO to modernise tech stack, improve scalability, and lead cloud migration.',
+    badges: ['Part-Time', 'Professional Services'],
+    description: 'Growing professional services firm seeking a Fractional HR Director to establish people processes, lead recruitment, and develop employee engagement initiatives.',
     postedDays: 3,
   },
   {
     id: 4,
-    title: 'Fractional CTO',
-    company: 'PropTech Startup',
-    location: 'London, UK',
-    type: 'Hybrid',
-    commitment: '2-3 days/week',
-    rate: '950 - 1,250',
-    currency: 'GBP',
-    period: 'day',
-    badges: ['PropTech', 'Seed'],
-    description: 'Early-stage PropTech seeking a Fractional CTO to build MVP, establish technical foundations, and hire first engineers.',
-    postedDays: 2,
-  },
-  {
-    id: 5,
-    title: 'Fractional CTO',
-    company: 'B2B SaaS Company',
-    location: 'Edinburgh, UK',
-    type: 'Remote / Hybrid',
+    title: 'Fractional People Director',
+    company: 'E-commerce Brand',
+    location: 'Remote UK',
+    type: '100% Remote',
     commitment: '2 days/week',
-    rate: '900 - 1,100',
+    rate: '700 - 850',
     currency: 'GBP',
     period: 'day',
-    badges: ['SaaS', 'Scotland'],
-    description: 'B2B SaaS company seeking a Fractional CTO to improve platform reliability, implement DevOps practices, and mentor engineering leads.',
+    badges: ['Remote', 'E-commerce'],
+    description: 'D2C e-commerce brand seeking a Fractional People Director to build culture, implement HRIS systems, and lead organisational development.',
     postedDays: 4,
   },
   {
-    id: 6,
-    title: 'Fractional CTO',
-    company: 'AI Startup',
-    location: 'London, UK',
+    id: 5,
+    title: 'Fractional HR Director',
+    company: 'Healthcare Company',
+    location: 'Birmingham, UK',
     type: 'Hybrid',
-    commitment: '3 days/week',
-    rate: '1,100 - 1,500',
+    commitment: '1-2 days/week',
+    rate: '600 - 750',
     currency: 'GBP',
     period: 'day',
-    badges: ['AI/ML', 'Series A'],
-    description: 'AI startup seeking a Fractional CTO with ML expertise to lead AI product development, data infrastructure, and research team.',
-    postedDays: 1,
+    badges: ['Healthcare', 'Midlands'],
+    description: 'Healthcare company seeking a Fractional HR Director to manage employee relations, compliance, and support workforce planning initiatives.',
+    postedDays: 5,
+  },
+  {
+    id: 6,
+    title: 'Fractional HR Director',
+    company: 'Creative Agency',
+    location: 'London, UK',
+    type: 'Hybrid',
+    commitment: '1 day/week',
+    rate: '650 - 800',
+    currency: 'GBP',
+    period: 'day',
+    badges: ['Creative', 'Agency'],
+    description: 'Award-winning creative agency seeking a Fractional HR Director to build people strategy, lead talent development, and foster creative culture.',
+    postedDays: 2,
   },
 ]
 
-const ctoResponsibilities = [
+const hrResponsibilities = [
   {
-    icon: '🏗️',
-    title: 'Technical Architecture',
-    description: 'Design scalable, secure system architecture and make key technology decisions.',
+    icon: '👥',
+    title: 'Talent Acquisition',
+    description: 'Lead recruitment strategy, employer branding, and build scalable hiring processes.',
   },
   {
-    icon: '👨‍💻',
-    title: 'Engineering Leadership',
-    description: 'Build, mentor, and lead engineering teams. Establish development practices.',
+    icon: '📊',
+    title: 'People Operations',
+    description: 'Implement HRIS systems, develop policies, and streamline HR processes.',
   },
   {
-    icon: '🗺️',
-    title: 'Product & Roadmap',
-    description: 'Define technical roadmap aligned with product strategy and business goals.',
+    icon: '🎯',
+    title: 'Culture & Engagement',
+    description: 'Build company culture, lead engagement initiatives, and improve retention.',
   },
   {
-    icon: '☁️',
-    title: 'Infrastructure & DevOps',
-    description: 'Oversee cloud infrastructure, CI/CD pipelines, and platform reliability.',
+    icon: '📈',
+    title: 'Performance Management',
+    description: 'Design performance frameworks, lead reviews, and develop career pathways.',
   },
   {
-    icon: '🔒',
-    title: 'Security & Compliance',
-    description: 'Ensure security best practices, data protection, and regulatory compliance.',
+    icon: '⚖️',
+    title: 'Compliance & ER',
+    description: 'Ensure legal compliance, manage employee relations, and handle complex HR issues.',
   },
   {
-    icon: '💡',
-    title: 'Technology Strategy',
-    description: 'Advise on technology investments, build vs buy decisions, and innovation.',
+    icon: '🚀',
+    title: 'Organisational Development',
+    description: 'Lead change management, restructuring, and support business scaling.',
   },
 ]
 
-export default function CTOPage() {
+export default function HRPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -141,8 +141,8 @@ export default function CTOPage() {
 
             <div className="hidden md:flex items-center gap-8">
               <Link href="/jobs" className="text-gray-700 hover:text-violet-900 font-medium">All Jobs</Link>
-              <Link href="/remote" className="text-gray-700 hover:text-violet-900 font-medium">Remote</Link>
-              <Link href="/london" className="text-gray-700 hover:text-violet-900 font-medium">London</Link>
+              <Link href="/fractional-jobs-remote" className="text-gray-700 hover:text-violet-900 font-medium">Remote</Link>
+              <Link href="/fractional-jobs-london" className="text-gray-700 hover:text-violet-900 font-medium">London</Link>
               <Link href="/agencies" className="text-gray-700 hover:text-violet-900 font-medium">Agencies</Link>
             </div>
 
@@ -160,45 +160,46 @@ export default function CTOPage() {
         <section className="hero-gradient py-16 px-4">
           <div className="max-w-7xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
-              Technology Leadership Opportunities
+              <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
+              HR Leadership Opportunities
             </div>
             <h1 className="text-4xl md:text-5xl font-black text-white mb-6">
-              Fractional CTO Jobs UK
+              HR Fractional Jobs UK
             </h1>
             <p className="text-xl text-violet-100 max-w-3xl mx-auto mb-8">
-              Find Fractional CTO roles across the UK. Lead technology strategy, engineering teams,
-              and product development on a part-time basis with innovative companies.
+              Find Fractional HR Director and Chief People Officer roles across the UK.
+              Lead people strategy, build culture, and drive organisational development
+              on a part-time basis.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <div className="bg-white/20 text-white px-6 py-3 rounded-lg">
-                <span className="font-bold text-2xl">{ctoJobs.length * 9}+</span>
-                <span className="block text-sm">CTO Roles</span>
+                <span className="font-bold text-2xl">{hrJobs.length * 5}+</span>
+                <span className="block text-sm">HR Fractional Jobs</span>
               </div>
               <div className="bg-white/20 text-white px-6 py-3 rounded-lg">
-                <span className="font-bold text-2xl">£1,150</span>
+                <span className="font-bold text-2xl">£750</span>
                 <span className="block text-sm">Avg Day Rate</span>
               </div>
               <div className="bg-white/20 text-white px-6 py-3 rounded-lg">
-                <span className="font-bold text-2xl">2-3</span>
+                <span className="font-bold text-2xl">1-3</span>
                 <span className="block text-sm">Days/Week</span>
               </div>
             </div>
           </div>
         </section>
 
-        {/* What Does a Fractional CTO Do? */}
+        {/* What Does a Fractional HR Director Do? */}
         <section className="py-12 px-4 bg-gray-50 border-b border-gray-200">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">
-              What Does a Fractional CTO Do?
+              What Does a Fractional HR Director Do?
             </h2>
             <p className="text-gray-600 text-center mb-8 max-w-3xl mx-auto">
-              A Fractional CTO provides strategic technology leadership on a part-time basis,
-              typically 2-3 days per week. Common responsibilities include:
+              A Fractional HR Director provides strategic people leadership on a part-time basis,
+              typically 1-3 days per week. Common responsibilities include:
             </p>
             <div className="grid md:grid-cols-3 gap-6">
-              {ctoResponsibilities.map((item) => (
+              {hrResponsibilities.map((item) => (
                 <div key={item.title} className="bg-white rounded-xl p-6 border border-gray-200">
                   <div className="text-3xl mb-3">{item.icon}</div>
                   <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
@@ -209,25 +210,25 @@ export default function CTOPage() {
           </div>
         </section>
 
-        {/* CTO Job Listings */}
+        {/* HR Job Listings */}
         <section className="py-12 px-4">
           <div className="max-w-7xl mx-auto">
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-2xl font-bold text-gray-900">
-                Latest Fractional CTO Jobs
+                Latest HR Fractional Jobs
               </h2>
-              <Link href="/jobs?role=cto" className="text-violet-700 hover:text-violet-900 font-semibold">
-                View all CTO roles &rarr;
+              <Link href="/jobs?role=hr" className="text-violet-700 hover:text-violet-900 font-semibold">
+                View all HR jobs &rarr;
               </Link>
             </div>
 
             <div className="space-y-6">
-              {ctoJobs.map((job) => (
+              {hrJobs.map((job) => (
                 <div key={job.id} className="job-card">
                   <div className="flex flex-col lg:flex-row lg:items-center gap-6">
                     <div className="flex items-center gap-4">
-                      <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center text-blue-700 font-black text-xl shrink-0">
-                        CTO
+                      <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center text-purple-700 font-black text-xl shrink-0">
+                        HR
                       </div>
                       <div>
                         <h3 className="font-bold text-xl text-gray-900">{job.title}</h3>
@@ -238,7 +239,7 @@ export default function CTOPage() {
 
                     <div className="flex flex-wrap gap-2 lg:ml-auto">
                       {job.badges.map((badge) => (
-                        <span key={badge} className="text-xs font-semibold px-2 py-1 rounded bg-blue-100 text-blue-800">
+                        <span key={badge} className="text-xs font-semibold px-2 py-1 rounded bg-purple-100 text-purple-800">
                           {badge}
                         </span>
                       ))}
@@ -287,30 +288,32 @@ export default function CTOPage() {
         <section className="py-16 px-4 bg-gray-50">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-black text-gray-900 mb-6">
-              Fractional CTO Jobs: Your Guide to Part-Time Technology Leadership
+              HR Fractional Jobs: A Complete Guide to Fractional HR Director Roles
             </h2>
             <div className="prose prose-lg max-w-none text-gray-600">
               <p className="mb-4">
-                <strong>Fractional CTO jobs</strong> are among the highest-paid fractional executive roles
-                in the UK. Startups and scale-ups hire <strong>Fractional CTOs</strong> to access senior
-                technology leadership without the commitment of a full-time hire.
+                <strong>HR fractional jobs</strong> have become increasingly popular as companies recognise the
+                value of experienced HR leadership without the cost of a full-time hire. A <strong>Fractional
+                HR Director</strong> provides strategic people leadership on a part-time basis, typically working
+                1-3 days per week with multiple clients.
               </p>
               <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">
-                Who Hires Fractional CTOs?
+                Who Hires Fractional HR Directors?
               </h3>
               <p className="mb-4">
-                <strong>Fractional CTO roles</strong> are most common in early-stage startups, FinTech,
-                HealthTech, and SaaS companies. These organisations need technical leadership to build
-                products, establish architecture, and grow engineering teams—but may not have the budget
-                for a £250k+ full-time CTO.
+                Startups and scale-ups are the primary employers for <strong>fractional HR professionals</strong>.
+                These companies need senior HR expertise to build people processes, develop culture, and support
+                rapid growth—but aren&apos;t yet ready for a full-time HR Director. Professional services firms,
+                agencies, and mid-sized companies also increasingly hire <strong>fractional HR leaders</strong>.
               </p>
               <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">
-                Fractional CTO Salary UK
+                Fractional HR Director Salary UK
               </h3>
               <p className="mb-4">
-                <strong>Fractional CTO jobs</strong> in the UK command day rates between £900-£1,500,
-                with AI/ML and FinTech roles at the premium end. A Fractional CTO working with 2-3
-                clients can earn £250,000-£350,000+ annually while enjoying variety and flexibility.
+                <strong>HR fractional jobs</strong> in the UK typically pay day rates between £600-£1,100,
+                depending on seniority, industry, and location. London-based roles and Chief People Officer
+                positions command the highest rates. Working with 2-3 clients, a Fractional HR Director can
+                earn £150,000+ annually while maintaining flexibility.
               </p>
             </div>
           </div>
@@ -320,13 +323,13 @@ export default function CTOPage() {
         <section className="py-16 px-4 bg-violet-900">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-black text-white mb-6">
-              Find Your Fractional CTO Role
+              Find Your HR Fractional Role
             </h2>
             <p className="text-xl text-violet-100 mb-8">
-              Browse the latest Fractional CTO opportunities across the UK.
+              Browse HR fractional opportunities across the UK and build your portfolio career.
             </p>
-            <Link href="/jobs?role=cto" className="bg-white text-violet-900 hover:bg-gray-100 font-bold px-8 py-4 rounded-lg transition inline-block">
-              Browse CTO Roles
+            <Link href="/jobs?role=hr" className="bg-white text-violet-900 hover:bg-gray-100 font-bold px-8 py-4 rounded-lg transition inline-block">
+              Browse HR Jobs
             </Link>
           </div>
         </section>
@@ -341,7 +344,7 @@ export default function CTOPage() {
               <span className="text-xl font-black text-amber-400">Quest</span>
             </Link>
             <p className="text-gray-400 text-sm">
-              &copy; 2025 Fractional Quest. Fractional CTO Jobs UK.
+              &copy; 2025 Fractional Quest. HR Fractional Jobs UK.
             </p>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import { getHomepageSections } from '@/lib/homepageContent'
 
 export const metadata: Metadata = {
   title: 'Fractional Jobs UK 2025 | Find Fractional Executive Roles in London | Fractional Quest',
@@ -159,7 +160,18 @@ const recruitmentAgencies = [
   { name: 'Interim Partners', specialty: 'All Industries' },
 ]
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Fetch homepage sections from Neon
+  let sections: any[] = []
+  try {
+    sections = await getHomepageSections()
+  } catch (error) {
+    console.error('Failed to fetch homepage sections:', error)
+  }
+
+  // Helper function to get section by type
+  const getSection = (type: string) => sections.find(s => s.section_type === type)
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -180,23 +192,23 @@ export default function HomePage() {
                   </svg>
                 </button>
                 <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                  <Link href="/jobs?role=cfo" className="block px-4 py-3 text-gray-700 hover:bg-violet-50 hover:text-violet-900">Fractional CFO</Link>
-                  <Link href="/jobs?role=cmo" className="block px-4 py-3 text-gray-700 hover:bg-violet-50 hover:text-violet-900">Fractional CMO</Link>
-                  <Link href="/jobs?role=cto" className="block px-4 py-3 text-gray-700 hover:bg-violet-50 hover:text-violet-900">Fractional CTO</Link>
-                  <Link href="/jobs?role=coo" className="block px-4 py-3 text-gray-700 hover:bg-violet-50 hover:text-violet-900">Fractional COO</Link>
-                  <Link href="/hr" className="block px-4 py-3 text-gray-700 hover:bg-violet-50 hover:text-violet-900">Fractional HR</Link>
+                  <Link href="/fractional-cfo-jobs" className="block px-4 py-3 text-gray-700 hover:bg-violet-50 hover:text-violet-900">Fractional CFO</Link>
+                  <Link href="/fractional-cmo-jobs" className="block px-4 py-3 text-gray-700 hover:bg-violet-50 hover:text-violet-900">Fractional CMO</Link>
+                  <Link href="/fractional-cto-jobs" className="block px-4 py-3 text-gray-700 hover:bg-violet-50 hover:text-violet-900">Fractional CTO</Link>
+                  <Link href="/fractional-coo-jobs" className="block px-4 py-3 text-gray-700 hover:bg-violet-50 hover:text-violet-900">Fractional COO</Link>
+                  <Link href="/fractional-hr-jobs" className="block px-4 py-3 text-gray-700 hover:bg-violet-50 hover:text-violet-900">Fractional HR</Link>
                 </div>
               </div>
 
-              <Link href="/jobs" className="text-gray-700 hover:text-violet-900 font-medium">All Jobs</Link>
-              <Link href="/remote" className="text-gray-700 hover:text-violet-900 font-medium">Remote</Link>
-              <Link href="/london" className="text-gray-700 hover:text-violet-900 font-medium">London</Link>
+              <Link href="/fractional-jobs" className="text-gray-700 hover:text-violet-900 font-medium">All Jobs</Link>
+              <Link href="/fractional-jobs-remote" className="text-gray-700 hover:text-violet-900 font-medium">Remote</Link>
+              <Link href="/fractional-jobs-london" className="text-gray-700 hover:text-violet-900 font-medium">London</Link>
               <Link href="/guide" className="text-gray-700 hover:text-violet-900 font-medium">Guide</Link>
               <Link href="/agencies" className="text-gray-700 hover:text-violet-900 font-medium">Agencies</Link>
             </div>
 
             <div className="flex items-center gap-3">
-              <Link href="/jobs" className="bg-violet-700 hover:bg-violet-800 text-white font-semibold px-5 py-2 rounded-lg transition">
+              <Link href="/fractional-jobs" className="bg-violet-700 hover:bg-violet-800 text-white font-semibold px-5 py-2 rounded-lg transition">
                 Find Jobs
               </Link>
             </div>
@@ -246,7 +258,7 @@ export default function HomePage() {
                   </select>
                 </div>
                 <div className="flex items-end">
-                  <Link href="/jobs" className="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-lg transition flex items-center justify-center gap-2">
+                  <Link href="/fractional-jobs" className="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-lg transition flex items-center justify-center gap-2">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
@@ -256,9 +268,9 @@ export default function HomePage() {
               </div>
               <div className="flex flex-wrap gap-2 mt-4">
                 <span className="text-sm text-gray-500">Popular:</span>
-                <Link href="/jobs?role=cfo" className="text-sm text-violet-700 hover:text-violet-900 hover:underline">Fractional CFO</Link>
-                <Link href="/london" className="text-sm text-violet-700 hover:text-violet-900 hover:underline">London Jobs</Link>
-                <Link href="/jobs?type=remote" className="text-sm text-violet-700 hover:text-violet-900 hover:underline">Remote Roles</Link>
+                <Link href="/fractional-cfo-jobs" className="text-sm text-violet-700 hover:text-violet-900 hover:underline">Fractional CFO</Link>
+                <Link href="/fractional-jobs-london" className="text-sm text-violet-700 hover:text-violet-900 hover:underline">London Jobs</Link>
+                <Link href="/fractional-jobs-remote" className="text-sm text-violet-700 hover:text-violet-900 hover:underline">Remote Roles</Link>
                 <Link href="/agencies" className="text-sm text-violet-700 hover:text-violet-900 hover:underline">Recruitment Agencies</Link>
               </div>
             </div>
@@ -377,7 +389,7 @@ export default function HomePage() {
                 </h2>
                 <p className="text-gray-600">Latest fractional executive opportunities in London and across the UK</p>
               </div>
-              <Link href="/jobs" className="bg-violet-700 hover:bg-violet-800 text-white font-semibold px-6 py-3 rounded-lg transition">
+              <Link href="/fractional-jobs" className="bg-violet-700 hover:bg-violet-800 text-white font-semibold px-6 py-3 rounded-lg transition">
                 View All Jobs
               </Link>
             </div>
@@ -626,7 +638,7 @@ export default function HomePage() {
               Browse the latest fractional jobs across the UK and find your next opportunity.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/jobs" className="bg-white text-violet-900 hover:bg-gray-100 font-bold px-8 py-4 rounded-lg transition">
+              <Link href="/fractional-jobs" className="bg-white text-violet-900 hover:bg-gray-100 font-bold px-8 py-4 rounded-lg transition">
                 Browse All Jobs
               </Link>
               <Link href="/agencies" className="bg-amber-500 hover:bg-amber-600 text-white font-bold px-8 py-4 rounded-lg transition">
@@ -709,22 +721,22 @@ export default function HomePage() {
             <div>
               <h4 className="font-bold text-lg mb-4">Fractional Roles</h4>
               <ul className="space-y-2">
-                <li><Link href="/jobs?role=cfo" className="text-gray-400 hover:text-white transition">Fractional CFO</Link></li>
-                <li><Link href="/jobs?role=cmo" className="text-gray-400 hover:text-white transition">Fractional CMO</Link></li>
-                <li><Link href="/jobs?role=cto" className="text-gray-400 hover:text-white transition">Fractional CTO</Link></li>
-                <li><Link href="/jobs?role=coo" className="text-gray-400 hover:text-white transition">Fractional COO</Link></li>
-                <li><Link href="/jobs" className="text-gray-400 hover:text-white transition">All Fractional Jobs</Link></li>
+                <li><Link href="/fractional-cfo-jobs" className="text-gray-400 hover:text-white transition">Fractional CFO</Link></li>
+                <li><Link href="/fractional-cmo-jobs" className="text-gray-400 hover:text-white transition">Fractional CMO</Link></li>
+                <li><Link href="/fractional-cto-jobs" className="text-gray-400 hover:text-white transition">Fractional CTO</Link></li>
+                <li><Link href="/fractional-coo-jobs" className="text-gray-400 hover:text-white transition">Fractional COO</Link></li>
+                <li><Link href="/fractional-jobs" className="text-gray-400 hover:text-white transition">All Fractional Jobs</Link></li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-bold text-lg mb-4">Locations</h4>
               <ul className="space-y-2">
-                <li><Link href="/london" className="text-gray-400 hover:text-white transition">London</Link></li>
-                <li><Link href="/jobs?location=manchester" className="text-gray-400 hover:text-white transition">Manchester</Link></li>
-                <li><Link href="/jobs?location=birmingham" className="text-gray-400 hover:text-white transition">Birmingham</Link></li>
-                <li><Link href="/jobs?type=remote" className="text-gray-400 hover:text-white transition">Remote UK</Link></li>
-                <li><Link href="/jobs" className="text-gray-400 hover:text-white transition">All UK Locations</Link></li>
+                <li><Link href="/fractional-jobs-london" className="text-gray-400 hover:text-white transition">London</Link></li>
+                <li><Link href="/fractional-jobs?location=manchester" className="text-gray-400 hover:text-white transition">Manchester</Link></li>
+                <li><Link href="/fractional-jobs?location=birmingham" className="text-gray-400 hover:text-white transition">Birmingham</Link></li>
+                <li><Link href="/fractional-jobs-remote" className="text-gray-400 hover:text-white transition">Remote UK</Link></li>
+                <li><Link href="/fractional-jobs" className="text-gray-400 hover:text-white transition">All UK Locations</Link></li>
               </ul>
             </div>
 
