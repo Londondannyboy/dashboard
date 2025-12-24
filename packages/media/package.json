@@ -27,7 +27,7 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
-    "next": "^16.0.7",
+    "next": "16.0.10",
     "replicate": "^1.0.0"
   },
   "devDependencies": {
