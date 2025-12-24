@@ -22,7 +22,7 @@
     "@quest/ui": "workspace:*",
     "@stackframe/stack": "^2.8.54",
     "ai": "^3.4.0",
-    "next": "^16.0.7",
+    "next": "16.0.10",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "zustand": "^4.5.5"
